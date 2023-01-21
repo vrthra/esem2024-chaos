@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CSVRecord.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons CSV</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.csv</a> &gt; <span class="el_source">CSVRecord.java</span></div><h1>CSVRecord.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.csv;
+
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+/**
+ * A CSV record parsed from a CSV file.
+ */
+public final class CSVRecord implements Serializable, Iterable&lt;String&gt; {
+
+<span class="fc" id="L33">    private static final String[] EMPTY_STRING_ARRAY = new String[0];</span>
+
+    private static final long serialVersionUID = 1L;
+
+    private final long characterPosition;
+
+    /** The accumulated comments (if any) */
+    private final String comment;
+
+    /** The record number. */
+    private final long recordNumber;
+
+    /** The values of the record */
+    private final String[] values;
+
+    /** The parser that originates this record. */
+    private final CSVParser parser;
+
+    CSVRecord(final CSVParser parser, final String[] values, final String comment, final long recordNumber,
+<span class="fc" id="L52">            final long characterPosition) {</span>
+<span class="fc" id="L53">        this.recordNumber = recordNumber;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        this.values = values != null ? values : EMPTY_STRING_ARRAY;</span>
+<span class="fc" id="L55">        this.parser = parser;</span>
+<span class="fc" id="L56">        this.comment = comment;</span>
+<span class="fc" id="L57">        this.characterPosition = characterPosition;</span>
+<span class="fc" id="L58">    }</span>
+
+    /**
+     * Returns a value by {@link Enum}.
+     *
+     * @param e
+     *            an enum
+     * @return the String at the given enum String
+     */
+    public String get(final Enum&lt;?&gt; e) {
+<span class="nc" id="L68">        return get(e.toString());</span>
+    }
+
+    /**
+     * Returns a value by index.
+     *
+     * @param i
+     *            a column index (0-based)
+     * @return the String at the given index
+     */
+    public String get(final int i) {
+<span class="fc" id="L79">        return values[i];</span>
+    }
+
+    /**
+     * Returns a value by name.
+     *
+     * @param name
+     *            the name of the column to be retrieved.
+     * @return the column value, maybe null depending on {@link CSVFormat#getNullString()}.
+     * @throws IllegalStateException
+     *             if no header mapping was provided
+     * @throws IllegalArgumentException
+     *             if {@code name} is not mapped or if the record is inconsistent
+     * @see #isConsistent()
+     * @see CSVFormat#withNullString(String)
+     */
+    public String get(final String name) {
+<span class="fc" id="L96">        final Map&lt;String, Integer&gt; headerMap = getHeaderMapRaw();</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (headerMap == null) {</span>
+<span class="fc" id="L98">            throw new IllegalStateException(</span>
+                &quot;No header mapping was specified, the record values can't be accessed by name&quot;);
+        }
+<span class="nc" id="L101">        final Integer index = headerMap.get(name);</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (index == null) {</span>
+<span class="nc" id="L103">            throw new IllegalArgumentException(String.format(&quot;Mapping for %s not found, expected one of %s&quot;, name,</span>
+<span class="nc" id="L104">                headerMap.keySet()));</span>
+        }
+        try {
+<span class="nc" id="L107">            return values[index.intValue()];</span>
+<span class="nc" id="L108">        } catch (final ArrayIndexOutOfBoundsException e) {</span>
+<span class="nc" id="L109">            throw new IllegalArgumentException(String.format(</span>
+                &quot;Index for header '%s' is %d but CSVRecord only has %d values!&quot;, name, index,
+<span class="nc" id="L111">                Integer.valueOf(values.length)));</span>
+        }
+    }
+
+    /**
+     * Returns the start position of this record as a character position in the source stream. This may or may not
+     * correspond to the byte position depending on the character set.
+     *
+     * @return the position of this record in the source stream.
+     */
+    public long getCharacterPosition() {
+<span class="fc" id="L122">        return characterPosition;</span>
+    }
+
+    /**
+     * Returns the comment for this record, if any.
+     * Note that comments are attached to the following record.
+     * If there is no following record (i.e. the comment is at EOF)
+     * the comment will be ignored.
+     *
+     * @return the comment for this record, or null if no comment for this record is available.
+     */
+    public String getComment() {
+<span class="fc" id="L134">        return comment;</span>
+    }
+
+    private Map&lt;String, Integer&gt; getHeaderMapRaw() {
+<span class="fc" id="L138">        return parser.getHeaderMapRaw();</span>
+    }
+
+    /**
+     * Returns the parser.
+     *
+     * @return the parser.
+     * @since 1.7
+     */
+    public CSVParser getParser() {
+<span class="fc" id="L148">        return parser;</span>
+    }
+
+    /**
+     * Returns the number of this record in the parsed CSV file.
+     *
+     * &lt;p&gt;
+     * &lt;strong&gt;ATTENTION:&lt;/strong&gt; If your CSV input has multi-line values, the returned number does not correspond to
+     * the current line number of the parser that created this record.
+     * &lt;/p&gt;
+     *
+     * @return the number of this record.
+     * @see CSVParser#getCurrentLineNumber()
+     */
+    public long getRecordNumber() {
+<span class="fc" id="L163">        return recordNumber;</span>
+    }
+
+    /**
+     * Checks whether this record has a comment, false otherwise.
+     * Note that comments are attached to the following record.
+     * If there is no following record (i.e. the comment is at EOF)
+     * the comment will be ignored.
+     *
+     * @return true if this record has a comment, false otherwise
+     * @since 1.3
+     */
+    public boolean hasComment() {
+<span class="fc bfc" id="L176" title="All 2 branches covered.">        return comment != null;</span>
+    }
+
+    /**
+     * Tells whether the record size matches the header size.
+     *
+     * &lt;p&gt;
+     * Returns true if the sizes for this record match and false if not. Some programs can export files that fail this
+     * test but still produce parsable files.
+     * &lt;/p&gt;
+     *
+     * @return true of this record is valid, false if not
+     */
+    public boolean isConsistent() {
+<span class="fc" id="L190">        final Map&lt;String, Integer&gt; headerMap = getHeaderMapRaw();</span>
+<span class="pc bpc" id="L191" title="3 of 4 branches missed.">        return headerMap == null || headerMap.size() == values.length;</span>
+    }
+
+    /**
+     * Checks whether a given column is mapped, i.e. its name has been defined to the parser.
+     *
+     * @param name
+     *            the name of the column to be retrieved.
+     * @return whether a given column is mapped.
+     */
+    public boolean isMapped(final String name) {
+<span class="fc" id="L202">        final Map&lt;String, Integer&gt; headerMap = getHeaderMapRaw();</span>
+<span class="pc bpc" id="L203" title="3 of 4 branches missed.">        return headerMap != null &amp;&amp; headerMap.containsKey(name);</span>
+    }
+
+    /**
+     * Checks whether a given columns is mapped and has a value.
+     *
+     * @param name
+     *            the name of the column to be retrieved.
+     * @return whether a given columns is mapped and has a value
+     */
+    public boolean isSet(final String name) {
+<span class="pc bpc" id="L214" title="3 of 4 branches missed.">        return isMapped(name) &amp;&amp; getHeaderMapRaw().get(name).intValue() &lt; values.length;</span>
+    }
+
+    /**
+     * Returns an iterator over the values of this record.
+     *
+     * @return an iterator over the values of this record.
+     */
+    @Override
+    public Iterator&lt;String&gt; iterator() {
+<span class="fc" id="L224">        return toList().iterator();</span>
+    }
+
+    /**
+     * Puts all values of this record into the given Map.
+     *
+     * @param map
+     *            The Map to populate.
+     * @return the given map.
+     */
+    &lt;M extends Map&lt;String, String&gt;&gt; M putIn(final M map) {
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">        if (getHeaderMapRaw() == null) {</span>
+<span class="fc" id="L236">            return map;</span>
+        }
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        for (final Entry&lt;String, Integer&gt; entry : getHeaderMapRaw().entrySet()) {</span>
+<span class="nc" id="L239">            final int col = entry.getValue().intValue();</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">            if (col &lt; values.length) {</span>
+<span class="nc" id="L241">                map.put(entry.getKey(), values[col]);</span>
+            }
+<span class="nc" id="L243">        }</span>
+<span class="nc" id="L244">        return map;</span>
+    }
+
+    /**
+     * Returns the number of values in this record.
+     *
+     * @return the number of values.
+     */
+    public int size() {
+<span class="fc" id="L253">        return values.length;</span>
+    }
+
+    /**
+     * Converts the values to a List.
+     *
+     * TODO: Maybe make this public?
+     *
+     * @return a new List
+     */
+    private List&lt;String&gt; toList() {
+<span class="fc" id="L264">        return Arrays.asList(values);</span>
+    }
+
+    /**
+     * Copies this record into a new Map of header name to record value.
+     *
+     * @return A new Map. The map is empty if the record has no headers.
+     */
+    public Map&lt;String, String&gt; toMap() {
+<span class="fc" id="L273">        return putIn(new LinkedHashMap&lt;String, String&gt;(values.length));</span>
+    }
+
+    /**
+     * Returns a string representation of the contents of this record. The result is constructed by comment, mapping,
+     * recordNumber and by passing the internal values array to {@link Arrays#toString(Object[])}.
+     *
+     * @return a String representation of this record.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L284">        return &quot;CSVRecord [comment='&quot; + comment + &quot;', recordNumber=&quot; + recordNumber + &quot;, values=&quot; + </span>
+<span class="fc" id="L285">            Arrays.toString(values) + &quot;]&quot;;</span>
+    }
+
+    String[] values() {
+<span class="fc" id="L289">        return values;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

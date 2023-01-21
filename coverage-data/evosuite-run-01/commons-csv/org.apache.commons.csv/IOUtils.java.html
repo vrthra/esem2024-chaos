@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IOUtils.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons CSV</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.csv</a> &gt; <span class="el_source">IOUtils.java</span></div><h1>IOUtils.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.apache.commons.csv;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.CharBuffer;
+
+/** Copied from Apache Commons IO. */
+<span class="fc" id="L25">class IOUtils {</span>
+
+    /**
+     * &lt;p&gt;
+     * Copied from Apache Commons IO.
+     * &lt;/p&gt;
+     * The default buffer size ({@value}).
+     */
+    static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
+
+    /**
+     * &lt;p&gt;
+     * Copied from Apache Commons IO.
+     * &lt;/p&gt;
+     * Represents the end-of-file (or stream).
+     * @since 2.5 (made public)
+     */
+    private static final int EOF = -1;
+
+    /**
+     * Copies chars from a large (over 2GB) &lt;code&gt;Reader&lt;/code&gt; to an &lt;code&gt;Appendable&lt;/code&gt;.
+     * &lt;p&gt;
+     * This method buffers the input internally, so there is no need to use a
+     * &lt;code&gt;BufferedReader&lt;/code&gt;.
+     * &lt;/p&gt;
+     * The buffer size is given by {@link #DEFAULT_BUFFER_SIZE}.
+     *
+     * @param input the &lt;code&gt;Reader&lt;/code&gt; to read from
+     * @param output the &lt;code&gt;Appendable&lt;/code&gt; to append to
+     * @return the number of characters copied
+     * @throws NullPointerException if the input or output is null
+     * @throws IOException          if an I/O error occurs
+     * @since 2.7
+     */
+    static long copy(final Reader input, final Appendable output) throws IOException {
+<span class="fc" id="L60">        return copy(input, output, CharBuffer.allocate(DEFAULT_BUFFER_SIZE));</span>
+    }
+
+    /**
+     * Copies chars from a large (over 2GB) &lt;code&gt;Reader&lt;/code&gt; to an &lt;code&gt;Appendable&lt;/code&gt;.
+     * &lt;p&gt;
+     * This method uses the provided buffer, so there is no need to use a
+     * &lt;code&gt;BufferedReader&lt;/code&gt;.
+     * &lt;/p&gt;
+     *
+     * @param input the &lt;code&gt;Reader&lt;/code&gt; to read from
+     * @param output the &lt;code&gt;Appendable&lt;/code&gt; to write to
+     * @param buffer the buffer to be used for the copy
+     * @return the number of characters copied
+     * @throws NullPointerException if the input or output is null
+     * @throws IOException          if an I/O error occurs
+     * @since 2.7
+     */
+    static long copy(final Reader input, final Appendable output, final CharBuffer buffer) throws IOException {
+<span class="fc" id="L79">        long count = 0;</span>
+        int n;
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        while (EOF != (n = input.read(buffer))) {</span>
+<span class="fc" id="L82">            buffer.flip();</span>
+<span class="nc" id="L83">            output.append(buffer, 0, n);</span>
+<span class="nc" id="L84">            count += n;</span>
+        }
+<span class="fc" id="L86">        return count;</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Copied from Apache Commons IO.
+     * &lt;/p&gt;
+     * Copies chars from a large (over 2GB) &lt;code&gt;Reader&lt;/code&gt; to a &lt;code&gt;Writer&lt;/code&gt;.
+     * &lt;p&gt;
+     * This method buffers the input internally, so there is no need to use a
+     * &lt;code&gt;BufferedReader&lt;/code&gt;.
+     * &lt;p&gt;
+     * The buffer size is given by {@link #DEFAULT_BUFFER_SIZE}.
+     *
+     * @param input the &lt;code&gt;Reader&lt;/code&gt; to read from
+     * @param output the &lt;code&gt;Writer&lt;/code&gt; to write to
+     * @return the number of characters copied
+     * @throws NullPointerException if the input or output is null
+     * @throws IOException          if an I/O error occurs
+     * @since 1.3
+     */
+    static long copyLarge(final Reader input, final Writer output) throws IOException {
+<span class="fc" id="L108">        return copyLarge(input, output, new char[DEFAULT_BUFFER_SIZE]);</span>
+    }
+
+    /**
+     * &lt;p&gt;
+     * Copied from Apache Commons IO.
+     * &lt;/p&gt;
+     * Copies chars from a large (over 2GB) &lt;code&gt;Reader&lt;/code&gt; to a &lt;code&gt;Writer&lt;/code&gt;.
+     * &lt;p&gt;
+     * This method uses the provided buffer, so there is no need to use a
+     * &lt;code&gt;BufferedReader&lt;/code&gt;.
+     * &lt;p&gt;
+     *
+     * @param input the &lt;code&gt;Reader&lt;/code&gt; to read from
+     * @param output the &lt;code&gt;Writer&lt;/code&gt; to write to
+     * @param buffer the buffer to be used for the copy
+     * @return the number of characters copied
+     * @throws NullPointerException if the input or output is null
+     * @throws IOException          if an I/O error occurs
+     * @since 2.2
+     */
+    static long copyLarge(final Reader input, final Writer output, final char[] buffer) throws IOException {
+<span class="fc" id="L130">        long count = 0;</span>
+        int n;
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        while (EOF != (n = input.read(buffer))) {</span>
+<span class="fc" id="L133">            output.write(buffer, 0, n);</span>
+<span class="fc" id="L134">            count += n;</span>
+        }
+<span class="fc" id="L136">        return count;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

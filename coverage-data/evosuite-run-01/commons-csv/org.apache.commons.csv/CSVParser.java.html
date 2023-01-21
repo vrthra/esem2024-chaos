@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CSVParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Apache Commons CSV</a> &gt; <a href="index.source.html" class="el_package">org.apache.commons.csv</a> &gt; <span class="el_source">CSVParser.java</span></div><h1>CSVParser.java</h1><pre class="source lang-java linenums">/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the &quot;License&quot;); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.apache.commons.csv;
+
+import static org.apache.commons.csv.Token.Type.TOKEN;
+
+import java.io.Closeable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.TreeMap;
+
+/**
+ * Parses CSV files according to the specified format.
+ *
+ * Because CSV appears in many different dialects, the parser supports many formats by allowing the
+ * specification of a {@link CSVFormat}.
+ *
+ * The parser works record wise. It is not possible to go back, once a record has been parsed from the input stream.
+ *
+ * &lt;h2&gt;Creating instances&lt;/h2&gt;
+ * &lt;p&gt;
+ * There are several static factory methods that can be used to create instances for various types of resources:
+ * &lt;/p&gt;
+ * &lt;ul&gt;
+ *     &lt;li&gt;{@link #parse(java.io.File, Charset, CSVFormat)}&lt;/li&gt;
+ *     &lt;li&gt;{@link #parse(String, CSVFormat)}&lt;/li&gt;
+ *     &lt;li&gt;{@link #parse(java.net.URL, java.nio.charset.Charset, CSVFormat)}&lt;/li&gt;
+ * &lt;/ul&gt;
+ * &lt;p&gt;
+ * Alternatively parsers can also be created by passing a {@link Reader} directly to the sole constructor.
+ *
+ * For those who like fluent APIs, parsers can be created using {@link CSVFormat#parse(java.io.Reader)} as a shortcut:
+ * &lt;/p&gt;
+ * &lt;pre&gt;
+ * for(CSVRecord record : CSVFormat.EXCEL.parse(in)) {
+ *     ...
+ * }
+ * &lt;/pre&gt;
+ *
+ * &lt;h2&gt;Parsing record wise&lt;/h2&gt;
+ * &lt;p&gt;
+ * To parse a CSV input from a file, you write:
+ * &lt;/p&gt;
+ *
+ * &lt;pre&gt;
+ * File csvData = new File(&amp;quot;/path/to/csv&amp;quot;);
+ * CSVParser parser = CSVParser.parse(csvData, CSVFormat.RFC4180);
+ * for (CSVRecord csvRecord : parser) {
+ *     ...
+ * }
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;
+ * This will read the parse the contents of the file using the
+ * &lt;a href=&quot;http://tools.ietf.org/html/rfc4180&quot; target=&quot;_blank&quot;&gt;RFC 4180&lt;/a&gt; format.
+ * &lt;/p&gt;
+ *
+ * &lt;p&gt;
+ * To parse CSV input in a format like Excel, you write:
+ * &lt;/p&gt;
+ *
+ * &lt;pre&gt;
+ * CSVParser parser = CSVParser.parse(csvData, CSVFormat.EXCEL);
+ * for (CSVRecord csvRecord : parser) {
+ *     ...
+ * }
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;
+ * If the predefined formats don't match the format at hands, custom formats can be defined. More information about
+ * customising CSVFormats is available in {@link CSVFormat CSVFormat Javadoc}.
+ * &lt;/p&gt;
+ *
+ * &lt;h2&gt;Parsing into memory&lt;/h2&gt;
+ * &lt;p&gt;
+ * If parsing record wise is not desired, the contents of the input can be read completely into memory.
+ * &lt;/p&gt;
+ *
+ * &lt;pre&gt;
+ * Reader in = new StringReader(&amp;quot;a;b\nc;d&amp;quot;);
+ * CSVParser parser = new CSVParser(in, CSVFormat.EXCEL);
+ * List&amp;lt;CSVRecord&amp;gt; list = parser.getRecords();
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;
+ * There are two constraints that have to be kept in mind:
+ * &lt;/p&gt;
+ *
+ * &lt;ol&gt;
+ *     &lt;li&gt;Parsing into memory starts at the current position of the parser. If you have already parsed records from
+ *     the input, those records will not end up in the in memory representation of your CSV data.&lt;/li&gt;
+ *     &lt;li&gt;Parsing into memory may consume a lot of system resources depending on the input. For example if you're
+ *     parsing a 150MB file of CSV data the contents will be read completely into memory.&lt;/li&gt;
+ * &lt;/ol&gt;
+ *
+ * &lt;h2&gt;Notes&lt;/h2&gt;
+ * &lt;p&gt;
+ * Internal parser state is completely covered by the format and the reader-state.
+ * &lt;/p&gt;
+ *
+ * @see &lt;a href=&quot;package-summary.html&quot;&gt;package documentation for more details&lt;/a&gt;
+ */
+public final class CSVParser implements Iterable&lt;CSVRecord&gt;, Closeable {
+
+<span class="fc" id="L137">    class CSVRecordIterator implements Iterator&lt;CSVRecord&gt; {</span>
+        private CSVRecord current;
+
+        private CSVRecord getNextRecord() {
+            try {
+<span class="fc" id="L142">                return CSVParser.this.nextRecord();</span>
+<span class="fc" id="L143">            } catch (final IOException e) {</span>
+<span class="fc" id="L144">                throw new IllegalStateException(</span>
+<span class="fc" id="L145">                        e.getClass().getSimpleName() + &quot; reading next record: &quot; + e.toString(), e);</span>
+            }
+        }
+
+        @Override
+        public boolean hasNext() {
+<span class="fc bfc" id="L151" title="All 2 branches covered.">            if (CSVParser.this.isClosed()) {</span>
+<span class="fc" id="L152">                return false;</span>
+            }
+<span class="pc bpc" id="L154" title="1 of 2 branches missed.">            if (this.current == null) {</span>
+<span class="fc" id="L155">                this.current = this.getNextRecord();</span>
+            }
+
+<span class="fc bfc" id="L158" title="All 2 branches covered.">            return this.current != null;</span>
+        }
+
+        @Override
+        public CSVRecord next() {
+<span class="pc bpc" id="L163" title="1 of 2 branches missed.">            if (CSVParser.this.isClosed()) {</span>
+<span class="nc" id="L164">                throw new NoSuchElementException(&quot;CSVParser has been closed&quot;);</span>
+            }
+<span class="fc" id="L166">            CSVRecord next = this.current;</span>
+<span class="fc" id="L167">            this.current = null;</span>
+
+<span class="fc bfc" id="L169" title="All 2 branches covered.">            if (next == null) {</span>
+                // hasNext() wasn't called before
+<span class="fc" id="L171">                next = this.getNextRecord();</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">                if (next == null) {</span>
+<span class="fc" id="L173">                    throw new NoSuchElementException(&quot;No more CSV records available&quot;);</span>
+                }
+            }
+
+<span class="fc" id="L177">            return next;</span>
+        }
+
+        @Override
+        public void remove() {
+<span class="fc" id="L182">            throw new UnsupportedOperationException();</span>
+        }
+    }
+
+    /**
+     * Creates a parser for the given {@link File}.
+     *
+     * @param file
+     *            a CSV file. Must not be null.
+     * @param charset
+     *            A Charset
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @return a new parser
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either file or format are null.
+     * @throws IOException
+     *             If an I/O error occurs
+     */
+    @SuppressWarnings(&quot;resource&quot;)
+    public static CSVParser parse(final File file, final Charset charset, final CSVFormat format) throws IOException {
+<span class="fc" id="L203">        Assertions.notNull(file, &quot;file&quot;);</span>
+<span class="fc" id="L204">        Assertions.notNull(format, &quot;format&quot;);</span>
+<span class="nc" id="L205">        return new CSVParser(new InputStreamReader(new FileInputStream(file), charset), format);</span>
+    }
+
+    /**
+     * Creates a CSV parser using the given {@link CSVFormat}.
+     *
+     * &lt;p&gt;
+     * If you do not read all records from the given {@code reader}, you should call {@link #close()} on the parser,
+     * unless you close the {@code reader}.
+     * &lt;/p&gt;
+     *
+     * @param inputStream
+     *            an InputStream containing CSV-formatted input. Must not be null.
+     * @param charset
+     *            a Charset.
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @return a new CSVParser configured with the given reader and format.
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either reader or format are null.
+     * @throws IOException
+     *             If there is a problem reading the header or skipping the first record
+     * @since 1.5
+     */
+    @SuppressWarnings(&quot;resource&quot;)
+    public static CSVParser parse(final InputStream inputStream, final Charset charset, final CSVFormat format)
+            throws IOException {
+<span class="fc" id="L232">        Assertions.notNull(inputStream, &quot;inputStream&quot;);</span>
+<span class="fc" id="L233">        Assertions.notNull(format, &quot;format&quot;);</span>
+<span class="fc" id="L234">        return parse(new InputStreamReader(inputStream, charset), format);</span>
+    }
+
+    /**
+     * Creates a parser for the given {@link Path}.
+     *
+     * @param path
+     *            a CSV file. Must not be null.
+     * @param charset
+     *            A Charset
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @return a new parser
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either file or format are null.
+     * @throws IOException
+     *             If an I/O error occurs
+     * @since 1.5
+     */
+    public static CSVParser parse(final Path path, final Charset charset, final CSVFormat format) throws IOException {
+<span class="fc" id="L254">        Assertions.notNull(path, &quot;path&quot;);</span>
+<span class="fc" id="L255">        Assertions.notNull(format, &quot;format&quot;);</span>
+<span class="nc" id="L256">        return parse(Files.newInputStream(path), charset, format);</span>
+    }
+
+    /**
+     * Creates a CSV parser using the given {@link CSVFormat}
+     *
+     * &lt;p&gt;
+     * If you do not read all records from the given {@code reader}, you should call {@link #close()} on the parser,
+     * unless you close the {@code reader}.
+     * &lt;/p&gt;
+     *
+     * @param reader
+     *            a Reader containing CSV-formatted input. Must not be null.
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @return a new CSVParser configured with the given reader and format.
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either reader or format are null.
+     * @throws IOException
+     *             If there is a problem reading the header or skipping the first record
+     * @since 1.5
+     */
+    public static CSVParser parse(final Reader reader, final CSVFormat format) throws IOException {
+<span class="fc" id="L279">        return new CSVParser(reader, format);</span>
+    }
+
+    /**
+     * Creates a parser for the given {@link String}.
+     *
+     * @param string
+     *            a CSV string. Must not be null.
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @return a new parser
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either string or format are null.
+     * @throws IOException
+     *             If an I/O error occurs
+     */
+    public static CSVParser parse(final String string, final CSVFormat format) throws IOException {
+<span class="fc" id="L296">        Assertions.notNull(string, &quot;string&quot;);</span>
+<span class="fc" id="L297">        Assertions.notNull(format, &quot;format&quot;);</span>
+
+<span class="fc" id="L299">        return new CSVParser(new StringReader(string), format);</span>
+    }
+
+    // the following objects are shared to reduce garbage
+
+    /**
+     * Creates a parser for the given URL.
+     *
+     * &lt;p&gt;
+     * If you do not read all records from the given {@code url}, you should call {@link #close()} on the parser, unless
+     * you close the {@code url}.
+     * &lt;/p&gt;
+     *
+     * @param url
+     *            a URL. Must not be null.
+     * @param charset
+     *            the charset for the resource. Must not be null.
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @return a new parser
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either url, charset or format are null.
+     * @throws IOException
+     *             If an I/O error occurs
+     */
+    public static CSVParser parse(final URL url, final Charset charset, final CSVFormat format) throws IOException {
+<span class="fc" id="L325">        Assertions.notNull(url, &quot;url&quot;);</span>
+<span class="fc" id="L326">        Assertions.notNull(charset, &quot;charset&quot;);</span>
+<span class="fc" id="L327">        Assertions.notNull(format, &quot;format&quot;);</span>
+
+<span class="nc" id="L329">        return new CSVParser(new InputStreamReader(url.openStream(), charset), format);</span>
+    }
+
+    private final CSVFormat format;
+
+    /** A mapping of column names to column indices */
+    private final Map&lt;String, Integer&gt; headerMap;
+
+    /** The column order to avoid re-computing it. */
+    private final List&lt;String&gt; headerNames;
+
+    private final Lexer lexer;
+
+    private final CSVRecordIterator csvRecordIterator;
+
+    /** A record buffer for getRecord(). Grows as necessary and is reused. */
+<span class="fc" id="L345">    private final List&lt;String&gt; recordList = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * The next record number to assign.
+     */
+    private long recordNumber;
+
+    /**
+     * Lexer offset when the parser does not start parsing at the beginning of the source. Usually used in combination
+     * with {@link #recordNumber}.
+     */
+    private final long characterOffset;
+
+<span class="fc" id="L358">    private final Token reusableToken = new Token();</span>
+
+    /**
+     * Customized CSV parser using the given {@link CSVFormat}
+     *
+     * &lt;p&gt;
+     * If you do not read all records from the given {@code reader}, you should call {@link #close()} on the parser,
+     * unless you close the {@code reader}.
+     * &lt;/p&gt;
+     *
+     * @param reader
+     *            a Reader containing CSV-formatted input. Must not be null.
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either reader or format are null.
+     * @throws IOException
+     *             If there is a problem reading the header or skipping the first record
+     */
+    public CSVParser(final Reader reader, final CSVFormat format) throws IOException {
+<span class="fc" id="L378">        this(reader, format, 0, 1);</span>
+<span class="fc" id="L379">    }</span>
+
+    /**
+     * Customized CSV parser using the given {@link CSVFormat}
+     *
+     * &lt;p&gt;
+     * If you do not read all records from the given {@code reader}, you should call {@link #close()} on the parser,
+     * unless you close the {@code reader}.
+     * &lt;/p&gt;
+     *
+     * @param reader
+     *            a Reader containing CSV-formatted input. Must not be null.
+     * @param format
+     *            the CSVFormat used for CSV parsing. Must not be null.
+     * @param characterOffset
+     *            Lexer offset when the parser does not start parsing at the beginning of the source.
+     * @param recordNumber
+     *            The next record number to assign
+     * @throws IllegalArgumentException
+     *             If the parameters of the format are inconsistent or if either reader or format are null.
+     * @throws IOException
+     *             If there is a problem reading the header or skipping the first record
+     * @since 1.1
+     */
+    @SuppressWarnings(&quot;resource&quot;)
+    public CSVParser(final Reader reader, final CSVFormat format, final long characterOffset, final long recordNumber)
+<span class="fc" id="L405">        throws IOException {</span>
+<span class="fc" id="L406">        Assertions.notNull(reader, &quot;reader&quot;);</span>
+<span class="fc" id="L407">        Assertions.notNull(format, &quot;format&quot;);</span>
+
+<span class="fc" id="L409">        this.format = format;</span>
+<span class="fc" id="L410">        this.lexer = new Lexer(format, new ExtendedBufferedReader(reader));</span>
+<span class="fc" id="L411">        this.csvRecordIterator = new CSVRecordIterator();</span>
+<span class="fc" id="L412">        final Headers headers = createHeaders();</span>
+<span class="fc" id="L413">        this.headerMap = headers.headerMap;</span>
+<span class="fc" id="L414">        this.headerNames = headers.headerNames;</span>
+<span class="fc" id="L415">        this.characterOffset = characterOffset;</span>
+<span class="fc" id="L416">        this.recordNumber = recordNumber - 1;</span>
+<span class="fc" id="L417">    }</span>
+
+    private void addRecordValue(final boolean lastRecord) {
+<span class="fc" id="L420">        final String input = this.reusableToken.content.toString();</span>
+<span class="fc bfc" id="L421" title="All 2 branches covered.">        final String inputClean = this.format.getTrim() ? input.trim() : input;</span>
+<span class="pc bpc" id="L422" title="1 of 6 branches missed.">        if (lastRecord &amp;&amp; inputClean.isEmpty() &amp;&amp; this.format.getTrailingDelimiter()) {</span>
+<span class="nc" id="L423">            return;</span>
+        }
+<span class="fc" id="L425">        final String nullString = this.format.getNullString();</span>
+<span class="fc bfc" id="L426" title="All 2 branches covered.">        this.recordList.add(inputClean.equals(nullString) ? null : inputClean);</span>
+<span class="fc" id="L427">    }</span>
+
+    /**
+     * Closes resources.
+     *
+     * @throws IOException
+     *             If an I/O error occurs
+     */
+    @Override
+    public void close() throws IOException {
+<span class="pc bpc" id="L437" title="1 of 2 branches missed.">        if (this.lexer != null) {</span>
+<span class="fc" id="L438">            this.lexer.close();</span>
+        }
+<span class="fc" id="L440">    }</span>
+
+    private Map&lt;String, Integer&gt; createEmptyHeaderMap() {
+<span class="fc bfc" id="L443" title="All 2 branches covered.">        return this.format.getIgnoreHeaderCase() ?</span>
+                new TreeMap&lt;&gt;(String.CASE_INSENSITIVE_ORDER) :
+                new LinkedHashMap&lt;&gt;();
+    }
+
+    /**
+     * Header information based on name and position.
+     */
+    private static final class Headers {
+        /**
+         * Header column positions (0-based)
+         */
+        final Map&lt;String, Integer&gt; headerMap;
+
+        /**
+         * Header names in column order
+         */
+        final List&lt;String&gt; headerNames;
+
+<span class="fc" id="L462">        Headers(final Map&lt;String, Integer&gt; headerMap, final List&lt;String&gt; headerNames) {</span>
+<span class="fc" id="L463">            this.headerMap = headerMap;</span>
+<span class="fc" id="L464">            this.headerNames = headerNames;</span>
+<span class="fc" id="L465">        }</span>
+    }
+
+    /**
+     * Creates the name to index mapping if the format defines a header.
+     *
+     * @return null if the format has no header.
+     * @throws IOException if there is a problem reading the header or skipping the first record
+     */
+    private Headers createHeaders() throws IOException {
+<span class="fc" id="L475">        Map&lt;String, Integer&gt; hdrMap = null;</span>
+<span class="fc" id="L476">        List&lt;String&gt; headerNames = null;</span>
+<span class="fc" id="L477">        final String[] formatHeader = this.format.getHeader();</span>
+<span class="fc bfc" id="L478" title="All 2 branches covered.">        if (formatHeader != null) {</span>
+<span class="fc" id="L479">            hdrMap = createEmptyHeaderMap();</span>
+<span class="fc" id="L480">            String[] headerRecord = null;</span>
+<span class="fc bfc" id="L481" title="All 2 branches covered.">            if (formatHeader.length == 0) {</span>
+                // read the header from the first line of the file
+<span class="fc" id="L483">                final CSVRecord nextRecord = this.nextRecord();</span>
+<span class="fc bfc" id="L484" title="All 2 branches covered.">                if (nextRecord != null) {</span>
+<span class="fc" id="L485">                    headerRecord = nextRecord.values();</span>
+                }
+<span class="fc" id="L487">            } else {</span>
+<span class="fc bfc" id="L488" title="All 2 branches covered.">                if (this.format.getSkipHeaderRecord()) {</span>
+<span class="fc" id="L489">                    this.nextRecord();</span>
+                }
+<span class="fc" id="L491">                headerRecord = formatHeader;</span>
+            }
+
+            // build the name to index mappings
+<span class="fc bfc" id="L495" title="All 2 branches covered.">            if (headerRecord != null) {</span>
+<span class="fc bfc" id="L496" title="All 2 branches covered.">                for (int i = 0; i &lt; headerRecord.length; i++) {</span>
+<span class="fc" id="L497">                    final String header = headerRecord[i];</span>
+<span class="pc bpc" id="L498" title="1 of 2 branches missed.">                    final boolean containsHeader = header == null ? false : hdrMap.containsKey(header);</span>
+<span class="pc bpc" id="L499" title="1 of 4 branches missed.">                    final boolean emptyHeader = header == null || header.trim().isEmpty();</span>
+<span class="pc bpc" id="L500" title="1 of 2 branches missed.">                    if (containsHeader) {</span>
+<span class="nc bnc" id="L501" title="All 4 branches missed.">                        if (!emptyHeader &amp;&amp; !this.format.getAllowDuplicateHeaderNames()) {</span>
+<span class="nc" id="L502">                            throw new IllegalArgumentException(</span>
+<span class="nc" id="L503">                                String.format(</span>
+                                    &quot;The header contains a duplicate name: \&quot;%s\&quot; in %s. If this is valid then use CSVFormat.withAllowDuplicateHeaderNames().&quot;,
+<span class="nc" id="L505">                                    header, Arrays.toString(headerRecord)));</span>
+                        }
+<span class="nc bnc" id="L507" title="All 4 branches missed.">                        if (emptyHeader &amp;&amp; !this.format.getAllowMissingColumnNames()) {</span>
+<span class="nc" id="L508">                            throw new IllegalArgumentException(</span>
+<span class="nc" id="L509">                                    &quot;A header name is missing in &quot; + Arrays.toString(headerRecord));</span>
+                        }
+                    }
+<span class="pc bpc" id="L512" title="1 of 2 branches missed.">                    if (header != null) {</span>
+<span class="fc" id="L513">                        hdrMap.put(header, Integer.valueOf(i));</span>
+<span class="fc bfc" id="L514" title="All 2 branches covered.">                        if (headerNames == null) {</span>
+<span class="fc" id="L515">                            headerNames = new ArrayList&lt;&gt;(headerRecord.length);</span>
+                        }
+<span class="fc" id="L517">                        headerNames.add(header);</span>
+                    }
+                }
+            }
+        }
+<span class="fc bfc" id="L522" title="All 2 branches covered.">        if (headerNames == null) {</span>
+<span class="fc" id="L523">        	headerNames = Collections.emptyList(); //immutable</span>
+        } else {
+<span class="fc" id="L525">        	headerNames = Collections.unmodifiableList(headerNames);</span>
+        }
+<span class="fc" id="L527">        return new Headers(hdrMap, headerNames);</span>
+    }
+
+    /**
+     * Returns the current line number in the input stream.
+     *
+     * &lt;p&gt;
+     * &lt;strong&gt;ATTENTION:&lt;/strong&gt; If your CSV input has multi-line values, the returned number does not correspond to
+     * the record number.
+     * &lt;/p&gt;
+     *
+     * @return current line number
+     */
+    public long getCurrentLineNumber() {
+<span class="fc" id="L541">        return this.lexer.getCurrentLineNumber();</span>
+    }
+
+    /**
+     * Gets the first end-of-line string encountered.
+     *
+     * @return the first end-of-line string
+     * @since 1.5
+     */
+    public String getFirstEndOfLine() {
+<span class="fc" id="L551">        return lexer.getFirstEol();</span>
+    }
+
+    /**
+     * Returns a copy of the header map.
+     * &lt;p&gt;
+     * The map keys are column names. The map values are 0-based indices.
+     * &lt;/p&gt;
+     * @return a copy of the header map.
+     */
+    public Map&lt;String, Integer&gt; getHeaderMap() {
+<span class="fc bfc" id="L562" title="All 2 branches covered.">        if (this.headerMap == null) {</span>
+<span class="fc" id="L563">            return null;</span>
+        }
+<span class="fc" id="L565">        final Map&lt;String, Integer&gt; map = createEmptyHeaderMap();</span>
+<span class="fc" id="L566">        map.putAll(this.headerMap);</span>
+<span class="fc" id="L567">        return map;</span>
+    }
+
+    /**
+     * Returns the header map.
+     *
+     * @return the header map.
+     */
+    Map&lt;String, Integer&gt; getHeaderMapRaw() {
+<span class="fc" id="L576">        return this.headerMap;</span>
+    }
+
+    /**
+     * Returns a read-only list of header names that iterates in column order.
+     *
+     * @return read-only list of header names that iterates in column order.
+     * @since 1.7
+     */
+    public List&lt;String&gt; getHeaderNames() {
+<span class="fc" id="L586">        return headerNames;</span>
+    }
+
+    /**
+     * Returns the current record number in the input stream.
+     *
+     * &lt;p&gt;
+     * &lt;strong&gt;ATTENTION:&lt;/strong&gt; If your CSV input has multi-line values, the returned number does not correspond to
+     * the line number.
+     * &lt;/p&gt;
+     *
+     * @return current record number
+     */
+    public long getRecordNumber() {
+<span class="fc" id="L600">        return this.recordNumber;</span>
+    }
+
+    /**
+     * Parses the CSV input according to the given format and returns the content as a list of
+     * {@link CSVRecord CSVRecords}.
+     *
+     * &lt;p&gt;
+     * The returned content starts at the current parse-position in the stream.
+     * &lt;/p&gt;
+     *
+     * @return list of {@link CSVRecord CSVRecords}, may be empty
+     * @throws IOException
+     *             on parse error or input read-failure
+     */
+    public List&lt;CSVRecord&gt; getRecords() throws IOException {
+        CSVRecord rec;
+<span class="fc" id="L617">        final List&lt;CSVRecord&gt; records = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L618" title="All 2 branches covered.">        while ((rec = this.nextRecord()) != null) {</span>
+<span class="fc" id="L619">            records.add(rec);</span>
+        }
+<span class="fc" id="L621">        return records;</span>
+    }
+
+    /**
+     * Gets whether this parser is closed.
+     *
+     * @return whether this parser is closed.
+     */
+    public boolean isClosed() {
+<span class="fc" id="L630">        return this.lexer.isClosed();</span>
+    }
+
+    /**
+     * Returns an iterator on the records.
+     *
+     * &lt;p&gt;
+     * An {@link IOException} caught during the iteration are re-thrown as an
+     * {@link IllegalStateException}.
+     * &lt;/p&gt;
+     * &lt;p&gt;
+     * If the parser is closed a call to {@link Iterator#next()} will throw a
+     * {@link NoSuchElementException}.
+     * &lt;/p&gt;
+     */
+    @Override
+    public Iterator&lt;CSVRecord&gt; iterator() {
+<span class="fc" id="L647">        return csvRecordIterator;</span>
+    }
+
+    /**
+     * Parses the next record from the current point in the stream.
+     *
+     * @return the record as an array of values, or {@code null} if the end of the stream has been reached
+     * @throws IOException
+     *             on parse error or input read-failure
+     */
+    CSVRecord nextRecord() throws IOException {
+<span class="fc" id="L658">        CSVRecord result = null;</span>
+<span class="fc" id="L659">        this.recordList.clear();</span>
+<span class="fc" id="L660">        StringBuilder sb = null;</span>
+<span class="fc" id="L661">        final long startCharPosition = lexer.getCharacterPosition() + this.characterOffset;</span>
+        do {
+<span class="fc" id="L663">            this.reusableToken.reset();</span>
+<span class="fc" id="L664">            this.lexer.nextToken(this.reusableToken);</span>
+<span class="pc bpc" id="L665" title="3 of 6 branches missed.">            switch (this.reusableToken.type) {</span>
+            case TOKEN:
+<span class="fc" id="L667">                this.addRecordValue(false);</span>
+<span class="fc" id="L668">                break;</span>
+            case EORECORD:
+<span class="fc" id="L670">                this.addRecordValue(true);</span>
+<span class="fc" id="L671">                break;</span>
+            case EOF:
+<span class="fc bfc" id="L673" title="All 2 branches covered.">                if (this.reusableToken.isReady) {</span>
+<span class="fc" id="L674">                    this.addRecordValue(true);</span>
+                }
+                break;
+            case INVALID:
+<span class="nc" id="L678">                throw new IOException(&quot;(line &quot; + this.getCurrentLineNumber() + &quot;) invalid parse sequence&quot;);</span>
+            case COMMENT: // Ignored currently
+<span class="nc bnc" id="L680" title="All 2 branches missed.">                if (sb == null) { // first comment for this record</span>
+<span class="nc" id="L681">                    sb = new StringBuilder();</span>
+                } else {
+<span class="nc" id="L683">                    sb.append(Constants.LF);</span>
+                }
+<span class="nc" id="L685">                sb.append(this.reusableToken.content);</span>
+<span class="nc" id="L686">                this.reusableToken.type = TOKEN; // Read another token</span>
+<span class="nc" id="L687">                break;</span>
+            default:
+<span class="nc" id="L689">                throw new IllegalStateException(&quot;Unexpected Token type: &quot; + this.reusableToken.type);</span>
+            }
+<span class="fc bfc" id="L691" title="All 2 branches covered.">        } while (this.reusableToken.type == TOKEN);</span>
+
+<span class="fc bfc" id="L693" title="All 2 branches covered.">        if (!this.recordList.isEmpty()) {</span>
+<span class="fc" id="L694">            this.recordNumber++;</span>
+<span class="pc bpc" id="L695" title="1 of 2 branches missed.">            final String comment = sb == null ? null : sb.toString();</span>
+<span class="fc" id="L696">            result = new CSVRecord(this, this.recordList.toArray(new String[this.recordList.size()]),</span>
+                comment, this.recordNumber, startCharPosition);
+        }
+<span class="fc" id="L699">        return result;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

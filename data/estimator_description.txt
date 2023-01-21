@@ -1,0 +1,16 @@
+List of estimators used
+
+Incidence data based estimators:
+1) jackknife estimator by Burnham and Overton 1978, 1979 (of 5th order): jack_our - our implementation, species_jackknife - the implementation with correction from SPECIES R package;
+2) chao2 - classic Chao estimator by 1984;
+3) chao2_corrected - Chao estimator with correction;
+4) coverage-base estimator ICE by Chao and Lee 1992;
+5) bootstrap - bootstrap estimator by Smith and van Belle 1984;
+6) zelterman - corrected Zelterman estimator by Böhning 2007;
+7) chao_lowerbound - an improved nonparametric lower bound of species richness via a modified Good–Turing frequency formula by Chiu et al. 2014;
+8) chao_upperbound - updated Chao estimator which estimates the richness of a population when the maximum number of classes Is fixed (from Eren et al. 2012). It gives a confidence interval instead of point estimation.
+Abundance data based estimators: (still can be used if number of test cases  (samples) is sufficiently large, so be careful with 'classes' case)
+1) species_chaobunge - coverage-duplication estimator from Poisson-Gamma model by Chao and Bunge 2002;
+2) species_unpmle - unconditional nonparametric maximum likelihood estimator by Norris and Pollock 1996, 1998;
+3) species_pnpmle - penalized nonparametric maximum likelihood estimator by Wang and Lindsay 2005;
+4) species_pcg - Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation by Wang 2010.

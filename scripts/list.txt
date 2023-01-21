@@ -1,0 +1,10 @@
+csv commons-csv-1.7-RC1 a227a1e2fb61ff5f192cfd8099e7e6f4848d7d43
+collections commons-collections-4.4-RC1 cab58b3a8093a2f6b84f12783a3fb358747310f7
+compress commons-compress-1.18-RC1 b95d5cde4c68640f886e3c6802384fae47408a37
+configuration commons-configuration-2.5-RC1 dc00a04783ea951280ba0cd8318f53e19acb707f
+dbcp commons-dbcp-2.6.0-RC1 3e7fca08d3585aa7cf70045ee3ed607cbaf04baa
+imaging commons-imaging-1.0-alpha1-RC3 6f04ccc2cf8c867298579c355c6d88fd74da3e7b
+io commons-io-2.6-RC3 2ae025fe5c4a7d2046c53072b0898e37a079fe62
+lang commons-lang 9801e2fb9fcbf7ddd19221e9342608940d778f8c
+math commons-math 95a9d35e77f70ffc9bd5143880c236a760b42005
+net commons-net 163fe46c019f5184016207c247cdff30ee740ecc

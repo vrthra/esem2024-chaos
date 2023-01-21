@@ -1,0 +1,507 @@
+{
+"commons-collections.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-collections.mutations.xml.matrix",
+  "n.mutants": 8306,
+  "n.samples": 950,
+  "n.killed": 1226,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 1548.8839,
+      "lowci": 1270.7365,
+      "upci": 3556.401
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 1540.577,
+      "lowci": 1470.9708,
+      "upci": 1610.1832
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 4439.431,
+      "lowci": 3629.9885,
+      "upci": 5248.8735
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 1548.8839,
+      "lowci": 1410.3197,
+      "upci": 1791.6151
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 1548.8839,
+      "lowci": 1466.5872,
+      "upci": 1631.1806
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 1767.372,
+      "lowci": 1611.2564,
+      "upci": 1986.7497
+    },
+    {
+      "estimator": "jack_our",
+      "value": 1781.5229,
+      "lowci": 1685.0477,
+      "upci": 1877.9981
+    }
+  ]
+},
+"commons-compress.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-compress.mutations.xml.matrix",
+  "n.mutants": 9516,
+  "n.samples": 6254,
+  "n.killed": 2082,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 2217.7064,
+      "lowci": 2100.3912,
+      "upci": 3083.362
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 2236.8267,
+      "lowci": 2193.4599,
+      "upci": 2280.1935
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 2880.1084
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 2217.7064,
+      "lowci": 2140.8225,
+      "upci": 2395.0814
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 2217.7064,
+      "lowci": 2164.6433,
+      "upci": 2270.7695
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 2329.8793,
+      "lowci": 2207.7735,
+      "upci": 2570.5302
+    },
+    {
+      "estimator": "jack_our",
+      "value": 2375.9434,
+      "lowci": 2269.9312,
+      "upci": 2481.9556
+    }
+  ]
+},
+"commons-configuration.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-configuration.mutations.xml.matrix",
+  "n.mutants": 6163,
+  "n.samples": 2906,
+  "n.killed": 2157,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 2435.5198,
+      "lowci": 2195.4004,
+      "upci": 4177.1184
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 2412.8702,
+      "lowci": 2320.0174,
+      "upci": 2505.7229
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 4410.0427,
+      "lowci": 4062.5546,
+      "upci": 4757.5307
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 2435.5198,
+      "lowci": 2301.9268,
+      "upci": 2692.2584
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 2435.5198,
+      "lowci": 2354.5886,
+      "upci": 2516.451
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 3252.185,
+      "lowci": 2820.0786,
+      "upci": 3965.8806
+    },
+    {
+      "estimator": "jack_our",
+      "value": 3355.9676,
+      "lowci": 2934.2539,
+      "upci": 3777.6813
+    }
+  ]
+},
+"commons-csv.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-csv.mutations.xml.matrix",
+  "n.mutants": 635,
+  "n.samples": 4771,
+  "n.killed": 238,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 265,
+      "lowci": 240.5996,
+      "upci": 518.4274
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 250.0693,
+      "lowci": 243.0016,
+      "upci": 257.1369
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 267.2834,
+      "lowci": 251.5245,
+      "upci": 283.0423
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 265,
+      "lowci": 240.6503,
+      "upci": 463.6316
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 265,
+      "lowci": 230.4628,
+      "upci": 299.5372
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 262.3545,
+      "lowci": 246.6215,
+      "upci": 306.7974
+    },
+    {
+      "estimator": "jack_our",
+      "value": 267.9925,
+      "lowci": 247.6292,
+      "upci": 288.3557
+    }
+  ]
+},
+"commons-dbcp.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-dbcp.mutations.xml.matrix",
+  "n.mutants": 4184,
+  "n.samples": 3185,
+  "n.killed": 737,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 847.7209,
+      "lowci": 751.8641,
+      "upci": 1561.7463
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 850.6922,
+      "lowci": 837.957,
+      "upci": 863.4274
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 3822.7864,
+      "lowci": 2442.1454,
+      "upci": 5203.4274
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 847.7209,
+      "lowci": 780.7829,
+      "upci": 1016.998
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 847.7209,
+      "lowci": 799.3679,
+      "upci": 896.074
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 911.985,
+      "lowci": 827.8779,
+      "upci": 1073.9329
+    },
+    {
+      "estimator": "jack_our",
+      "value": 926.951,
+      "lowci": 870.5769,
+      "upci": 983.3251
+    }
+  ]
+},
+"commons-imaging.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-imaging.mutations.xml.matrix",
+  "n.mutants": 11515,
+  "n.samples": 186,
+  "n.killed": 374,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 799.5319,
+      "lowci": 431.4573,
+      "upci": 3525.512
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 502.3408,
+      "lowci": 472.9864,
+      "upci": 531.6951
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 1183.8557,
+      "lowci": 942.3165,
+      "upci": 1425.3948
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 799.5319,
+      "lowci": 515.7218,
+      "upci": 1651.6963
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 799.5319,
+      "lowci": 625.3256,
+      "upci": 973.7382
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 1125.3882,
+      "lowci": 907.6037,
+      "upci": 1432.0589
+    },
+    {
+      "estimator": "jack_our",
+      "value": 1176.7949,
+      "lowci": 942.7694,
+      "upci": 1410.8205
+    }
+  ]
+},
+"commons-lang.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-lang.mutations.xml.matrix",
+  "n.mutants": 13054,
+  "n.samples": 4106,
+  "n.killed": 5886,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 6749.9706,
+      "lowci": 6007.0072,
+      "upci": 12054.6018
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 6877.1379,
+      "lowci": 6785.6864,
+      "upci": 6968.5894
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 13481.9823
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 6749.9706,
+      "lowci": 6509.5924,
+      "upci": 7083.0082
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 6749.9706,
+      "lowci": 6620.859,
+      "upci": 6879.0822
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 7443.7124,
+      "lowci": 7107.8541,
+      "upci": 7871.8901
+    },
+    {
+      "estimator": "jack_our",
+      "value": 7577.7939,
+      "lowci": 7300.6368,
+      "upci": 7854.9509
+    }
+  ]
+},
+"commons-math.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-math.mutations.xml.matrix",
+  "n.mutants": 47881,
+  "n.samples": 389,
+  "n.killed": 1962,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 3889.6708,
+      "lowci": 2231.7665,
+      "upci": 15736.559
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 2723.9337,
+      "lowci": 2554.6333,
+      "upci": 2893.2342
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 11525.0179,
+      "lowci": 7696.9927,
+      "upci": 15353.0431
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 3889.6708,
+      "lowci": 3214.7765,
+      "upci": 4928.1433
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 3889.6708,
+      "lowci": 3581.4535,
+      "upci": 4197.8881
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 4912.3324,
+      "lowci": 4488.7207,
+      "upci": 5406.9638
+    },
+    {
+      "estimator": "jack_our",
+      "value": 4923.0954,
+      "lowci": 4549.0348,
+      "upci": 5297.1559
+    }
+  ]
+},
+"commons-net.mutations.xml.matrix":
+{
+  "dataset": "/home/rahul.gopinath/Research/Immortals/github/immortal_estimators/randoopsuites/results/commons-net.mutations.xml.matrix",
+  "n.mutants": 5694,
+  "n.samples": 8254,
+  "n.killed": 1134,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 1245.3088,
+      "lowci": 1148.4587,
+      "upci": 1990.8987
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 1197.6221,
+      "lowci": 1178.3654,
+      "upci": 1216.8788
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 1390.3227,
+      "lowci": 1326.3396,
+      "upci": 1454.3057
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 1245.3088,
+      "lowci": 1164.3383,
+      "upci": 1542.383
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 1245.3088,
+      "lowci": 1181.9384,
+      "upci": 1308.6793
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 1397.5631,
+      "lowci": 1269.6655,
+      "upci": 1646.0352
+    },
+    {
+      "estimator": "jack_our",
+      "value": 1479.8292,
+      "lowci": 1289.5243,
+      "upci": 1670.1342
+    }
+  ]
+},
+"commons-io.mutations.xml.matrix":
+{
+  "dataset": "/scratch/rahul/tars/Immortals/q",
+  "n.mutants": 3273,
+  "n.samples": 69,
+  "n.killed": 13,
+  "estimators": [
+    {
+      "estimator": "chao_lower",
+      "value": 13,
+      "lowci": 13,
+      "upci": 13
+
+    },
+    {
+      "estimator": "bootstrap",
+      "value": 13.5173,
+      "lowci": 12.7795,
+      "upci": 14.2551
+    },
+    {
+      "estimator": "sample_coverage",
+      "value": 13.1588,
+      "lowci": 12.6763,
+      "upci": 13.6413
+    },
+    {
+      "estimator": "chao_upperbound",
+      "value": 13
+    },
+    {
+      "estimator": "chao2_our",
+      "value": 13,
+      "lowci": 13,
+      "upci": 13
+    },
+    {
+      "estimator": "jack_wiqid",
+      "value": 14,
+      "lowci": 13.0526,
+      "upci": 32.0069
+    },
+    {
+      "estimator": "jack_our",
+      "value": 13.9855,
+      "lowci": 11.2438,
+      "upci": 16.7272
+    }
+  ]
+} 
+}
