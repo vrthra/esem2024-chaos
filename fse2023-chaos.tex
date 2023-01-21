@@ -733,30 +733,39 @@ The ratio of the number of mutants killed by a test suite to the
 number of \emph{killable} mutants %, i.e., mutants that can be killed,
 is called \emph{mutation score} and  is considered a good indicator of its
 effectiveness in preventing faults~\cite{jia2010an}.
+The mutants that are left alive is also considered
+a reasonable proxy for residual risk~\cite{horgan1996software}.
+%\footnote{ Horgan and Mathur define risk as testable attributes that remain untested. }.
 
-In general, not all the mutants might be killable, 
-no matter the test input used~\cite{budd1982two}
+Not all the generated mutants might be killable, no matter the test input used~\cite{budd1982two}
 (see \Cref{fig:working-example-mutants}-right for an example).
 %
-Thus, the mutation score might be inaccurate as the amount of
-these so-called \emph{equivalent mutants} cannot be established 
-\emph{a-priori}~\cite{budd1982two,rice1953classes}.
-%because there is no means to automatically prove that a mutant
-%is an equivalent one in general
+The amount of these so-called \emph{equivalent mutants} cannot be established 
+\emph{a-priori} because there is no means to automatically prove that a mutant
+is an equivalent one in general~\cite{budd1982two,rice1953classes}. 
 %
+\begin{tcolorbox}[colback=gray!25,colframe=white,boxsep=0pt,left=0pt,right=0pt,top=1pt,bottom=3pt,
+boxrule=0pt,bottomrule=1pt,toprule=1pt]
+$$
+\text{killable mutants} = \text{total mutants} - \text{equivalent mutants}
+$$
+\end{tcolorbox}
+The number of equivalent mutants directly determines the number of killable mutants.
+As a consequence, the mutation score and the estimate of residual risk might be inaccurate, and hence reduces the utility of mutation analysis.
 % as the number of killable mutants is unknown.
 % and its interpretation 
+
+The main problem is that the number of killable %equivalent
+mutants is program-specific and can vary across projects drastically~\cite{offutt1994using,grun2009impact}. This adds high variability to statistical estimation using standard techniques~\cite{gotelli2011estimating}, resulting in loss of precision.
+
+%Can we assume that the number of equivalent mutants are always within a fixed percentage
+%irrespective of the program?
 %
-Can we assume that the number of equivalent mutants is always within a fixed percentage
-irrespective of the program?
-%
-Unfortunately, the number of killable %equivalent
-mutants is program-specific and can vary across projects drastically~\cite{offutt1994using,grun2009impact}.
 %
 % ALESSIO: Do ours estimators not consider program specific factors?
-As a consequence, standard statistical estimators that do not 
-consider program specific factors or features cannot accurately
-estimate the number of equivalent mutants~\cite{gotelli2011estimating}.
+%As a consequence, standard statistical estimators that do not 
+%consider program specific factors or features cannot accurately
+%estimate the number of killable mutants~\cite{gotelli2011estimating}.
 
 \begin{figure}[t]
 \begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
@@ -769,7 +778,7 @@ def determinant(a,b,c,d):
 \end{lstlisting}
 \end{minipage}
 \hfill
-\begin{minipage}{0.65\columnwidth} %figure will have the remaning 40% of the line width
+\begin{minipage}{0.5\columnwidth} %figure will have the remaning 40% of the line width
 \begin{lstlisting}[style=python,escapechar=+, numbers=none]
 # Tests
 
@@ -779,7 +788,6 @@ def determinant(a,b,c,d):
 \end{minipage}
 \caption{A simple program (left) and two of its tests (right)}
 \label{fig:working-example}
-%\vskip -2em
 \end{figure}
 
 \begin{figure}[t]
@@ -804,65 +812,75 @@ def determinant(a,b,c,d):
 \end{minipage}
 \caption{A killable mutant (left) and an equivalent one (right)}
 \label{fig:working-example-mutants}
-%\vskip -2em
 \end{figure}
 
-%
-Recently, Gopinath et al.~\cite{gopinath2022mutation} proposed to estimate
-the total number of killable mutants adopting STADS\footnote{Software Testing as Species Discovery}~\cite{bohme2018assurances},
-a general framework capable of estimating software properties based on partial information.
-%
-In this context, killable mutants are assumed to belong to a
-\emph{population}, or \emph{species}, whose size can be 
-estimated by means of existing statistical biometrics estimators (e.g.,~\cite{chao2016species,bohme2018assurances})
-from the distribution of already killed mutants.
-%
-While these estimators have been used with success outside
-mutation analysis, their ability to predict the number of killable mutants remains to be established.
+Recently, researchers proposed the STADS\footnote{
+Software Testing as Species Discovery
+} framework~\cite{bohme2018assurances}
+as a general framework capable of estimating the total number of software
+species when only a fraction has been discovered.
 
-To shed light on this problem, we conducted a large empirical study on how well
-\estimatorCount statistical estimators from the literature predict killable mutants
-generated by the state-of-art mutation testing framework \PIT~\cite{pit}
-for \projectCount  mature and well-tested open-source projects (see~\Cref{tbl:subjectmeasures}). % from Apache Commons. %mature and
+The STADS framework is based on an extension of Good-Turing estimator that was used to crack the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}
+(the Chao estimator~\cite{chao2016nonparametric}).
+The idea is to treat software structural elements that are currently covered as observed entities, and use the frequency of their observation (coverage by specific test cases) to predict how many structural
+elements are likely to be observed if the campaign is allowed to continue for an infinite time.
+While STADS is initially proposed for estimating reachable coverage~\cite{fuzzingbook2023:WhenToStopFuzzing} during fuzzing, we observed that the same model is applicable to mutation analysis. That is, observation of a structural element can be mapped to detecting a mutant by a test case. Furthermore, mutation analysis is quite close to structural coverage
+as covering a structural element is a prerequisite for detecting any mutation in that element.  Hence, one may ask; is this approach of using the frequency count of known elements to estimate unknown elements applicable to mutation analysis?
+
+% It was recently
+%proposed to adopt STADS framework to estimate the total number of killable
+%mutants using the distribution of already killed mutants~\cite{gopinath2022mutation}.
 %
+%Specifically, the killable mutants are assumed to belong to a
+%\emph{population}, or \emph{species}, whose size can be 
+%estimated by means of existing statistical estimators
+%(e.g.,~\cite{chao2016nonparametric,bohme2018assurances}).
+%
+%However, those estimators rely on assumptions
+%about the distribution of the population and behave differently when 
+%such assumptions do not hold, and their ability to
+%predict the number of killable mutants has not yet 
+%empirically evaluated.
+%
+To study whether such statistical models using frequency analysis can help us estimate the number
+of killable mutants better, we conducted a large empirical study on how well
+\estimatorCount statistical estimators from the literature predict killable mutants
+generated by the state-of-art mutation testing framework \PIT\cite{pit}
+for \projectCount  mature and well-tested open-source projects (\Cref{tbl:subjectmeasures}). % from Apache Commons. %mature and
 This paper presents our study and summarizes its main findings, while the attached
 replication package~\cite{replication-package} contains the whole dataset, results, 
 and scripts to replicate the study.
 
-%In a nutshell, % Let's keep it short
 The main hypothesis of our study is that (at least)
-one of the surveyed \emph{population, or species, size
-estimators can be effectively used in mutation testing, i.e., is accurate and reliable}.
-%
-To verify this hypothesis, we manually classified live mutants obtained by running the 
-existing test suites % as equivalent or killable, %(i.e., \original)
+one of the surveyed frequency based estimators can be effectively used to
+estimate killable mutants.
+That is, it is accurate, reliable, and
+produces better estimates than the nai\"ve upper bound of total
+number of generated mutants.
+
+To verify this hypothesis, we manually classified live mutants obtained by running the
+existing test suites
 and checked whether the predictions made by the statistical estimators do not significantly
 differ from the ones we obtained from the manual classification.
-%
-We, however, found that %the estimates made by 
-the statistical estimators performance did not match our expectations, 
-i.e., their estimates were significantly different from the manual estimates.
-%
-Hence, we questioned our experimental settings %and completeness 
-%of our study 
-and identified two major threats to the validity of our study. % sources of errors maybe?
-%
+We, however, found that
+the statistical estimators performance did not match our expectations.
+That is, their estimates were significantly different from the manual estimates.
+Hence, we questioned our experimental settings
+and identified two major threats to the validity of our study.
 Specifically, we argued that
-(1) the manual classification could be in error, hence the  %predictions from one of the
+(1) the manual classification could be in error, hence the
 estimators might be closer to the truth than the estimators derived from manual
 classification, or
 (2) the tests themselves could have been biased, with more effective tests checking
- only specific parts of the code (e.g., business logic). 
+ only specific parts of the code (e.g., business logic).
 Such biases might affect the frequency of killed mutants and might lead to faulty estimates.
 
 To mitigate the first threat, we extended our initial study with two test suites created with
-\Evosuite~\cite{fraser2011evoSuite}, a state-of-the-art test generation tool, 
+\Evosuite~\cite{fraser2011evosuite}, a state-of-the-art test generation tool,
 using fundamentally different configurations (i.e., a random strategy and guided by coverage).
-%
-Our expectation is that the estimations obtained from manually written test suites %(i.e,. \original )
-should be comparable to the ones from other test suites 
-%by other means %(i.e., \EvosuiteRandom and \EvosuiteDynamosa) 
-as they predict the same quantity. %, i.e., killable mutants in a project.
+Our expectation is that the estimations obtained from manually written test suites
+should be comparable to the ones from other test suites
+as they predict the same quantity.
 
 To mitigate the second threat, we compared the estimates from \Evosuite
 generated test suites with estimates from manual classification. Our expectation
@@ -871,81 +889,43 @@ should match estimates from manually classified live mutants.
 
 We, however, found that manual classification was significantly different from
 estimations from both test suites, and the estimates from test suites themselves
-where significantly different from each other.
-%
-Therefore, we critically inspected our experiment and identified another %the only remaining - AG: Cannot really say the only one... since there might be many other confounding variables we did not consider
-possible threat---the choice of the sampling unit could be incorrect.
+were significantly different from each other.
+Therefore, we critically inspected our experiment and identified another
+possible threat--the choice of the sampling unit could be incorrect.
 
 Our sampling unit is a
 test case, and there are two commonly accepted definitions of a test case in
 the Java world: methods and classes. Since we obtained first estimates by
-considering methods as test cases, we next 
-considered classes as test cases. %sampling units. 
-%This choice is based on the observation that 
-%Java projects conventionally package all the tests targeting a specific unit into the
-%same test class; hence, we can consider the whole (test) class as a single tests.
-%hence we can  Therefore, within each class there
-%were methods that tested different functionalities of the class. 
-%That is,
-%we could consider each unit test class as a single test, and recompute
-%the frequencies for mutant detection, resulting in the same number of mutants
-%killed.
-%Given that we are estimating the same value (the number of mutants that can
-%be killed by the strongest test suite) we expect the estimates to coincide
-%or at least overlap in their confidence intervals, perhaps with the class
-%level estimators resulting in larger confidence intervals.
+considering methods as test cases, we next
+considered classes as test cases.
 Because both methods and classes sample the same quantity, i.e., the killed mutants,
-we expect that the statistical estimators produce consistent estimates, although 
-possibly with different degrees of uncertainty. % ALESSIO: Not sure I can say different C.I.
+we expect that the statistical estimators produce consistent estimates, although
+possibly with different degrees of uncertainty.
 
 Once again, our results showed that the estimates from methods and classes were
 significantly different, which leaves us with the only option that the considered statistical
-estimators are not yet ready for the prime time of mutation analysis. %inconsistent.
-% Summary of results - Observations not discussion about what's happened.
+estimators are not yet ready for the prime time of mutation analysis.
 That is, our results show that none of the considered statistical estimators
 behaved consistently, and none of them are robust to changes in the sampling
 strategy.
-%
-% Projects
 In particular, we found that in several cases the results are program dependent.
 We observed that the predictions from manual classifications and
-statistical estimators agreed ($<1\%$ difference) only when there were 
+statistical estimators agreed ($<1\%$ difference) only when there were
 exceptionally strong test suites (i.e., $>99\%$ killed mutants).
-%, while weaker test suites (i.e., \EvosuiteRandom) resulted in worse predictions.
-%the test suite was already quite close to the manual estimation of
-%killable mutants. 
-Additionally, we found the estimators changed their predictions significantly 
-when using different sampling methods and, almost all the times they use class based sampling, %overshot, i.e., 
+Additionally, we found the estimators changed their predictions significantly
+when using different sampling methods and, almost all the times they use class based sampling,
 they predicted more killable mutants than the existing ones.
-% mutants generated (i.e., overshoot).
-
-% Unclear what's the point here... 
-%Furthermore, it may be argued that the prediction of killable mutants based on
-%\Evosuite on a particular configuration is simply the maximum number of mutants
-%that \Evosuite configuration can kill if given an infinite amount of time,
-%and \Evosuite may be unable to kill certain killable mutants due to the
-%limitations of the generation strategy and oracles that \Evosuite configuration
-%is able to apply.
-%Hence, the prediction from \Evosuite configurations and prediction from manual
-%classification may not coincide.
-
-% Our study found that, irrespective of the origin of the test suite,
-% the accuracy of the considered statistical estimators is limited
-% when compared to the (manual classified)
-% ground truth
-% %\todo{We do not have a reasonable hypothesis here.},
-% and their estimations not always agreed.
 
 In summary, our main contributions are:
 \begin{itemize}
-  \item The first empirical study on the application of \estimatorCount, 
-  	widely used species richness estimators applied to the problem of estimating killable mutants.
-  \item The largest (to the best of our knowledge) mutation analysis dataset containing % ($>2.5B$ data points) 
-  	$1016$ live mutants manually classified %as equivalent and killable 
-	by three researchers on ten mature projects, 
- 	multiple test suites generated manually and automatically,
-	and their fully evaluation using mutation analysis resulting in more than $2.5B$ test executions.
-  
+   \item The first empirical study on the application of \estimatorCount,
+         widely used species richness estimators applied to the problem of estimating killable mutants.
+   \item One of the largest (to the best of our knowledge) mutation
+analysis dataset containing $1016$ live mutants manually
+classified by three researchers on ten mature projects,
+multiple test suites generated manually and automatically,
+and their fully evaluation using mutation analysis result-
+ing in more than $2.5B$ test executions.
 \end{itemize}
 
 
@@ -955,7 +935,7 @@ In summary, our main contributions are:
 %statistically sampled 100 mutants each from each project, and manually
 %identified detectable mutants. The proportion of detectable mutants thus
 %mutants along with the statistical confidence interval forms our ground truth.
-%Next, for each project, we used \Evosuite~\cite{fraser2011EvoSuite} to generate
+%Next, for each project, we used \Evosuite~\cite{fraser2011evoSuite} to generate
 %three more test suites -- \EvosuiteRandom, \EvosuiteStd and \EvosuiteDynamosa.
 %For each project, for each test suite, we generated a detection-matrix to
 %capture which test case kills which mutant.
@@ -975,7 +955,7 @@ In summary, our main contributions are:
 %% programs, and applied the above estimators on the mutant $\times$ test case
 %% matrix from these test suites.
 %% Finally, we generated two test suites from test generators
-%% \Evosuite~\cite{fraser2011EvoSuite} and \Randoop~\cite{pacheco2007randoop},
+%% \Evosuite~\cite{fraser2011evoSuite} and \Randoop~\cite{pacheco2007randoop},
 %% and applied the same estimators on the test matrix generated from these.
 %Given that the test generators often produce duplicate test cases\todo{
 %  Citations here?
@@ -1019,8 +999,6 @@ In summary, our main contributions are:
 %that do not manifest as crashes and hence detectable.
 %Finally, there may be errors in the manual classification process for equivalent
 %mutants. Hence, we need a sanity check for our results.
-
-%-----
 
 \section{Biometrics Statistical Estimators}
 \label{sec:estimators}
@@ -1761,7 +1739,7 @@ additional test suites for each test subject.
 %leveraged existing unit test generation tools that automatically
 % from a different origin where such biases are absent, therefore we
 %
-Specifically, we leveraged \Evosuite~\cite{fraser2011evoSuite}, 
+Specifically, we leveraged \Evosuite~\cite{fraser2011evosuite}, 
 %an open-source, actively maintained, and extensively configurable
 %and proven to be one of the most effective 
 %the reference unit test generation tool %developed so far for Java, and generated
