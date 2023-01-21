@@ -825,7 +825,9 @@ The STADS framework is based on an extension of Good-Turing estimator that was u
 The idea is to treat software structural elements that are currently covered as observed entities, and use the frequency of their observation (coverage by specific test cases) to predict how many structural
 elements are likely to be observed if the campaign is allowed to continue for an infinite time.
 While STADS is initially proposed for estimating reachable coverage~\cite{fuzzingbook2023:WhenToStopFuzzing} during fuzzing, we observed that the same model is applicable to mutation analysis. That is, observation of a structural element can be mapped to detecting a mutant by a test case. Furthermore, mutation analysis is quite close to structural coverage
-as covering a structural element is a prerequisite for detecting any mutation in that element.  Hence, one may ask; is this approach of using the frequency count of known elements to estimate unknown elements applicable to mutation analysis?
+as covering a structural element is a prerequisite for detecting any mutation in that element.
+Finally, frequency based estimators such as Chao's estimators are claimed to be robust toward strong biases in sampling~\cite{chao2016species}.
+Hence, one may ask; is this approach of using the frequency count of known elements to estimate unknown elements applicable to mutation analysis?
 
 % It was recently
 %proposed to adopt STADS framework to estimate the total number of killable
@@ -1000,7 +1002,7 @@ ing in more than $2.5B$ test executions.
 %Finally, there may be errors in the manual classification process for equivalent
 %mutants. Hence, we need a sanity check for our results.
 
-\section{Biometrics Statistical Estimators}
+\section{Frequency Based Estimators}
 \label{sec:estimators}
 %There are two concepts from the literature that seems to be applicable to the
 %problem of estimation of equivalent mutants: (1) population size estimation and
