@@ -1,0 +1,359 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{tcolorbox}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{resizegather}
+%\usepackage{algorithmic}
+\usepackage{textcomp}
+%-----
+\newcommand{\mytitle}{Estimating Equivalent Mutants: Are we there yet?}
+\usepackage{hyperref}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    pdftitle={\mytitle},    % title
+    pdfauthor={Gopinath},     % author
+    pdfsubject={\mytitle},   % subject of the document
+    pdfkeywords={mutation analysis, statistical estimation}, % list of keywords
+    pdfnewwindow=true,      % links in new PDF window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links (change box color with linkbordercolor)
+    citecolor=blue,        % color of links to bibliography
+    filecolor=blue,         % color of file links
+    urlcolor=blue        % color of external links
+}
+
+\usepackage{comment}
+\usepackage[inline]{enumitem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[procnames]{listings}
+
+\newif\ifdraft\drafttrue
+\newif\iflong\longfalse
+
+\definecolor{eclipseBlue}{RGB}{42,0.0,255}
+\definecolor{eclipseGreen}{RGB}{63,127,95}
+\definecolor{eclipsePurple}{RGB}{127,0,85}
+\definecolor{darkgreen}{RGB}{1,50,32}
+
+\lstdefinestyle{python}
+{
+    breaklines=false,
+    basicstyle=\footnotesize\ttfamily,
+    numberblanklines=false,
+    language=python,
+    tabsize=2,
+    commentstyle=\color{eclipseGreen},
+    keywordstyle=\bfseries\color{eclipsePurple},
+    stringstyle=\color{eclipseBlue},
+    procnamestyle=\bfseries\color{black},
+    procnamekeys={def},
+    columns=flexible,
+    identifierstyle=
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{codeorange}{rgb}{1,0.5,0}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    % backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\linespread{0.8}\ttfamily,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% The name of our central contribution, with variations
+\usepackage{xspace}
+
+\def\|#1|{\textit{#1}}
+\def\<#1>{\texttt{#1}}
+%%%%
+%
+%
+% How Many estimators do we consider?
+%
+%
+%%%%
+\newcommand{\estimatorCount}{twelve\xspace}
+\newcommand{\projectCount}{ten\xspace}
+\newcommand{\mutantCount}{110595\xspace}
+
+\newcommand{\rA}{\textsc{R$_\text{A}$}\xspace}
+\newcommand{\rB}{\textsc{R$_\text{B}$}\xspace}
+\newcommand{\rC}{\textsc{R$_\text{C}$}\xspace}
+
+\newcommand{\ICEallrare}{ICE-k0\xspace}
+\newcommand{\Zelterman}{Zelterman\xspace}
+\newcommand{\ChaoBunge}{Chao Bunge\xspace}
+\newcommand{\Jackknife}{Jackknife\xspace}
+\newcommand{\Chao}{Chao\xspace}
+%\newcommand{\Chaobiascorrected}{Chao-bc\xspace}
+\newcommand{\improvedChao}{iChao\xspace}
+\newcommand{\ICE}{ICE\xspace}
+\newcommand{\improvedICE}{ICE-1\xspace}
+\newcommand{\Unpmle}{UNPMLE\xspace}
+\newcommand{\Bootstrap}{Bootstrap\xspace}
+\newcommand{\Pnpmle}{PNPMLE\xspace}
+\newcommand{\PCG}{PCG\xspace}
+
+
+\newcommand{\chao}{$\hat{S}_\textit{Chao}$\xspace}
+
+\newcounter{todocounter}
+\newcommand{\todo}[1]{\marginpar{$|$}\textcolor{red}{\stepcounter{todocounter}\footnote[\thetodocounter]{\textcolor{red}{\textbf{TODO }}\textit{#1}}}}
+\newcommand{\repl}[2]{\textcolor{red}{\textbf{REPLACE }\st{#1} \textit{#2}}}     
+\newcommand{\rem}[1]{\textcolor{red}{\textbf{REMOVED }\st{#1}}}                  
+                                                                                 
+\newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
+
+%\renewcommand{\todo}[1]{}
+%\renewcommand{\done}[1]{}
+%\renewcommand{\rem}[1]{}
+
+\newcommand{\Randoop}{\textsc{Randoop}\xspace}
+\newcommand{\Evosuite}{\textsc{EvoSuite}\xspace}
+\newcommand{\original}{\textsc{Original}\xspace}
+\newcommand{\PIT}{\textsc{PIT}\xspace}
+
+\newcommand{\EvosuiteRandom}{\textsc{Random}\xspace}
+%\newcommand{\EvosuiteStd}{\textsc{Evosuite-Standard}\xspace}
+\newcommand{\EvosuiteDynamosa}{\textsc{DynaMOSA}\xspace}
+
+
+\usepackage{cleveref}
+
+%%
+%-----
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+
+\section{Reasoning}
+This is my reasoning on the problem. I'd rather not include any part of it in the paper. The actual text for a model description is in next sections.
+We can resort to two options.
+At first, we can directly use the model proposed by Marcel in (STADS: Software Testing as Species Discovery, p14 \& p.35 \url{https://arxiv.org/pdf/1803.02130.pdf}) and then reused in (Reachable Coverage: Estimating Saturation in Fuzzing, p.4 \url{https://mboehme.github.io/paper/ICSE23.Effectiveness.pdf}).
+There is a straightforward analogy between generated inputs and covered code (more exactly, coverage elements, which can be anything) and tests (generated) and killed mutants.
+This model assumes that there is a sample space of tests which follows a certain complex distribution, from which a test can be sampled with replacement with certain probability.(\textit{Remark: which can be not
+true---presumably, one should rather use sampling without replacement (i.e., there are no duplicates among the tests, as their generation follows some heuristics; the question could be whether to name a sampling unit an individual test or rather tests with some fixed properties which can repeat)---, but the same concern applies for input generation and Marcel's models). While sampling without replacement entails hypergeometric distribution and more complex models, which one can derive, without loss of generality we can assume sampling with replacement, binomial distributions, and Bernoulli product model as we do. Or I even complicate things, and the problem statement and the definition of sample space allow us directly to use it.}
+
+Being executed, this test covers some part of the program and kills mutants. Therefore, a testsuite of size $N$ is a set of tests, produced by sampling $N$ times from the random space.
+Moreover, each trial is independent, and all interrelations between tests (inputs) are hidden in the form of a distribution. Probably, it's easier to state this for Randoop, but it's valid for other test generators as well, including the ones produced by humans. I suppose that the same questions are relevant for input generation (i.e., fuzzing) in the same way: it's not totally random and uses several heuristics. Some related information can be found in STADS, Sec3.3 p.15.
+
+Marcel's model assumes that the input space is subdivided into individual subdomains called `species'. All inputs belong to at least one species (or more) and multiple inputs can belong to the same species. Specifically, all inputs belong to the same species that share the same discrete property of the program $P$. For instance, each input that covers the same program statement belongs to the same species.
+An input that belongs to species $i$ is sampled with probability $p_i$.
+So, the probability of an input to cover a certain element depends only on the element.
+Applying to our case, a randomly sampled test belongs to species $i$ (i.e., kills a mutant $i$) with probability $p_i$.
+
+A more complex model assumes that each test can have a type $j$ (i.e., has some properties, e.g., tests a certain class or method, etc.). There, first, each test of a type $j$ has a certain probability $v_j$ to be sampled from the test space, and, second, the mutant $i$, as previously, can be killed with a probability $p_i$.
+So that, the probability of a random input to kill a mutant, i.e., to be of type $j$ and kill a mutant of species $i$ will be $v_j\cdot p_i$.
+As we show, this model reduces to the first model.
+
+\section{Statistical model.1}
+\label{sec:urn}
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+This text is based on two papers: `STADS \ldots' and `Reachable Coverage: Estimating Saturation in Fuzzing'.
+Some sentences and the structure are copy-pasted and should be revised.
+\end{tcolorbox}
+
+We employ the urn model that is defined as follows:
+Given an urn with colored balls from which $n$ balls are sampled with replacement and $S(n)$ colors are observed, how many colors $S$ are in this urn?
+This simple urn model can be extended by allowing each ball to have multiple colors.
+We use the standard definitions from the Bernoulli product model described in the STADS statistical framework~\cite{bohme2018stads}.
+In our case the Bernoulli Product model associates each test (i.e., ball) with the killed mutants (i.e., colors of a ball or `species`).
+
+Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests that $\mathcal{P}$ can exercise.
+A testing campaign can be considered as a stochastic process
+\[
+    \mathcal{T}=\left\{ X_n|X_n \in \mathcal{D} \right\}_{n=1}^N
+\]
+where $N$ tests are sampled with replacement from $\mathcal{D}$.
+Let ${M_i}_{i=1}^S$ be a set of mutants.
+Suppose, the test space $\mathcal{D}$ is subdivided into $S$ individual subdomains $\left\{\mathcal{D}_i\right\}_{i=1}^S$
+called species.
+A test $X_n \in \mathcal{F}$ is said to belong to species $D_i$ (i.e., kill a mutant $M_i$) if $X_n \in \mathcal{D}_i$.
+
+In the Bernoulli product model, a test can kill one or more mutants.
+Specifically, for a testing campaign of size $N$, we let the incidence matrix $W_{S\times N}$ be defined as
+\[
+W_{S\times N} = \left\{W_{ij} |i=1,2,\dots,S\land j=1,2,\dots,N \right\}
+\]
+
+where $W_{ij} = 1$ if test $X_j$ belongs $\mathcal{D}_i$ and $Wij = 0$ otherwise.
+We further define the incidence frequency counts $f_k$, where $0 <= k <= N$, as the number of mutants killed by exactly $k$ tests.
+It is assumed that each element $W_{ij}$ is a Bernoulli random variable with probability $p_i$,
+such that the probability distribution for the incidence matrix can be expressed as the probability for all $i:1\leq i \leq S $ and $j:1\leq i\leq N$ that we have $W_{ij} = w_{ij}$.
+\[
+    P\left(\forall (i,j).W_{ij}=w_{ij} \right)= \prod_{j=1}^{N}\prod_{i=1}^{S} {p_i}^{w_{ij}} (1-p_i)^{1-w_{ij}}
+\]
+
+
+The marginal for $Y_i$ follows a binomial distribution characterised by testsuite size $N$ and kill probability $p_i$,
+\[
+    P\left(\forall i.Y_i=y_i \right)= \prod_{i=1}^{S} {p_i}^{y_i} (1-p_i)^{N-y_i}
+\]
+
+Hence, the incidence frequency counts can be derived as
+\[
+    f_k(n)=E\left[ I(Y_i=k) \right]=\sum_{i=1}^{S} {n \choose k}{p_i}^{y_i} (1-p_i)^{n-k}
+\]
+Specifically, $S(n)=S-f_0(n)$.
+
+The class of estimators that have been developed to estimate the total number of colors in an urn full of colored balls and those for the Bernoulli Product model is called species richness estimators.
+
+\section{Statistical model.2}
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+    Alternative model, where we assume that a test can be of a certain type.
+    We proposed this model in ICSE submission, but now we will define it slightly different.
+    Here we use almost the same definitions and refer to urn model as in \cref{sec:urn}, just the formulas for probabilities are different.
+\end{tcolorbox}
+\ldots\todo{Add text}
+
+\begin{multline*}
+        P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \\
+        i=1, \dots, S, j=1,\dots, T.
+\end{multline*}
+The marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$
+follows a binomial distribution:
+\begin{gather*}
+    \begin{split}
+    P(\forall i.Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
+    &={T \choose y_i}{\lambda_i}^{y_i} (1-\lambda_i)^{T-{y_i}}
+    \end{split}
+\end{gather*}
+where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
+Hence, the frequency $Y_i$ is a binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
+
+
+%Estimating the number of killable mutants in mutation analysis can be
+%viewed through the prism of population estimation. In this case,
+%each killable
+%mutant is considered as a separate species, such that the estimation of species richness
+%results in the estimation of the overall number of killable mutants.
+%the mutants
+%are of the same species, and the question is to estimate the
+%mutant richness. We consider
+
+%We consider a test case (either a test method or a test class) to be one sampling unit.
+%%
+%Then, we collect the mutants detected by the test suite, and count how many mutants
+%are detected only by a single test case,% (i.e., in one sampling unit),
+%by two test cases, and so on.
+%
+%%\subsection{Detection Probability Model}
+%For mapping species richness to mutation analysis, we adapt the model from~\cite{chao2016species}:
+%%
+%Assume that we have $S$ mutants, a test suite containing $T$ tests, and
+%information about which test kills which mutant.
+%Specifically, we assume a \emph{kill incidence} matrix, or simply killmatrix,
+%$W$ with $S$ rows and $T$ columns,
+%where $W_{i,j}$ is equal to $1$ if the mutant $i$ was killed by the test $j$, $0$ otherwise.
+%%
+%This way, the $i_{th}$-row sum of $W$ %the incidence matrix
+%($Y_i=\sum_{j=1}^{T}W_{i,j}$) %,  i=1,2,\dots,S$
+%denotes the incidence-based frequency of mutant $i$.
+%We refer to the total number of killed mutants is $S_{obs}$.
+%%($S_{obs}=\sum_{i=1}^{S}W_{i}$).
+%%(Mutants that are not killed by any test have $Y_i=0$.)
+%%
+
+
+%We assume that the probability that mutant~$i$ is detected by test~$j$, i.e., $P(W_{i,j}=1)$,
+% is affected by two main unknowns, %, or \emph{heterogeneity}:
+%%
+%the mutant detection rate ($\pi_{i}$) and the test kill rate ($\nu_{j}$).
+%%,
+%%i.e., $P(W_{i,j}=1 | \pi_{i}, \nu_{j})$.
+%%the heterogeneity effect of a species means that each species has its own unique incidence(detection) rate;
+%% the sampling unit effect is closely related to some known and unknown factors for the j-th sampling unit,
+%%
+%The detection rate of a mutant might be affected by
+%factors specific to its definition (e.g.,
+%the mutation operators that generated it, the location in the code where it is applied)
+%and characteristics of the original codes that is mutated (e.g., control flow).
+%Likewise, the ability of a test to kill mutants might be affected by factors specific to its
+%definition (e.g., input data) and its execution (e.g., environment settings, coverage,
+%flakiness).
+%%
+%% What's the point of computing this product and probability?
+%%Therefore, we model the probability of the whole killmatrix as:
+%%$P(W)= \prod_{i=1}^{S}\prod_{j=1}^{T} P(Wij)$
+%%
+%%actually, its
+%%P(W_{ij}=1|pi_i, nu_j) which becomes P(W_{ij}=1|nu_j) when you assume pi_i to be fixed
+%%
+%%Our model assumes that the detection probability of the i-th mutant in the j-th
+%%test is the product of the `heterogeneity' effect and the test effect:
+%%$\pi_{i}\nu_{j}$.
+%
+%We model each test kill rate as a random variables
+%from an unknown probability density function $h(\nu)$;
+%however, we assume that
+%%
+%% factors that are involved in the test effects,
+%%$\{\nu_1, \nu_2, \dots, \nu_T\}$ are modeled as random variables
+%%from an unknown probability density function $h(\nu)$.
+%%
+%the mutant detection rates are fixed and that  %$P(W_{i,j}=1 | \pi_{i}, \nu_{j})$ is
+%%given by
+%$P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$.
+%Consequently,
+%%We regard the mutant effects ${\pi_1, \pi_2,\dots, \pi_S }$
+%%as fixed
+%%parameters, but ${\nu_1, \nu_2, \dots, \nu_T}$ as random
+%%variables.
+%%the conditional probability distribution of
+%we can model the probability distribution of each cell of the killmatrix
+%as a Bernoulli random variable conditioned on $\nu_j$:
+%% with probability of success $\pi_i \nu_j$.
+%% This part is analogous to the model description in Chao2016, Chao2017
+%% Probably, the model is too complicated and we may simplify it, namely, consider test effect not as a random variable. I should think about it.
+%% Another option is to assume that the ith mutant has its own unique kill probability \pi{i}
+%% that is constant for any randomly selected test.
+%%
+%%\begin{equation*}
+%%    \begin{split}
+%%    P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^w_{ij}(1-\pi_i \nu_j)^{1-w_{ij}}, \\
+%%    i=1, \dots, S, j=1,\dots, T.
+%%    \end{split}
+%%\end{equation*}
+%\begin{multline*}
+%        P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \\
+%        i=1, \dots, S, j=1,\dots, T.
+%\end{multline*}
+%The marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$
+%follows a binomial distribution:
+%\begin{gather*}
+%    \begin{split}
+%    P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
+%    &={T \choose y_i}{\lambda_i}^y_i (1-{\lambda_i}^y_i)^{T-y_i}
+%    \end{split}
+%\end{gather*}
+%where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
+%Hence, the frequency $Y_i$ is a binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{fse2023-chaos}
+
+\end{document}
