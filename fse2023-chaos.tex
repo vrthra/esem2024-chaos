@@ -811,9 +811,8 @@ As a consequence, the mutation score and the estimate of residual risk might be 
 % and its interpretation 
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-An accurate estimate of the killable mutants is important for evaluating the effectiveness
-of test suites as well as evaluating residual risk after a test run, both of which are important
-problems for a practitioner.
+An accurate estimate of the killable mutants is important for evaluating the \textbf{effectiveness
+of test suites} as well as evaluating \textbf{residual risk} after a test run, both of which are important problems for a practitioner.
 \end{tcolorbox}
 
 The main problem is that the number of killable %equivalent
@@ -880,7 +879,6 @@ Software Testing as Species Discovery
 } framework~\cite{bohme2018assurances}
 as a general framework capable of estimating the total number of software
 species when only a fraction has been discovered.
-
 The STADS framework is based on an extension of Good-Turing estimator that was used to crack the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}
 (the Chao estimator~\cite{chao2016nonparametric}).
 The idea is to treat software structural elements that are currently covered as observed entities, and use the frequency of their observation (coverage by specific test cases) to predict how many structural
@@ -914,23 +912,28 @@ This paper presents our study and summarizes its main findings, while the attach
 replication package~\cite{replication-package} contains the whole dataset, results, 
 and scripts to replicate the study.
 
-The main hypothesis of our study is that (at least)
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+Our study investigates the hypothesis that (at least)
 one of the surveyed frequency based estimators can be effectively used to
 estimate killable mutants.
 That is, it is accurate, reliable, and
 produces better estimates than the nai\"ve upper bound of total
 number of generated mutants.
+\end{tcolorbox}
 
-To verify this hypothesis, we manually classified live mutants obtained by running the
+We manually classified live mutants obtained by running the
 existing test suites
 and checked whether the predictions made by the statistical estimators do not significantly
 differ from the ones we obtained from the manual classification.
 We, however, found that
-the statistical estimators performance did not match our expectations.
-That is, their estimates were significantly different from the manual estimates.
+%the statistical estimators performance did not match our expectations.
+%That is, 
+the estimates from statistical estimators
+%their estimates
+were significantly different from the manual estimates.
 Hence, we questioned our experimental settings
-and identified two major threats to the validity of our study.
-Specifically, we argued that
+and identified two major threats to the validity of our study:
+%Specifically, we argued that
 (1) the manual classification could be in error, hence the
 estimators might be closer to the truth than the estimators derived from manual
 classification, or
@@ -954,11 +957,18 @@ We, however, found that manual classification was significantly different from
 estimations from both test suites, and the estimates from test suites themselves
 were significantly different from each other.
 Therefore, we critically inspected our experiment and identified another
-possible threat--the choice of the sampling unit could be incorrect.
+possible source of error--the possibility that different test objectives
+used for generating different test suites may somehow lead to different
+detectable mutants.
+%the choice of the sampling unit could be incorrect.
 
-Our sampling unit is a
-test case, and there are two commonly accepted definitions of a test case in
-the Java world: methods and classes. Since we obtained first estimates by
+To check this possibility, we changed the sampling unit used.
+%Hence, %we reinterpreted the test suite detection frequencies of the
+%\emph{same test suite} by changing the sampling units.
+%Our sampling unit is a
+%test case, and there are two commonly accepted definitions of a test case in
+%the Java world: methods and classes.
+Since we obtained first estimates by
 considering methods as test cases, we next
 considered classes as test cases.
 Because both methods and classes sample the same quantity, i.e., the killed mutants,
