@@ -56,7 +56,9 @@
 
 
 %XXXXXXXXXXXXXX
-\newcommand{\mytitle}{Estimating Equivalent Mutants: Are we there yet?}
+\newcommand{\mytitle}{Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants}
+%Estimating Equivalent Mutants: Are we there yet?}
+%\newcommand{\mytitle}{Estimating Equivalent Mutants: Are we there yet?}
 \usepackage{hyperref}
 \usepackage{xcolor}
 \definecolor{rltred}{rgb}{0.5,0,0}
@@ -618,14 +620,14 @@ However, the reliability of this technique is hampered by
 code, that cannot
 be detected by any test case.
 
-Statistical estimators for population, or species, size
-estimation have been recently proposed to alleviate this problem
-by estimating the number of ``killable'' mutants in the overall
-mutant population.
+%Statistical estimators for population, or species, size
+%estimation have been recently proposed to alleviate this problem
+%by estimating the number of ``killable'' mutants in the overall
+%mutant population.
 % 
-While promising,
-the lack of a comprehensive study on their
-effective accuracy and reliability prevents its usage by the practitioners.
+%While promising,
+%the lack of a comprehensive study on their
+%effective accuracy and reliability prevents its usage by the practitioners.
 
 This paper makes the first step towards filling this gap
 and presents the results of a large-scale empirical study
@@ -744,16 +746,22 @@ The amount of these so-called \emph{equivalent mutants} cannot be established
 \emph{a-priori} because there is no means to automatically prove that a mutant
 is an equivalent one in general~\cite{budd1982two,rice1953classes}. 
 %
-\begin{tcolorbox}[colback=gray!25,colframe=white,boxsep=0pt,left=0pt,right=0pt,top=1pt,bottom=3pt,
-boxrule=0pt,bottomrule=1pt,toprule=1pt]
+%\begin{tcolorbox}[colback=gray!25,colframe=white,boxsep=0pt,left=0pt,right=0pt,top=1pt,bottom=3pt,
+%boxrule=0pt,bottomrule=1pt,toprule=1pt]
 $$
-\text{killable mutants} = \text{total mutants} - \text{equivalent mutants}
+\text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}
 $$
-\end{tcolorbox}
+%\end{tcolorbox}
 The number of equivalent mutants directly determines the number of killable mutants.
 As a consequence, the mutation score and the estimate of residual risk might be inaccurate, and hence reduces the utility of mutation analysis.
 % as the number of killable mutants is unknown.
 % and its interpretation 
+
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+An accurate estimate of the killable mutants is important for evaluating the effectiveness
+of test suites as well as evaluating residual risk after a test run, both of which are important
+problems for a practitioner.
+\end{tcolorbox}
 
 The main problem is that the number of killable %equivalent
 mutants is program-specific and can vary across projects drastically~\cite{offutt1994using,grun2009impact}. This adds high variability to statistical estimation using standard techniques~\cite{gotelli2011estimating}, resulting in loss of precision.
