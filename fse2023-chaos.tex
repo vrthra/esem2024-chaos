@@ -608,17 +608,65 @@ pdftitle={\mytitle}
 %%
 %% The abstract is a short summary of the work to be presented in the
 %% article.
+\begin{comment}
+We often need to provide guarantees in the robustness of the software
+after a testing campaign has concluded. How much more can we trust the software?
+This can be accomplished by estimating the residual risk --- the upper-bound on
+the number of faults that are likely to remain in the software.
+While structural coverage can provide a heuristic measure for the testing 
+accomplished, the presence of unreachable coverage can lead to severe 
+overestimation of redidual risk.
+
+It was recently showed that statistical estimators for population size, or
+species count can be used to estimate the maximum reachable coverage in a
+program during fuzzing. Hence, this can be used to estimate the upper-bound of
+residual risk based on the unseen but reachable coverage.
+
+Estimating residual risk using coverage achieved is, however, unsatisfying
+because covering a structural element says very little about actually detecting
+bugs present in that element. Covering a fault may not lead to actually
+detecting it.
+
+Mutation analysis offers an alternative. The idea is to seed faults in the
+program, and check how many of them can be detected by the test suite. That is,
+the fault need to be not only covered, but also be detected. Hence, the number
+of undetected mutants may be closer to the ground truth residual risk than
+unseen coverage. Similar to unreachable coverage, mutation analysis suffers from
+equivalent mutants. That is, mutants that do not cause a change in behavior,
+and, hence, can never be detected. Given the closeness of mutation analysis to
+coverage (covering a mutant is a necessary precondition to detecting it), one
+may ask: Can we use the same species count statistical estimators that worked
+on coverage to estimate the number of live mutants present after a test
+campaign?
+
+This paper presents the results of a large-scale empirical study we conducted on
+the application of \estimatorCount widely known statistical estimators for population,
+or species, size for estimating the number of ``live`` mutants in \projectCount mature
+Apache projects.
+
+Our results indicate that the statistical estimators we considered
+did not have sufficient predictive power to be useful to the practitioners,
+and the prediction is dependent on the particular program and test suite
+under evaluation.
+\end{comment}
 \begin{abstract}
-Mutation analysis systematically introduces artificial defects (mutants) 
-into software to assess test suite quality. The number of mutants killed
-by a test suite is considered a good proxy for its fault revealing power,
-and the number of mutants that remains alive is a reasonable proxy for the
-residual risk after a test campaign. 
-%
-However, the reliability of this technique is hampered by
+A testing professional may often need to provide guarantees in the robustness
+of the software after a testing campaign has concluded. How much more can the
+client trust the software?
+This can be accomplished by estimating the residual risk --- the upper-bound on
+the number of faults that are likely to remain in the software.
+Similarly, a researcher may need to estimate the quality of a given test
+generator. What fraction of possible defects can it detect? And how much more
+should it improve.
+
+For both these cases, mutation analysis can provide a more reliable answer than
+structural coverage measures due to its ability to induce and evaluate all
+possible simple faults in structural elements of the code.
+% For both these cases,
+%we require an accurate estimate of the number of detectable mutants.
+Unfortunately,  the reliability of mutation analysis is hampered by
 \emph{equivalent mutants}, i.e., mutants semantically equivalent to the original
-code, that cannot
-be detected by any test case.
+code, that cannot be detected by any test case.
 
 %Statistical estimators for population, or species, size
 %estimation have been recently proposed to alleviate this problem
@@ -629,11 +677,15 @@ be detected by any test case.
 %the lack of a comprehensive study on their
 %effective accuracy and reliability prevents its usage by the practitioners.
 
-This paper makes the first step towards filling this gap
-and presents the results of a large-scale empirical study
-we conducted on the application of \estimatorCount
-widely known statistical estimators for population, or species, size
-for estimating the number of ``killable`` mutants in
+Statistical frequency based estimators for unknown software species have been
+recently proposed for estimating \emph{reachable coverage} during fuzzing.
+Given the closeness of mutation analysis to coverage, one may ask, can
+the frequency based estimators used for coverage base used for estimating the
+number of killable mutants?
+
+This paper investigates this hypothesis and presents the results of a large-scale empirical study
+we conducted on the application of \estimatorCount widely known frequency based
+statistical estimators for estimating the number of detectable mutants in
 \projectCount mature Apache projects.
 %
 %    Our results from the analysis of more than one hundred thousands (\totalMutants) mutants,
