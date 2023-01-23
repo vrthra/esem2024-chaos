@@ -45,6 +45,7 @@
 %% for your publication.
 %%
 %%
+%\documentclass[sigconf,anonymous]{acmart}
 \documentclass[sigconf,review,anonymous]{acmart}
 \acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 
@@ -650,9 +651,9 @@ and the prediction is dependent on the particular program and test suite
 under evaluation.
 \end{comment}
 \begin{abstract}
-A testing professional may often need to provide guarantees in the robustness
-of the software after a testing campaign has concluded. How much more can the
-client trust the software?
+A testing professional may need to provide guarantees in the robustness
+of the software after a testing campaign has concluded. How much can the
+client trust the software now compared to before?
 This can be accomplished by estimating the residual risk --- the upper-bound on
 the number of faults that are likely to remain in the software.
 Similarly, a researcher may need to estimate the quality of a given test
@@ -660,8 +661,9 @@ generator. What fraction of possible defects can it detect? And how much more
 should it improve.
 
 While for both these cases structural coverage metrics have been traditionally
-been used, mutation analysis can provide a more reliable answer than
-structural coverage due to its ability to induce and evaluate all possible
+been used, mutation analysis can provide a more reliable answer
+% than structural coverage
+with its ability to induce and evaluate all possible
 simple faults in structural elements of the code.
 % For both these cases,
 %we require an accurate estimate of the number of detectable mutants.
