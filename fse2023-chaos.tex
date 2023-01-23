@@ -659,9 +659,10 @@ Similarly, a researcher may need to estimate the quality of a given test
 generator. What fraction of possible defects can it detect? And how much more
 should it improve.
 
-For both these cases, mutation analysis can provide a more reliable answer than
-structural coverage measures due to its ability to induce and evaluate all
-possible simple faults in structural elements of the code.
+While for both these cases structural coverage metrics have been traditionally
+been used, mutation analysis can provide a more reliable answer than
+structural coverage due to its ability to induce and evaluate all possible
+simple faults in structural elements of the code.
 % For both these cases,
 %we require an accurate estimate of the number of detectable mutants.
 Unfortunately,  the reliability of mutation analysis is hampered by
@@ -684,9 +685,9 @@ the frequency based estimators used for coverage base used for estimating the
 number of killable mutants?
 
 This paper investigates this hypothesis and presents the results of a large-scale empirical study
-we conducted on the application of \estimatorCount widely known frequency based
+on the application of \estimatorCount widely known frequency based
 statistical estimators for estimating the number of detectable mutants in
-\projectCount mature Apache projects.
+\projectCount mature software projects.
 %
 %    Our results from the analysis of more than one hundred thousands (\totalMutants) mutants,
 %    1000 manually labelled \emph{live} mutants, and manually written and 
