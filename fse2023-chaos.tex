@@ -778,8 +778,7 @@ generating mutants \emph{exhaustively} and evaluating them against the test case
 %
 Specifically, mutants are copies of the original code (\Cref{fig:working-example}-left) in which simple, plausible faults, i.e., the mutations, are injected (\Cref{fig:working-example-mutants}).
 % Still a bit disconnected...
-Notably, mutations show strong similarities with real faults~\cite{daran1996software,just2014are}
-and are as difficult to find~\cite{andrews2005is,andrews2006using}.
+Notably, mutations strong similarities with real faults~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 
 A mutant that exhibits a detectable change in behavior of the program when
 exercised by a test case is said to be detected, or \emph{killed}, by that
@@ -942,17 +941,17 @@ classification, or
  only specific parts of the code (e.g., business logic).
 Such biases might affect the frequency of killed mutants and might lead to faulty estimates.
 
-To mitigate the first threat, we extended our initial study with two test suites created with
+To mitigate the first threat, we extended our initial study with test suites created with
 \Evosuite~\cite{fraser2011evosuite}, a state-of-the-art test generation tool,
-using fundamentally different configurations (i.e., a random strategy and guided by coverage).
-Our expectation is that the estimations obtained from manually written test suites
-should be comparable to the ones from other test suites
+using two fundamentally different configurations (i.e., a random strategy and guided by coverage).
+We expected the estimations obtained from manual test suites
+to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
 
 To mitigate the second threat, we compared the estimates from \Evosuite
-generated test suites with estimates from manual classification. Our expectation
-was that since manual biases are absent in \Evosuite, the corresponding estimates
-should match estimates from manually classified live mutants.
+test suites and manual classification. We expected
+the estimates from \Evosuite to match estimates from manually classified live
+mutants as \Evosuite testsuites are free of manual bias. % of test case selection.
 
 We, however, found that manual classification was significantly different from
 estimations from both test suites, and the estimates from test suites themselves
@@ -1438,7 +1437,7 @@ was provided by Wang and Lindsay~\cite{wang2005penalized}.
 The Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (PCG)
 was provided by Wang and Ji-Ping~\cite{wang2010estimating}.
 
-\section{Mapping from biometrics to mutation analysis}
+\section{Mapping to mutation analysis}
 \label{sec:mapping}
 Estimating the number of killable mutants in mutation analysis can be
 viewed through the prism of population estimation. In this case,
@@ -1614,24 +1613,24 @@ Poisson distributions for the observed frequencies (see~\cite{chao2016species}).
 %and motivate why we focus on incidence sampling} -- done.
 
 \section{Methodology}
-We now detail the methodology for evaluating 
-the statistical estimators introduced in \Cref{sec:estimators}
-applied to the problem of killable mutants estimators as 
-described in \Cref{sec:mapping}.
+%We now detail the methodology for evaluating 
+%the statistical estimators introduced in \Cref{sec:estimators}
+%applied to the problem of killable mutants estimators as 
+%described in \Cref{sec:mapping}.
 
-\subsection{Overview}
-\label{sec:overview}
-The main goal of our study is to understand whether species richness
-estimators can provide actionable information to %the mutation analysis
-practitioner for interpreting mutation analysis results. 
-%
-Hence, we focused on large, well-maintained, and well-tested open-source projects
-that, we believe, resemble % and closely match the 
-industrial projects. In this context, achieving adequate testing is paramount, 
-and the question of whether live mutants are killable or equivalent is of high importance. 
-%
-The secondary goal, instead, is to study how test suites and samplings affect
-estimation quality.
+%\subsection{Overview}
+%\label{sec:overview}
+%  The main goal of our study is to understand whether species richness
+%  estimators can provide actionable information to %the mutation analysis
+%  practitioner for interpreting mutation analysis results. 
+%  %
+%  Hence, we focused on large, well-maintained, and well-tested open-source projects
+%  that, we believe, resemble % and closely match the 
+%  industrial projects. In this context, achieving adequate testing is paramount, 
+%  and the question of whether live mutants are killable or equivalent is of high importance. 
+%  %
+%  The secondary goal, instead, is to study how test suites and samplings affect
+%  estimation quality.
 
 Our methodology consisted of the following steps:
 \begin{enumerate*}[label=(\arabic*)]
@@ -1654,24 +1653,34 @@ we collected it by
 
 \subsection{Test Subjects Selection}
 \label{sec:selection}
-To achieve a balance between generality and applicability of
-our findings, and to avoid uncontrolled variables,
-we focus on large open-source \emph{Java} projects that do
-not depend on %the state or availability of 
-external resources (e.g., databases). %, backend servers).
-Moreover, to improve the replicability of our results, 
-we look for projects built using the %standard and
- widely adopted framework Maven~\cite{maven}.
-
-The libraries published by \emph{Apache Commons}~\cite{commons} meet our criteria:
-they focus on various aspects of reusable Java components and
-are large, mature, and well-maintained.
-Furthermore, they must meet stringent
-quality criteria defined by the Apache Foundation.
+Our choice of our test subjects were guided by the following considerations:
+(1) We identified manual classification as the most important part, and
+we wanted to ensure that the ability of our classifiers were similar to real world
+programmers working on a well understood project,
+and could understand what a program fragment does easily.
+(2) We wanted to reduce the work involved in setting up our experiments
+in different computing clusters.
+(3) We wanted our results to be easily reproducible.
+%To achieve a balance between generality and applicability of
+%our findings, and to avoid uncontrolled variables,
+Hence, we focused on large open-source \emph{Java} projects that do
+not depend on
+external resources (e.g., databases), and built using a standard tool such as Maven~\cite{maven}.
+%Moreover, to improve the replicability of our results, 
+%we look for projects built using the %standard and
+% widely adopted framework Maven~\cite{maven}.
+We found that the libraries published by \emph{Apache Commons}~\cite{commons} met our criteria.
+In particular, they are written to an exacting standard, follows common syntactic
+and semantic guidelines as in large enterprise projects, and our classifiers
+after some initial training could understand the source code of programs reasonably well.
+%they focus on various aspects of reusable Java components and
+%are large, mature, and well-maintained.
+%Furthermore, they must meet stringent
+%quality criteria defined by the Apache Foundation.
 %
 At the time we conducted this study,
-Apache Commons contained the $41$ projects
-reported in \Cref{tbl:fullsubjects}.
+Apache Commons contained the 41 projects
+(\Cref{tbl:fullsubjects}).
 %
 Among those, for our study, we selected only projects that
 \begin{enumerate*}[label=(\arabic*)]
@@ -1683,16 +1692,16 @@ Among those, for our study, we selected only projects that
 
 For the sake of clarity, in \Cref{tbl:fullsubjects} we group the
 Apache Commons projects into two groups:
-the first group (top) contains the $21$ projects (name, release, and commit hash)
+the first group (top) contains the 21 projects (name, release, and commit hash)
 that we could build, test, and analyze successfully;
 the second group (bottom) contains the projects (name, release, and rejection note) that we discarded.
 %
-Specifically, we discarded $3$ projects that had no official release at the time we conducted this study and 
-$17$ projects that have a complex structure or fail to build or do not pass the available tests or break mutation analysis, although we put some effort into fixing existing problems.
+Specifically, we discarded three projects that had no official release at the time we conducted this study and 
+17 projects that have a complex structure or fail to build or do not pass the available tests or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
 
-Since our methodology requires manual live mutants classification, which is %notoriously
+Since our methodology requires manual live mutant classification, which is %notoriously
 expensive, we had to restrict the scope of our study; hence, we selected 
-as test subjects the $10$ largest projects fulfilling our criteria.
+as test subjects the ten largest projects fulfilling our criteria.
 % for our study.
 %
 We highlight these projects in \Cref{tbl:fullsubjects} and
