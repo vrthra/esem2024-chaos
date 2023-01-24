@@ -931,8 +931,9 @@ number of generated mutants.
 
 We manually classified live mutants obtained by running the
 existing test suites
-and checked whether the predictions made by the statistical estimators do not significantly
-differ from the ones we obtained from the manual classification.
+and compared the predictions from statistical estimators to the result.
+% checked whether the predictions made by the statistical estimators do not significantly
+%differ from the ones we obtained from the manual classification.
 We, however, found that
 %the statistical estimators performance did not match our expectations.
 %That is, 
@@ -961,7 +962,7 @@ test suites and manual classification. We expected
 the estimates from \Evosuite to match estimates from manually classified live
 mutants as \Evosuite testsuites are free of manual bias. % of test case selection.
 
-We, however, found that manual classification was significantly different from
+We, again, found that manual classification was significantly different from
 estimations from both test suites, and the estimates from test suites themselves
 were significantly different from each other.
 Therefore, we critically inspected our experiment and identified another
@@ -1001,12 +1002,13 @@ In summary, our main contributions are:
 \begin{itemize}
    \item The first empirical study on the application of \estimatorCount,
          widely used species richness estimators applied to the problem of estimating killable mutants.
-   \item One of the largest (to the best of our knowledge) mutation
-analysis dataset containing $1016$ live mutants manually
+   \item One of the largest % (to the best of our knowledge)
+mutation
+analysis datasets containing 1016 live mutants manually
 classified by three researchers on ten mature projects,
 multiple test suites generated manually and automatically,
-and their full evaluation using mutation analysis result-
-ing in more than $2.5B$ test executions.
+and their full using mutation analysis result-
+ing in more than 2.5B test executions.
 \end{itemize}
 
 
@@ -1124,9 +1126,9 @@ The problem of estimating species richness, firstly formulated in
 biometrics~\cite{chao2016species}, is challenging because the geographical area
 to consider while counting the number of species is often extremely large, 
 making an exhaustive survey infeasible.
-
+%
 To cope with that, ecologists resort to \emph{sampling}:
-(1) they divide the area into a number of smaller \emph{segments},
+(1) they divide the area into numerous \emph{segments},
 also called \emph{sampling units}; %, that can be surveyed comprehensively; 
 %
 (2) they randomly select %choose a %smal
@@ -1571,12 +1573,12 @@ where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
 Hence, the frequency $Y_i$ is a binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
 
 \subsection{Mapping Abundance Sampling Models}
-Instead of relying on the killmatrix, we can also consider the whole test suite to be one big sampling unit.
+Instead of relying on the kill-matrix, we may consider the whole test suite to be one big sampling unit.
 %
-Then, we count each mutant detected by each test case as an individual of the species of that mutant.
+Then, we count each mutant detection by a test case as an individual of the species of that mutant.
 %
-This process provides us with the number of mutants that
-are detected by a single test case (singletons), those that were detected by
+This provides us with the count
+of mutants detected by a single test case (singletons), detected by
 two test cases, etc. 
 %
 In the same way as we did in~\Cref{ssec:mapincidence}, one can construct
@@ -2009,7 +2011,7 @@ commons-collections  &100 & 3  & 2  &  1 \\
 }
 \label{tbl:classified}
 %\vskip -1em
-\flushleft{$^*$We used commons-csv as a pilot study to train researchers \rB and \rC.} 
+\flushleft{$^*$We used commons-csv as a pilot to train researchers \rB and \rC.} 
 %\vskip -2.5em
 \end{table}
 \section{Results \& Discussion}
@@ -2383,10 +2385,15 @@ unsatisfactory results for all the estimators despite the underlying sampled qua
 mutants, did not change, our (current) conclusion is that using the standard species richness estimators
 is not applicable to the problem of equivalent mutant estimation.
 
-Our negative results from applying species richness estimators to mutation analysis
-suggests that further empirical evidence and additional analysis are
-needed to understand whether and how good the various assumptions made by species richness estimators
-hold when estimating equivalent mutants. 
+Our negative results
+% from applying species richness estimators to mutation analysis
+suggest a need of further empirical evidence and additional analysis
+% are
+%needed
+to understand the impact of various assumptions made by species richness estimators
+and their applicability to mutation analysis.
+% whether and how good the 
+%hold when estimating equivalent mutants. 
 %
 In other words, we are not there yet!
 
@@ -2685,7 +2692,7 @@ Tohma et al.~\cite{tohma1989structural}, instead, modeled
 the distribution of observed faults as hyper-geometric distribution
 to estimate the number of residual defects.
 
-To tackle the problem of estimating equivalent mutants, other methods 
+To estimate equivalent mutants, other methods 
 than statistical estimators have been proposed.
 %
 For instance, Vincenzi et al.~\cite{vincenzi2002bayesian} proposed to 
