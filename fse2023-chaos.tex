@@ -229,6 +229,8 @@ pdftitle={\mytitle}
 \usepackage{url}
 \usepackage{booktabs}
 
+\newcommand{\B}[1]{\textbf{#1}}
+
 \newcommand{\Coreutils}{UNIX command line utilities\xspace}
 
 \algblockdefx[switch]{Switch}{EndSwitch}%
@@ -2178,7 +2180,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \improvedChao		&	9	&	2	&16.0	&	14.5\\
 \ICE			&	9	&	1	&18.1	&	16.1\\
 \improvedICE		&	9	&	2	&16.8	&	12.8\\
-\Unpmle			&	10	&	5	&11.1	&	9.8\\
+\B{\Unpmle}			&	\B{10}	&	\B{5}	& \B{11.1}	&	\B{9.8}\\
 \Bootstrap		&	10	&	0	&18.5	&	19.9\\
 \Pnpmle			&	9	&	1	&17.8	&	16.2\\
 \PCG			&	7	&	4	&8.0	&	10.2\\
@@ -2190,9 +2192,9 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 Inspecting \Cref{tbl:estoriginal}, reveals that in the majority of the cases the
 statistical estimators were significantly different from the manual classification
 and their mean absolute difference varied considerably.
-Out of ten test subjects, Unpmle behaved consistently with manual classification
+Out of ten test subjects, \Unpmle behaved consistently with manual classification
 5~times (MD $11.1$\%, Stdev. 9.8\%). However, we note that the confidence
-intervals were very large in many cases for Unpmle (\Cref{fig:results}).
+intervals were very large in many cases for \Unpmle (\Cref{fig:results}).
 %PCG was next nearest with a CI overlap 4~times with manual classification
 %estimate.
 %
@@ -2222,7 +2224,7 @@ estimators across subjects---\EvosuiteRandom test suites}
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \hline
 \ICEallrare	&	9	&	1	&81.2	&	71.3\\
-\Zelterman	&	10	&	1	&32.6	&	19.6\\
+\B{\Zelterman}	&	\B{10}	&	\B{1}	&\B{32.6}	&	\B{19.6}\\
 \ChaoBunge	&	10	&	1	&42.5	&	42.6\\
 \Jackknife	&	10	&	0	&33.1	&	18.3\\
 \Chao	&	10	&	1	&37.1	&	21.2\\
@@ -2256,7 +2258,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \ICE	&	10	&	1	&39.2	&	24.8\\
 \improvedICE	&	10	&	1	&39.8	&	22.9\\
 \Unpmle	&	7	&	2	&39.5	&	26.8\\
-\Bootstrap	&	10	&	3	&39.1	&	24.8\\
+\B{\Bootstrap}	&	\B{10}	&	\B{3}	&\B{39.1}	&	\B{24.8}\\
 \Pnpmle	&	10	&	1	&49.5	&	42.6\\
 \PCG	&	9	&	1	&42.4	&	40.0\\
 \hline
@@ -2271,8 +2273,8 @@ from manual classification and \EvosuiteRandom was considerably fewer than \orig
 The smallest difference in MD was observed for \Zelterman
 (mean 32.6\%, Stdev. 19.6\%).
 %
-For \EvosuiteDynamosa, the situation was slightly better, with ICE\_all\_rare
-overlapping with manual classification estimates 4 times out of 10.
+For \EvosuiteDynamosa, the situation was slightly better, \ICEallrare
+overlapped with manual classification estimates 4 times out of 10.
 The smallest difference in MD, with least variation was observed for
 Bootstrap (mean 39.1\% Stdev. 24.8\%).
 
@@ -2314,7 +2316,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \ICE	&	9	&	0	&41.2	&	57.9\\
 \improvedICE	&	8	&	0	&40.2	&	43.5\\
 \Unpmle	&	6	&	0	&31.9	&	31.8\\
-\Bootstrap	&	10	&	6	&16.9	&	19.2\\
+\B{\Bootstrap}	&	\B{10}	&	\B{6}	&\B{16.9}	&	\B{19.2}\\
 \Pnpmle	&	8	&	1	&64.9	&	34.8\\
 \PCG	&	6	&	1	&43.9	&	39.5\\
 \hline
@@ -2339,7 +2341,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \improvedICE	&	10	&	3	&52.4	&	61.1\\
 \Unpmle	&	7	&	3	&34.9	&	63.9\\
 \Bootstrap	&	10	&	2	&30.9	&	23.0\\
-\Pnpmle	&	9	&	4	&23.6	&	24.9\\
+\B{\Pnpmle}	&	\B{9}	&	\B{4}	&\B{23.6}	&	\B{24.9}\\
 \PCG	&	7	&	3	&24.3	&	29.2\\
 \hline
 \end{tabular}
@@ -2356,7 +2358,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Zelterman	&	10	&	1	&20.7	&	16.3\\
 \ChaoBunge	&	5	&	1	&34.6	&	42.4\\
 \Jackknife	&	10	&	0	&37.3	&	25.6\\
-\Chao	&	10	&	2	&19.9	&	14.0\\
+\B{\Chao}	&	\B{10}	&	\B{2}	&\B{19.9}	&	\B{14.0}\\
 %\Chaobiascorrected	&	10	&	2	&19.7	&	14.0\\
 \improvedChao	&	10	&	0	&22.5	&	14.6\\
 \ICE	&	10	&	1	&28.0	&	15.4\\
@@ -2375,7 +2377,7 @@ The results are given in tables \Cref{tbl:estoriginalclass},
 
 These are also given as dotted lines in \Cref{fig:results}.
 
-Focusing on \Cref{tbl:estoriginalclass}, we see that Bootstrap had the best
+From \Cref{tbl:estoriginalclass}, we see that Bootstrap had the best
 overlap with CI (6 times), and best mean difference (mean 16.9\%, Stdev. 19.2\%).
 
 For \EvosuiteRandom and \EvosuiteDynamosa, the situation was the same as before
@@ -2397,7 +2399,7 @@ each other is statistically significant for every estimator examined.
 Given that using various test suites and sampling strategies always produced inconsistent and
 unsatisfactory results for all the estimators despite the underlying sampled quantity, i.e., killable
 mutants, did not change, our (current) conclusion is that using the standard species richness estimators
-is not applicable to the problem of equivalent mutant estimation.
+is not applicable to the problem of estimating killable mutants.
 
 Our negative results
 % from applying species richness estimators to mutation analysis
@@ -2748,26 +2750,33 @@ none of those methods has been empirically evaluated yet.
 %do not work well for species diversity counts.
 
 \section{Conclusions and Future Work}
-Equivalent mutants are one of the major stumbling blocks when using mutation
-score as an adequacy measure. The existing techniques to identify equivalent mutants
-%hence account for, they 
-are ineffective and identify only a limited number of such mutants. 
-%
-Consequently, the problem of accurately measuring 
-mutation score %in presence of equivalent mutants 
-remains open.
-%
-%Recently various researchers have pointed out that one can use statistical
-%measures for estimating population size and species diversity from biometrics
-%for estimating equivalent mutants. 
-Recent research advocates the use of statistical methods for estimating the number of 
-equivalent mutants by modeling them as individuals of a (unknown) population.
-%
-However, such biometrics estimators have never been evaluated empirically.
+Accurately estimating the number of killable mutants is crucial for both estimating
+the residual risk, and for estimating the effectiveness of a test generator.
+While a sound classifier for killable and equivalent mutants is impossible,
+recent advances in statistical estimation using frequency count based 
+estimators gave hope that one could at least estimate the number of such mutants.
+Such estimators have been used successfully in related domain such as reachable
+coverage estimation, and estimating reachable computer systems in a network. 
+
+% Estimating killable mutants are one of the major stumbling blocks when using mutation
+% score as an adequacy measure. The existing techniques to differentiate killable and equivalent mutants
+% %hence account for, they 
+% are non-general and identify only a limited number of such mutants. 
+% %
+% Consequently, the problem of accurately measuring 
+% mutation score %in presence of equivalent mutants 
+% remains open.
+% %
+% %Recently various researchers have pointed out that one can use statistical
+% %measures for estimating population size and species diversity from biometrics
+% %for estimating equivalent mutants. 
+% Recent research advocates the use of statistical methods for estimating the number of 
+% equivalent mutants by modeling them as individuals of a (unknown) population.
+% %
+% However, such biometrics estimators have never been evaluated empirically.
 %for estimating equivalent mutants. 
 
-The research presented in this paper fills this gap by 
-providing the first, large evaluation of these estimators on mutation analysis. 
+This research provides the first, large evaluation of these estimators on mutation analysis. 
 %
 First, we manually classified a statistically significant sample of live mutants
 and used it as a ground truth.
@@ -2779,23 +2788,23 @@ using \estimatorCount state-of-the-art species richness estimators.
 We estimated killable mutants using data sampled at (test) class
 and (test) method granularity.
 %
-Finally, we compared the resulting $720$ estimates against the ground truth
+Finally, we compared the resulting 720 estimates against the ground truth
  to measure the quality of species richness estimators on ten real-world projects
  across projects and test suites.
  %
- Instead, we compared the estimates across sampling strategies to understand
+ We compared the estimates across sampling strategies to understand
  whether the estimators produce %two different estimates of the same quantity results in
  significantly different results despite estimating the same quantity. % underlying variable?
 
 Our results show that statistical estimators for species richness applied to 
-the equivalent mutants problem do not produce consistent results across
+the killable mutants esimation do not produce consistent results across
 projects, test suites, and when computed using different sampling strategies.
 Therefore, they have way to go before practitioners can reliably use them.
 
 %\todo{AZ: (re)state results and contribution here.}
 
 Given that the surveyed species diversity estimators performed poorly on
-estimating the number of equivalent mutants, we have a number of directions
+estimating the number of killable mutants, we have a number of directions
 for future research:
 
 \begin{description}
@@ -2811,9 +2820,9 @@ and developing models that can incorporate such information.
 or directly into the model to see if such information can help estimate better
 killable mutants.
 
-\item[Evaluating Equivalent Mutant Classifiers.] Finally, given that we have a large set
+\item[Evaluating Mutant Classifiers.] Finally, given that we have a large set
 of manually classified mutants, we can use them to evaluate the current
-equivalent mutant classifiers such as coverage
+killable and equivalent mutant classifiers such as coverage
 based~\cite{schuler2013covering}, machine learning
 based~\cite{peacock2021automatic,naem2020a}, or
 other~\cite{papadakis2013mutation} classifiers.
