@@ -1442,9 +1442,9 @@ is given by
 %But it is robust to violation of ..\todo{Konstantin, please fill in.}
 
 \subsubsection{Other estimators}
-The remaining estimators we used \<UNPMLE>, \<PNPMLE>, and \<PCG>
-have complex formulation and can not fit here;
-therefore, we only introduce them in this section.
+Estimators \<UNPMLE>, \<PNPMLE>, and \<PCG>
+have complex formulation. % and can not fit here;
+Hence, we only introduce them. % in this section.
 %
 The Unconditional nonparametric maximum likelihood estimator (UNPMLE)
 was provided by Norris and Pollock~\cite{norris1998non}.
@@ -1457,8 +1457,8 @@ was provided by Wang and Ji-Ping~\cite{wang2010estimating}.
 
 \section{Mapping to mutation analysis}
 \label{sec:mapping}
-Estimating the number of killable mutants in mutation analysis can be
-viewed through the prism of population estimation. In this case,
+Estimating the number of killable mutants can also be
+done through population estimation. Here,
 each killable
 mutant is considered as a separate species, such that the estimation of species richness
 results in the estimation of the overall number of killable mutants.
@@ -1497,7 +1497,7 @@ where $W_{i,j}$ is equal to $1$ if the mutant $i$ was killed by the test $j$, $0
 This way, the $i_{th}$-row sum of $W$ %the incidence matrix 
 ($Y_i=\sum_{j=1}^{T}W_{i,j}$) %,  i=1,2,\dots,S$
 denotes the incidence-based frequency of mutant $i$.
-We refer to the total number of killed mutants is $S_{obs}$.
+The killed mutants count is denoted $S_{obs}$.
 %($S_{obs}=\sum_{i=1}^{S}W_{i}$).
 %(Mutants that are not killed by any test have $Y_i=0$.)
 %
@@ -1519,8 +1519,7 @@ The detection rate of a mutant might be affected by
 factors specific to its definition (e.g., 
 the mutation operators that generated it, the location in the code where it is applied)
 and characteristics of the original codes that is mutated (e.g., control flow).
-Likewise, the ability of a test to kill mutants might be affected by factors specific to its
-definition (e.g., input data) and its execution (e.g., environment settings, coverage,
+Likewise, the ability of a test to kill mutants might be affected by local factors (e.g., input data) and its execution (e.g., environment, coverage,
 flakiness).
 %
 % What's the point of computing this product and probability?
@@ -1536,13 +1535,13 @@ flakiness).
 
 We model each test kill rate as a random variables 
 from an unknown probability density function $h(\nu)$;
-however, we assume that
+we assume that
 %
 % factors that are involved in the test effects,
 %$\{\nu_1, \nu_2, \dots, \nu_T\}$ are modeled as random variables 
 %from an unknown probability density function $h(\nu)$.
 %
-the mutant detection rates are fixed and that  %$P(W_{i,j}=1 | \pi_{i}, \nu_{j})$ is
+the mutant detection rates are fixed and %$P(W_{i,j}=1 | \pi_{i}, \nu_{j})$ is
 %given by 
 $P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$.
 Consequently,
@@ -1581,15 +1580,15 @@ where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
 Hence, the frequency $Y_i$ is a binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
 
 \subsection{Mapping Abundance Sampling Models}
-Instead of relying on the kill-matrix, we may consider the whole test suite to be one big sampling unit.
+Instead of relying on the kill-matrix, we consider the test suite to be one big sampling unit.
 %
-Then, we count each mutant detection by a test case as an individual of the species of that mutant.
+Then, we count each mutant kill by a test case as an individual of the mutant species.
 %
-This provides us with the count
-of mutants detected by a single test case (singletons), detected by
+This gives us the mutant count
+detected by a single test case (singletons), detected by
 two test cases, etc. 
 %
-In the same way as we did in~\Cref{ssec:mapincidence}, one can construct
+Similar to~\Cref{ssec:mapincidence}, one can construct
 a model for abundance data using multinomial and product 
 Poisson distributions for the observed frequencies (see~\cite{chao2016species}).
 
