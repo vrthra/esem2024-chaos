@@ -716,7 +716,7 @@ a proxy for residual risk.
 Mutation analysis with its ability to induce and evaluate simple faults
 in structural elements of the code can provide a more reliable answer
 than structural coverage and, provided one can estimate 
-the \emph{number of killable mutants}, a more representative
+the \emph{number of killable mutants}, a more representative % ALESSIO: In the intro we say that ALIVE Mutants are a proxy for residual risk. Can we solve this inconsistency?
 proxy for residual risk than reachable coverage.
 
 In this paper, we report the results of a large-scale empirical study
@@ -810,9 +810,10 @@ Evaluating a test suite with mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test cases comprising that test suite
 (\Cref{fig:working-example}-right).
 %
-Specifically, mutants are copies of the original code (\Cref{fig:working-example}-left) in which simple, plausible faults, i.e., the mutations, are injected (\Cref{fig:working-example-mutants}).
+Specifically, mutants are copies of the original code (\Cref{fig:working-example}-left) in which artificial, %simple, 
+but plausible faults that share strong similarities with real faults are injected (\Cref{fig:working-example-mutants})~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 % Still a bit disconnected...
-Notably, mutations strong similarities with real faults~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
+%Notably, mutations share strong similarities with real faults~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 
 A mutant that exhibits a detectable change in behavior of the program when
 exercised by a test case is said to be detected, or \emph{killed}, by that
@@ -820,34 +821,53 @@ test case. Conversely, we call mutants undetected by the test suite \emph{live} 
 %
 The ratio of the number of mutants killed by a test suite to the 
 number of \emph{killable} mutants %, i.e., mutants that can be killed,
-is called \emph{mutation score} and  is considered a good indicator of its
+is called \emph{mutation score} and  is considered a good indicator of that test suite
 effectiveness in preventing faults~\cite{jia2010an}.
+%
 The mutants that are left alive is also considered
-a reasonable proxy for residual risk~\cite{horgan1996software}.
+a reasonable proxy for residual risk~\cite{horgan1996software} because
+they represent potential bugs that would have not been discovered by the test suite.
+% ALESSIO: In the abstract we say killable mutants is the proxy of residual risk
 %\footnote{ Horgan and Mathur define risk as testable attributes that remain untested. }.
 
-Not all the generated mutants might be killable, no matter the test input used~\cite{budd1982two}
-(see \Cref{fig:working-example-mutants}-right for an example).
-%
-The amount of these so-called \emph{equivalent mutants} cannot be established 
-\emph{a-priori} because there is no means to automatically prove that a mutant
-is an equivalent one in general~\cite{budd1982two,rice1953classes}. 
-%
-%\begin{tcolorbox}[colback=gray!25,colframe=white,boxsep=0pt,left=0pt,right=0pt,top=1pt,bottom=3pt,
-%boxrule=0pt,bottomrule=1pt,toprule=1pt]
-$$
+\begin{equation}
 \text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}
-$$
-%\end{tcolorbox}
-The number of equivalent mutants directly determines the number of killable mutants.
-As a consequence, the mutation score and the estimate of residual risk might be inaccurate, and hence reduces the utility of mutation analysis.
-% as the number of killable mutants is unknown.
-% and its interpretation 
+\label{eq:1}
+\end{equation}
 
+Unfortunately, not all the alive mutants can be killed. For instance, the
+so-called \emph{equivalent mutants}
+(see \Cref{fig:working-example-mutants}-right for
+an example) implement behaviors equivalent to the original code
+and cannot be killed no matter the test input used~\cite{budd1982two}.
+%
+The amount of these so-called equivalent mutants, which is
+program specific~\cite{offutt1994using,grun2009impact}, directly determines
+the number of killable mutants (see~\Cref{eq:1}) but cannot be established 
+\emph{a-priori} because there is no means to automatically prove programs equivalence
+%that a mutant
+%is an equivalent one 
+in general~\cite{budd1982two,rice1953classes}.
+%
+Consequently, the mutation score and the estimate of residual risk might be inaccurate
+and affected by high variability~\cite{gotelli2011estimating}.
+%to standard estimation techniques
+% ALESSIO: Not sure about this box fits here
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 An accurate estimate of the killable mutants is important for evaluating the \textbf{effectiveness
 of test suites} as well as evaluating \textbf{residual risk} after a test run, both of which are important problems for a practitioner.
 \end{tcolorbox}
+
+
+%
+%\begin{tcolorbox}[colback=gray!25,colframe=white,boxsep=0pt,left=0pt,right=0pt,top=1pt,bottom=3pt,
+%boxrule=0pt,bottomrule=1pt,toprule=1pt]
+%$$
+%\text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}
+%$$
+%\end{tcolorbox}
+% as the number of killable mutants is unknown.
+% and its interpretation 
 
 % resulting in loss of precision.
 %
@@ -879,9 +899,10 @@ def determinant(a,b,c,d):
 +$\vdash$+ determinant(1,2,3,4) +$=$+ -2
 \end{lstlisting}
 \end{minipage}
+\vspace*{-4mm}
 \caption{A simple program (left) and two of its tests (right)}
 \label{fig:working-example}
-\vspace*{-5mm}
+%
 \end{figure}
 %
 \begin{figure}[t]
@@ -904,11 +925,18 @@ def determinant(a,b,c,d):
   return ad - bc
 \end{lstlisting}
 \end{minipage}
+\vspace*{-4mm}
 \caption{A killable mutant (left) and an equivalent one (right)}
 \label{fig:working-example-mutants}
-\vspace*{-6mm}
 \end{figure}
-Unfortunately, the number of killable mutants is program specific~\cite{offutt1994using,grun2009impact}, adding high variability to standard estimation techniques~\cite{gotelli2011estimating}.
+\vspace*{-5mm}
+
+%
+%
+% ALESSIO: UP TO HERE !
+%
+%
+
 Recently, researchers proposed the STADS\footnote{
 Software Testing as Species Discovery
 } framework~\cite{bohme2018assurances}
