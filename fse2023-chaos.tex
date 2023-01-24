@@ -209,7 +209,7 @@ pdftitle={\mytitle}
 \usepackage{alltt}
 \usepackage{caption}
 
-\usepackage{mdwtab}
+%\usepackage{mdwtab}
 \usepackage{syntax}
 \usepackage{lstautogobble}
 \usepackage{qtree}
@@ -1973,10 +1973,10 @@ The estimates from manual classification are the 95\% confidence intervals based
 %  Similarly \emph{B faults} for B.}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 \multicolumn{1}{|c|}{Project} & \multicolumn{1}{c|}{Sampled} & \multicolumn{2}{|c|}{Miss. Rate} & \multicolumn{1}{c|}{Equivalent}\\
     & & \rB & \rC & \\
-%\hline
+\hline
 commons-net          &100 & 0  & 4  &  1 \\
 commons-math         &100 & 10 & 0  &  8 \\
 commons-lang         &100 & 7  & 3  & 12 \\
@@ -1987,7 +1987,7 @@ commons-csv$^*$      &116 & 3  & 23 &  9 \\
 commons-configuration&100 & 0 & 2  &  4 \\
 commons-compress     &100 & 2  & 4  &  1 \\
 commons-collections  &100 & 3  & 2  &  1 \\
-%\hline
+\hline
 \end{tabular}
 }
 \label{tbl:classified}
@@ -2132,10 +2132,10 @@ estimate that resulted in $\infty$ in upper CI. The results are given in
 \caption{Comparison of \emph{mean difference (MD)} between method estimators
 across subjects---\original test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-%\hline
+\hline
 \ICEallrare		&	8	&	0	&19.2	&	20.6\\
 \Zelterman		&	9	&	1	&15.4	&	12.5\\
 \ChaoBunge		&	9	&	3	&22.2	&	43.8\\
@@ -2149,7 +2149,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Bootstrap		&	10	&	0	&18.5	&	19.9\\
 \Pnpmle			&	9	&	1	&17.8	&	16.2\\
 \PCG			&	7	&	4	&8.0	&	10.2\\
-%\hline
+\hline
 \end{tabular}
 \label{tbl:estoriginal}
 \end{table}
@@ -2185,9 +2185,9 @@ difference with respect to manual classification.
 \caption{Comparison of \emph{mean difference (MD)} between method
 estimators across subjects---\EvosuiteRandom test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-%\hline
+\hline
 \ICEallrare	&	9	&	1	&81.2	&	71.3\\
 \Zelterman	&	10	&	1	&32.6	&	19.6\\
 \ChaoBunge	&	10	&	1	&42.5	&	42.6\\
@@ -2201,7 +2201,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Bootstrap	&	10	&	2	&36.7	&	23.1\\
 \Pnpmle	&	10	&	1	&34.0	&	20.2\\
 \PCG	&	10	&	2	&33.7	&	21.4\\
-%\hline
+\hline
 \end{tabular}
 \label{tbl:estrandom}
 \end{table}
@@ -2210,9 +2210,9 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \caption{Comparison of \emph{mean difference (MD)} between method
 estimators across subjects---\EvosuiteDynamosa test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-%\hline
+\hline
 \ICEallrare	&	9	&	4	&77.9	&	77.5\\
 \Zelterman	&	10	&	1	&39.2	&	20.6\\
 \ChaoBunge	&	10	&	1	&40.8	&	22.3\\
@@ -2226,7 +2226,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Bootstrap	&	10	&	3	&39.1	&	24.8\\
 \Pnpmle	&	10	&	1	&49.5	&	42.6\\
 \PCG	&	9	&	1	&42.4	&	40.0\\
-%\hline
+\hline
 \end{tabular}
 \label{tbl:estdynamosa}
 \end{table}
@@ -2268,9 +2268,9 @@ difference with respect to manual classification.
 \caption{Comparison of \emph{mean difference (MD)} between class
 estimators across subjects---\original test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-%\hline
+\hline
 \ICEallrare	&	9	&	1	&35.2	&	51.4\\
 \Zelterman	&	9	&	1	&36.7	&	51.8\\
 \ChaoBunge	&	7	&	0	&22.8	&	19.1\\
@@ -2284,7 +2284,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Bootstrap	&	10	&	6	&16.9	&	19.2\\
 \Pnpmle	&	8	&	1	&64.9	&	34.8\\
 \PCG	&	6	&	1	&43.9	&	39.5\\
-%\hline
+\hline
 \end{tabular}
 \label{tbl:estoriginalclass}
 \end{table}
@@ -2292,9 +2292,9 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \caption{Comparison of \emph{mean difference (MD)} between class
 estimators across subjects---\EvosuiteRandom test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-%\hline
+\hline
 \ICEallrare	&	8	&	1	&61.1	&	65.1\\
 \Zelterman	&	10	&	4	&25.4	&	39.0\\
 \ChaoBunge	&	4	&	1	&27.3	&	26.0\\
@@ -2308,7 +2308,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Bootstrap	&	10	&	2	&30.9	&	23.0\\
 \Pnpmle	&	9	&	4	&23.6	&	24.9\\
 \PCG	&	7	&	3	&24.3	&	29.2\\
-%\hline
+\hline
 \end{tabular}
 \label{tbl:estrandomclass}
 \end{table}
@@ -2316,9 +2316,9 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \caption{Comparison of \emph{mean difference (MD)} between class
 estimators across subjects---\EvosuiteDynamosa test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
-%\hline
+\hline
 Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-%\hline
+\hline
 \ICEallrare	&	10	&	3	&49.3	&	46.4\\
 \Zelterman	&	10	&	1	&20.7	&	16.3\\
 \ChaoBunge	&	5	&	1	&34.6	&	42.4\\
@@ -2332,7 +2332,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \Bootstrap	&	10	&	4	&36.9	&	20.9\\
 \Pnpmle	&	10	&	1	&55.7	&	44.5\\
 \PCG	&	8	&	0	&57.7	&	51.7\\
-%\hline
+\hline
 \end{tabular}
 \label{tbl:estdynamosaclass}
 \end{table}
