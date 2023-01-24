@@ -1671,13 +1671,12 @@ we collected it by
 \subsection{Test Subjects Selection}
 \label{sec:selection}
 Our choice of our test subjects were guided by the following considerations:
-(1) We identified manual classification as the most important part, and
-we wanted to ensure that the ability of our classifiers were similar to real world
+(1) We identified manual classification as the most important part.
+We wanted to ensure that the ability of our classifiers were similar to real world
 programmers working on a well understood project,
 and could understand what a program fragment does easily.
 (2) We wanted to reduce the work involved in setting up our experiments
-in different computing clusters.
-(3) We wanted our results to be easily reproducible.
+in different computing clusters, and the results to be easily reproducible.
 %To achieve a balance between generality and applicability of
 %our findings, and to avoid uncontrolled variables,
 Hence, we focused on large open-source \emph{Java} projects that do
@@ -1701,10 +1700,10 @@ Apache Commons contained the 41 projects
 %
 Among those, for our study, we selected only projects that
 \begin{enumerate*}[label=(\arabic*)]
-  \item could be built and tested successfully with minimal manual effort;
+  \item could be built and tested successfully with minimal effort;
   \item completed mutation analysis successfully;
   \item are released more than once; and,
-  \item have a flat structure, i.e., they are packaged as a single Maven module.
+  \item packaged as a single Maven module.
 \end{enumerate*}
 
 For the sake of clarity, in \Cref{tbl:fullsubjects} we group the
@@ -1821,11 +1820,12 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
 
 \subsection{Test Suites Generation}
 \label{sec:testgeneration}
-The test suite used for the mutation analysis defines
-the parts of the code exercised, which, in turn, 
-defines which mutants are covered and can be killed.
+%The test suite used for the mutation analysis defines
+%the parts of the code exercised, which, in turn, 
+%defines which mutants are covered and can be killed.
 %
-Hence, the test suite defines how thoroughly mutants are sampled.
+%Hence,
+%The test suite defines how thoroughly mutants are sampled.
 %
 Because the \original test suites defined for each project contain unit tests
 that developers manually wrote to check application- and
@@ -1833,9 +1833,10 @@ domain- specific requirements, one can argue that using
 the \original test suites %for mutation analysis the \original test suites 
 might result in a biased sampling of live mutants.
 % detrimental for the effectiveness of statistical estimators.
-
-To reduce this risk and study species richness estimators more thoroughly, we generated two
-additional test suites for each test subject.
+%
+To reduce this risk,
+% and study species richness estimators more thoroughly, 
+we generated two additional test suites for each test subject,
 % using well-established techniques 
 %leveraged existing unit test generation tools that automatically
 % from a different origin where such biases are absent, therefore we
@@ -1848,71 +1849,77 @@ to generate \EvosuiteRandom, a test suite that does not target any specific test
 and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Many-Objective Sorting Algorithm~\cite{panichella2015reformulating},
 hence it might introduce some bias being not completely random.
 %Being random, 
-As \Cref{tbl:subjectmeasures} reports, \EvosuiteRandom is generally not highly effective,
-while \EvosuiteDynamosa improves over it.
+\EvosuiteDynamosa is often (but not always)
+better than \EvosuiteRandom for many subjects (\Cref{tbl:subjectmeasures}).
 %
-For generating both test suites, we followed the best practice set by the 
-SBST Java unit testing tool competition~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22}
-and let \Evosuite generate unit tests for each class for $60$ seconds,
-generate assertions for $120$ seconds, and minimize the tests for $300$ seconds.
+For generating both test suites, we followed the best practice from
+SBST testing tool competition~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22}
+and let \Evosuite generate unit tests for each class for 60 seconds,
+generate assertions for 120 seconds, and minimize the tests for 300 seconds.
+%We eliminated any invalid (non-compilable, non-passing or nondeterministic)
+%test cases produced.
 
-\Evosuite implements advanced techniques 
-such as hybrid search, dynamic symbolic execution, weak mutation analysis, and testability transformation~\cite{fraser2013whole} as well as 
-automated mock generation~\cite{arcuri2015generating},
-to produce robust and effective test cases.
+%\Evosuite
+% implements advanced techniques 
+%such as hybrid search, dynamic symbolic execution, weak mutation analysis, and testability transformation~\cite{fraser2013whole} as well as 
+%automated mock generation~\cite{arcuri2015generating},
+%to
+%produces robust and effective test cases most of the time~\cite{fraser2013whole,arcuri2015generating}, but can
 %
-Nevertheless, it occasionally fails to create valid, i.e., compilable and passing,
-unit tests %for some classes 
-and might also generate \emph{flaky} tests~\cite{DBLP:conf/icse/Fan19}.
+%can occasionally fail to create valid %, i.e., compilable and passing,
+%and deterministic test cases. %for some classes 
+%and might also generate \emph{flaky} tests~\cite{DBLP:conf/icse/Fan19}.
 %
-Since those problematic tests affect the quality of our analysis,
+%Since those problematic tests affect the quality of our analysis,
  % prevent mutation analysis from producing reliable results, 
- we eliminated them whenever we observed their occurrence.
+%We eliminated these to avoid noise. % whenever we observed their occurrence to avoid noise.
 
 \subsection{Killable Mutants Estimation}
 \label{sec:estimation}
-As discussed in \Cref{sec:mapping}, the application of species richness
-estimators for equivalent mutant estimation requires data about mutants, tests, and test executions.
+%As discussed in \Cref{sec:mapping},
+%The application of species richness
+%estimators for killable mutant estimation requires data about mutants, tests, and test executions.
 %(i.e., ID, description, location), test cases (i.e., name of test class and test methods),
 %and test case executions (i.e., failed/passed test, name
 %of killing test classes and test methods).
 %
-Therefore, we executed all the available test suites against all the generated mutants for each project.
-
-This epic effort resulted in the execution of more than $2.5$B test methods
-and was necessary to cope with some limitations of \PIT that 
+%Therefore,
+We executed all the available test suites against all the generated mutants for each project, resulting in the execution of more than 2.5B test methods.
+%and was necessary to cope with some limitations of
+We noticed that \PIT
 (1) did not always identify all the mutants covered by the test cases; hence, it did not execute them;
 and (2) it did not always report the name of the test methods killing mutants, which is required by one of our sampling strategies.
 % sample data using tests
 %methods as sampling units, we resorted to using a different
 %mutation testing infrastructure.
 %
-Specifically, for the test execution, we chose \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
-the open-source infrastructure developed for the SBST Java unit test tool competition, and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes (we used a cluster of $50$ nodes featuring heterogeneous hardware configurations).
+%Specifically, 
+For the test execution, we chose \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
+the open-source infrastructure developed for the SBST Java unit test tool competition, and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes (we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
 % \footnote{We ensured JUGE used the same version we used in the manual live mutants classification}
 %Noticeably, we JUGE used the same \PIT version used in the manual classification, hence
 %we ensured to consider the same mutants across all the steps of our study.
 %we argue that observations about live mutants made using it are consistent with those from the manual classification.
 
-After executing the tests, we used automated scripts to collect the required data from
-the cluster nodes and  %the various computing nodes and 
+After executing the tests, we
+%used automated scripts to collect the required data from
+%the cluster nodes and  %the various computing nodes and 
 filtered out faulty samples related to invalid and timed-out mutants.
 %
-To reduce the risk of misunderstanding live-but-slow mutants as killed mutants,
-we conservatively granted each unit test a generous timeout of $10$ seconds.
+To reduce the risk of misclassifying live-but-slow mutants as killed,
+we conservatively granted each unit test a generous timeout of 10 seconds.
 %
 %We make available the entire dataset %containing all mutants, tests, and test executions, 
 %and the scripts to analyze test execution data
 %in the replication package~\cite{replication-package}.
 %
 %After collecting the necessary data, 
-Finally, we estimated the live mutants species richness
+Finally, we estimated the live mutant species richness
 on the \projectCount test subjects using the \estimatorCount 
 estimators on each of the three test suites using both class and method sampling.
 %
-
-The estimates are plotted along with the 95\% confidence intervals based on the
-formulas obtained in the respective papers.
+The estimates are plotted along with the 95\% confidence intervals.
+% based on the formulas obtained in the respective papers.
 %This resulted in a whopping %12*10*3*2
 %$720$ estimates to analyzed,
 % (\Cref{fig:testmethods}) that we evaluated %by comparison 
@@ -1949,10 +1956,10 @@ effort (estimated to be between one and thirty minutes per mutant) and represent
 of the obtained results. Nevertheless, the whole manual classification took six months.\footnote{The manual classification ran between July~2019 and December~2019.}
 
 Given the sampled live mutants, we adopted a structured classification protocol
-that involved three researchers, all co-authors of this paper.
+that involved three classifiers. %, all co-authors of this paper.
 %
-The lead researcher (\rA) has ten years of experience in programming with Java and is
-an expert in mutation analysis. The other two researchers (\rB and \rC), 
+The lead classifier (\rA) has ten years of experience in programming with Java and is
+an expert in mutation analysis. The other two classifiers (\rB and \rC), 
 instead, have experience in programming (between three and five years) 
 but were unfamiliar with mutation analysis before the start of this study.
 %
@@ -1970,14 +1977,14 @@ motivated with a convincing explanation. % why that mutant should be considered 
 %
 As a result, for each live mutant, we collected % of the classification includes
 %the particular mutant identifier, 
-a label (killable or equivalent) along with how confident the researcher was in the classification (high, medium, low), %time taken for classification, 
+a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
 and optional comments.
 Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
 
 As final step, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
-and let the three researchers discuss and resolve them. 
+and let the three classifiers discuss and resolve them. 
 %
-During the discussion, the lead research \rA acted as the moderator while 
+During the discussion, the lead classifier \rA acted as the moderator while 
 \rB and \rC could update their original classifications in light of the discussed
 arguments. The discussion continued until the final classification was accepted unanimously. 
 %
@@ -1987,7 +1994,7 @@ arguments. The discussion continued until the final classification was accepted 
 
 Given the proportion of killable mutants in a sample, we obtained the population proportion---and thus an estimate of the total number of killable
 mutants---with population proportion confidence intervals~\cite{ott2015introduction}.
-
+%
 The estimates from manual classification are the 95\% confidence intervals based on random sampling.
 
 \begin{table}[t]
