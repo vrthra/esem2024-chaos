@@ -1192,17 +1192,20 @@ and their mutation analysis resulting in more than 2.5B test executions.
 %There are two concepts from the literature that seems to be applicable to the
 %problem of estimation of equivalent mutants: (1) population size estimation and
 %(2) species richness estimation.
-Frequency based estimators have been used extensively in biometrics (Ecology) as
-to estimate \emph{unseen} species~\cite{chao2016species},
-They have been successfully used to address questions such as
+Frequency based estimators have been used extensively in biometrics (Ecology)
+to estimate \emph{unseen} species~\cite{chao2016species} and
+%They have been successfully used  to
+ address questions about population size %estimation
 %(1) \emph{``How does one estimate the number of individuals that belong
 %to a particular species in a given geographical area?''} (i.e., population size estimation),
 %and 
 %(2) \emph{``How does one estimate the total number of species that 
 %can be found in a given geographical area?''} (i.e., species richness estimation).
-(1) \emph{``How many individuals of a particular species are in a given geographical area?''} (i.e., population size estimation),
-and 
-(2) \emph{``How many species can be found in a given geographical area?''} (i.e., species richness estimation).
+%(1) 
+ (e.g.,\emph{``How many individuals of a particular species are in a given geographical area?''})
+and species richness % estimation
+%(2)
+ (e.g., \emph{``How many species can be found in a given geographical area?''}).
 %One of the features of
 %Biometrics is that they are \textbf{highly robust}. In particular,
 %Biometrics estimators for species count are required to be \textbf{highly robust}.
@@ -1218,9 +1221,10 @@ and
 %However, a precise formulation on how to apply them to the problem of equivalent mutant
 %estimation has not been spelt out.  
 
-We next
 % examine the basic ideas behind population size, or species richness, estimation
 %and
+
+In the next sections, we
 introduce the various statistical estimators that we considered in our study.
 %
 %Notably, we focus only on species richness estimation, since this problem supersedes %generalizes
@@ -1267,7 +1271,7 @@ can be estimated by considering the next rarest species, such as species
 % (e.g., 
 %\emph{singleton}
 %species 
-detected only once (i.e., \emph{singleton}) or twice (i.e., \emph{doubleton}), %species detected only twice)
+detected only once, or \emph{singleton}, twice, or \emph{doubleton}, %species detected only twice)
 and the number of the individuals found. % that comprise to them.
 %
 %that is from the number of species that were detected only in a single sampling
@@ -1300,6 +1304,11 @@ We discuss next instances of both.
 %is the number of undetected species, while $f_1$ is the number of singleton
 %species, and so on. 
 
+%
+%
+% ----- ALESSIO HERE ------
+%
+%
 \subsection{Incidence Sampling Estimators}
 \label{sec:estimators-incidence}
 %We next describe the \textbf{incidence sampling} estimators we used.
