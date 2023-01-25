@@ -1414,7 +1414,7 @@ These estimators underestimate on small sample size, and overestimate otherwise~
 %\end{itemize}
 %But it is robust to violation of ..\todo{Konstantin, please fill in.}
 
-\subsubsection{Coverage estimator~\cite{chao1992estimating}} %\todo{missing citation}
+\subsubsection{Incidence coverage estimator~\cite{chao1992estimating}} %\todo{missing citation}
 %The ACE (abundance coverage) and % ALESSIO: Confusing to talk about abundance in the incidence section
 The Incidence Coverage Estimator~(referred as \<ICE>) %were developed for cryptographic analysis by Good and Turing.
 is given by:
@@ -1435,7 +1435,7 @@ while $S_{\textit{infreq}}$ is those that do. % with incidence frequency no larg
 A $k=10$ cut-off is recommended. We also considered the original coverage estimator
 as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
 \<ICE> with $k=0$ (\<\ICEallrare>).
-
+%
 %The coverage estimators (\emph{ACE} and \emph{ICE}) 
 %ICE generally under estimates, but improved version of this estimators exists (e.g., \emph{ICE-1})~\cite{chao2016species}.
 Gotelli~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
@@ -1491,13 +1491,13 @@ the count of species ($f_k$) for which $k$ individuals has been
 found for $k=1,2,\ldots, r$.
 %
 Using these values, the estimators predict $f_0$, i.e., the number of species
-for which sampling found no individuals. Hence, $f_0$ corresponds to the
+for which no individuals are sampled. Hence, $f_0$ corresponds to the
 number of undetected species.
 %
 Abundance sampling assumes independent random samples, but these estimators
 %but as the sampling in biometrics is rarely such, the estimators based on this
 %sampling
-are considered robust against violations of these assumptions~\cite{gotelli2011estimating}). 
+are considered robust against violations of these assumptions~\cite{gotelli2011estimating}. 
 % ALESSIO: REPETITION OF THE ABOVE?
 %The second is the so called \emph{abundance} sampling. In this kind of sampling,
 %we sample $n$ individuals from the population 
@@ -1524,8 +1524,8 @@ are considered robust against violations of these assumptions~\cite{gotelli2011e
 
 \subsubsection{\Zelterman estimator~\cite{bohning2010some}}
 %\todo{Konstantin, please fill in.}
-Zelterman's estimator is frequently used in the social sciences, in particular in illicit drug use research.
-It is developed both for a binomial and a Poisson models.
+Zelterman's estimator is frequently used in Social Sciences, in particular in illicit drug use research.
+It is developed both for a Binomial and a Poisson models.
 %The Zelterman's estimate~\cite{bohning2010some} provides the following formula for
 %estimation of the missing zero count species.
 We used the latter version (referred as \<Zelterman>) which is defined as:
@@ -1572,10 +1572,8 @@ was provided by Wang and Ji-Ping~\cite{wang2010estimating}.
 
 \section{Mapping to mutation analysis}
 \label{sec:mapping}
-Estimating the number of killable mutants can also be
-done through population estimation. Here,
-each killable
-mutant is considered as a separate species, such that the estimation of species richness
+Estimating the number of killable mutants can be done through population estimation.
+Here, each killable mutant is considered as a separate species, such that the estimation of species richness
 results in the estimation of the overall number of killable mutants.
 
 %We consider each killable %nonequivalent
@@ -1597,7 +1595,7 @@ results in the estimation of the overall number of killable mutants.
 We consider a test case (either a test method or a test class) to be one sampling unit. 
 %
 Then, we collect the mutants detected by the test suite, and count how many mutants
-are detected only by a single test case,% (i.e., in one sampling unit), 
+are detected only by a single test case, % (i.e., in one sampling unit), 
 by two test cases, and so on.
 
 %\subsection{Detection Probability Model}
@@ -1622,7 +1620,8 @@ The killed mutants count is denoted $S_{obs}$.
 %$k=0,1,\dots, T$. 
 
 We assume that the probability that mutant~$i$ is detected by test~$j$, i.e., $P(W_{i,j}=1)$,
- is affected by two main unknowns, %, or \emph{heterogeneity}:
+ is affected by two %main
+ unknowns: %, or \emph{heterogeneity}:
 %
 the mutant detection rate ($\pi_{i}$) and the test kill rate ($\nu_{j}$).
 %,
@@ -1679,12 +1678,16 @@ as a Bernoulli random variable conditioned on $\nu_j$:
 %    i=1, \dots, S, j=1,\dots, T.
 %    \end{split}
 %\end{equation*}
-\begin{multline*}
-        P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \\
-        i=1, \dots, S, j=1,\dots, T.
-\end{multline*}
+\small
+%\begin{multline*}
+\begin{displaymath}
+	P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \quad i=1, \dots, S, j=1,\dots, T
+%\end{multline*}
+\end{displaymath}
+\normalsize
+
 The marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$
-follows a binomial distribution:
+follows a Binomial distribution:
 \begin{gather*}
     \begin{split}
     P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
@@ -1692,7 +1695,7 @@ follows a binomial distribution:
     \end{split}
 \end{gather*}
 where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
-Hence, the frequency $Y_i$ is a binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
+Hence, the frequency $Y_i$ is a Binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
 
 \subsection{Mapping Abundance Sampling Models}
 Instead of relying on the kill-matrix, we consider the test suite to be one big sampling unit.
@@ -1700,8 +1703,8 @@ Instead of relying on the kill-matrix, we consider the test suite to be one big 
 Then, we count each mutant kill by a test case as an individual of the mutant species.
 %
 This gives us the mutant count
-detected by a single test case (singletons), detected by
-two test cases, etc. 
+detected by a single test case, %(singletons), detected 
+by two test cases, and so on.
 %
 Similar to~\Cref{ssec:mapincidence}, one can construct
 a model for abundance data using multinomial and product 
