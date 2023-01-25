@@ -1782,19 +1782,21 @@ to assess the estimation accuracy. % of species richness estimators.
 Since such data was not available, % and we needed highly accurate data,
 we collected it by 
 \begin{enumerate*}[label=(\arabic*),start=4]   
-     \item generating live mutants (\Cref{sec:mutant-generation}) and
+     \item collecting survived mutants (\Cref{sec:mutant-generation}) and
      \item manually classify them as killable or equivalent (\Cref{sec:mutant-classification}).
 \end{enumerate*}
 
 \subsection{Test Subjects Selection}
 \label{sec:selection}
-Our choice of our test subjects were guided by the following considerations:
-(1) We identified manual classification as the most important part.
-We wanted to ensure that the ability of our classifiers were similar to real world
-programmers working on a well understood project,
-and could understand what a program fragment does easily.
+The choice of our test subjects was guided by the following considerations:
+(1) We consider manual mutant classification as the most important part of our study;
+hence, we wanted to ensure that our classifiers could understand easily what a program
+fragment does, thus closely matching real world settings, in which programmers
+work on well understood projects.
 (2) We wanted to reduce the work involved in setting up our experiments
-in different computing clusters, and the results to be easily reproducible.
+on different computing infrastructures, thus %clusters, 
+increasing the reproducibility of our results. 
+% to be easily reproducible.
 %To achieve a balance between generality and applicability of
 %our findings, and to avoid uncontrolled variables,
 Hence, we focused on large open-source \emph{Java} projects that do
@@ -1806,7 +1808,8 @@ external resources (e.g., databases), and built using a standard tool such as Ma
 We found that the libraries published by \emph{Apache Commons}~\cite{commons} met our criteria.
 In particular, they are written to an exacting standard, follows common syntactic
 and semantic guidelines as in large enterprise projects, and our classifiers
-after some initial training could understand the source code of programs reasonably well.
+after some initial training could understand their functioning % source code of programs
+reasonably well.
 %they focus on various aspects of reusable Java components and
 %are large, mature, and well-maintained.
 %Furthermore, they must meet stringent
@@ -1821,7 +1824,7 @@ Among those, for our study, we selected only projects that
   \item could be built and tested successfully with minimal effort;
   \item completed mutation analysis successfully;
   \item are released more than once; and,
-  \item packaged as a single Maven module.
+  \item are packaged as a single Maven module.
 \end{enumerate*}
 
 For the sake of clarity, in \Cref{tbl:fullsubjects} we group the
@@ -1831,9 +1834,9 @@ that we could build, test, and analyze successfully;
 the second group (bottom) contains the projects (name, release, and rejection note) that we discarded.
 %
 Specifically, we discarded three projects that had no official release at the time we conducted this study and 
-17 projects that have a complex structure or fail to build or do not pass the available tests or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
+17 projects that have a complex structure, fail to build, do not pass the available tests, or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
 
-Since our methodology requires manual live mutant classification, which is %notoriously
+Since our methodology requires manual mutant classification, which is %notoriously
 expensive, we had to restrict the scope of our study; hence, we selected 
 as test subjects the ten largest projects fulfilling our criteria.
 % for our study.
@@ -1878,7 +1881,7 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
     commons-ognl          & no releases    & immature project \\
     commons-geometry      & no releases    & immature project \\
     commons-testing       & no releases    & immature project \\
-    \hline
+%    \hline
     commons-bcel          & 6.3.1           & fail build \\
     commons-vfs           & 2.4             & complex structure \\ %and broken build \\
     commons-text          & 1.7             & fail build \\ %Error too many unapproved licenses  \\
@@ -1954,21 +1957,22 @@ might result in a biased sampling of live mutants.
 %
 To reduce this risk,
 % and study species richness estimators more thoroughly, 
-we generated two additional test suites for each test subject,
+we generated two additional test suites for each test subject.
 % using well-established techniques 
 %leveraged existing unit test generation tools that automatically
 % from a different origin where such biases are absent, therefore we
 %
-Specifically, we leveraged \Evosuite~\cite{fraser2011evosuite}, 
+Specifically, we leveraged \Evosuite~\cite{fraser2011evosuite}
 %an open-source, actively maintained, and extensively configurable
 %and proven to be one of the most effective 
 %the reference unit test generation tool %developed so far for Java, and generated
-to generate \EvosuiteRandom, a test suite that does not target any specific testing goal, hence it has the lowest generation bias, 
-and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Many-Objective Sorting Algorithm~\cite{panichella2015reformulating},
-hence it might introduce some bias being not completely random.
+to generate \EvosuiteRandom, a test suite that does not target any specific testing goal,
+and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Many-Objective Sorting Algorithm~\cite{panichella2015reformulating}.
+Consequently, we argue that the former test suite has the lowest generation bias, whereas
+the latter might introduce some bias being not completely random.
 %Being random, 
-\EvosuiteDynamosa is often (but not always)
-better than \EvosuiteRandom for many subjects (\Cref{tbl:subjectmeasures}).
+%\EvosuiteDynamosa is often (but not always)
+%better than \EvosuiteRandom for many subjects (\Cref{tbl:subjectmeasures}).
 %
 For generating both test suites, we followed the best practice from
 SBST testing tool competition~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22}
@@ -2024,7 +2028,7 @@ After executing the tests, we
 %the cluster nodes and  %the various computing nodes and 
 filtered out faulty samples related to invalid and timed-out mutants.
 %
-To reduce the risk of misclassifying live-but-slow mutants as killed,
+To reduce the risk of misclassifying ``slow'' mutants as killed,
 we conservatively granted each unit test a generous timeout of 10 seconds.
 %
 %We make available the entire dataset %containing all mutants, tests, and test executions, 
@@ -2034,7 +2038,7 @@ we conservatively granted each unit test a generous timeout of 10 seconds.
 %After collecting the necessary data, 
 Finally, we estimated the live mutant species richness
 on the \projectCount test subjects using the \estimatorCount 
-estimators on each of the three test suites using both class and method sampling.
+estimators on each of the three test suites using both test class and test method sampling.
 %
 The estimates are plotted along with the 95\% confidence intervals.
 % based on the formulas obtained in the respective papers.
@@ -2043,14 +2047,15 @@ The estimates are plotted along with the 95\% confidence intervals.
 % (\Cref{fig:testmethods}) that we evaluated %by comparison 
 %against the results of the manual classification, as we describe in the next section.
 
-\subsection{Live Mutants Generation}
+%\subsection{Live Mutants Generation}
+\subsection{Survived Mutants Collection}
 \label{sec:mutant-generation}
 To assess the quality of the statistical estimators, we needed a reliable approximation of
 killable and equivalent mutants in the \projectCount test subjects; therefore, we opted to
-sample and manually classify live mutants.
+sample and manually classify the mutants that survived mutation analysis.
 %
 As the first step, we used \PIT~\cite{pit} (v 1.4.9) to evaluate the \emph{\original} test suites
-and identified live mutants as those \PIT marked \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
+and identified mutants that \PIT marked \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
 %
 %after completing the mutation analysis of \original. 
 Specifically, we configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
@@ -2058,22 +2063,22 @@ mutation operators and the \emph{killmatrix} option enabled.
 %
 Since mutation analysis is almost always used with unit
 tests, we did not consider any integration test that might appear
-in the \emph{\original} test suite for generating live mutants.
+in the \emph{\original} test suite in this step. % for generating live mutants.
 %evaluated species richness estimators using unit tests only. 
 % and most of the frameworks for mutation analysis, including PIT, have better support for unit test cases, 
 
-\subsection{Live Mutants Manual Classification}
+\subsection{Manual Mutants Classification}
 \label{sec:mutant-classification}
-Running \PIT on the \original test suites resulted in thousands of live mutants
-that we could not exhaustively classify in a reasonable time; therefore, we randomly
-sampled $100$ live mutants for each project and used those 
+Running \PIT on the \original test suites resulted in thousands mutants that survived the analysis. 
+Since we could not exhaustively classify all of those in a reasonable time, we randomly
+sampled $100$ survived mutants for each project and used those 
 for the manual classification.
 %
 We argue that classifying so many mutants is a good balance between classification
 effort (estimated to be between one and thirty minutes per mutant) and representativeness 
 of the obtained results. Nevertheless, the whole manual classification took six months.\footnote{The manual classification ran between July~2019 and December~2019.}
 
-Given the sampled live mutants, we adopted a structured classification protocol
+Given the sampled mutants, we adopted a structured classification protocol
 that involved three classifiers. %, all co-authors of this paper.
 %
 The lead classifier (\rA) has ten years of experience in programming with Java and is
@@ -2083,17 +2088,17 @@ but were unfamiliar with mutation analysis before the start of this study.
 %
 To cope with that, we organized a pilot study for training \rB and \rC
 using \emph{commons-csv}, the smallest among the selected projects, 
-and all its $116$ live mutants.
+and all the $116$ mutants that survived the analysis.
 
 After the initial training, the classification considered one project at a time in alphabetical order
 (as listed in \Cref{tbl:classified}) and required researchers \rB and \rC \emph{independently}
-to classify all the live mutants. % as killable or equivalent.
+to classify all $100$ sampled mutants. % as killable or equivalent.
 %
 Killable mutants must be accompanied by a (hypothetical) unit test that could show the difference
 in behavior between that mutant and the original program. Similarly, equivalent mutants must be
 motivated with a convincing explanation. % why that mutant should be considered equivalent. % in a fashion to be acceptable to the other researchers.
 %
-As a result, for each live mutant, we collected % of the classification includes
+As a result, for each sampled mutant, we collected % of the classification includes
 %the particular mutant identifier, 
 a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
 and optional comments.
