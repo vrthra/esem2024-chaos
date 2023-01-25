@@ -815,6 +815,58 @@ but plausible faults that share strong similarities with real faults are injecte
 % Still a bit disconnected...
 %Notably, mutations share strong similarities with real faults~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 
+\begin{figure}[t]
+\begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
+%\lstset{linewidth = 4cm, breaklines=true} %set your listing lines widths, and set breaklines to true
+\begin{lstlisting}[style=python]
+def determinant(a,b,c,d):
+  ad = a * d
+  bc = b * c
+  return ad - bc
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\columnwidth} %figure will have the remaning 40% of the line width
+\begin{lstlisting}[style=python,escapechar=+, numbers=none]
+# Tests
+
++$\vdash$+ determinant(1,2,1,2) +$=$+ 0
++$\vdash$+ determinant(1,2,3,4) +$=$+ -2
+\end{lstlisting}
+\end{minipage}
+%\vspace*{-4mm}
+\caption{A simple program (left) and two of its tests (right)}
+\label{fig:working-example}
+%
+\end{figure}
+%
+\begin{figure}[t]
+\begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
+\begin{lstlisting}[style=python,escapechar=!]
+def determinant(a,b,c,d):
+!\textcolor{codeorange}{- ad = a * d}!
+!\textcolor{codegreen}{+ ad = a / d}!
+  bc = b * c
+  return ad - bc
+\end{lstlisting}
+\end{minipage}
+\hfill
+\begin{minipage}{0.5\columnwidth} %figure will have the remaning 40% of the line width
+\begin{lstlisting}[style=python,escapechar=!, numbers=none]
+def determinant(a,b,c,d):
+  ad = a * d
+!\textcolor{codeorange}{- bc = b * c}!
+!\textcolor{codegreen}{+ bc = c * b}!
+  return ad - bc
+\end{lstlisting}
+\end{minipage}
+%\vspace*{-4mm}
+\caption{A killable mutant (left) and an equivalent one (right)}
+\label{fig:working-example-mutants}
+\end{figure}
+%\vspace*{-5mm}
+
+
 A mutant that exhibits a detectable change in behavior of the program when
 exercised by a test case is said to be detected, or \emph{killed}, by that
 test case. Conversely, we call mutants undetected by the test suite \emph{live} mutants.
@@ -824,24 +876,27 @@ number of \emph{killable} mutants %, i.e., mutants that can be killed,
 is called \emph{mutation score} and  is considered a good indicator of that test suite
 effectiveness in preventing faults~\cite{jia2010an}.
 %
-The mutants that are left alive is also considered
+%The mutants that are left alive is also considered
+Live mutants can be also considered as
 a reasonable proxy for residual risk~\cite{horgan1996software} because
 they represent potential bugs that would have not been discovered by the test suite.
 % ALESSIO: In the abstract we say killable mutants is the proxy of residual risk
 %\footnote{ Horgan and Mathur define risk as testable attributes that remain untested. }.
 
+\vspace*{-4mm}
 \begin{equation}
 \text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}
 \label{eq:1}
 \end{equation}
 
-Unfortunately, not all the alive mutants can be killed. For instance, the
+Unfortunately, not all the live mutants could be killed. For instance, the
 so-called \emph{equivalent mutants}
 (see \Cref{fig:working-example-mutants}-right for
 an example) implement behaviors equivalent to the original code
 and cannot be killed no matter the test input used~\cite{budd1982two}.
 %
-The amount of these so-called equivalent mutants, which is
+The amount of %these so-called 
+equivalent mutants, which is generally
 program specific~\cite{offutt1994using,grun2009impact}, directly determines
 the number of killable mutants (see~\Cref{eq:1}) but cannot be established 
 \emph{a-priori} because there is no means to automatically prove programs equivalence
@@ -880,66 +935,12 @@ of test suites} as well as evaluating \textbf{residual risk} after a test run, b
 %consider program specific factors or features cannot accurately
 %estimate the number of killable mutants~\cite{gotelli2011estimating}.
 %
-\begin{figure}[t]
-\begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
-%\lstset{linewidth = 4cm, breaklines=true} %set your listing lines widths, and set breaklines to true
-\begin{lstlisting}[style=python]
-def determinant(a,b,c,d):
-  ad = a * d
-  bc = b * c
-  return ad - bc
-\end{lstlisting}
-\end{minipage}
-\hfill
-\begin{minipage}{0.5\columnwidth} %figure will have the remaning 40% of the line width
-\begin{lstlisting}[style=python,escapechar=+, numbers=none]
-# Tests
 
-+$\vdash$+ determinant(1,2,1,2) +$=$+ 0
-+$\vdash$+ determinant(1,2,3,4) +$=$+ -2
-\end{lstlisting}
-\end{minipage}
-\vspace*{-4mm}
-\caption{A simple program (left) and two of its tests (right)}
-\label{fig:working-example}
-%
-\end{figure}
-%
-\begin{figure}[t]
-\begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
-\begin{lstlisting}[style=python,escapechar=!]
-def determinant(a,b,c,d):
-!\textcolor{codeorange}{- ad = a * d}!
-!\textcolor{codegreen}{+ ad = a / d}!
-  bc = b * c
-  return ad - bc
-\end{lstlisting}
-\end{minipage}
-\hfill
-\begin{minipage}{0.5\columnwidth} %figure will have the remaning 40% of the line width
-\begin{lstlisting}[style=python,escapechar=!, numbers=none]
-def determinant(a,b,c,d):
-  ad = a * d
-!\textcolor{codeorange}{- bc = b * c}!
-!\textcolor{codegreen}{+ bc = c * b}!
-  return ad - bc
-\end{lstlisting}
-\end{minipage}
-\vspace*{-4mm}
-\caption{A killable mutant (left) and an equivalent one (right)}
-\label{fig:working-example-mutants}
-\end{figure}
-\vspace*{-5mm}
+% ALESSIO: Dirty trick to keep the first page as it was before
+%\newpage
 
-%
-%
-% ALESSIO: UP TO HERE !
-%
-%
-
-Recently, researchers proposed the STADS\footnote{
-Software Testing as Species Discovery
-} framework~\cite{bohme2018assurances}
+Recently, researchers proposed the Software Testing as Species Discovery (STADS) framework~\cite{bohme2018assurances}
+%\footnote{Software Testing as Species Discovery} 
 as a general framework capable of estimating the unseen software
 elements that fulfill a property when only a fraction has been discovered.
 The STADS framework is based on an extension of Good-Turing estimator that was used to crack the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}
