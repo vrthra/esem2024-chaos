@@ -805,7 +805,7 @@ killable mutants that are program and test suite dependent.
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
 Mutation analysis the premier means of assessing the quality of
-software test suites\cite{papadakis2019mutation}. %in preventing bugs
+software test suites~\cite{papadakis2019mutation} in preventing defects.
 Evaluating a test suite with mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test cases comprising that test suite
 (\Cref{fig:working-example}-right).
@@ -940,13 +940,16 @@ def determinant(a,b,c,d):
 Recently, researchers proposed the STADS\footnote{
 Software Testing as Species Discovery
 } framework~\cite{bohme2018assurances}
-as a general framework capable of estimating the total number of software
-species when only a fraction has been discovered.
+as a general framework capable of estimating the unseen software
+elements that fulfill a property when only a fraction has been discovered.
 The STADS framework is based on an extension of Good-Turing estimator that was used to crack the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}
 (the Chao estimator~\cite{chao2016nonparametric}).
-The idea is to treat software structural elements that are currently covered as observed entities, and use the frequency of their observation (coverage by specific test cases) to predict how many structural
-elements are likely to be observed if the campaign is allowed to continue for an infinite time.
-While STADS is initially proposed for estimating reachable coverage~\cite{fuzzingbook2023:WhenToStopFuzzing} during fuzzing, we observed that the same model is applicable to mutation analysis. That is, observation of a structural element can be mapped to detecting a mutant by a test case. Furthermore, mutation analysis is quite close to structural coverage
+The idea is that the relative frequency of observation of software elements such as covered
+structural elements, observed defects etc. contains information about the number of similar
+software elements of the same kind that is yet to be observed.
+% to treat software elements that are currently covered as observed entities, and use the frequency of their observation (coverage by specific test cases) to predict how many structural
+%elements are likely to be observed if the campaign is allowed to continue for an infinite time.
+While STADS is initially proposed for estimating unseen but reachable coverage~\cite{fuzzingbook2023:WhenToStopFuzzing} during fuzzing, we observed that the same model is applicable to mutation analysis. That is, observation of a structural element can be mapped to detecting a mutant by a test case. Furthermore, mutation analysis is quite close to structural coverage
 as covering a structural element is a prerequisite for detecting any mutation in that element.
 Finally, frequency based estimators such as Chao's are claimed to be robust toward strong biases in sampling~\cite{chao2016species}.
 They are used in ecology for species counts. The species counts of different species are often highly correlated and geography specific. Given their robustness in such circumstances,
