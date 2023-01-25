@@ -28,7 +28,7 @@ clean:
 	rm -rf charts-test
 
 pull:
-	git pull --rebase origin main --autostash
+	git pull --rebase origin master --autostash
 
 push:
-	git push origin main
+	git push origin master
