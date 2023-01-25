@@ -702,9 +702,9 @@ is dependent on the particular program and test suite under evaluation.
 Estimating residual risk, i.e., the upper-bound on
 the number of faults that are likely to remain in the software
 after a testing campaign, helps in addressing important
-questions about software quality, (e.g., "How much can we trust
-a software after testing it?"), and automatic test generation
-(e.g., What fraction of possible faults can it detect?").
+questions about software quality, (e.g., \emph{``How much can we trust
+a software after testing it?''}), and automatic test generation
+(e.g., \emph{``What fraction of possible faults can it detect?''}).
 % How much should it improve to produce reliable results?").
 %
 Traditionally, those questions are addressed using structural
@@ -936,7 +936,7 @@ of test suites} as well as evaluating \textbf{residual risk} after a test run, b
 %estimate the number of killable mutants~\cite{gotelli2011estimating}.
 %
 
-\subsection{Motivations}
+\subsection{Motivation and Main Contributions}
 
 Recently, researchers proposed to adopt the Software Testing as Species Discovery (STADS) framework~\cite{bohme2018assurances}
 %\footnote{Software Testing as Species Discovery} 
@@ -1022,37 +1022,30 @@ produces better estimates than the nai\"ve upper bound of total
 number of generated mutants.
 \end{tcolorbox}
 
-In summary, our main contributions are:
-\begin{itemize}
-   \item The first empirical study on the application of \estimatorCount,
-         widely used frequency based statistical %species richness 
-         estimators applied to the problem of estimating killable mutants.
-   \item One of the largest % (to the best of our knowledge)
-mutation analysis datasets containing 1016 live mutants manually
-classified by three researchers on ten mature projects,
-multiple test suites generated manually and automatically,
-and their mutation analysis resulting in more than 2.5B test executions.
-\end{itemize}
-
-
-
-\subsection{Empirical Study Overview}
-We manually classified 1016 live mutants obtained by running %the
-existing test suites and compared the predictions from statistical estimators to the result.
+\subsection{Empirical Study Results Overview}
+After selecting well maintained, open-source projects and analyzing them
+using PIT, we manually classified 1016 live mutants that survived those open-source projects'
+existing test suites and used this results for assessing the prediction quality of
+a large selection of frequency based statistical estimators (see~\Cref{sec:estimators}).
+%from statistical estimators to the result.
 % checked whether the predictions made by the statistical estimators do not significantly
 %differ from the ones we obtained from the manual classification.
-We, however, found that
+What we found out was bluntly unexpected.
+Specifically, we found that
 %the statistical estimators performance did not match our expectations.
 %That is, 
-the estimates from statistical estimators
+the estimates from the selected estimators
 %their estimates
 were significantly different from the manual estimates.
 Hence, we questioned our experimental settings
 and identified two major threats to the validity of our study:
 %Specifically, we argued that
-(1) the manual classification could be in error, hence the
+(1) the manual classification of live mutants could be in error; hence, the
 estimators might be closer to the truth than the estimators derived from manual
 classification, or
+%
+% ALESSIO: Confusing: estimators, estimators derived from manual classification
+%
 (2) the tests themselves could have been biased, with more effective tests checking
  only specific parts of the code (e.g., business logic).
 Such biases might affect the frequency of killed mutants and might lead to faulty estimates.
@@ -1063,14 +1056,15 @@ using two fundamentally different configurations (i.e., a random strategy and gu
 We expected the estimations obtained from manual test suites
 to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
-
-To mitigate the second threat, we compared the estimates from \Evosuite
-test suites and manual classification. We expected
+%
+To mitigate the second threat, instead, we compared the estimates from \Evosuite
+test suites and from the manual classification. We expected
 the estimates from \Evosuite to match estimates from manually classified live
 mutants as \Evosuite test suites are free of manual bias. % of test case selection.
 
-We, again, found that manual classification was significantly different from
-estimations from both test suites, and the estimates from test suites themselves
+We, again, found our expectations unmet as manual classification was significantly different from
+estimations from automatically generated test suites, and the estimates from the automatically
+generated test suites %themselves
 were significantly different from each other.
 Therefore, we critically inspected our experiment and identified another
 possible source of error--the possibility that different test objectives
@@ -1085,26 +1079,41 @@ To check this possibility, we changed the sampling unit used.
 %test case, and there are two commonly accepted definitions of a test case in
 %the Java world: methods and classes.
 Since we obtained first estimates by
-considering methods as test cases, we next
-considered classes as test cases.
-Because both methods and classes sample the same quantity, i.e., the killed mutants,
-we expect that the statistical estimators produce consistent estimates, although
+considering test methods as test cases, we next
+considered test classes as test cases.
+Because both test methods and test classes sample the same quantity, i.e., the killed mutants,
+we expected that the statistical estimators produce consistent estimates, although
 possibly with different degrees of uncertainty.
 
-Once again, our results showed that the estimates from methods and classes were
-significantly different, which leaves us with the only option that the considered statistical
-estimators are not yet ready for the prime time of mutation analysis.
+Once again, our results showed that the estimates from test methods and test classes were
+significantly different, which left us with the only option that the considered frequency based statistical
+estimators cannot be reliably applied to mutation analysis.
+%
 That is, our results show that none of the considered statistical estimators
-behaved consistently, and none of them are robust to changes in the sampling
-strategy.
-In particular, we found that in several cases the results are program dependent.
-We observed that the predictions from manual classifications and
+behaved consistently, and none of them is %are
+robust to changes in the sampling strategy.
+For instance, we found the estimators changed their predictions significantly
+when using different sampling methods and, almost all the times %they use 
+test class based sampling let to predict more killable mutants than the existing ones.
+%
+Additionally, we found that in several cases the results are program dependent,
+and that the predictions from manual classifications and
 statistical estimators agreed ($<1\%$ difference) only when there were
 exceptionally strong test suites (i.e., $>99\%$ killed mutants).
-Additionally, we found the estimators changed their predictions significantly
-when using different sampling methods and, almost all the times they use class based sampling,
-they predicted more killable mutants than the existing ones.
 
+\subsection{Summary of Contributions}
+In summary, our main contributions are:
+\begin{itemize}
+   \item The first empirical study on the application of \estimatorCount,
+         widely used frequency based statistical %species richness 
+         estimators applied to the problem of estimating killable mutants,
+         showing that they are not yet ready for the prime time.
+   \item One of the largest % (to the best of our knowledge)
+mutation analysis datasets containing 1016 live mutants manually
+classified by three researchers on ten mature projects,
+multiple test suites generated manually and automatically,
+and their mutation analysis resulting in more than 2.5B test executions.
+\end{itemize}
 
 
 %We then
