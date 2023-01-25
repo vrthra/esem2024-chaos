@@ -869,7 +869,7 @@ def determinant(a,b,c,d):
 
 A mutant that exhibits a detectable change in behavior of the program when
 exercised by a test case is said to be detected, or \emph{killed}, by that
-test case. Conversely, we call mutants undetected by the test suite \emph{live} mutants.
+test case. Conversely, we call mutants undetected by the test suite \emph{surviving} mutants.
 %
 The ratio of the number of mutants killed by a test suite to the 
 number of \emph{killable} mutants %, i.e., mutants that can be killed,
@@ -877,7 +877,7 @@ is called \emph{mutation score} and  is considered a good indicator of that test
 effectiveness in preventing faults~\cite{jia2010an}.
 %
 %The mutants that are left alive is also considered
-Live mutants can be also considered as
+Surviving killable mutants can be also considered as
 a reasonable proxy for residual risk~\cite{horgan1996software} because
 they represent potential bugs that would have not been discovered by the test suite.
 % ALESSIO: In the abstract we say killable mutants is the proxy of residual risk
@@ -889,7 +889,7 @@ they represent potential bugs that would have not been discovered by the test su
 \label{eq:1}
 \end{equation}
 
-Unfortunately, not all the live mutants could be killed. For instance, the
+Unfortunately, not all the surviving mutants could be killed. For instance, the
 so-called \emph{equivalent mutants}
 (see \Cref{fig:working-example-mutants}-right for
 an example) implement behaviors equivalent to the original code
@@ -938,7 +938,7 @@ of test suites} as well as evaluating \textbf{residual risk} after a test run, b
 
 \subsection{Motivation and Main Contributions}
 
-Recently, researchers proposed to adopt the Software Testing as Species Discovery (STADS) framework~\cite{bohme2018assurances}
+Recently, researchers proposed the Software Testing as Species Discovery (STADS) framework~\cite{bohme2018assurances}
 %\footnote{Software Testing as Species Discovery} 
 as a general framework for estimating %the 
 \emph{unseen} software % ALESSIO: Can we say "unobserved/unobservable" instead?
@@ -962,9 +962,9 @@ species, which are often highly correlated and geography specific.
 % to treat software elements that are currently covered as observed entities, and use the frequency of their observation (coverage by specific test cases) to predict how many structural
 %elements are likely to be observed if the campaign is allowed to continue for an infinite time.
 
-While STADS is initially proposed for estimating reachable coverage,
+While STADS was initially proposed for estimating reachable coverage,
 we argue %observed 
-that the same model is applicable for estimating live mutants % to mutation analysis
+that the same model is applicable for estimating surviving killable mutants % to mutation analysis
 because covering a structural element is a prerequisite for detecting any
 mutation in that element. 
 %Therefore, given a test execution, %the event of 
@@ -974,7 +974,7 @@ mutation in that element.
 %
 %Furthermore, mutation analysis is quite close to structural coverage
 %as covering a structural element is a prerequisite for detecting any mutation in that element.
-Therefore, in light of those observations, % and considering their robustness towards bias in sampling,
+In the light of this observation, % and considering their robustness towards bias in sampling,
 %
 %we wondered
 we investigated whether using frequency based
@@ -1025,13 +1025,13 @@ number of generated mutants.
 \subsection{Empirical Study Results Overview}
 After selecting well maintained, open-source projects and analyzing them
 using PIT, we manually classified 1016 live mutants that survived those open-source projects'
-existing test suites and used this results for assessing the prediction quality of
+existing test suites and used this result for assessing the prediction quality of
 a large selection of frequency based statistical estimators (see~\Cref{sec:estimators}).
 %from statistical estimators to the result.
 % checked whether the predictions made by the statistical estimators do not significantly
 %differ from the ones we obtained from the manual classification.
-What we found out was bluntly unexpected.
-Specifically, we found that
+%What we found out was bluntly unexpected.
+However, we found that
 %the statistical estimators performance did not match our expectations.
 %That is, 
 the estimates from the selected estimators
