@@ -2051,7 +2051,7 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
 %Hence,
 %The test suite defines how thoroughly mutants are sampled.
 %
-Because the \original test suites defined for each project contain unit tests
+Because the \original test suites in each project contain unit tests
 that developers manually wrote to check application- and
 domain- specific requirements, one can argue that using
 the \original test suites %for mutation analysis the \original test suites 
@@ -3005,7 +3005,7 @@ none of those methods has been empirically evaluated yet.
 %do not work well for species diversity counts.
 
 \section{Conclusions and Future Work}
-Accurately estimating the number of killable mutants is crucial for both estimating
+Accurately estimating the number of killable mutants is crucial for estimating
 the residual risk and the effectiveness of test generators.
 While a sound and complete classifier for killable and equivalent mutants is impossible,
 recent advances in statistical estimation using frequency %count 
@@ -3058,9 +3058,10 @@ Therefore, they have way to go before practitioners can reliably use them.
 
 %\todo{AZ: (re)state results and contribution here.}
 
-Given that the surveyed estimators performed poorly on
-estimating the number of killable mutants, we have a number of directions
-for future research:
+We recommend a few directions for future research:
+%Given that the surveyed estimators performed poorly on
+%estimating the number of killable mutants, we have a number of directions
+%for future research:
 
 \begin{description}
 \item[Better models.] The first question is of course whether we can get better
@@ -3070,7 +3071,7 @@ correct our models and the estimators for that.
 Doing so would require us to identifying the mutant distribution characteristics
 and developing models that can incorporate such information. 
 
-\item[Investigate more variables.] A further research direction is to incorporate
+\item[Investigate more variables.] To improve estimation, incorporate
  coverage spectra and other information either by modifying the test sample
 or directly into the model to see if such information can help estimate better
 killable mutants.
