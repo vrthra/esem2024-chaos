@@ -863,7 +863,7 @@ def determinant(a,b,c,d):
   return ad - bc
 \end{lstlisting}
 \end{minipage}
-%\vspace*{-4mm}
+\vspace*{-4mm}
 \caption{A killable mutant (left) and an equivalent one (right)}
 \label{fig:working-example-mutants}
 \end{figure}
@@ -888,7 +888,7 @@ they represent potential bugs that would have not been discovered by the test su
 
 \vspace*{-4mm}
 \begin{equation}
-\text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}
+    \resizebox{.9\hsize}{!}{\text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}}
 \label{eq:1}
 \end{equation}
 
@@ -1190,12 +1190,89 @@ and their mutation analysis resulting in more than 2.5B test executions.
 %Finally, there may be errors in the manual classification process for equivalent
 %mutants. Hence, we need a sanity check for our results.
 
-\section{Frequency Based Estimators}
+\section{Statistical framework}
+\label{sec:mapping}
+We wish to measure the number of killable mutants with help of statistical estimators from biometrics.
+These estimators
+have also been successful in counting systems in
+computer networks~\cite{accettura2015the} and
+to estimate the size of an unknown population. Besides, they were also suggested for use in the
+estimation of residual defects using the STADS framework~\cite{bohme2018stads},
+%residual defects predictions~\cite{bohme2018stads}.
+%
+%Recently, they have been also proposed for estimating equivalent mutants~\cite{bohme2018assurances};
+In the next sections, we
+first introduce the underlying model and then describe various statistical estimators that we considered in our study.
+
+\subsection{Statistical Model}
+At first, let's consider the following well known statistical model:
+Suppose, we have an urn with colored balls, from which $n$ balls are sampled with replacement and $S(n)$ colors are observed.
+Furthermore, let's assume that each ball has multiple colors.
+Now we are interested in how many colors $S$ this urn can contain.
+In application to our problem, this urn sampling, which is described with the Bernoulli product model, associates each test (ball) with the killed mutants (colors of a ball).% or `species`
+We use the standard definitions from the Bernoulli product described in the STADS framework.
+
+Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests that $\mathcal{P}$ can exercise.
+A testing campaign can be considered as a stochastic process
+\[
+    \mathcal{T}=\left\{ X_n|X_n \in \mathcal{D} \right\}_{n=1}^T
+\]
+where $T$ tests are sampled with replacement from $\mathcal{D}$.
+%Suppose, the test space $\mathcal{D}$ is subdivided into $S$ individual subdomains $\left\{\mathcal{D}_i\right\}_{i=1}^S$.
+%A test $X_n \in \mathcal{F}$ is said to belong to species $D_i$ (it kills a mutant $M_i$) if $X_n \in \mathcal{D}_i$.
+Let $\{M_i\}_{i=1}^S$ be a set of mutants, and a mutant ${M_i}$ can be detected with a probability $\pi_i$.
+The detection rate of a mutant might be affected by factors specific to its definition (e.g.,
+the mutation operators that generated it or the location in the code where it is applied).
+
+In the Bernoulli product model, a test can kill one or more mutants.
+For a testing campaign of size $N$, we let the \emph{kill incidence} matrix, or simply killmatrix, $W_{S\times T}$ be defined as
+\[
+    W_{S\times T} = \left\{W_{ij} |i=1,2,\dots,S\land j=1,2,\dots,T \right\},
+\]
+where $W_{ij} = 1$ if test $X_j$ kills mutant $M_i$ and $W_{ij} = 0$ otherwise.
+
+This way, the $i_{th}$-row sum of $W$ ($Y_i=\sum_{j=1}^{T}W_{i,j}$) denotes the incidence-based frequency of mutant $M_i$.
+We further define the incidence frequency counts $Q_k$, where $0 \leq k \leq N$, as the number of mutants killed by exactly $k$ tests.
+Then, the unobservable frequency count $Q_0$ denotes the number of mutants that remain undetected.
+
+We assume that the probability that a mutant~$i$ is detected by a test~$j$ is defined as
+$P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$,
+where variables $\{\nu_{1}, \nu_{2},\cdots,\nu_{T}\}$ are responsible for test effects.
+Indeed, the ability of a test to kill mutants might be affected by various factors, such as coverage, input data, environment or flakiness.
+We model it as a random variable from an unknown probability density function $h(\nu)$; whereas we assume that the mutant detection rates $\pi_i$ are fixed.
+
+Consequently, we can model the probability distribution of each element $W_{ij}$ of the killmatrix as a Bernoulli random variable conditioned on $\nu_j$:
+\small
+\begin{displaymath}
+    P(\forall (i,j).W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}.
+\end{displaymath}
+\normalsize
+So as the probability distribution for the incidence matrix can be expressed as the probability for all $i:1\leq i \leq S $ and $j:1\leq i\leq T$ that we have $W_{ij} = w_{ij}$.
+\[
+    P\left(\forall (i,j).W_{ij}=w_{ij}|\nu_{i} \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-p_i)^{1-w_{ij}}
+\]
+Integrating out all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the following unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$,
+which follows a Binomial distribution:
+\begin{gather*}
+    \begin{split}
+        P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
+        &={T \choose y_i}{\lambda_i}^y_i (1-{\lambda_i}^y_i)^{T-y_i},
+    \end{split}
+\end{gather*}
+where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
+That is, the frequency $Y_i$ is a binomial random variable with detection probability $\lambda_i$.
+Then the incidence frequency counts can be derived as
+\[
+    Q_k=E\left[ \sum_{i=1}^{S}I(Y_i=k)  \right]=\sum_{i=1}^{S}{T \choose k}\lambda_{i}^k(1-\lambda_{i})^{T-k}.
+\]
+
+\subsection{Frequency Based Estimators}
 \label{sec:estimators}
 %There are two concepts from the literature that seems to be applicable to the
 %problem of estimation of equivalent mutants: (1) population size estimation and
 %(2) species richness estimation.
-Frequency based estimators have been used extensively in biometrics (Ecology)
+Estimators that can estimate the total number of colors under Bernoulli Product model belong to the class of frequency based estimators.
+They have been used extensively in biometrics (Ecology)
 to estimate \emph{unseen} species~\cite{chao2016species} and
 %They have been successfully used  to
  address questions about population size %estimation
@@ -1227,17 +1304,16 @@ and species richness % estimation
 % examine the basic ideas behind population size, or species richness, estimation
 %and
 
-In the next sections, we
-introduce the various statistical estimators that we considered in our study.
+%In the next sections, we
+%introduce the various statistical estimators that we considered in our study.
 %
 %Notably, we focus only on species richness estimation, since this problem supersedes %generalizes
 %population size estimation according to Chao~\cite{chao2016species}.
 %
-Later, we map these concepts into the mutation analysis
-domain.
+%Later, we map these concepts into the mutation analysis domain.
 
-\subsection{Species Richness Estimation}
-\label{sec:statistical}
+%\subsection{Species Richness Estimation}
+%\label{sec:statistical}
 The problem of estimating species richness, firstly formulated in
 biometrics~\cite{chao2016species}, is challenging because the geographical area
 to consider while counting the number of species is often large, 
@@ -1275,7 +1351,7 @@ can be estimated by considering the next rarest species, such as species
 %\emph{singleton}
 %species 
 detected only once, or \emph{singleton}, twice, or \emph{doubleton}, %species detected only twice)
-and the number of the individuals found. % that comprise to them.
+and the number species found. % that comprise to them.
 %
 %that is from the number of species that were detected only in a single sampling
 %unit, the number of species that were detected only in two sampling units, and
@@ -1283,9 +1359,10 @@ and the number of the individuals found. % that comprise to them.
 
 Chao~\cite{chao2016species} identified two kinds of species richness
 estimators based on whether they adopt \emph{incidence data}, i.e., data about the
-presence of species across multiple sampling units, or \emph{abundance data}, i.e., 
+presence of species across multiple sampling units, or \emph{abundance data}, i.e.,
 data about the number of individuals of different species found.
-We discuss next instances of both.
+As our model leverages kill incidence matrix, we primarly resort to incidence sampling estimators.
+
 
 %Next, we tally the \emph{names} of species that occur
 %in each sample. That is, we only note whether a species was present or not, and
@@ -1307,13 +1384,8 @@ We discuss next instances of both.
 %is the number of undetected species, while $f_1$ is the number of singleton
 %species, and so on. 
 
-%
-%
-% ----- ALESSIO HERE ------
-%
-%
-\subsection{Incidence Sampling Estimators}
-\label{sec:estimators-incidence}
+%\subsection{Incidence Sampling Estimators}
+%\label{sec:estimators-incidence}
 %We next describe the \textbf{incidence sampling} estimators we used.
 
 %
@@ -1347,7 +1419,6 @@ $Q_1$ and $Q_2$ the frequency of singleton and doubleton species,
 and $T$ is the number of sampled units.
 This estimator is represented as \<\Chao>
 in the rest of the paper.
-%\todo{@Konstantin: check please -- checked -- RG}
 %  which is $f_2$ if abundance data
 %and $q_2$ if incidence data. 
 %$S_1$ is the total number of species estimated.
@@ -1482,25 +1553,39 @@ where species $j$ is detected. % \todo{Why then Y j is not F j?!}
 %\end{itemize}
 %But it is robust to violation of ..\todo{Konstantin, please fill in.}
 
+\subsubsection{\Zelterman estimator~\cite{bohning2010some}}
+%\todo{Konstantin, please fill in.}
+Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit dug use research.
+%It is developed both for a Binomial and a Poisson models.
+%The Zelterman's estimate~\cite{bohning2010some} provides the following formula for
+%estimation of the missing zero count species.
+%We used the latter version (referred as \<Zelterman>) which
+It is defined as:
+\begin{displaymath}
+%    S_{zelterman} = S_{obs} + S_{obs}/[exp(\hat{\lambda}) - 1]
+    S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1]
+\end{displaymath}
+where $\hat{\lambda} = 2f_2/(m-1)f_1$.
 
-\subsection{Abundance Sampling Estimators}
-\label{sec:estimators-abundance}
-Abundance sampling considers each individual to be a sampling unit
-and recognizes as the relevant (numerical) data the count of individuals
-that belong to each species.
-%Ok
-After exhaustively surveying the sample unit, abundance sampling reports
-the count of species ($f_k$) for which $k$ individuals has been
-found for $k=1,2,\ldots, r$.
-%
-Using these values, the estimators predict $f_0$, i.e., the number of species
-for which no individuals are sampled. Hence, $f_0$ corresponds to the
-number of undetected species.
-%
-Abundance sampling assumes independent random samples, but these estimators
-%but as the sampling in biometrics is rarely such, the estimators based on this
-%sampling
-are considered robust against violations of these assumptions~\cite{gotelli2011estimating}. 
+%\subsection{Abundance Sampling Estimators}
+%\label{sec:estimators-abundance}
+
+%Abundance sampling considers each individual to be a sampling unit
+%and recognizes as the relevant (numerical) data the count of individuals
+%that belong to each species.
+%%Ok
+%After exhaustively surveying the sample unit, abundance sampling reports
+%the count of species ($f_k$) for which $k$ individuals has been
+%found for $k=1,2,\ldots, r$.
+%%
+%Using these values, the estimators predict $f_0$, i.e., the number of species
+%for which no individuals are sampled. Hence, $f_0$ corresponds to the
+%number of undetected species.
+%%
+%Abundance sampling assumes independent random samples, but these estimators
+%%but as the sampling in biometrics is rarely such, the estimators based on this
+%%sampling
+%are considered robust against violations of these assumptions~\cite{gotelli2011estimating}.
 % ALESSIO: REPETITION OF THE ABOVE?
 %The second is the so called \emph{abundance} sampling. In this kind of sampling,
 %we sample $n$ individuals from the population 
@@ -1525,32 +1610,22 @@ are considered robust against violations of these assumptions~\cite{gotelli2011e
 %Note that Chao~\cite{chao2016species} provides two additional estimators -- lowerbound
 %estimator and upperbound estimator with minor differences.
 
-\subsubsection{\Zelterman estimator~\cite{bohning2010some}}
-%\todo{Konstantin, please fill in.}
-Zelterman's estimator is frequently used in Social Sciences, in particular in illicit drug use research.
-It is developed both for a Binomial and a Poisson models.
-%The Zelterman's estimate~\cite{bohning2010some} provides the following formula for
-%estimation of the missing zero count species.
-We used the latter version (referred as \<Zelterman>) which is defined as:
-\begin{displaymath}
-    S_{zelterman} = S_{obs} + S_{obs}/[exp(\hat{\lambda}) - 1]
-\end{displaymath}
-where $\hat{\lambda} = 2f_2/f_1$.
 
 
-\subsubsection{Species \ChaoBunge~\cite{chao2002estimating}}
-% coverage-duplication estimator from Poisson-Gamma model by Chao and Bunge 2002;
-An estimator 
-%proposed by Chao and Bunge
-for the gamma-Poisson model in which species are detected in the sample
-according to a Poisson process and rates of the processes follow a gamma distribution.
-%
-This estimator (referred as \<\ChaoBunge>) %was given by Chao and Bunge in 2002
-%The formula for the estimator 
-is given by
-\begin{displaymath}
-  \hat{N} = S_{freq} + \sum_{k=2}^{r} f_k/(1 - \frac{f1 \sum_{k=1}^r k^2 f_{k}}{(\sum_{k=1}^r k f_{k})^2}).
-\end{displaymath} % in the sample.
+
+%\subsubsection{Species \ChaoBunge~\cite{chao2002estimating}}
+%% coverage-duplication estimator from Poisson-Gamma model by Chao and Bunge 2002;
+%An estimator
+%%proposed by Chao and Bunge
+%for the gamma-Poisson model in which species are detected in the sample
+%according to a Poisson process and rates of the processes follow a gamma distribution.
+%%
+%This estimator (referred as \<\ChaoBunge>) %was given by Chao and Bunge in 2002
+%%The formula for the estimator
+%is given by
+%\begin{displaymath}
+%  \hat{N} = S_{freq} + \sum_{k=2}^{r} f_k/(1 - \frac{f1 \sum_{k=1}^r k^2 f_{k}}{(\sum_{k=1}^r k f_{k})^2}).
+%\end{displaymath} % in the sample.
 
 
 %\noindent\textbf{Assumptions:}
@@ -1560,9 +1635,37 @@ is given by
 %But it is robust to violation of ..\todo{Konstantin, please fill in.}
 
 \subsubsection{Other estimators}
-Estimators \<UNPMLE>, \<PNPMLE>, and \<PCG>
-have complex formulation. % and can not fit here;
-Hence, we only introduce them. % in this section.
+The estimators mentioned below are not intended to be directly applied to our model.
+Still, with the slight adaptation they can be used for our purposes.
+They have have complex formulation; hence, we only introduce them.
+
+Along with the incidence based estimators, there is also a class of species richness estimators that work with abundance data.
+Abundance sampling considers each individual to be a sampling unit
+and recognizes as the relevant (numerical) data the number of individuals
+that belong to each species.
+%Ok
+%After exhaustively surveying the sample unit, abundance sampling reports
+%the count of species ($f_k$) for which $k$ individuals has been
+%found for $k=1,2,\ldots, r$.
+%
+%Using these values, the estimators predict $f_0$, i.e., the number of species
+%for which no individuals are sampled. Hence, $f_0$ corresponds to the
+%number of undetected species.
+We can transform our data into abundance form by summing up values of the incidence matrix along the test axis,
+though, loosing information about the number of samples (tests). This way, we get a vector of counts for each mutant.
+Besides, sometimes estimates assume Poisson rather than Binomial distribution of counts, which can be considered the limiting case when the number of tests tends to infinity (i.e., is too big).
+%
+%Abundance sampling assumes independent random samples, but these estimators
+%but as the sampling in biometrics is rarely such, the estimators based on this
+%sampling
+%are considered robust against violations of these assumptions~\cite{gotelli2011estimating}.
+Therefore, we additionally analyse \<\ChaoBunge>, \<UNPMLE>, \<PNPMLE>, and \<PCG> estimators.
+%have complex formulation. % and can not fit here;
+%Hence, we only introduce them. % in this section.
+The \ChaoBunge estimator, proposed by Chao and Bunge~\cite{chao2002estimating},
+%proposed by Chao and Bunge
+utilizes the gamma-Poisson model in which species are detected in the sample
+according to a Poisson process and rates of the processes follow a gamma distribution.
 %
 The Unconditional nonparametric maximum likelihood estimator (UNPMLE)
 was provided by Norris and Pollock~\cite{norris1998non}.
@@ -1573,19 +1676,18 @@ was provided by Wang and Lindsay~\cite{wang2005penalized}.
 The Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (PCG)
 was provided by Wang and Ji-Ping~\cite{wang2010estimating}.
 
-\section{Mapping to mutation analysis}
-\label{sec:mapping}
-Estimating the number of killable mutants can be done through population estimation.
-Here, each killable mutant is considered as a separate species, such that the estimation of species richness
-results in the estimation of the overall number of killable mutants.
+
+%Estimating the number of killable mutants can be done through population estimation.
+%Here, each killable mutant is considered as a separate species, such that the estimation of species richness
+%results in the estimation of the overall number of killable mutants.
 
 %We consider each killable %nonequivalent
 %mutant as a separate species, such that the estimation of species richness
 %results in the estimation of the overall number of killable mutants.
 
 
-\subsection{Mapping Incidence Sampling Models}
-\label{ssec:mapincidence}
+%\subsection{Mapping Incidence Sampling Models}
+%\label{ssec:mapincidence}
 %Estimating the number of killable mutants in mutation analysis can be
 %viewed through the prism of population estimation. In this case,
 %each killable
@@ -1595,123 +1697,123 @@ results in the estimation of the overall number of killable mutants.
 %are of the same species, and the question is to estimate the
 %mutant richness. We consider
 
-We consider a test case (either a test method or a test class) to be one sampling unit. 
+%We consider a test case (either a test method or a test class) to be one sampling unit.
+%%
+%Then, we collect the mutants detected by the test suite, and count how many mutants
+%are detected only by a single test case, % (i.e., in one sampling unit),
+%by two test cases, and so on.
 %
-Then, we collect the mutants detected by the test suite, and count how many mutants
-are detected only by a single test case, % (i.e., in one sampling unit), 
-by two test cases, and so on.
-
-%\subsection{Detection Probability Model}
-For mapping species richness to mutation analysis, we adapt the model from~\cite{chao2016species}:
+%%\subsection{Detection Probability Model}
+%For mapping species richness to mutation analysis, we adapt the model from~\cite{chao2016species}:
+%%
+%Assume that we have $S$ mutants, a test suite containing $T$ tests, and
+%information about which test kills which mutant.
+%Specifically, we assume a \emph{kill incidence} matrix, or simply killmatrix,
+%$W$ with $S$ rows and $T$ columns,
+%where $W_{i,j}$ is equal to $1$ if the mutant $i$ was killed by the test $j$, $0$ otherwise.
+%%
+%This way, the $i_{th}$-row sum of $W$ %the incidence matrix
+%($Y_i=\sum_{j=1}^{T}W_{i,j}$) %,  i=1,2,\dots,S$
+%denotes the incidence-based frequency of mutant $i$.
+%The killed mutants count is denoted $S_{obs}$.
+%%($S_{obs}=\sum_{i=1}^{S}W_{i}$).
+%%(Mutants that are not killed by any test have $Y_i=0$.)
+%%
+%% ALESSIO: We do not refer to Qk anymore in this section
+%%Let $Q_k$ denote the incidence-based frequency counts,
+%%i.e., the number of mutants that are detected by exactly $k$ tests,
+%%$k=0,1,\dots, T$.
 %
-Assume that we have $S$ mutants, a test suite containing $T$ tests, and
-information about which test kills which mutant.
-Specifically, we assume a \emph{kill incidence} matrix, or simply killmatrix,
-$W$ with $S$ rows and $T$ columns,
-where $W_{i,j}$ is equal to $1$ if the mutant $i$ was killed by the test $j$, $0$ otherwise.
+%We assume that the probability that mutant~$i$ is detected by test~$j$, i.e., $P(W_{i,j}=1)$,
+% is affected by two %main
+% unknowns: %, or \emph{heterogeneity}:
+%%
+%the mutant detection rate ($\pi_{i}$) and the test kill rate ($\nu_{j}$).
+%%,
+%%i.e., $P(W_{i,j}=1 | \pi_{i}, \nu_{j})$.
+%%the heterogeneity effect of a species means that each species has its own unique incidence(detection) rate;
+%% the sampling unit effect is closely related to some known and unknown factors for the j-th sampling unit,
+%%
+%The detection rate of a mutant might be affected by
+%factors specific to its definition (e.g.,
+%the mutation operators that generated it, the location in the code where it is applied)
+%and characteristics of the original codes that is mutated (e.g., control flow).
+%Likewise, the ability of a test to kill mutants might be affected by local factors (e.g., input data) and its execution (e.g., environment, coverage,
+%flakiness).
+%%
+%% What's the point of computing this product and probability?
+%%Therefore, we model the probability of the whole killmatrix as:
+%%$P(W)= \prod_{i=1}^{S}\prod_{j=1}^{T} P(Wij)$
+%%
+%%actually, its
+%%P(W_{ij}=1|pi_i, nu_j) which becomes P(W_{ij}=1|nu_j) when you assume pi_i to be fixed
+%%
+%%Our model assumes that the detection probability of the i-th mutant in the j-th
+%%test is the product of the `heterogeneity' effect and the test effect:
+%%$\pi_{i}\nu_{j}$.
 %
-This way, the $i_{th}$-row sum of $W$ %the incidence matrix 
-($Y_i=\sum_{j=1}^{T}W_{i,j}$) %,  i=1,2,\dots,S$
-denotes the incidence-based frequency of mutant $i$.
-The killed mutants count is denoted $S_{obs}$.
-%($S_{obs}=\sum_{i=1}^{S}W_{i}$).
-%(Mutants that are not killed by any test have $Y_i=0$.)
+%We model each test kill rate as a random variables
+%from an unknown probability density function $h(\nu)$;
+%we assume that
+%%
+%% factors that are involved in the test effects,
+%%$\{\nu_1, \nu_2, \dots, \nu_T\}$ are modeled as random variables
+%%from an unknown probability density function $h(\nu)$.
+%%
+%the mutant detection rates are fixed and %$P(W_{i,j}=1 | \pi_{i}, \nu_{j})$ is
+%%given by
+%$P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$.
+%Consequently,
+%%We regard the mutant effects ${\pi_1, \pi_2,\dots, \pi_S }$
+%%as fixed
+%%parameters, but ${\nu_1, \nu_2, \dots, \nu_T}$ as random
+%%variables.
+%%the conditional probability distribution of
+%we can model the probability distribution of each cell of the killmatrix
+%as a Bernoulli random variable conditioned on $\nu_j$:
+%% with probability of success $\pi_i \nu_j$.
+%% This part is analogous to the model description in Chao2016, Chao2017
+%% Probably, the model is too complicated and we may simplify it, namely, consider test effect not as a random variable. I should think about it.
+%% Another option is to assume that the ith mutant has its own unique kill probability \pi{i}
+%% that is constant for any randomly selected test.
+%%
+%%\begin{equation*}
+%%    \begin{split}
+%%    P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^w_{ij}(1-\pi_i \nu_j)^{1-w_{ij}}, \\
+%%    i=1, \dots, S, j=1,\dots, T.
+%%    \end{split}
+%%\end{equation*}
+%\small
+%%\begin{multline*}
+%\begin{displaymath}
+%	P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \quad i=1, \dots, S, j=1,\dots, T
+%%\end{multline*}
+%\end{displaymath}
+%\normalsize
 %
-% ALESSIO: We do not refer to Qk anymore in this section
-%Let $Q_k$ denote the incidence-based frequency counts,
-%i.e., the number of mutants that are detected by exactly $k$ tests,
-%$k=0,1,\dots, T$. 
-
-We assume that the probability that mutant~$i$ is detected by test~$j$, i.e., $P(W_{i,j}=1)$,
- is affected by two %main
- unknowns: %, or \emph{heterogeneity}:
-%
-the mutant detection rate ($\pi_{i}$) and the test kill rate ($\nu_{j}$).
-%,
-%i.e., $P(W_{i,j}=1 | \pi_{i}, \nu_{j})$.
-%the heterogeneity effect of a species means that each species has its own unique incidence(detection) rate;
-% the sampling unit effect is closely related to some known and unknown factors for the j-th sampling unit,
-%
-The detection rate of a mutant might be affected by
-factors specific to its definition (e.g., 
-the mutation operators that generated it, the location in the code where it is applied)
-and characteristics of the original codes that is mutated (e.g., control flow).
-Likewise, the ability of a test to kill mutants might be affected by local factors (e.g., input data) and its execution (e.g., environment, coverage,
-flakiness).
-%
-% What's the point of computing this product and probability?
-%Therefore, we model the probability of the whole killmatrix as:
-%$P(W)= \prod_{i=1}^{S}\prod_{j=1}^{T} P(Wij)$
-%
-%actually, its
-%P(W_{ij}=1|pi_i, nu_j) which becomes P(W_{ij}=1|nu_j) when you assume pi_i to be fixed
-%
-%Our model assumes that the detection probability of the i-th mutant in the j-th
-%test is the product of the `heterogeneity' effect and the test effect:
-%$\pi_{i}\nu_{j}$.
-
-We model each test kill rate as a random variables 
-from an unknown probability density function $h(\nu)$;
-we assume that
-%
-% factors that are involved in the test effects,
-%$\{\nu_1, \nu_2, \dots, \nu_T\}$ are modeled as random variables 
-%from an unknown probability density function $h(\nu)$.
-%
-the mutant detection rates are fixed and %$P(W_{i,j}=1 | \pi_{i}, \nu_{j})$ is
-%given by 
-$P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$.
-Consequently,
-%We regard the mutant effects ${\pi_1, \pi_2,\dots, \pi_S }$ 
-%as fixed
-%parameters, but ${\nu_1, \nu_2, \dots, \nu_T}$ as random
-%variables.
-%the conditional probability distribution of
-we can model the probability distribution of each cell of the killmatrix 
-as a Bernoulli random variable conditioned on $\nu_j$: 
-% with probability of success $\pi_i \nu_j$.
-% This part is analogous to the model description in Chao2016, Chao2017
-% Probably, the model is too complicated and we may simplify it, namely, consider test effect not as a random variable. I should think about it.
-% Another option is to assume that the ith mutant has its own unique kill probability \pi{i}
-% that is constant for any randomly selected test.
-%
-%\begin{equation*}
+%The marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$
+%follows a Binomial distribution:
+%\begin{gather*}
 %    \begin{split}
-%    P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^w_{ij}(1-\pi_i \nu_j)^{1-w_{ij}}, \\
-%    i=1, \dots, S, j=1,\dots, T.
+%    P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
+%    &={T \choose y_i}{\lambda_i}^y_i (1-{\lambda_i}^y_i)^{T-y_i}
 %    \end{split}
-%\end{equation*}
-\small
-%\begin{multline*}
-\begin{displaymath}
-	P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \quad i=1, \dots, S, j=1,\dots, T
-%\end{multline*}
-\end{displaymath}
-\normalsize
+%\end{gather*}
+%where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
+%Hence, the frequency $Y_i$ is a Binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
 
-The marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$
-follows a Binomial distribution:
-\begin{gather*}
-    \begin{split}
-    P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
-    &={T \choose y_i}{\lambda_i}^y_i (1-{\lambda_i}^y_i)^{T-y_i}
-    \end{split}
-\end{gather*}
-where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
-Hence, the frequency $Y_i$ is a Binomial random variable with detection probability ${\lambda_i}$. %^y_i$.
-
-\subsection{Mapping Abundance Sampling Models}
-Instead of relying on the kill-matrix, we consider the test suite to be one big sampling unit.
-%
-Then, we count each mutant kill by a test case as an individual of the mutant species.
-%
-This gives us the mutant count
-detected by a single test case, %(singletons), detected 
-by two test cases, and so on.
-%
-Similar to~\Cref{ssec:mapincidence}, one can construct
-a model for abundance data using multinomial and product 
-Poisson distributions for the observed frequencies (see~\cite{chao2016species}).
+%\subsection{Mapping Abundance Sampling Models}
+%Instead of relying on the kill-matrix, we consider the test suite to be one big sampling unit.
+%%
+%Then, we count each mutant kill by a test case as an individual of the mutant species.
+%%
+%This gives us the mutant count
+%detected by a single test case, %(singletons), detected
+%by two test cases, and so on.
+%%
+%Similar to~\Cref{ssec:mapincidence}, one can construct
+%a model for abundance data using multinomial and product
+%Poisson distributions for the observed frequencies (see~\cite{chao2016species}).
 
 % ALESSIO: Does not really fit here. We talk about this in the intro and methodology
 %\subsection{Classes and Methods as Logical Test Units}
