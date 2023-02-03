@@ -1216,9 +1216,10 @@ In application to our problem, this urn sampling, which is described with the Be
 We use the standard definitions from the Bernoulli product described in the STADS framework
 to formalize the intuition behind the urn model.
 
-Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests $X_n$ that exercise $\mathcal{P}$.
+Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests $X$ that exercise $\mathcal{P}$.
 % can exercise.
-We can model a testing campaign $\mathcal{T}$%is modeled
+We can model a testing campaign $\mathcal{T}$ 
+%is modeled
 as a stochastic process
 \[
     \mathcal{T}=\left\{ X_n|X_n \in \mathcal{D} \right\}_{n=1}^T
@@ -1231,7 +1232,7 @@ Mutant ${M_i}$ can be detected with a probability $\pi_i$ that
 %Noticeably, the detection rate of a mutant 
 might be affected by factors specific to ${M_i}$'s definition (e.g.,
 the mutation operators that generated it or the location in the code where it is applied).
-
+%
 In the Bernoulli product model, a test can kill one or more mutants.
 For a testing campaign of size $T$, %$N$
 we let the \emph{kill incidence} matrix, or simply killmatrix, $W_{S\times T}$ be defined as
