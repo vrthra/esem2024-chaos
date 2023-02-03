@@ -1027,8 +1027,7 @@ number of generated mutants.
 
 \subsection{Empirical Study Results Overview}
 After selecting well maintained, open-source projects and analyzing them
-using PIT, we manually classified 1016 live mutants that survived those open-source projects'
-existing test suites and used this result for assessing the prediction quality of
+using PIT, we manually classified 1016 live mutants that survived existing test suites and used this result for assessing the prediction quality of
 a large selection of frequency based statistical estimators (see~\Cref{sec:estimators}).
 %from statistical estimators to the result.
 % checked whether the predictions made by the statistical estimators do not significantly
@@ -1060,12 +1059,12 @@ We expected the estimations obtained from manual test suites
 to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
 %
-To mitigate the second threat, instead, we compared the estimates from \Evosuite
+To mitigate second threat, we compared the estimates from \Evosuite
 test suites and from the manual classification. We expected
 the estimates from \Evosuite to match estimates from manually classified live
 mutants as \Evosuite test suites are free of manual bias. % of test case selection.
 
-We, again, found our expectations unmet as manual classification was significantly different from
+We, again, found that manual classification was significantly different from
 estimations from automatically generated test suites, and the estimates from the automatically
 generated test suites %themselves
 were significantly different from each other.
@@ -1075,7 +1074,7 @@ in generating different test suites may somehow lead to different
 detectable mutants.
 %the choice of the sampling unit could be incorrect.
 
-To check this possibility, we changed the sampling unit used.
+To check this, we changed the sampling unit used.
 %Hence, %we reinterpreted the test suite detection frequencies of the
 %\emph{same test suite} by changing the sampling units.
 %Our sampling unit is a
@@ -1212,8 +1211,8 @@ Now we are interested in how many colors $S$ this urn can contain.
 In application to our problem, this urn sampling, which is described with the Bernoulli product model, associates each test (ball) with the killed mutants (colors of a ball).% or `species`
 We use the standard definitions from the Bernoulli product described in the STADS framework.
 
-Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests that $\mathcal{P}$ can exercise.
-A testing campaign can be considered as a stochastic process
+Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests $\mathcal{P}$ can exercise.
+A testing campaign is modeled as a stochastic process
 \[
     \mathcal{T}=\left\{ X_n|X_n \in \mathcal{D} \right\}_{n=1}^T
 \]
@@ -1241,7 +1240,7 @@ where variables $\{\nu_{1}, \nu_{2},\cdots,\nu_{T}\}$ are responsible for test e
 Indeed, the ability of a test to kill mutants might be affected by various factors, such as coverage, input data, environment or flakiness.
 We model it as a random variable from an unknown probability density function $h(\nu)$; whereas we assume that the mutant detection rates $\pi_i$ are fixed.
 
-Consequently, we can model the probability distribution of each element $W_{ij}$ of the killmatrix as a Bernoulli random variable conditioned on $\nu_j$:
+Hence, we model probability distribution of each element $W_{ij}$ of the killmatrix as a Bernoulli random variable conditioned on $\nu_j$:
 \small
 \begin{displaymath}
     P(\forall (i,j).W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}.
@@ -1251,7 +1250,7 @@ So as the probability distribution for the incidence matrix can be expressed as 
 \[
     P\left(\forall (i,j).W_{ij}=w_{ij}|\nu_{i} \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-p_i)^{1-w_{ij}}
 \]
-Integrating out all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the following unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$,
+Integrating out all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$,
 which follows a Binomial distribution:
 \begin{gather*}
     \begin{split}
