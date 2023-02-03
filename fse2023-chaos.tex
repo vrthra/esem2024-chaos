@@ -796,9 +796,9 @@ killable mutants that are program and test suite dependent.
 %% information and the body of the document, and typically spans the
 %% page.
 
-\received{20 February 2007}
-\received[revised]{12 March 2009}
-\received[accepted]{5 June 2009}
+%\received{20 February 2007}
+%\received[revised]{12 March 2009}
+%\received[accepted]{5 June 2009}
 
 %%
 %% This command processes the author and affiliation and title
@@ -2188,7 +2188,7 @@ in the \emph{\original} test suite in this step. % for generating live mutants.
 
 \subsection{Manual Mutants Classification}
 \label{sec:mutant-classification}
-Running \PIT on the \original test suites resulted in thousands mutants that survived the analysis. 
+Running \PIT on the \original test suites left thousands of surviving mutants. 
 Since we could not exhaustively classify all of those in a reasonable time, we randomly
 sampled $100$ survived mutants for each project and used those 
 for the manual classification.
@@ -2860,7 +2860,7 @@ focused on small COBOL programs.
 %non-equivalent with no time limit. Answers were compared against a reference
 %prepared by the author.
 During his study, Acree documented various misclassifications (avg. 23\%),
-suggesting that even manual classification may not be error-free. 
+suggesting that even manual classification has errors. 
 %
 We also found misclassifications (see \Cref{tbl:classified}, \emph{Misclass.} column),
 but achieved better accuracy~(less than $5\%$ misclassifications on avg),\footnote{This measure does not consider the results of \texttt{commons-csv} that we used for training the labelers.}
@@ -2979,12 +2979,12 @@ Tohma et al.~\cite{tohma1989structural}, instead, modeled
 the distribution of observed faults as hyper-geometric distribution
 to estimate the number of residual defects.
 
-To estimate equivalent mutants, other methods 
-than statistical estimators have been proposed.
+To estimate equivalent mutants, other methods
+have been proposed.
 %
-For instance, Vincenzi et al.~\cite{vincenzi2002bayesian} proposed to 
-estimate the (posterior) probability that specific mutation operators
-generate equivalent mutants, while
+Vincenzi et al.~\cite{vincenzi2002bayesian} proposed
+estimating the (posterior) probability that specific mutation operators
+generate equivalent mutants.
 %but assumed the distribution
 %of stubborn mutants, i.e., killable mutants that are difficult to spot, 
 %alike equivalent mutants, which might not be valid~\cite{yao2014a}. 
@@ -3049,7 +3049,7 @@ Such estimators have been used successfully in related domain for instance to es
 
 This research provides the first, large evaluation of these estimators on mutation analysis. 
 %
-First, we manually classified a statistically significant sample of mutants that survived mutation analysis
+First, we manually classified a statistically significant sample surviving mutants 
 and used them as a ground truth.
 %
 Next, we evaluated more than a hundred thousand mutants
