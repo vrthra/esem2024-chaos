@@ -1189,68 +1189,84 @@ and their mutation analysis resulting in more than 2.5B test executions.
 %Finally, there may be errors in the manual classification process for equivalent
 %mutants. Hence, we need a sanity check for our results.
 
-\section{Statistical framework}
+\section{Statistical Framework}
 \label{sec:mapping}
 We wish to measure the number of killable mutants with help of statistical estimators from biometrics.
-These estimators
+These estimators, which have been used to estimate the size of unknown populations, 
 have also been successful in counting systems in
 computer networks~\cite{accettura2015the} and
-to estimate the size of an unknown population. Besides, they were also suggested for use in the
-estimation of residual defects using the STADS framework~\cite{bohme2018stads},
+estimating residual defects in the STADS framework~\cite{bohme2018stads}.
+% also suggested for use in the  using the
+% Alessio We discuss this in the previous section
 %residual defects predictions~\cite{bohme2018stads}.
-%
 %Recently, they have been also proposed for estimating equivalent mutants~\cite{bohme2018assurances};
-In the next sections, we
-first introduce the underlying model and then describe various statistical estimators that we considered in our study.
 
-\subsection{Statistical Model}
+In the next sections, we first introduce the underlying statistical model and, then,
+we describe the various statistical estimators that we considered in our study.
+
+\subsection{The Urn Statistical Model}
 At first, let's consider the following well known statistical model:
-Suppose, we have an urn with colored balls, from which $n$ balls are sampled with replacement and $S(n)$ colors are observed.
+Suppose, we have an urn with colored balls, from which $n$ balls are
+sampled with replacement and let $S(n)$ the colors we observed.
+%
 Furthermore, let's assume that each ball has multiple colors.
-Now we are interested in how many colors $S$ this urn can contain.
-In application to our problem, this urn sampling, which is described with the Bernoulli product model, associates each test (ball) with the killed mutants (colors of a ball).% or `species`
-We use the standard definitions from the Bernoulli product described in the STADS framework.
+Now, we are interested in how many colors $S$ this urn can contain.
+In application to our problem, this urn sampling, which is described with the Bernoulli product model, associates each test (a ball) with the killed mutants (the colors of that ball). % or `species`
+%
+We use the standard definitions from the Bernoulli product described in the STADS framework
+to formalize the intuition behind the urn model.
 
-Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests $\mathcal{P}$ can exercise.
-A testing campaign is modeled as a stochastic process
+Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests $X_n$ that exercise $\mathcal{P}$.
+% can exercise.
+We can model a testing campaign $\mathcal{T}$%is modeled
+as a stochastic process
 \[
     \mathcal{T}=\left\{ X_n|X_n \in \mathcal{D} \right\}_{n=1}^T
 \]
 where $T$ tests are sampled with replacement from $\mathcal{D}$.
 %Suppose, the test space $\mathcal{D}$ is subdivided into $S$ individual subdomains $\left\{\mathcal{D}_i\right\}_{i=1}^S$.
 %A test $X_n \in \mathcal{F}$ is said to belong to species $D_i$ (it kills a mutant $M_i$) if $X_n \in \mathcal{D}_i$.
-Let $\{M_i\}_{i=1}^S$ be a set of mutants, and a mutant ${M_i}$ can be detected with a probability $\pi_i$.
-The detection rate of a mutant might be affected by factors specific to its definition (e.g.,
+Let $\{M_i\}_{i=1}^S$ be a set of mutants.
+Mutant ${M_i}$ can be detected with a probability $\pi_i$ that
+%Noticeably, the detection rate of a mutant 
+might be affected by factors specific to ${M_i}$'s definition (e.g.,
 the mutation operators that generated it or the location in the code where it is applied).
 
 In the Bernoulli product model, a test can kill one or more mutants.
-For a testing campaign of size $N$, we let the \emph{kill incidence} matrix, or simply killmatrix, $W_{S\times T}$ be defined as
+For a testing campaign of size $T$, %$N$
+we let the \emph{kill incidence} matrix, or simply killmatrix, $W_{S\times T}$ be defined as
 \[
     W_{S\times T} = \left\{W_{ij} |i=1,2,\dots,S\land j=1,2,\dots,T \right\},
 \]
 where $W_{ij} = 1$ if test $X_j$ kills mutant $M_i$ and $W_{ij} = 0$ otherwise.
 
-This way, the $i_{th}$-row sum of $W$ ($Y_i=\sum_{j=1}^{T}W_{i,j}$) denotes the incidence-based frequency of mutant $M_i$.
-We further define the incidence frequency counts $Q_k$, where $0 \leq k \leq N$, as the number of mutants killed by exactly $k$ tests.
-Then, the unobservable frequency count $Q_0$ denotes the number of mutants that remain undetected.
+This way, the $i_{th}$-row sum of $W$ ($Y_i=\sum_{j=1}^{T}W_{i,j}$) denotes the
+incidence-based frequency of mutant $M_i$ (being killed).
+We further define the incidence frequency counts $Q_k$, where $0 \leq k \leq T$, as the number of mutants killed by exactly $k$ tests.
+Consequently, the \emph{unobservable} frequency count $Q_0$
+denotes the number of mutants that remain undetected.
 
-We assume that the probability that a mutant~$i$ is detected by a test~$j$ is defined as
+We assume that the probability that a mutant~$M_i$ is detected by a test~$X_j$ is defined as
 $P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$,
 where variables $\{\nu_{1}, \nu_{2},\cdots,\nu_{T}\}$ are responsible for test effects.
 Indeed, the ability of a test to kill mutants might be affected by various factors, such as coverage, input data, environment or flakiness.
-We model it as a random variable from an unknown probability density function $h(\nu)$; whereas we assume that the mutant detection rates $\pi_i$ are fixed.
-
+We model those test effects as a random
+variable from an unknown probability density function $h(\nu)$, whereas
+we assume fixed mutant detection rates $\pi_i$.
+%
 Hence, we model probability distribution of each element $W_{ij}$ of the killmatrix as a Bernoulli random variable conditioned on $\nu_j$:
 \small
 \begin{displaymath}
-    P(\forall (i,j).W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}.
+    P(\forall (i,j) W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}
 \end{displaymath}
 \normalsize
-So as the probability distribution for the incidence matrix can be expressed as the probability for all $i:1\leq i \leq S $ and $j:1\leq i\leq T$ that we have $W_{ij} = w_{ij}$.
+
+The probability distribution for the incidence matrix can be expressed as the
+probability for all $i:1\leq i \leq S $ and $j:1\leq j\leq T$ that we have $W_{ij} = w_{ij}$.
 \[
-    P\left(\forall (i,j).W_{ij}=w_{ij}|\nu_{i} \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-p_i)^{1-w_{ij}}
+    P\left(\forall (i,j) W_{ij}=w_{ij}|\nu_{i} \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-p_i)^{1-w_{ij}}
 \]
-Integrating out all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $i$,
+Integrating out all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $M_i$,
 which follows a Binomial distribution:
 \begin{gather*}
     \begin{split}
@@ -1259,8 +1275,8 @@ which follows a Binomial distribution:
     \end{split}
 \end{gather*}
 where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
-That is, the frequency $Y_i$ is a binomial random variable with detection probability $\lambda_i$.
-Then the incidence frequency counts can be derived as
+That is, the frequency $Y_i$ is a binomial random variable with detection probability $\lambda_i$,
+and the incidence frequency counts $Q_k$ can be derived as:
 \[
     Q_k=E\left[ \sum_{i=1}^{S}I(Y_i=k)  \right]=\sum_{i=1}^{S}{T \choose k}\lambda_{i}^k(1-\lambda_{i})^{T-k}.
 \]
