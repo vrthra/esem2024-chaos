@@ -1,10 +1,10 @@
 DRAW=Rscript ./bin/draw_sep_suites_charts.R -H 1.5 -W 3.0
-all: fse2023-chaos.pdf
+all: esem2024-chaos.pdf
 model=abundance
 
-fse2023-chaos.pdf: fse2023-chaos.tex fse2023-chaos.bib
-	make summarycharts
-	latexmk -pdf fse2023-chaos.tex
+esem2024-chaos.pdf: esem2024-chaos.tex esem2024-chaos.bib
+	# make summarycharts
+	latexmk -pdf esem2024-chaos.tex
 
 summarycharts: charts-test/.summary
 
