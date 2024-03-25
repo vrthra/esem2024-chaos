@@ -25,7 +25,7 @@ charts-test/.summary: data/summary.csv
 
 clean:
 	latexmk -C
-	rm -rf charts-test
+	# rm -rf charts-test
 
 pull:
 	git pull --rebase origin master --autostash

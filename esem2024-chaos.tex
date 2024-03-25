@@ -966,13 +966,30 @@ of test suites} as well as evaluating \textbf{residual risk} after a test run, b
 %estimate the number of killable mutants~\cite{gotelli2011estimating}.
 %
 
-\subsection{Motivation and Main Contributions}
+%\subsection{Motivation and Main Contributions}
 
-Recently, researchers proposed the Software Testing as Species Discovery (STADS) framework~\cite{bohme2018assurances}
-as a general framework for estimating
-\emph{unseen} software
-elements that fulfill a property when only a fraction of those software elements has been discovered.
-For instance, STADS is used for estimating unseen, but reachable, coverage target~\cite{fuzzingbook2023:WhenToStopFuzzing} during fuzzing.
+% Recently, researchers proposed the Software Testing as Species Discovery (STADS) framework~\cite{bohme2018assurances}
+% as a general framework for estimating
+% \emph{unseen} software
+% elements that fulfill a property when only a fraction of those software elements has been discovered.
+% For instance, STADS is used for estimating unseen, but reachable, coverage target~\cite{fuzzingbook2023:WhenToStopFuzzing} during fuzzing.
+% 
+% The STADS framework is based on an extension of Good-Turing estimator 
+% called Chao's estimator~\cite{chao2016nonparametric} that was used to crack
+% the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}.
+% At its core lies the idea that the relative frequency of observation of software elements such as covered
+% structural elements and observed defects contains information about the number of similar
+% software elements
+% yet to be observed.
+% [
+While accurately identifying killable mutants may be infeasible, we observe that
+it is not necessary to identify individual killable mutants for an accurate
+estimation of mutation score. Rather, an accurate estimate of the
+\emph{number} of killable mutants is sufficient. In this respect, recent
+frameworks such as \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
+for estimating the number of \emph{unseen} elements remaining
+gives us hope that such an estimation may be possible.
+%]
 
 The STADS framework is based on an extension of Good-Turing estimator 
 called Chao's estimator~\cite{chao2016nonparametric} that was used to crack
@@ -982,16 +999,16 @@ structural elements and observed defects contains information about the number o
 software elements
 yet to be observed.
 
-Frequency based estimators such as Chao's are claimed to be robust toward strong biases in sampling~\cite{chao2016species} and are commonly used in ecology to estimate the count of various
+Frequency based estimators such as Chao's are claimed to be robust toward strong
+biases in sampling~\cite{chao2016species} and are commonly used in ecology to estimate the count of various
 species, which are often highly correlated and geography specific. 
 
-While STADS was initially proposed for estimating reachable coverage,
-we argue
-that the same model is applicable for estimating surviving killable mutants
-because covering a structural element is a prerequisite for detecting any
-mutation in that element. 
-In the light of this observation,
-we investigated whether using frequency based
+%While STADS was initially proposed for estimating reachable coverage,
+%we argue that the same model is applicable for estimating surviving killable
+%mutants because covering a structural element is a prerequisite for detecting
+%any mutation in that element. 
+%In the light of this observation,
+We investigated whether using frequency based
 statistical models, that is, using the frequency count of known elements
 to estimate unknown elements, can predict the number of killable
 mutants from killed ones.
