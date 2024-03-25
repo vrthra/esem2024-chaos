@@ -1,2 +1,4 @@
 # chaos
 Repo hosting the material for the equivalence mutants study with Rauhl and Konstantin
+
+[https://conf.researchr.org/track/esem-2024/esem-2024-technical-track](https://conf.researchr.org/track/esem-2024/esem-2024-technical-track)
