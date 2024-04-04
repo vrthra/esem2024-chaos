@@ -1,6 +1,9 @@
+.DEFAULT_GOAL := esem2024-chaos.pdf
 DRAW=Rscript ./bin/draw_sep_suites_charts.R -H 1.5 -W 3.0
 all: esem2024-chaos.pdf
 model=abundance
+
+all: clean esem2024-chaos.pdf
 
 esem2024-chaos.pdf: esem2024-chaos.tex esem2024-chaos.bib
 	# make summarycharts
