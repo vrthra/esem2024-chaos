@@ -230,6 +230,7 @@ pdftitle={\mytitle}
 \usepackage{qtree}
 
 \Crefname{figure}{Fig.}{Figs.}
+\Crefname{equation}{Eqn.}{Eqns.}
 \crefname{section}{Section}{Sections}
 \crefname{subsection}{Section}{Sections}
 \Crefname{Algorithm}{Alg.}{Algs.}
@@ -848,14 +849,14 @@ killable mutants that are program and test suite dependent.
 
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
-Mutation analysis the premier means of assessing the quality of
+Mutation analysis is the premier means of assessing the quality of
 software test suites~\cite{papadakis2019mutation} in preventing defects.
 Evaluating a test suite with mutation analysis involves
-generating mutants \emph{exhaustively} and evaluating them against the test cases comprising that test suite
+generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration.
 (\Cref{fig:working-example}-right).
 %
 Mutants are copies of the original code (\Cref{fig:working-example}-left) in which artificial code %simple, 
-mutations that share strong similarities with real faults are inserted (\Cref{fig:working-example-mutants})~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
+\emph{mutations} that share strong similarities with real faults are inserted (\Cref{fig:working-example-mutants})~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 % Still a bit disconnected...
 %Notably, mutations share strong similarities with real faults~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 
@@ -910,10 +911,12 @@ def determinant(a,b,c,d):
 \end{figure}
 %\vspace*{-5mm}
 
-
-A mutant that exhibits a detectable change in behavior of the program when
-exercised by a test case is said to be detected, or \emph{killed}, by that
-test case. Conversely, we call mutants undetected by the test suite \emph{surviving} mutants.
+A test case detects (or \emph{kills}) a mutant if it induces and observes
+a change in behavior in the mutant when compared to the original.
+%A mutant that exhibits a detectable change in behavior of the program when
+%exercised by a test case is said to be detected, or \emph{killed}, by that
+%test case. Conversely,
+We call mutants undetected by any test case \emph{surviving} mutants.
 %
 The ratio of the number of mutants killed by a test suite to the 
 number of \emph{killable} mutants %, i.e., mutants that can be killed,
@@ -925,27 +928,31 @@ Surviving killable mutants are considered a reasonable proxy for \emph{residual 
 they represent potential bugs that would have not been discovered by the test suite.
 % ALESSIO: In the abstract we say killable mutants is the proxy of residual risk
 %\footnote{ Horgan and Mathur define risk as testable attributes that remain untested. }.
-
+\begin{comment}
 \vspace*{-4mm}
 \begin{equation}
     \resizebox{.9\hsize}{!}{\text{\textbf{Killable Mutants}} = \text{\textbf{Total Mutants}} - \text{\textbf{Equivalent Mutants}}}
 \label{eq:1}
 \end{equation}
+\end{comment}
 
-Unfortunately, not all the surviving mutants could be killed. For instance, the
-so-called \emph{equivalent mutants}
-(see \Cref{fig:working-example-mutants}-right for
-an example) may not induce a behavioral change from the original code
-and cannot be killed no matter the test input used~\cite{budd1982two}.
+However, not all the surviving mutants could be killed. Some mutations
+(\Cref{fig:working-example-mutants}-right)
+does not induce an observable behavioral change from the original code
+no matter the test input used. These
+are called \emph{equivalent mutants}~\cite{budd1982two}.
 %
 The amount of %these so-called 
 equivalent mutants, which is generally
 program specific~\cite{offutt1994using,grun2009impact}, directly determines
-the number of killable mutants (see~\Cref{eq:1}) but cannot be established 
-\emph{a-priori} because there is no means to automatically prove equivalence of programs
+the number of killable mutants
+%(see~\Cref{eq:1})
+but cannot be established 
+\emph{a-priori} due to limitations in proving program equivalence~\cite{budd1982two,rice1953classes}.
+%because there is no means to automatically prove equivalence of programs
 %that a mutant
 %is an equivalent one 
-in general~\cite{budd1982two,rice1953classes}.
+%in general~\cite{budd1982two,rice1953classes}.
 %
 Consequently, the mutation score and the estimate of residual risk might be inaccurate
 and affected by high variability. %~\cite{gotelli2011estimating}. <-- incorrect citation.
