@@ -848,20 +848,14 @@ killable mutants that are program and test suite dependent.
 
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
-\begin{comment}
-(1) Can they predict the values correctly? (ground truth)
-(Bar plot -- result is; there is nothing within the CI)
-(2) See what assumptions are violated? (a) test suite difference (b) sampling different
-(3) Minor: Are they more sensitive to sampling or test suite?
-\end{comment}
 Mutation analysis the premier means of assessing the quality of
 software test suites~\cite{papadakis2019mutation} in preventing defects.
 Evaluating a test suite with mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test cases comprising that test suite
 (\Cref{fig:working-example}-right).
 %
-Specifically, mutants are copies of the original code (\Cref{fig:working-example}-left) in which artificial, %simple, 
-but plausible faults that share strong similarities with real faults are injected (\Cref{fig:working-example-mutants})~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
+Mutants are copies of the original code (\Cref{fig:working-example}-left) in which artificial code %simple, 
+mutations that share strong similarities with real faults are inserted (\Cref{fig:working-example-mutants})~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 % Still a bit disconnected...
 %Notably, mutations share strong similarities with real faults~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 
@@ -927,8 +921,7 @@ is called \emph{mutation score} and  is considered a good indicator of that test
 effectiveness in preventing faults~\cite{jia2010an}.
 %
 %The mutants that are left alive is also considered
-Surviving killable mutants can be also considered as
-a reasonable proxy for residual risk~\cite{horgan1996software} because
+Surviving killable mutants are considered a reasonable proxy for \emph{residual risk}~\cite{horgan1996software} because
 they represent potential bugs that would have not been discovered by the test suite.
 % ALESSIO: In the abstract we say killable mutants is the proxy of residual risk
 %\footnote{ Horgan and Mathur define risk as testable attributes that remain untested. }.
@@ -942,20 +935,20 @@ they represent potential bugs that would have not been discovered by the test su
 Unfortunately, not all the surviving mutants could be killed. For instance, the
 so-called \emph{equivalent mutants}
 (see \Cref{fig:working-example-mutants}-right for
-an example) implement behaviors equivalent to the original code
+an example) may not induce a behavioral change from the original code
 and cannot be killed no matter the test input used~\cite{budd1982two}.
 %
 The amount of %these so-called 
 equivalent mutants, which is generally
 program specific~\cite{offutt1994using,grun2009impact}, directly determines
 the number of killable mutants (see~\Cref{eq:1}) but cannot be established 
-\emph{a-priori} because there is no means to automatically prove programs equivalence
+\emph{a-priori} because there is no means to automatically prove equivalence of programs
 %that a mutant
 %is an equivalent one 
 in general~\cite{budd1982two,rice1953classes}.
 %
 Consequently, the mutation score and the estimate of residual risk might be inaccurate
-and affected by high variability~\cite{gotelli2011estimating}.
+and affected by high variability. %~\cite{gotelli2011estimating}. <-- incorrect citation.
 %to standard estimation techniques
 % ALESSIO: Not sure about this box fits here
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
@@ -1017,28 +1010,59 @@ At its core lies the idea that the relative frequency of observation of software
 structural elements and observed defects contains information about the number of similar
 software elements
 yet to be observed.
+Frequency based estimators such as Chao's are designed to be robust toward
+strong biases in sampling~\cite{chao2016species}\footnote{
+These estimators are commonly used in Ecology to estimate the count of various
+species, which are often highly correlated and geography specific.
+The constraints in Ecology seems to mirror the conditions of defects in software
+elements, which are also program specific and often highly correlated---some
+modules may be highly defect prone, while others may not be.} which makes them
+particularly attractive for estimating the number of killable mutants, which can
+be strongly program dependent.
 
-Frequency based estimators such as Chao's are claimed to be robust toward strong
-biases in sampling~\cite{chao2016species} and are commonly used in ecology to estimate the count of various
-species, which are often highly correlated and geography specific, which seems
-to mirror the conditions of defects in software elements, which are also
-program specific and often highly correlated (some modules may be highly defect
-prone, while others may not be).
+Given the success of frequency based estimators in adjacent areas in software
+engineering~\cite{bohme2018assurances,accettura2015the}, and its success in
+species estimation in Ecology which mirrors the constraints in mutation
+analysis, we hypothesized that frequency based estimators can effectively
+predict the number of killable mutants from the frequency of killed mutants.
 
+Hence, our first research question concerns the effectiveness of frequency based
+estimators.
+
+\begin{description}
+  \item[RQ1] What is the accuracy of frequency based estimators in predicting
+    killable mutants?
+\end{description}
+
+To ensure that we have a \textbf{ground truth} to compare to, we first conducted
+a large scale \textbf{manual evaluation of surviving mutants} from several large
+projects.
+
+Chao's estimator is not the only frequency based unseen species estimator in
+literature. Numerous estimators have been developed based on the assumed
+distribution of unseen species. Since it is not clear which of these estimators
+may be applicable to estimating killable mutants, we conducted a large scale
+empirical study of several different frequency based statistical estimators.
+
+
+%to see whether they can
+%accurately predict killable mutants from the frequency of already killed ones.
+
+\begin{comment}
+% Research Questions
+%(1) Can they predict the values correctly? (ground truth)
+%(Bar plot -- result is; there is nothing within the CI)
+(2) See what assumptions are violated? (a) test suite difference (b) sampling different
+(3) Minor: Are they more sensitive to sampling or test suite?
+\end{comment}
 %While STADS was initially proposed for estimating reachable coverage,
 %we argue that the same model is applicable for estimating surviving killable
 %mutants because covering a structural element is a prerequisite for detecting
 %any mutation in that element. 
 %In the light of this observation,
 
-Chao's estimator is not the only frequency based unseen species estimator in
-literature. Numerous estimators have been developed based on the assumed
-distribution of unseen species. It is not clear which of these estimators may
-be applicable to estimating killable mutants.
 
-Hence, this research investigates several different frequency based statistical
-estimators to see whether they can accurately predict killable mutants from the
-frequency of already killed ones.
+
 %We investigated whether using frequency based
 %statistical models, that is, using the frequency count of known elements
 %to estimate unknown elements, can predict the number of killable
