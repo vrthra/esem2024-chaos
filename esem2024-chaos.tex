@@ -1043,8 +1043,8 @@ Hence, our first research question concerns the effectiveness of frequency based
 estimators.
 
 \begin{description}
-  \item[RQ1] What is the accuracy of frequency based estimators in predicting
-    killable mutants?
+  \item[RQ1] \textbf{What is the accuracy of frequency based estimators in predicting
+    killable mutants?}
 \end{description}
 
 To ensure that we have a \textbf{ground truth} to compare to, we first conducted
@@ -1060,9 +1060,12 @@ mutants that are killed by a single test case vs those killed by two test cases
 contains the information for predicting those that are killed by no test cases.
 \end{tcolorbox}
 
-Chao's estimator is not the only frequency based unseen species estimator in
-literature. Numerous estimators have been developed based on the assumed
-distribution of unseen species. Since it is not clear which of these estimators
+Chao's estimator is one among the many frequency based species estimators in
+the literature with different assumptions and prediction accuracies.
+% not the only frequency based unseen species estimator in
+% literature. Numerous estimators have been developed based on the assumed
+% distribution of unseen species.
+Since it is not clear which of these estimators
 may be applicable to estimating killable mutants, we conducted a large scale
 empirical study of \estimatorCount different frequency based statistical estimators from
 the literature.
@@ -1086,18 +1089,20 @@ the literature.
 
 
 How robust are the frequency based estimators to different sampling units? We
-hypothesized that, given its use in Ecology, they are robust. Hence, our second
+find little guidance in this regard in literature.
+%We hypothesized that, given its use in Biometrics, they are robust.
+Hence, our second
 research question concerns the robustness of the frequency based estimators to
 different sampling strategies.
 
 \begin{description}
-  \item[RQ2] Are frequency based estimators affected by sampling strategies?
+  \item[RQ2] \textbf{Are frequency based estimators affected by sampling strategies?}
 \end{description}
 
 To evaluate the impact of different sampling strategies, we used three different
-test suites---developer written, random generated, and guided. Our hypothesis
-was that, if the estimators are indeed robust, then the estimations should
-coincide. If on the other hand, some of the sampling strategies were brittle,
+test suites---developer written, random generated, and guided random.
+Our hypothesis was that, if the estimators are indeed robust, then the
+estimations should coincide. If on the other hand, some of the sampling strategies were brittle,
 then we should be able to identify these strategies by comparing them to our
 ground truth.
 
@@ -1108,7 +1113,7 @@ Hence, our third research question asks whether (and how much) the estimation
 accuracy is affected by different sampling units.
 
 \begin{description}
-  \item[RQ3] Are frequency based estimators affected by sampling units? % class and unit
+  \item[RQ3] \textbf{Are frequency based estimators affected by sampling units?}% class and unit
 \end{description}
 
 To evaluate the impact of different sampling units, we reanalyzed the
