@@ -1010,12 +1010,16 @@ frameworks such as \emph{Software Testing as Species Discovery (STADS) framework
 for estimating the number of \emph{unseen} elements remaining
 gives us hope that such an estimation may be possible.
 %]
-The STADS framework is based on an extension of Good-Turing estimator 
-called Chao's estimator~\cite{chao2016nonparametric} that was used to crack
-the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}.
-At its core lies the idea that the relative frequency of coverage of software
+%The STADS framework is based on an extension of Good-Turing estimator 
+%called Chao's estimator~\cite{chao2016nonparametric} that was used to crack
+%the Enigma code during second world war~\cite{fuzzingbook2023:WhenToStopFuzzing}.
+The STADS framework relies on an estimator called Chao's estimator~\cite{chao2016species}
+and is based on the idea
+%At core lies the idea
+that the relative frequency of coverage of software
 elements such as statements or branches by test cases contain information about
 the number of similar software elements that are reachable but yet to be covered.
+
 Frequency based estimators such as Chao's are designed to be robust toward
 strong biases in sampling~\cite{chao2016species}\footnote{
 These estimators are commonly used in Ecology to estimate the count of various
@@ -1023,15 +1027,18 @@ species, which are often highly correlated and geography specific.
 The constraints in Ecology seems to mirror the conditions of defects in software
 elements, which are also program specific and often highly correlated---some
 modules may be highly defect prone, while others may not be.} which makes them
-particularly attractive for estimating the number of killable mutants, which can
-be strongly program dependent.
+particularly attractive in areas such as reachable coverage estimation
+% estimating the number of killable mutants,
+which can be strongly program dependent.
 
 Given the success of frequency based estimators in adjacent areas in software
-engineering~\cite{bohme2018assurances,accettura2015the}, and its success in
-species estimation in Ecology which mirrors the constraints in mutation
-analysis, we hypothesized that frequency based estimators can effectively
+engineering~\cite{bohme2018assurances,accettura2015the}, and the similarity of
+reachable coverage estimation to killable mutant estimation,
+%and its success in
+%species estimation in Biometrics which seems to be similar to the constraints in
+%mutation analysis,
+we hypothesized that frequency based estimators can effectively
 predict the number of killable mutants from the frequency of killed mutants.
-
 Hence, our first research question concerns the effectiveness of frequency based
 estimators.
 
