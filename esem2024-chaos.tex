@@ -52,7 +52,10 @@
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
 \documentclass[sigconf,review,anonymous]{acmart}
 \acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
-
+\hypersetup{
+   colorlinks=true,
+  pdfborder={0 0 0},
+}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
@@ -514,7 +517,7 @@ pdftitle={\mytitle}
 %% Look at the sample-*-biblatex.tex files for templates showcasing
 %% the biblatex styles.
 %%
-
+%\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
 %%
 %% The majority of ACM publications use numbered citations and
 %% references.  The command \citestyle{authoryear} switches to the
@@ -634,7 +637,7 @@ This can be accomplished by estimating the residual risk --- the upper-bound on
 the number of faults that are likely to remain in the software.
 While structural coverage can provide a heuristic measure for the testing 
 accomplished, the presence of unreachable coverage can lead to severe 
-overestimation of redidual risk.
+overestimation of residual risk.
 
 It was recently showed that statistical estimators for population size, or
 species count can be used to estimate the maximum reachable coverage in a
@@ -666,7 +669,6 @@ We found that the estimators we considered
 lack predictive power, and the prediction
 is dependent on the particular program and test suite under evaluation.
 \end{comment}
-
 \begin{abstract}
 % IMPORTANT A structured abstract is required with the headings:
 % Background, Aims, Method, Results, and Conclusions.
@@ -846,6 +848,12 @@ killable mutants that are program and test suite dependent.
 
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
+\begin{comment}
+(1) Can they predict the values correctly? (ground truth)
+(Bar plot -- result is; there is nothing within the CI)
+(2) See what assumptions are violated? (a) test suite difference (b) sampling different
+(3) Minor: Are they more sensitive to sampling or test suite?
+\end{comment}
 Mutation analysis the premier means of assessing the quality of
 software test suites~\cite{papadakis2019mutation} in preventing defects.
 Evaluating a test suite with mutation analysis involves
@@ -2433,7 +2441,7 @@ normalized by the manual classification estimate, i.e., $\frac{E - ME}{ME}$ ($\t
 100 for percentage). We removed any estimate that resulted in negative
 CI upperbound, point estimate, or no estimate at all. We also removed any
 estimate that resulted in $\infty$ in upper CI. The results are given in
-\Cref{tbl:estoriginal}.
+\Cref{tbl:estoriginal}.\todo{Valid estimates}
 
 \begin{table}
 \caption{Comparison of \emph{mean difference (MD)} between method estimators
@@ -2832,8 +2840,6 @@ We tried to mitigate this threat by adopting different sampling strategies.
 %  \end{tabular}
 %  \label{tbl:eqvresearch}
 %\end{table}
-
-
 Mutation analysis is considered a primary way of evaluating test quality~\cite{papadakis2019mutation};
 thus, mutation score is usually considered as a test suite adequacy metrics~\cite{just2014are,andrews2005is,andrews2006using,daran1996software}. 
 %The complement of mutation score was also found to be instrumental in characterizing
@@ -3140,7 +3146,8 @@ classification of mutants, test suites, kill matrices, and scripts
 to compute and plot the estimations.
 We will release data publicly upon acceptance.
 
-\bibliographystyle{ACM-Reference-Format}
+%\bibliographystyle{ACM-Reference-Format}
+\bibliographystyle{unsrt}
 \bibliography{esem2024-chaos}
 %
 %\appendix
