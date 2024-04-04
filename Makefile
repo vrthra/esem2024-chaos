@@ -8,6 +8,7 @@ all: clean esem2024-chaos.pdf
 esem2024-chaos.pdf: esem2024-chaos.tex esem2024-chaos.bib
 	# make summarycharts
 	latexmk -pdf esem2024-chaos.tex
+	killall qlmanage
 
 summarycharts: charts-test/.summary
 
