@@ -2925,6 +2925,17 @@ estimators and their applicability to mutation analysis.
 
 
 
+\noindent\textbf{Empirical Strategy Used.}
+This paper uses the quantitative research, including systematic
+collection of data about different mutants, and comparing classifications by
+different experts.\todo{TODO}
+
+\noindent\textbf{Data Availability.}
+The replication package~\cite{replication-package} contains data about manual
+classification of mutants, test suites, kill matrices, and scripts
+to compute and plot the estimations.
+The data will be publicly released.
+
 \subsection{Threats to Validity}
 
 \noindent\textbf{External Validity.}
@@ -3113,10 +3124,10 @@ Unfortunately, none of those studies reported the misclassification rate.
 Compared to those studies, 
 our manual classification required (modulo the number of mutants) the same amount of time, 
 but involved twice as many researchers. We also considered real-world, more complex, and arguably more
-difficult to evaluate, projects, and a sufficiently representative set of mutation operators~\cite{gopinath2017mutation}.
+difficult to evaluate, projects, and a representative set of mutation operators~\cite{gopinath2017mutation}.
 %further do not restrict our research to a selected set of mutants, which was shown previously to be problematic~\cite{gopinath2017mutation}, and considered both m
 Finally, we studied manually written and automatically generated unit test suites, 
-that covered more mutants and resulted in estimating a higher number (generally above 90\%) of killable mutants.
+that covered more mutants and estimating a higher number (generally $> 90$\%) of killable mutants.
 
 Papadakis et al.~\cite{papadakis2014mitigating} is a study similar to ours,
 with more numerous subjects. However, compared to that study,
@@ -3180,8 +3191,7 @@ Tohma et al.~\cite{tohma1989structural}, instead, modeled
 the distribution of observed faults as hyper-geometric distribution
 to estimate the number of residual defects.
 
-To estimate equivalent mutants, other methods
-have been proposed.
+%To estimate equivalent mutants, other methods have been proposed.
 %
 Vincenzi et al.~\cite{vincenzi2002bayesian} proposed
 estimating the (posterior) probability that specific mutation operators
@@ -3301,18 +3311,6 @@ killable mutants in mutation analysis.
 % % other~\cite{papadakis2013mutation} classifiers.
 % % 
 % % \end{description}
-
-\section{Empirical Strategy Used}
-In this paper, we used the quantitative research, including systematic
-collection of data about different mutants, and comparing classifications by
-different experts.\todo{TODO}
-
-
-\section{Data Availability}
-The replication package~\cite{replication-package} contains data about manual
-classification of mutants, test suites, kill matrices, and scripts
-to compute and plot the estimations.
-The data will be publicly released.
 
 %\bibliographystyle{ACM-Reference-Format}
 \bibliographystyle{unsrt}
