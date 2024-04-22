@@ -1222,12 +1222,13 @@ not sufficiently random.
 %Such biases might affect the frequency of killed mutants and might lead to faulty estimates.
 
 To mitigate the first threat, we extended our initial study with test suites created with
-\Evosuite~\cite{fraser2011evosuite}, a state-of-the-art test generation tool,
+\Evosuite~\cite{fraser2011evosuite},
+%a state-of-the-art test generation tool,
 using two fundamentally different configurations (i.e., a random strategy and guided by coverage).
 We expected the estimations obtained from manual test suites
 to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
-This forms our \textbf{RQ2.}
+We evaluate this in \textbf{RQ2.}
 %
 To mitigate second threat, we compared the estimates from \Evosuite
 test suites and from the manual classification. We expected
@@ -1239,12 +1240,12 @@ estimations from automatically generated test suites, and the estimates from the
 generated test suites %themselves
 were significantly different from each other.
 Therefore, we critically inspected our experiment and identified another
-possible source of error--the possibility that different test objectives
-in generating different test suites may somehow lead to different
-detectable mutants. If so, and if estimation from at least one of the test
+possible error source--perhaps, different test objectives
+in generating test suites may have an impact.
+If so, and if estimation from at least one of the test
 suites is correct, then changing the sampling unit from test methods to test
-classes should not have a significant impact at least for that test suite.
-This is what we investigated in \textbf{RQ3.}
+classes should not have a significant impact for estimate from a given test suite.
+We investigated this in \textbf{RQ3.}
 %the choice of the sampling unit could be incorrect.
 %That is, we changed the sampling unit used.
 %Hence, %we reinterpreted the test suite detection frequencies of the
@@ -1255,25 +1256,26 @@ This is what we investigated in \textbf{RQ3.}
 %Since we obtained first estimates by
 %considering test methods as test cases, we next
 %considered test classes as test cases.
-Because both test methods and test classes sample the same quantity, i.e., the killed mutants,
-we expected that the statistical estimators produce consistent estimates, although
-possibly with different degrees of uncertainty.
+As both test methods and test classes sample the same quantity, i.e., the killed mutants,
+we expected that the estimators to produce consistent estimates.
+%, although possibly with different degrees of uncertainty.
 
 Once again, our results showed that the estimates from test methods and test classes were
 significantly different, which left us with the only option that the considered frequency based statistical
 estimators cannot be reliably applied to mutation analysis.
 %
 That is, our results show that none of the considered statistical estimators
-behaved consistently, and none of them is %are
-robust to changes in the sampling strategy.
-For instance, we found the estimators changed their predictions significantly
-when using different sampling methods and, almost all the times %they use 
-test class based sampling let to predict more killable mutants than the existing ones.
+behaved consistently, and none of them are
+robust to changes in the sampling strategy or sampling unit, or produce correct results.
+%For instance,
+%We found the estimators changed their predictions significantly
+%when using different sampling methods and, almost all the times %they use 
+%test class based sampling let to predict more killable mutants than the existing ones.
 %
 Additionally, we found that in several cases the results are program dependent,
 and that the predictions from manual classifications and
 statistical estimators agreed ($<1\%$ difference) only when there were
-exceptionally strong test suites (i.e., $>99\%$ killed mutants).
+exceptionally strong test suites (i.e., $>99\%$ killed mutants).\\
 
 \textbf{Contributions.}
 In summary, our main contributions are:
