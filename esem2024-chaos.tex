@@ -3213,8 +3213,8 @@ the residual risk and the effectiveness of test generators.
 While a sound and complete classifier for killable and equivalent mutants is impossible,
 recent advances in statistical estimation using frequency %count 
 based estimators gave us hope that one could at least estimate the number of killable mutants.
-Such estimators have been used successfully in related domain for instance to estimate
- reachable coverage and reachable computer systems in a network. 
+%Such estimators have been used successfully 
+%to estimate reachable coverage and reachable computer systems in a network. 
 
 % Estimating killable mutants are one of the major stumbling blocks when using mutation
 % score as an adequacy measure. The existing techniques to differentiate killable and equivalent mutants
@@ -3235,58 +3235,58 @@ Such estimators have been used successfully in related domain for instance to es
 %for estimating equivalent mutants. 
 
 This research provides the first, large evaluation of these estimators on mutation analysis. 
-%
-First, we manually classified a statistically significant sample surviving mutants 
-and used them as a ground truth.
-%
-Next, we evaluated more than a hundred thousand mutants
-using manually and automatically generated test suites and
-estimated the killable mutants in each project and for each test suite
-using \estimatorCount state-of-the-art species richness estimators.
-We estimated killable mutants using data sampled at test method
-and test class granularity.
-%
-Finally, we compared the resulting $720$ estimates against the ground truth
- to measure the quality of the statistical estimators on ten real-world projects
- across projects and test suites.
- %
- We compared the estimates across sampling strategies to understand
- whether the estimators produce %two different estimates of the same quantity results in
- significantly different results despite estimating the same quantity. % underlying variable?
+% %
+% First, we manually classified a statistically significant sample surviving mutants 
+% and used them as a ground truth.
+% %
+% Next, we evaluated more than a hundred thousand mutants
+% using manually and automatically generated test suites and
+% estimated the killable mutants in each project and for each test suite
+% using \estimatorCount state-of-the-art species richness estimators.
+% We estimated killable mutants using data sampled at test method
+% and test class granularity.
+% %
+% Finally, we compared the resulting $720$ estimates against the ground truth
+%  to measure the quality of the statistical estimators on ten real-world projects
+%  across projects and test suites.
+%  %
+%  We compared the estimates across sampling strategies to understand
+%  whether the estimators produce %two different estimates of the same quantity results in
+%  significantly different results despite estimating the same quantity. % underlying variable?
 %
 Our results show that the considered statistical estimators %for species richness 
 applied to the killable mutants estimation do not produce consistent results across
 projects, test suites, and when computed using different sampling strategies.
-Therefore, they have way to go before practitioners can reliably use them.
-
+Hence, they are, as yet, unsuitable for use as statistical estimators for
+killable mutants in mutation analysis.
+%Therefore, they have way to go before practitioners can reliably use them.
 %\todo{AZ: (re)state results and contribution here.}
-
-We recommend a few directions for future research:
-%Given that the surveyed estimators performed poorly on
-%estimating the number of killable mutants, we have a number of directions
-%for future research:
-
-\begin{description}
-\item[Better models.] The first question is of course whether we can get better
-performance from identifying the unique aspects of mutant distribution, and
-correct our models and the estimators for that. 
-%
-Doing so would require us to identifying the mutant distribution characteristics
-and developing models that can incorporate such information. 
-
-\item[Investigate more variables.] To improve estimation, incorporate
- coverage spectra and other information either by modifying the test sample
-or directly into the model to see if such information can help estimate better
-killable mutants.
-
-\item[Evaluating mutant classifiers.] Finally, given that we have a large set
-of manually classified mutants, we can use them to evaluate the current
-killable and equivalent mutant classifiers such as coverage
-based~\cite{schuler2013covering}, machine learning
-based~\cite{peacock2021automatic,naem2020a}, or
-other~\cite{papadakis2013mutation} classifiers.
-
-\end{description}
+% % We recommend a few directions for future research:
+% % %Given that the surveyed estimators performed poorly on
+% % %estimating the number of killable mutants, we have a number of directions
+% % %for future research:
+% % 
+% % \begin{description}
+% % \item[Better models.] The first question is of course whether we can get better
+% % performance from identifying the unique aspects of mutant distribution, and
+% % correct our models and the estimators for that. 
+% % %
+% % Doing so would require us to identifying the mutant distribution characteristics
+% % and developing models that can incorporate such information. 
+% % 
+% % \item[Investigate more variables.] To improve estimation, incorporate
+% %  coverage spectra and other information either by modifying the test sample
+% % or directly into the model to see if such information can help estimate better
+% % killable mutants.
+% % 
+% % \item[Evaluating mutant classifiers.] Finally, given that we have a large set
+% % of manually classified mutants, we can use them to evaluate the current
+% % killable and equivalent mutant classifiers such as coverage
+% % based~\cite{schuler2013covering}, machine learning
+% % based~\cite{peacock2021automatic,naem2020a}, or
+% % other~\cite{papadakis2013mutation} classifiers.
+% % 
+% % \end{description}
 
 \section{Empirical Strategy Used}
 In this paper, we used the quantitative research, including systematic
