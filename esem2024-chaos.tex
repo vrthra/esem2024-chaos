@@ -1190,7 +1190,7 @@ the main findings of our study and is complemented by
 the replication package~\cite{replication-package}.
 
 
-\subsection{Empirical Study Results Overview}
+\textbf{Empirical Study Results Overview.}
 For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
 open-source projects and analyzing them
 using PIT, we manually classified 1016 live mutants that survived existing test suites and used this result for assessing the prediction quality of
@@ -1270,16 +1270,18 @@ and that the predictions from manual classifications and
 statistical estimators agreed ($<1\%$ difference) only when there were
 exceptionally strong test suites (i.e., $>99\%$ killed mutants).
 
-\subsection{Summary of Contributions}
+\textbf{Contributions.}
 In summary, our main contributions are:
 \begin{itemize}
    \item The first empirical study on the application of \estimatorCount,
          widely used frequency based statistical %species richness 
-         estimators applied to the problem of estimating killable mutants,
-         showing that they are not yet ready for the prime time.
+         estimators
+         %applied to the problem of
+         on estimating killable mutants,
+         identifying their limits.
    \item One of the largest % (to the best of our knowledge)
 mutation analysis datasets containing 1016 live mutants manually
-classified by three researchers on ten mature projects,
+classified by three researchers on \projectCount mature projects,
 multiple test suites generated manually and automatically,
 and their mutation analysis resulting in more than 2.5B test executions.
 \end{itemize}
