@@ -2440,9 +2440,10 @@ commons-collections  &100 & 3  & 2  &  1 \\
 \label{sec:results}
 Our study seeks answer to three main research questions investigating
 the ability of frequency based statistical estimators to predict the
-number of killable mutants in a project using biased (RQ1) and unbiased
-(RQ2) test suites as well as the robustness of such estimators against
-changes in sampling strategy (RQ3).
+number of killable mutants in a project. RQ1 asks about the accuracy of
+frequency based estimators. RQ2 investigates the impact of sampling strategies
+and RQ3 evaluates whether the choice of sampling units have any impact.
+%using original (RQ1) and unbiased (RQ2) test suites as well as the robustness of such estimators against changes in sampling strategy (RQ3).
 
 %\begin{figure*}
 %\centering
@@ -2553,24 +2554,27 @@ The estimates or CIs going beyond 200x of the generated mutants are not shown.}
 
 \bigskip
 
-\noindent\textbf{RQ1. Which statistical estimator best matches the
-estimates from manual classification % (i.e., the ground truth)
-using manually written test suites?}\\
+\noindent\textbf{RQ1.
+What is the accuracy of frequency based estimators in predicting killable mutants?}\\
+%i.e., Which statistical estimator best matches the
+%estimates from manual classification 
+%using manually written test suites?}\\
 %
 To answer this question, we considered the statistical estimators computed
 using test methods for the \original test suite as sampling unit and determined
-their 95\% confidence intervals.
+their 95\% confidence intervals. Then, we compared them against the manual
+classification estimates.
 %
-Next, we checked whether the statistical estimators are significantly different
+We first checked whether the statistical estimators are significantly different
 from the manual classification, i.e.,  their 95\% confidence interval did not overlap
-with the 95\% confidence intervals from manual classification. We computed
-by how much they differ using normalized mean difference (MD) computed as the
+with the 95\% confidence intervals from manual classification. Next, we computed
+the difference between the two estimates using normalized mean difference (MD) computed as the
 difference between the point estimate and manual classification estimate
 normalized by the manual classification estimate, i.e., $\frac{E - ME}{ME}$ ($\times$
 100 for percentage). We removed any estimate that resulted in negative
 CI upperbound, point estimate, or no estimate at all. We also removed any
-estimate that resulted in $\infty$ in upper CI. The results are given in
-\Cref{tbl:estoriginal}.\todo{Valid estimates}
+estimate that resulted in $\infty$ in upper CI. The count of such valid
+estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 
 \begin{table}
 \caption{Comparison of \emph{mean difference (MD)} between method estimators
@@ -2601,8 +2605,10 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
 statistical estimators were significantly different from the manual classification
 and their mean absolute difference varied considerably.
-Out of ten test subjects, \Unpmle behaved consistently with manual classification
-5~times (MD $11.1$\%, Stdev. 9.8\%). However, we note that the confidence
+%Out of \projectCount test subjects,
+\Unpmle behaved the most consistently with manual classification
+achieving 50\% agreement (five out of \projectCount test subjects,
+MD $11.1$\%, Stdev. 9.8\%.) However, we note that the confidence
 intervals were very large in many cases for \Unpmle (\Cref{fig:results}).
 %PCG was next nearest with a CI overlap 4~times with manual classification
 %estimate.
