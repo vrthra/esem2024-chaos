@@ -852,7 +852,8 @@ of killable mutants. % that are program and test suite dependent.
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
 Mutation analysis is the premier means of assessing the quality of
-software test suites~\cite{papadakis2019mutation} in preventing defects.
+software test suites~\cite{papadakis2019mutation} in preventing defects,
+and estimating residual risk~\cite{horgan1996software}.
 Evaluating a test suite with mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration.
 (\Cref{fig:working-example}-right).
@@ -922,12 +923,12 @@ The mutants undetected by any test case are called \emph{surviving} mutants.
 %
 The ratio of the number of mutants killed by a test suite to the 
 number of \emph{killable} mutants %, i.e., mutants that can be killed,
-is called \emph{mutation score} and  is considered a good indicator of that test suite
+is called \emph{mutation score} a good indicator for test suite
 effectiveness in preventing faults~\cite{jia2010an}.
 %
 %The mutants that are left alive is also considered
-Surviving killable mutants are considered a reasonable proxy for \emph{residual risk}~\cite{horgan1996software} because
-they represent potential bugs that would have not been discovered by the test suite.
+%Surviving killable mutants are considered a reasonable proxy for \emph{residual risk}~\cite{horgan1996software} because
+%they represent potential bugs that would have not been discovered by the test suite.
 % ALESSIO: In the abstract we say killable mutants is the proxy of residual risk
 %\footnote{ Horgan and Mathur define risk as testable attributes that remain untested. }.
 \begin{comment}
@@ -938,31 +939,36 @@ they represent potential bugs that would have not been discovered by the test su
 \end{equation}
 \end{comment}
 
-However, not all the surviving mutants could be killed. Some mutations
-(\Cref{fig:working-example-mutants}-right)
-does not induce an observable behavioral change from the original code
-no matter the test input used. These
-are called \emph{equivalent mutants}~\cite{budd1982two}.
+However, %not all the surviving mutants could be killed.
+some mutants (\Cref{fig:working-example-mutants}-right) %, called equivalent mutants
+are behaviorally \emph{equivalent} to the original~\cite{budd1982two}.
+%no matter the test input used.
+%These
+%are called \emph{equivalent mutants}~\cite{budd1982two}.
 %
 The amount of %these so-called 
-equivalent mutants, which is generally
-program specific~\cite{offutt1994using,grun2009impact}, directly determines
-the number of killable mutants
+%equivalent mutants, which is generally
+such mutants is
+program specific~\cite{offutt1994using,grun2009impact},
+%and directly determines
+%the number of killable mutants
 %(see~\Cref{eq:1})
-but cannot be established 
-\emph{a-priori} due to limitations in proving program equivalence~\cite{budd1982two,rice1953classes}.
+and cannot be established 
+\emph{a-priori}. % due to limitations in proving program equivalence~\cite{budd1982two,rice1953classes}.
 %because there is no means to automatically prove equivalence of programs
 %that a mutant
 %is an equivalent one 
 %in general~\cite{budd1982two,rice1953classes}.
 %
-Consequently, the mutation score and the estimate of residual risk might be inaccurate
-and affected by high variability. %~\cite{gotelli2011estimating}. <-- incorrect citation.
+Consequently, the mutation score %and the estimate of residual risk
+might be inaccurate and highly variable.
+% and affected by high variability. %~\cite{gotelli2011estimating}. <-- incorrect citation.
 %to standard estimation techniques
 % ALESSIO: Not sure about this box fits here
+Hence, an accurate estimate of the number of killable mutants is important in software testing, but has remained unsolved.
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 An accurate estimate of the killable mutants is important for evaluating the \textbf{effectiveness
-of test suites} as well as evaluating \textbf{residual risk} after a test run, both of which are important problems for a practitioner.
+of test suites} as well as evaluating \textbf{residual risk} after a test run. %  both of which are important problems for a practitioner.
 \end{tcolorbox}
 
 
@@ -1004,13 +1010,14 @@ of test suites} as well as evaluating \textbf{residual risk} after a test run, b
 % software elements
 % yet to be observed.
 % [
-While accurately identifying killable mutants may be infeasible, we observe that
-it is not necessary to identify individual killable mutants for an accurate
-estimation of mutation score. Rather, an accurate estimate of the
-\emph{number} of killable mutants is sufficient. In this respect, recent
-frameworks such as \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
-for estimating the number of \emph{unseen} elements remaining
-gives us hope that such an estimation may be possible.
+%While accurately identifying killable mutants may be infeasible, we observe that
+%it is not necessary to identify individual killable mutants for an accurate
+%estimation of mutation score.
+%Rather, an accurate estimate of the
+%\emph{number} of killable mutants is sufficient.
+Recently the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
+was proposed for estimating the number of \emph{unseen} elements remaining for coverage evaluation.
+%gives us hope that such an estimation may be possible.
 %]
 %The STADS framework is based on an extension of Good-Turing estimator 
 %called Chao's estimator~\cite{chao2016nonparametric} that was used to crack
@@ -1021,11 +1028,22 @@ and is based on the idea
 that the relative frequency of coverage of software
 elements such as statements or branches by test cases contain information about
 the number of similar software elements that are reachable but yet to be covered.
+Frequency based estimators such as Chao's~\cite{chao2016species} are designed to
+be robust toward strong biases in sampling\footnote{%
+These estimators are commonly used in Ecology to estimate the count of various
+species, which are often highly correlated and geography specific.
+The constraints in Ecology seems to mirror the conditions of defects in software
+elements, which are also program specific and often highly correlated---some
+modules may be highly defect prone, while others may not be.} which makes them
+attractive in areas such as reachable coverage estimation
+% estimating the number of killable mutants,
+which can be strongly program dependent.
 
 Given the closeness of mutation analysis
-to coverage analysis (killing a mutant requires covering the mutant first, and
-the correlation between coverage and mutation score has been well established)
-we adapted the model used by STADS framework~\cite{bohme2018stads} for
+and coverage analysis---covering a mutant
+s a prerequisite for killing it---%
+we adapted the STADS framework~\cite{bohme2018stads} for
+%, and the correlation between coverage and mutation score has been well established)
 predicting reachable coverage elements for predicting killable mutants.
 %We find
 %modeling of test cases or test classes as sampling units to be highly
@@ -1038,31 +1056,15 @@ of number of mutants that are killed by a single test case vs those killed by
 two test cases etc. contains the information for predicting those that are
 killed by no test cases.
 \end{tcolorbox}
-
-
-
-Frequency based estimators such as Chao's~\cite{chao2016species} are designed to
-be robust toward strong biases in sampling\footnote{%
-These estimators are commonly used in Ecology to estimate the count of various
-species, which are often highly correlated and geography specific.
-The constraints in Ecology seems to mirror the conditions of defects in software
-elements, which are also program specific and often highly correlated---some
-modules may be highly defect prone, while others may not be.} which makes them
-particularly attractive in areas such as reachable coverage estimation
-% estimating the number of killable mutants,
-which can be strongly program dependent.
-
-Given the success of frequency based estimators in adjacent areas in software
-engineering~\cite{bohme2018assurances,accettura2015the}, and the similarity of
-reachable coverage estimation to killable mutant estimation,
+%Given the success of frequency based estimators in adjacent areas in software
+%engineering~\cite{bohme2018assurances,accettura2015the}, and the similarity of
+%reachable coverage estimation to killable mutant estimation,
 %and its success in
 %species estimation in Biometrics which seems to be similar to the constraints in
 %mutation analysis,
-we hypothesized that frequency based estimators can effectively
-predict the number of killable mutants from the frequency of killed mutants.
-Hence, our first research question concerns the effectiveness of frequency based
-estimators.
-
+%we hypothesized that frequency based estimators can effectively
+%predict the number of killable mutants from the frequency of killed mutants.
+This leads to the first first research question. % investigates the effectiveness of frequency based estimators.
 \begin{description}
   \item[RQ1] \textbf{What is the accuracy of frequency based estimators in predicting
     killable mutants?}
