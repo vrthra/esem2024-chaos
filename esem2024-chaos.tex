@@ -1114,19 +1114,24 @@ the second research question is:
 \begin{description}
   \item[RQ2] \textbf{Are frequency based estimators affected by sampling strategies?}
 \end{description}
-To evaluate the impact of different sampling strategies, we used three different
-test suites---developer written, random generated, and guided random.
-Our hypothesis was that, if the estimators are indeed robust to differences in
-sampling, then the estimations should coincide, or at least overlap
-significantly. If on the other hand, some of the sampling strategies were
-brittle, then we should be able to identify these strategies by comparison
-to ground truth.
+%To evaluate the impact of different sampling strategies,
+We used three different
+test suites---developer written, random generated, and guided random to evaluate this question.
+%Our hypothesis was that,
+If the estimators are indeed robust to sampling bias,
+then the estimations should coincide, or at least overlap
+significantly. We should also be able to identify best strategies by comparison to ground truth.
+%If some of the sampling strategies were
+%brittle, then we should be able to identify these strategies by comparison
+%kto ground truth.
 
-How robust are the frequency based estimators to different sampling units? We
-hypothesized that changing sampling units by moving up or down the sampling unit
-hierarchy should not significantly impact the estimators.
-Hence, our third research question asks whether the estimation
-accuracy is affected by different sampling units.
+Are frequency based estimators affected by the specific sampling unit used, such
+as using test class as a test unit instead of test method? This informs our next question.
+%How robust are the these estimators to different sampling units? We
+%hypothesized that changing sampling units by moving up or down the sampling unit
+%hierarchy should not significantly impact the estimators.
+%Hence, our third research question asks whether the estimation
+%accuracy is affected by different sampling units.
 
 \begin{description}
   \item[RQ3] \textbf{Are frequency based estimators affected by sampling units?}% class and unit
@@ -1172,10 +1177,6 @@ difference. We compare the results of both aggregations with the ground truth.
 %for \projectCount  mature, well-tested open-source projects.
 
 %-------
-This paper summarizes 
-the main findings of our study and is complemented by
-the replication package~\cite{replication-package}.
-
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Our large study empirically investigates the hypothesis that (at least)
 one of the surveyed frequency based estimators can be effectively used to
@@ -1184,6 +1185,10 @@ That is, it is accurate, reliable, and
 produces better estimates than the nai\"ve upper bound of total
 number of generated mutants.
 \end{tcolorbox}
+This paper summarizes 
+the main findings of our study and is complemented by
+the replication package~\cite{replication-package}.
+
 
 \subsection{Empirical Study Results Overview}
 For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
