@@ -1188,7 +1188,8 @@ number of generated mutants.
 \end{tcolorbox}
 
 \subsection{Empirical Study Results Overview}
-After selecting well maintained, open-source projects and analyzing them
+For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
+open-source projects and analyzing them
 using PIT, we manually classified 1016 live mutants that survived existing test suites and used this result for assessing the prediction quality of
 a large selection of frequency based statistical estimators (see~\Cref{sec:estimators}).
 %from statistical estimators to the result.
@@ -1204,9 +1205,7 @@ were significantly different from the manual estimates.
 Hence, we questioned our experimental settings
 and identified two major threats to the validity of our study:
 %Specifically, we argued that
-(1) the manual classification of live mutants could be in error; hence, the
-estimators might be closer to the truth than the estimators derived from manual
-classification, or
+(1) the manual classification of live mutants could be in error, or
 %
 % ALESSIO: Confusing: estimators, estimators derived from manual classification
 %
@@ -1220,6 +1219,7 @@ using two fundamentally different configurations (i.e., a random strategy and gu
 We expected the estimations obtained from manual test suites
 to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
+This forms our \textbf{RQ2.}
 %
 To mitigate second threat, we compared the estimates from \Evosuite
 test suites and from the manual classification. We expected
@@ -1233,18 +1233,20 @@ were significantly different from each other.
 Therefore, we critically inspected our experiment and identified another
 possible source of error--the possibility that different test objectives
 in generating different test suites may somehow lead to different
-detectable mutants.
+detectable mutants. If so, and if estimation from at least one of the test
+suites is correct, then changing the sampling unit from test methods to test
+classes should not have a significant impact at least for that test suite.
+This is what we investigated in \textbf{RQ3.}
 %the choice of the sampling unit could be incorrect.
-
-To check this, we changed the sampling unit used.
+%That is, we changed the sampling unit used.
 %Hence, %we reinterpreted the test suite detection frequencies of the
 %\emph{same test suite} by changing the sampling units.
 %Our sampling unit is a
 %test case, and there are two commonly accepted definitions of a test case in
 %the Java world: methods and classes.
-Since we obtained first estimates by
-considering test methods as test cases, we next
-considered test classes as test cases.
+%Since we obtained first estimates by
+%considering test methods as test cases, we next
+%considered test classes as test cases.
 Because both test methods and test classes sample the same quantity, i.e., the killed mutants,
 we expected that the statistical estimators produce consistent estimates, although
 possibly with different degrees of uncertainty.
