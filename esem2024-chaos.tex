@@ -1193,13 +1193,17 @@ the replication package~\cite{replication-package}.
 \textbf{Empirical Study Results Overview.}
 For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
 open-source projects and analyzing them
-using PIT, we manually classified 1016 live mutants that survived existing test suites and used this result for assessing the prediction quality of
-a large selection of frequency based statistical estimators (see~\Cref{sec:estimators}).
+using PIT, we manually classified 1016 surviving mutants
+%that survived existing test suites
+and used this result for assessing the prediction quality of
+%a large selection of
+frequency based statistical estimators (see~\Cref{sec:estimators}).
 %from statistical estimators to the result.
 % checked whether the predictions made by the statistical estimators do not significantly
 %differ from the ones we obtained from the manual classification.
 %What we found out was bluntly unexpected.
-However, we found that
+%However, 
+We found that
 %the statistical estimators performance did not match our expectations.
 %That is, 
 the estimates from the selected estimators
@@ -1213,8 +1217,9 @@ and identified two major threats to the validity of our study:
 % ALESSIO: Confusing: estimators, estimators derived from manual classification
 %
 (2) the tests themselves could have been biased, with more effective tests checking
- only specific parts of the code (e.g., business logic).
-Such biases might affect the frequency of killed mutants and might lead to faulty estimates.
+only specific parts of the code (e.g., business logic), and hence,
+not sufficiently random.
+%Such biases might affect the frequency of killed mutants and might lead to faulty estimates.
 
 To mitigate the first threat, we extended our initial study with test suites created with
 \Evosuite~\cite{fraser2011evosuite}, a state-of-the-art test generation tool,
