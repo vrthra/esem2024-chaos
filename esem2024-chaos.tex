@@ -50,7 +50,7 @@
 % All submissions must be written in English and must be submitted via EasyChair
 % in the PDF format, and they must be formatted according to the ACM proceedings
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
-\documentclass[sigconf,review,anonymous]{acmart}
+\documentclass[sigconf,anonymous]{acmart}
 \acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 \hypersetup{
    colorlinks=true,
@@ -62,7 +62,9 @@
   \providecommand\BibTeX{{%
     Bib\TeX}}}
 
-
+%SPACE \setlength{\parskip}{0cm}
+%SPACE \setlength{\parindent}{1em}
+\usepackage{paralist}
 %XXXXXXXXXXXXXX
 \newcommand{\mytitle}{Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants}
 
@@ -757,7 +759,7 @@ deliver an accurate estimate for killable mutants.
 % family of richness of species estiation methods holds promise,
 % there has been no comprehensive study of the effectiveness of these
 % techniques.
-Hence, this paper investigates the following question. \emph{Can
+Hence, this paper investigates the following: \emph{Can
 the species richness estimation methods provide an accurate
 estimate for the number of killable mutants?}
 
@@ -773,8 +775,8 @@ statistical models for estimating the number of killable mutants in
 % reachable coverage could also estimate the number of killable mutants.
 %However, as the results of our investigation suggest, the considered statistical models %estimators
 Our investigation suggests that the considered statistical estimators
-lack sufficient predictive power and cannot produce reliable estimates of
-killable mutants that are program and test suite dependent.
+lack sufficient predictive power and cannot produce reliable or useful estimates
+of killable mutants. % that are program and test suite dependent.
 
 % using 1000 manually labelled live mutants.
 %
@@ -916,7 +918,7 @@ a change in behavior in the mutant when compared to the original.
 %A mutant that exhibits a detectable change in behavior of the program when
 %exercised by a test case is said to be detected, or \emph{killed}, by that
 %test case. Conversely,
-We call mutants undetected by any test case \emph{surviving} mutants.
+The mutants undetected by any test case are called \emph{surviving} mutants.
 %
 The ratio of the number of mutants killed by a test suite to the 
 number of \emph{killable} mutants %, i.e., mutants that can be killed,
@@ -2132,6 +2134,7 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
 \begin{table}[t]
   \caption{List of considered Apache Commons projects}
   \resizebox{\columnwidth}{!}{%
+    \footnotesize{
   \begin{tabular}{|l|l|l| }
     \hline
     \textbf{Project} & \textbf{Release} & \textbf{Commit Hash/Note} \\
@@ -2184,8 +2187,9 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
     commons-jci           & 1.1             & complex structure \\ %and errors during build \\
     \hline
 \end{tabular}
-}
+}}
 \label{tbl:fullsubjects}
+%  \vspace{-0.7cm}
 \end{table}
 
 
