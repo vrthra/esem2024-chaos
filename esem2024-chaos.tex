@@ -717,37 +717,13 @@ is dependent on the particular program and test suite under evaluation.
 
 \noindent\textbf{Background.}
 % Method, Results, and Conclusions.
-Estimating residual risk
-%, i.e., the upper-bound on
-%the number of faults that are likely to remain in the software
-%after a testing campaign,
-helps in addressing important
-questions about software quality
-%(e.g., \emph{How much can we trust
-%a software after testing it?}),
-and can improve automatic test generation. 
-%(e.g., \emph{What fraction of possible faults can it detect?}).
-% How much should it improve to produce reliable results?").
-%
-%Traditionally, those questions are addressed using structural
-%coverage metrics; for instance during fuzzing, frequency based
-%statistical models for unknown software species have been
-%used for estimating \emph{unseen but reachable coverage}, 
-%a proxy for residual risk.
-Mutation analysis with its ability to induce and evaluate
-faults in structural elements of the code can provide a
-%more reliable answer than structural coverage and,
-reliable estimate
-provided one can accurately
-estimate the \emph{number of live but killable mutants}.
-%a more representative proxy for residual risk than unseen but reachable coverage.
-%Hence,
-%a reliable way to estimate the number of killable mutants can
-%transform software test suite evaluation, allowing for precise
-%estimation of residual risk after a testing campaign.
-However,
-a way to reliably estimate killable mutants has remained out of
-reach as mutants are highly program and location dependent.
+Mutation analysis is the premier technique to evaluate software test suite
+quality and estimating residual software defects. However, the reliability of 
+mutation analysis is hampered by the so called equivalent mutants which are
+unkillable by any test case.
+Reliably detecting and eliminating killable mutants is difficult
+as it is highly program and location dependent. Hence, statistical estimation of
+killable mutants offers a promising approach.
 
 \noindent\textbf{Aims.}
 Recently, frequency based species estimation methods
@@ -1380,8 +1356,8 @@ estimating residual defects in the STADS framework~\cite{bohme2018stads}.
 In the next sections, we first introduce the underlying statistical model and, then,
 we describe the various statistical estimators that we considered in our study.
 
-\subsection{The Urn Statistical Model}
-At first, let's consider the following well known statistical model:
+\subsection{The Urn Probabilistic Model}
+At first, let's consider the following well known probabilistic model:
 Suppose, we have an urn with colored balls, from which $n$ balls are
 sampled with replacement and let $S(n)$ the colors we observed.
 %
