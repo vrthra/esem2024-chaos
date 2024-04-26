@@ -1,0 +1,3 @@
+[submodule "replication-package"]
+	path = replication-package
+	url = https://github.com/vrthra/chaos-replication
