@@ -2429,7 +2429,7 @@ commons-collections  &100 & 3  & 2  &  1 \\
 \end{table}
 
 
-\section{Results \& Discussion}
+\section{Results}
 \label{sec:results}
 Our study seeks answer to three main research questions investigating
 the ability of frequency based statistical estimators to predict the
@@ -2473,7 +2473,6 @@ and RQ3 evaluates whether the choice of sampling units have any impact.
   \caption{\EvosuiteRandom \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth3}
 \end{subfigure}
-\label{fig:groundtruth}
 \caption{Killable mutants estimated by species richness estimators for \Chao estimator, comparison with ground truth.
 The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
   The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
@@ -2481,6 +2480,7 @@ The x-axis is the percentage of mutants, with 1.0 indicating the complete set of
   The dotted black line indicates the total
   percentage of killed mutants, which is the absolute lower-bound. The figure shows how neither \textcolor{cmethod}{method} nor \textcolor{cclass}{class}
   based estimators overlap with \textcolor{cgroundtruth}{ground truth CI} consistently.}
+\label{fig:groundtruth}
 \end{figure*}
 
 
@@ -2531,32 +2531,6 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \end{tabular}
 \label{tbl:estoriginal}
 \end{table}
-
-Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
-statistical estimators were significantly different from the manual classification
-and their mean absolute difference varied considerably.
-%Out of \projectCount test subjects,
-\Unpmle behaved the most consistently with manual classification
-achieving 50\% agreement (five out of \projectCount test subjects,
-MD $11.1$\%, Stdev. 9.8\%.) However, we note that the confidence
-intervals were very large in many cases for \Unpmle (\Cref{fig:results}).
-%PCG was next nearest with a CI overlap 4~times with manual classification
-%estimate.
-%
-%
-%ALESSIO:  what <5 means here?
-The other estimators were significantly different % ($<5$)
-(less than $5$ CI overlaps)
- than manual classification.
-
-% ADDED
-\cref{fig:groundtruth}
-
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-There is a statistically significant difference between the estimates
-from \original test suites and manual classification for
-every estimator examined.
-\end{tcolorbox}
 
 \noindent\textbf{RQ2.
 %Which statistical estimator best predicts the estimates
@@ -2625,95 +2599,6 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \label{tbl:estdynamosa}
 \end{table}
 %
-
-A comparison reveals that the overlaps between confidence intervals
-from manual classification and \EvosuiteRandom (\Cref{tbl:estrandom}) was
-considerably fewer than that between manual and \original (\Cref{tbl:estoriginal}).
-The smallest difference in MD was observed for \Zelterman
-(mean 32.6\%, Stdev. 19.6\%).
-%
-For \EvosuiteDynamosa, the situation was slightly better (\Cref{tbl:estdynamosa}), \ICEallrare
-overlapped with manual classification estimates 4 times out of 10.
-The smallest difference in MD, with least variation was observed for
-Bootstrap (mean 39.1\% Stdev. 24.8\%).
-
-Comparing the estimators across \EvosuiteRandom and \EvosuiteDynamosa
-test suites, we also observed that none behaved consistently, i.e.,
-their 95\% confidence intervals almost never overlapped.
-
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
-to the estimates from manual classification is statistically significant for every estimator examined.
-Likewise, estimates from \EvosuiteRandom are always significantly differently
-than the ones from \EvosuiteDynamosa.
-\end{tcolorbox}
-\definecolor{coriginal}{RGB}{0,150,47}
-\definecolor{cdynamosa}{RGB}{0,108,168}
-\definecolor{crandom}{RGB}{219,36,42}
-
-\begin{figure*}
-\begin{subfigure}{.39\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-methods-dynamosa-organic.pdf}
-\vspace*{-3mm}
-  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.30\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-dynamosa-random.pdf}
-\vspace*{-3mm}
-\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
-\end{subfigure}
-\begin{subfigure}{.30\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-organic-random.pdf}
-\vspace*{-3mm}
-\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
-\end{subfigure}
-\label{fig:groundtruth}
-  \caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit for \Chao estimator.
-  The \original is \textcolor{coriginal}{green}, 
-  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
-  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
-\end{figure*}
-
-\begin{figure*}
-\begin{subfigure}{.39\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-classes-dynamosa-organic.pdf}
-\vspace*{-3mm}
-\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
-\end{subfigure}
-\hfill
-\begin{subfigure}{.30\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-dynamosa-random.pdf}
-\vspace*{-3mm}
-\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
-\end{subfigure}
-\begin{subfigure}{.30\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-organic-random.pdf}
-\vspace*{-3mm}
-\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
-\end{subfigure}
-\label{fig:groundtruth}
-  \caption{Comparison of estimates from different test suites with \textbf{classes} as sampling unit for \Chao estimator.
-  The \original is \textcolor{coriginal}{green}, 
-  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
-  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
-\end{figure*}
-
-
-% \caption{Killable mutants estimated by species richness estimators.
-% Each plot shows the performance of a single estimator across all projects,  
-% test suites (\original is red, \EvosuiteRandom is blue, and \EvosuiteDynamosa is green), and
-% using class sampling (dotted lines) and method sampling (solid lines).
-% For reference, estimates from manual classification are reported in solid purple.
-% Projects (Y axis) numbered according to \Cref{tbl:subjectmeasures} column 1.
-% The estimates or CIs going beyond 200x of the generated mutants are not shown.}
-
 
 
 \noindent\textbf{RQ3. 
@@ -2826,6 +2711,139 @@ significant for every estimator examined. Furthermore, the difference between
 each other is statistically significant for every estimator examined.
 \end{tcolorbox}
 
+% DISCUSSION
+\section{Discussion}
+\noindent\textbf{RQ1} \textbf{How accurate are frequency based estimators in predicting
+    killable mutants?}
+Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
+statistical estimators were significantly different from the manual classification
+and their mean absolute difference varied considerably.
+% ADDED
+To illustrate the differences, we plot the results for \Chao estimator, the
+estimator suggested by the STADS framework in \cref{fig:groundtruth}.
+
+%Out of \projectCount test subjects,
+We note that \Unpmle achieved a maximum of
+50\% agreement (five out of \projectCount test subjects, which was the highest,
+MD $11.1$\%, Stdev. 9.8\%.) However, the confidence
+intervals were very large in many cases for \Unpmle.
+%PCG was next nearest with a CI overlap 4~times with manual classification
+%estimate.
+%
+%
+%ALESSIO:  what <5 means here?
+The other estimators were significantly different % ($<5$)
+(less than $5$ CI overlaps)
+ than manual classification.
+
+
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+There is a statistically significant difference between the estimates
+from \original test suites and manual classification for
+every estimator examined.
+\end{tcolorbox}
+
+\noindent\textbf{RQ2.
+%Which statistical estimator best predicts the estimates
+%from manual classification when given unbiased test suites?
+Are frequency based estimators affected by sampling strategies?}
+%
+Inspecting \Cref{tbl:estrandom} for \EvosuiteRandom,
+\Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original)
+a comparison reveals that the overlaps between confidence intervals
+from manual classification and \EvosuiteRandom (\Cref{tbl:estrandom}) was
+considerably fewer than that between manual and \original (\Cref{tbl:estoriginal}).
+The smallest difference in MD was observed for \Zelterman
+(mean 32.6\%, Stdev. 19.6\%).
+%
+For \EvosuiteDynamosa, the situation was slightly better (\Cref{tbl:estdynamosa}), \ICEallrare
+overlapped with manual classification estimates 4 times out of 10.
+The smallest difference in MD, with least variation was observed for
+Bootstrap (mean 39.1\% Stdev. 24.8\%).
+
+To illustrate the differences, we plot the results for \Chao estimator, the
+estimator suggested by the STADS framework in
+\cref{fig:methodsamplingunit} and \cref{fig:classsamplingunit}.
+
+Comparing the estimators across \EvosuiteRandom and \EvosuiteDynamosa
+test suites, we also observed that none behaved consistently, i.e.,
+their 95\% confidence intervals almost never overlapped.
+
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
+to the estimates from manual classification is statistically significant for every estimator examined.
+Likewise, estimates from \EvosuiteRandom are always significantly differently
+than the ones from \EvosuiteDynamosa.
+\end{tcolorbox}
+\definecolor{coriginal}{RGB}{0,150,47}
+\definecolor{cdynamosa}{RGB}{0,108,168}
+\definecolor{crandom}{RGB}{219,36,42}
+
+\begin{figure*}
+\begin{subfigure}{.39\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-methods-dynamosa-organic.pdf}
+\vspace*{-3mm}
+  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-dynamosa-random.pdf}
+\vspace*{-3mm}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
+\end{subfigure}
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-organic-random.pdf}
+\vspace*{-3mm}
+\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
+\end{subfigure}
+\caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit for \Chao estimator.
+  The \original is \textcolor{coriginal}{green}, 
+  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
+  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
+\label{fig:methodsamplingunit}
+\end{figure*}
+
+\begin{figure*}
+\begin{subfigure}{.39\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-classes-dynamosa-organic.pdf}
+\vspace*{-3mm}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-dynamosa-random.pdf}
+\vspace*{-3mm}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
+\end{subfigure}
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-organic-random.pdf}
+\vspace*{-3mm}
+\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
+\end{subfigure}
+  \caption{Comparison of estimates from different test suites with \textbf{classes} as sampling unit for \Chao estimator.
+  The \original is \textcolor{coriginal}{green}, 
+  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
+  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
+\label{fig:classsamplingunit}
+\end{figure*}
+
+
+% \caption{Killable mutants estimated by species richness estimators.
+% Each plot shows the performance of a single estimator across all projects,  
+% test suites (\original is red, \EvosuiteRandom is blue, and \EvosuiteDynamosa is green), and
+% using class sampling (dotted lines) and method sampling (solid lines).
+% For reference, estimates from manual classification are reported in solid purple.
+% Projects (Y axis) numbered according to \Cref{tbl:subjectmeasures} column 1.
+% The estimates or CIs going beyond 200x of the generated mutants are not shown.}
+
+
+
 
 \subsection{What Does This Mean in Practice?}
 
@@ -2921,7 +2939,7 @@ classification of mutants, test suites, kill matrices, and scripts
 to compute and plot the estimations.
 The data will be publicly released.
 
-\subsection{Threats to Validity}
+\section{Threats to Validity}
 
 \noindent\textbf{External Validity.}
 Our study was conducted on a limited number of programs from a specific
@@ -2983,7 +3001,6 @@ We tried to mitigate this threat by adopting different sampling strategies.
 %assumptions that are unfulfilled, the estimators are invented such that they
 %are robust to limited relaxations in assumptions. 
 %
-
 
 
 
