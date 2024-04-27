@@ -2701,27 +2701,38 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 What does these results mean? We discuss the implications next.\\
 \noindent\textbf{RQ1} \textbf{How accurate are frequency based estimators in predicting
     killable mutants?}\\
+Inspecting \Cref{tbl:estoriginal}, we note that \Unpmle achieved a maximum of
+50\% agreement (five out of \projectCount test subjects, which was the highest,
+MD $11.1$\%, Stdev. 9.8\%.)\todo{
+This needs to be verified. Currently, it seems that we have a smaller number of
+valid estimates than 10, and their mean difference should be larger.
+} However, the confidence
+intervals were very large in many cases for
+\Unpmle\todo{Add a reference to appendix where we provide the CI}.
+For an estimator to be useful in predicting the killable mutants, it must be
+able to both \emph{accurate} and \emph{precise}. \textbf{Accuracy} means that the
+prediction must be close to the correct value, and \textbf{precision} means that
+the uncertainty in prediction must be low.
+While \Unpmle has moderate accuracy, its precision is very low.
+%The other estimators were significantly different % ($<5$)
+%(less than $5$ CI overlaps)
+%than manual classification.
+
 Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
 statistical estimators were significantly different from the manual classification
 and their mean absolute difference varied considerably.
 % ADDED
 To illustrate the differences, we plot the results for \Chao estimator, the
 estimator suggested by the STADS framework in \Cref{fig:groundtruth}.
-
+The figure shows that \Chao estimator irrespective of test suite used
+(\original, \EvosuiteDynamosa, or \EvosuiteRandom) does not predict the ground
+truth.
 %Out of \projectCount test subjects,
-We note that \Unpmle achieved a maximum of
-50\% agreement (five out of \projectCount test subjects, which was the highest,
-MD $11.1$\%, Stdev. 9.8\%.) However, the confidence
-intervals were very large in many cases for \Unpmle.
 %PCG was next nearest with a CI overlap 4~times with manual classification
 %estimate.
 %
 %
 %ALESSIO:  what <5 means here?
-The other estimators were significantly different % ($<5$)
-(less than $5$ CI overlaps)
- than manual classification.
-
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 There is a statistically significant difference between the estimates
