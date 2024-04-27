@@ -2448,23 +2448,23 @@ and RQ3 evaluates whether the choice of sampling units have any impact.
 %For reference, estimates from manual classification are reported in solid purple.}
 %\label{fig:results}
 %\end{figure*}
-\begin{figure}
+\begin{figure*}
   %\centering
-\begin{subfigure}{\textwidth}
-      \includegraphics[width=0.5\textwidth]{chaoplots/3/Chao-organic.pdf}
+\begin{subfigure}{.39\textwidth}
+      \includegraphics[width=0.95\linewidth]{chaoplots/3/Chao-organic.pdf}
 \vspace*{-3mm}
 \caption{\Chao \original}
 \label{fig:groundtruth1}
 \end{subfigure}
 %\hfill
-\begin{subfigure}{\textwidth}
-      \includegraphics[width=0.5\textwidth,trim=0cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
+\begin{subfigure}{.30\textwidth}
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
 \vspace*{-3mm}
 \caption{\Chao \EvosuiteDynamosa}
 \label{fig:groundtruth2}
 \end{subfigure}
-\begin{subfigure}{\textwidth}
-      \includegraphics[width=0.5\textwidth,trim=0cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
+\begin{subfigure}{.30\textwidth}
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
 \vspace*{-3mm}
 \caption{\Chao \EvosuiteRandom}
 \label{fig:groundtruth3}
@@ -2475,13 +2475,13 @@ and RQ3 evaluates whether the choice of sampling units have any impact.
   \definecolor{cmethod}{RGB}{0,108,168}
   \definecolor{cclass}{RGB}{219,36,42}
 \caption{Killable mutants estimated by species richness estimators, comparison with ground truth.
-The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants.
+The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
   The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
   The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI (ground truth), with dark purple line the point estimate.
   The dotted black line indicates the total
   percentage of killed mutants, which is the absolute lower-bound. The figure shows how neither \textcolor{cmethod}{method} nor \textcolor{cclass}{class}
   based estimators overlap with \textcolor{cgroundtruth}{ground truth CI} consistently.}
-\end{figure}
+\end{figure*}
 
 
 \noindent\textbf{RQ1.
@@ -2647,6 +2647,9 @@ to the estimates from manual classification is statistically significant for eve
 Likewise, estimates from \EvosuiteRandom are always significantly differently
 than the ones from \EvosuiteDynamosa.
 \end{tcolorbox}
+\definecolor{coriginal}{RGB}{0,150,47}
+\definecolor{cdynamosa}{RGB}{0,108,168}
+\definecolor{crandom}{RGB}{219,36,42}
 
 \begin{figure*}
 \begin{subfigure}{.39\textwidth}
@@ -2669,10 +2672,10 @@ than the ones from \EvosuiteDynamosa.
 \caption{\Chao \EvosuiteRandom}
 \end{subfigure}
 \label{fig:groundtruth}
-  \caption{Comparison with \textbf{methods} as sampling unit.
-  The \original is {\color{darkgreen}{green}}, 
-  \EvosuiteDynamosa is
-  {\color{blue}{blue}}, and \EvosuiteRandom is {\color{red}{red}}.}
+  \caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit.
+  The \original is \textcolor{coriginal}{green}, 
+  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
+  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
 \end{figure*}
 
 \begin{figure*}
@@ -2696,10 +2699,11 @@ than the ones from \EvosuiteDynamosa.
 \caption{\Chao \EvosuiteRandom}
 \end{subfigure}
 \label{fig:groundtruth}
-  \caption{Comparison with \textbf{classes} as sampling unit.
-  The \original is {\color{darkgreen}{green}}, 
-  \EvosuiteDynamosa is {\color{blue}{blue}},
-  and \EvosuiteRandom is {\color{red}{red}}.}
+  \caption{Comparison of estimates from different test suites with \textbf{classes} as sampling unit.
+  The \original is \textcolor{coriginal}{green}, 
+  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
+  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
+
 
 \end{figure*}
 
