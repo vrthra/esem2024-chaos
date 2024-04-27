@@ -2723,7 +2723,7 @@ statistical estimators were significantly different from the manual classificati
 and their mean absolute difference varied considerably.
 % ADDED
 To illustrate the differences, we plot the results for \Chao estimator\todo{
-  We should do \UNPMLE instead.} (the
+  We should do \Unpmle instead.} (the
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
 The figure shows that \Chao estimator irrespective of test suite used
 (\original, \EvosuiteDynamosa, or \EvosuiteRandom) does not predict the ground
@@ -3058,6 +3058,7 @@ and conducted a large empirical study that included
 $10$ mature open-source Java projects, $3$ types of test suites, and the 
 manual classification of $1016$ live mutants involving $3$ researchers.
 
+\noindent\textbf{Studies conducting mutant classification.}
 A few previous studies also relied on the manual mutants classification.
 % of equivalent mutants.
 %(see \Cref{tbl:eqvresearch}).
@@ -3076,11 +3077,11 @@ live mutants from four COBOL programs.
 %but without exposure to the programs under analysis,
 %and classified mutants from four COBOL programs.
 %(For the two programs were information is given, they are approximately 150 LOC in size),
-Similar to our study, Acree used manually written tests
+Similar to our classification procedure, Acree used manually written tests
 % set designed to cover the major points of the specification
 %was used 
 for eliminating a large chuck of mutants; however, differently 
-from us, the labelers had no exposure to the programs under analysis and
+from us, the classifiers had no exposure to the programs under analysis and
 focused on small COBOL programs.
 %most, but not all detectable mutants,
 %whereas, after the classification, the collected answers were
@@ -3153,12 +3154,21 @@ difficult to evaluate, projects, and a representative set of mutation operators~
 Finally, we studied manually written and automatically generated unit test suites, 
 that covered more mutants and estimating a higher number (generally $> 90$\%) of killable mutants.
 
-Papadakis et al.~\cite{papadakis2014mitigating} is a study similar to ours,
-with more numerous subjects. However, compared to that study,
-we consider larger programs and different test suites, do not employ selective mutation, whose limits have been discussed empirically and theoretically~\cite{gopinath2017mutation,gopinath2016on}, and we employ mechanisms such as conflict identification and resolution, to reduce manual classification error proneness. %Furthermore, test suite size can be misleading and one should be careful to use it (Chen 2020).
-We also note that Papadakis et al. requires manual classification, however limited. This may not be feasible in many cases where the testers may not be
-program experts. Furthermore, evaluating residual risk may be conducted by
-people who are not involved in either testing or development (such as the end-user). Hence, alternative means of estimating killable mutants is required.
+Papadakis et al.~\cite{papadakis2014mitigating} conducted a study
+for estimating killable mutants with more numerous subjects.
+We note that this approach requires manual classification,
+however limited, for residual defect estimation.
+This may not be feasible in many cases where the testers may not be program experts.
+Furthermore, evaluating residual risk may be conducted by
+people who are not involved in either testing or development (such as the end-user).
+Hence, alternative means of estimating killable mutants is required.
+
+In comparison to the mutant classification performed in Papadakis et al.~\cite{papadakis2014mitigating},
+our study considers larger programs and different test suites, do not employ selective
+mutation, whose limits have been discussed empirically and
+theoretically~\cite{gopinath2017mutation,gopinath2016on}, and we employ
+mechanisms such as conflict identification and resolution, to reduce manual
+classification error proneness.
 
 %Additionally, since Yao et al.'s misclassification rate is missing their prediction might be affected by a larger error.
 %
