@@ -3064,6 +3064,43 @@ and conducted a large empirical study that included
 $10$ mature open-source Java projects, $3$ types of test suites, and the 
 manual classification of $1016$ live mutants involving $3$ researchers.
 
+\noindent\textbf{Studies focusing on estimating killable or equivalent mutants.}
+Papadakis et al.~\cite{papadakis2014mitigating} conducted a study
+for estimating killable mutants with more numerous subjects.
+We note that this approach requires manual classification,
+however limited, for residual defect estimation.
+This may not be feasible in many cases where the testers may not be program experts.
+Furthermore, evaluating residual risk may be conducted by
+people who are not involved in either testing or development (such as the end-user).
+Hence, alternative means of estimating killable mutants is required.
+
+In comparison to the mutant classification performed in Papadakis et al.~\cite{papadakis2014mitigating},
+our study considers larger programs and different test suites, do not employ selective
+mutation, whose limits have been discussed empirically and
+theoretically~\cite{gopinath2017mutation,gopinath2016on}, and we employ
+mechanisms such as conflict identification and resolution, to reduce manual
+classification error proneness.
+
+%To estimate equivalent mutants, other methods have been proposed.
+%
+Vincenzi et al.~\cite{vincenzi2002bayesian} proposed
+estimating the (posterior) probability that specific mutation operators
+generate equivalent mutants.
+%but assumed the distribution
+%of stubborn mutants, i.e., killable mutants that are difficult to spot, 
+%alike equivalent mutants, which might not be valid~\cite{yao2014a}. 
+%
+Marsit et al.~\cite{marsit2017estimating,marsit2018impact,ayad2019estimating}
+proposed using information theory %(e.g., entropy) 
+to measure the intrinsic \emph{redundancy} in programs as a proxy for mutants equivalence. 
+%apply information theory to estimate the number of equivalent mutants
+Despite their potential benefits and promising initial results,
+none of those methods has been empirically evaluated yet.
+%However, those approaches %might rely on invalid assumptions and
+%have not been %implemented or
+%empirically evaluated yet.
+
+
 \noindent\textbf{Studies conducting mutant classification.}
 A few previous studies also relied on the manual mutants classification.
 % of equivalent mutants.
@@ -3160,21 +3197,6 @@ difficult to evaluate, projects, and a representative set of mutation operators~
 Finally, we studied manually written and automatically generated unit test suites, 
 that covered more mutants and estimating a higher number (generally $> 90$\%) of killable mutants.
 
-Papadakis et al.~\cite{papadakis2014mitigating} conducted a study
-for estimating killable mutants with more numerous subjects.
-We note that this approach requires manual classification,
-however limited, for residual defect estimation.
-This may not be feasible in many cases where the testers may not be program experts.
-Furthermore, evaluating residual risk may be conducted by
-people who are not involved in either testing or development (such as the end-user).
-Hence, alternative means of estimating killable mutants is required.
-
-In comparison to the mutant classification performed in Papadakis et al.~\cite{papadakis2014mitigating},
-our study considers larger programs and different test suites, do not employ selective
-mutation, whose limits have been discussed empirically and
-theoretically~\cite{gopinath2017mutation,gopinath2016on}, and we employ
-mechanisms such as conflict identification and resolution, to reduce manual
-classification error proneness.
 
 %Additionally, since Yao et al.'s misclassification rate is missing their prediction might be affected by a larger error.
 %
@@ -3231,23 +3253,6 @@ Tohma et al.~\cite{tohma1989structural}, instead, modeled
 the distribution of observed faults as hyper-geometric distribution
 to estimate the number of residual defects.
 
-%To estimate equivalent mutants, other methods have been proposed.
-%
-Vincenzi et al.~\cite{vincenzi2002bayesian} proposed
-estimating the (posterior) probability that specific mutation operators
-generate equivalent mutants.
-%but assumed the distribution
-%of stubborn mutants, i.e., killable mutants that are difficult to spot, 
-%alike equivalent mutants, which might not be valid~\cite{yao2014a}. 
-%
-Marsit et al.~\cite{marsit2017estimating,marsit2018impact,ayad2019estimating}
-proposed using information theory %(e.g., entropy) 
-to measure the intrinsic \emph{redundancy} in programs as a proxy for mutants equivalence. 
-%apply information theory to estimate the number of equivalent mutants
-Despite their potential benefits and promising initial results,
-none of those methods has been empirically evaluated yet.
-%However, those approaches might rely on invalid assumptions and have not been implemented
-%or empirically evaluated yet.
 
 %\subsection{Estimators}\todo{Is this section necessary? Maybe this should be part of the background?}
 %The estimators we use are from Bo\"hme et al.~\cite{bohme2018stads}
