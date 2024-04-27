@@ -2470,9 +2470,16 @@ and RQ3 evaluates whether the choice of sampling units have any impact.
 \label{fig:groundtruth3}
 \end{subfigure}
 \label{fig:groundtruth}
+  \newcommand{\colorpurple}{163, 124, 194}
+  \definecolor{cgroundtruth}{RGB}{163,124,194}
+  \definecolor{cmethod}{RGB}{0,108,168}
+  \definecolor{cclass}{RGB}{219,36,42}
 \caption{Killable mutants estimated by species richness estimators, comparison with ground truth.
-  The method based estimators are in {\color{blue}{blue}}, while class based estimators are in {\color{red}{red}}.
-The purple is the manual sampling based estimate (ground truth).}
+The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants.
+  The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
+  The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI (ground truth), with dark purple line the point estimate.
+  The dotted black line indicates the total
+  percentage of killed mutants, which is the absolute lower-bound.}
 \end{figure}
 
 
