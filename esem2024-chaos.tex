@@ -224,7 +224,7 @@ pdftitle={\mytitle}
 \usepackage{float}
 \usepackage{soul}
 \usepackage{alltt}
-%\usepackage{caption}
+\usepackage{caption}
 
 %\usepackage{mdwtab}
 \usepackage{syntax}
@@ -2448,116 +2448,31 @@ and RQ3 evaluates whether the choice of sampling units have any impact.
 %For reference, estimates from manual classification are reported in solid purple.}
 %\label{fig:results}
 %\end{figure*}
-\begin{figure*}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{chaoplots/3/Chao-organic.pdf}
+\begin{figure}
+  %\centering
+\begin{subfigure}{\textwidth}
+      \includegraphics[width=0.5\textwidth]{chaoplots/3/Chao-organic.pdf}
 \vspace*{-3mm}
-\caption{Chao organic}
+\caption{\Chao \original}
+\label{fig:groundtruth1}
 \end{subfigure}
-\hfill
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{chaoplots/3/Chao-dynamosa.pdf}
+%\hfill
+\begin{subfigure}{\textwidth}
+      \includegraphics[width=0.5\textwidth,trim=0cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
 \vspace*{-3mm}
-\caption{Chao organic}
+\caption{\Chao \EvosuiteDynamosa}
+\label{fig:groundtruth2}
 \end{subfigure}
-%\begin{subfigure}{.49\textwidth}
-%    \centering
-%      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/ICE-k0.pdf}
-%\vspace*{-3mm}
-%\caption{\ICEallrare}
-%        %\caption{1b}
-%\end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%       \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Zelterman.pdf}
-% \vspace*{-3mm}
-% \caption{\Zelterman}
-%         %\caption{1b}
-% \end{subfigure}
-%
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Chao-Bunge.pdf}
+\begin{subfigure}{\textwidth}
+      \includegraphics[width=0.5\textwidth,trim=0cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
 \vspace*{-3mm}
-\caption{\ChaoBunge}
-        %\caption{1b}
+\caption{\Chao \EvosuiteRandom}
+\label{fig:groundtruth3}
 \end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Jackknife.pdf}
-\vspace*{-3mm}
-\caption{\Jackknife}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Chao.pdf}
-\vspace*{-3mm}
-\caption{\Chao}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/iChao.pdf}
-\vspace*{-3mm}
-\caption{\improvedChao}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/ICE.pdf}
-\vspace*{-3mm}
-\caption{\ICE}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/ICE-1.pdf}
-\vspace*{-3mm}
-\caption{\improvedICE}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Unpmle.pdf}
-\vspace*{-3mm}
-\caption{\Unpmle}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Bootstrap.pdf}
-\vspace*{-3mm}
-\caption{\Bootstrap}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/Pnpmle.pdf}
-\vspace*{-3mm}
-\caption{\Pnpmle}
-        %\caption{1b}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-      \includegraphics[width=0.95\linewidth]{charts/ggplot/estimators-no-title/PCG.pdf}
-\vspace*{-3mm}
-\caption{\PCG}
-        %\caption{1b}
-\end{subfigure}
-\caption{Killable mutants estimated by species richness estimators.
-Each plot shows the performance of a single estimator across all projects,  
-test suites (\original is red, \EvosuiteRandom is blue, and \EvosuiteDynamosa is green), and
-using class sampling (dotted lines) and method sampling (solid lines).
-For reference, estimates from manual classification are reported in solid purple.
-Projects (Y axis) numbered according to \Cref{tbl:subjectmeasures} column 1.
-The estimates or CIs going beyond 200x of the generated mutants are not shown.}
-\label{fig:results}
-\end{figure*}
+\label{fig:groundtruth}
+\caption{Killable mutants estimated by species richness estimators. Comparison with ground truth. The method based estimators are in blue, while class based estimators are in red. The purple is the manual sampling based estimate (ground truth).}
+\end{figure}
 
-
-\bigskip
 
 \noindent\textbf{RQ1.
 What is the accuracy of frequency based estimators in predicting killable mutants?}\\
@@ -2623,6 +2538,9 @@ intervals were very large in many cases for \Unpmle (\Cref{fig:results}).
 The other estimators were significantly different % ($<5$)
 (less than $5$ CI overlaps)
  than manual classification.
+
+% ADDED
+\cref{fig:groundtruth}
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 There is a statistically significant difference between the estimates
@@ -2719,6 +2637,63 @@ to the estimates from manual classification is statistically significant for eve
 Likewise, estimates from \EvosuiteRandom are always significantly differently
 than the ones from \EvosuiteDynamosa.
 \end{tcolorbox}
+
+\begin{figure*}
+\begin{subfigure}{.39\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-methods-dynamosa-organic.pdf}
+\vspace*{-3mm}
+\caption{\Chao \original}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-dynamosa-random.pdf}
+\vspace*{-3mm}
+\caption{\Chao \EvosuiteDynamosa}
+\end{subfigure}
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-organic-random.pdf}
+\vspace*{-3mm}
+\caption{\Chao \EvosuiteRandom}
+\end{subfigure}
+\label{fig:groundtruth}
+\caption{Killable mutants estimated by species richness estimators. Comparison with methods as sampling unit.}
+\end{figure*}
+
+\begin{figure*}
+\begin{subfigure}{.39\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-classes-dynamosa-organic.pdf}
+\vspace*{-3mm}
+\caption{\Chao \original}
+\end{subfigure}
+\hfill
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-dynamosa-random.pdf}
+\vspace*{-3mm}
+\caption{\Chao \EvosuiteDynamosa}
+\end{subfigure}
+\begin{subfigure}{.30\textwidth}
+    \centering
+      \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-organic-random.pdf}
+\vspace*{-3mm}
+\caption{\Chao \EvosuiteRandom}
+\end{subfigure}
+\label{fig:groundtruth}
+\caption{Killable mutants estimated by species richness estimators. Comparison with classes as sampling unit.}
+\end{figure*}
+
+
+% \caption{Killable mutants estimated by species richness estimators.
+% Each plot shows the performance of a single estimator across all projects,  
+% test suites (\original is red, \EvosuiteRandom is blue, and \EvosuiteDynamosa is green), and
+% using class sampling (dotted lines) and method sampling (solid lines).
+% For reference, estimates from manual classification are reported in solid purple.
+% Projects (Y axis) numbered according to \Cref{tbl:subjectmeasures} column 1.
+% The estimates or CIs going beyond 200x of the generated mutants are not shown.}
 
 
 
