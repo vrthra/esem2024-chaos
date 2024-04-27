@@ -2448,33 +2448,33 @@ and RQ3 evaluates whether the choice of sampling units have any impact.
 %For reference, estimates from manual classification are reported in solid purple.}
 %\label{fig:results}
 %\end{figure*}
+\definecolor{cgroundtruth}{RGB}{163,124,194}
+\definecolor{cmethod}{RGB}{0,108,168}
+\definecolor{cclass}{RGB}{219,36,42}
+
 \begin{figure*}
   %\centering
 \begin{subfigure}{.39\textwidth}
       \includegraphics[width=0.95\linewidth]{chaoplots/3/Chao-organic.pdf}
 \vspace*{-3mm}
-\caption{\Chao \original}
+  \caption{\original \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth1}
 \end{subfigure}
 %\hfill
 \begin{subfigure}{.30\textwidth}
       \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
 \vspace*{-3mm}
-\caption{\Chao \EvosuiteDynamosa}
+\caption{\EvosuiteDynamosa \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth2}
 \end{subfigure}
 \begin{subfigure}{.30\textwidth}
       \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
 \vspace*{-3mm}
-\caption{\Chao \EvosuiteRandom}
+  \caption{\EvosuiteRandom \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth3}
 \end{subfigure}
 \label{fig:groundtruth}
-  \newcommand{\colorpurple}{163, 124, 194}
-  \definecolor{cgroundtruth}{RGB}{163,124,194}
-  \definecolor{cmethod}{RGB}{0,108,168}
-  \definecolor{cclass}{RGB}{219,36,42}
-\caption{Killable mutants estimated by species richness estimators, comparison with ground truth.
+\caption{Killable mutants estimated by species richness estimators for \Chao estimator, comparison with ground truth.
 The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
   The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
   The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI (ground truth), with dark purple line the point estimate.
@@ -2656,23 +2656,23 @@ than the ones from \EvosuiteDynamosa.
     \centering
       \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-methods-dynamosa-organic.pdf}
 \vspace*{-3mm}
-\caption{\Chao \EvosuiteDynamosa vs \original}
+  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.30\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-dynamosa-random.pdf}
 \vspace*{-3mm}
-\caption{\Chao \EvosuiteDynamosa vs \EvosuiteRandom}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
 \end{subfigure}
 \begin{subfigure}{.30\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-organic-random.pdf}
 \vspace*{-3mm}
-\caption{\Chao \original vs \EvosuiteRandom}
+\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
 \end{subfigure}
 \label{fig:groundtruth}
-  \caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit.
+  \caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit for \Chao estimator.
   The \original is \textcolor{coriginal}{green}, 
   \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
   and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
@@ -2683,23 +2683,23 @@ than the ones from \EvosuiteDynamosa.
     \centering
       \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-classes-dynamosa-organic.pdf}
 \vspace*{-3mm}
-\caption{\Chao \EvosuiteDynamosa vs \original}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.30\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-dynamosa-random.pdf}
 \vspace*{-3mm}
-\caption{\Chao \EvosuiteDynamosa vs \EvosuiteRandom}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
 \end{subfigure}
 \begin{subfigure}{.30\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=7cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-organic-random.pdf}
 \vspace*{-3mm}
-\caption{\Chao \original vs \EvosuiteRandom}
+\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
 \end{subfigure}
 \label{fig:groundtruth}
-  \caption{Comparison of estimates from different test suites with \textbf{classes} as sampling unit.
+  \caption{Comparison of estimates from different test suites with \textbf{classes} as sampling unit for \Chao estimator.
   The \original is \textcolor{coriginal}{green}, 
   \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
   and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
