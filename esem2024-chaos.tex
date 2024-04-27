@@ -231,11 +231,11 @@ pdftitle={\mytitle}
 \usepackage{lstautogobble}
 \usepackage{qtree}
 
-\Crefname{figure}{Fig.}{Figs.}
-\Crefname{equation}{Eqn.}{Eqns.}
-\crefname{section}{Section}{Sections}
-\crefname{subsection}{Section}{Sections}
-\Crefname{Algorithm}{Alg.}{Algs.}
+% \Crefname{figure}{Fig.}{Figs.}
+% \Crefname{equation}{Eqn.}{Eqns.}
+% \crefname{section}{Section}{Sections}
+% \Crefname{subsection}{Section}{Sections}
+% \Crefname{Algorithm}{Alg.}{Algs.}
 
 \usepackage{subcaption}
 \usepackage{multirow}
@@ -2364,39 +2364,9 @@ but were unfamiliar with mutation analysis before the start of this study.
 %
 To cope with that, we organized a pilot study for training \rB and \rC
 using \emph{commons-csv}, the smallest among the selected projects, 
-and all the $116$ mutants that survived the analysis.
+and all the $116$ surviving mutants of \emph{commons-csv}.
 
-After the initial training, the classification considered one project at a time in alphabetical order
-(as listed in \Cref{tbl:classified}) and required researchers \rB and \rC \emph{independently}
-to classify all $100$ sampled mutants. % as killable or equivalent.
-%
-Killable mutants must be accompanied by a (hypothetical) unit test that could show the difference
-in behavior between that mutant and the original program. Similarly, equivalent mutants must be
-motivated with a convincing explanation. % why that mutant should be considered equivalent. % in a fashion to be acceptable to the other researchers.
-%
-As a result, for each sampled mutant, we collected % of the classification includes
-%the particular mutant identifier, 
-a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
-and optional comments.
-Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
-
-As final step, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
-and let the three classifiers discuss and resolve them. 
-%
-During the discussion, the lead classifier \rA acted as the moderator while 
-\rB and \rC could update their original classifications in light of the discussed
-arguments. The discussion continued until the final classification was accepted unanimously. 
-%
-%After reaching the consensus, we collected all the necessary data to assess the quality of
-%the statistical estimators and to study the effect of test suites and sampling strategies on them.
-%The next section summarizes and discusses our findings.
-
-Given the proportion of killable mutants in a sample, we obtained the population proportion---and thus an estimate of the total number of killable
-mutants---with population proportion confidence intervals~\cite{ott2015introduction}.
-%
-The estimates from manual classification are the 95\% confidence intervals based on random sampling.
-
-\begin{table}[t]
+\begin{table}[h]
   \caption{Manual classification of live mutants.} % for the selected Apache Common projects.
 %Misclassifications are reported under MER (Misclassification Error Rate). 
 %}
@@ -2429,13 +2399,44 @@ commons-collections  &100 & 3  & 2  &  1 \\
 \end{table}
 
 
+
+After the initial training, the classification considered one project at a time in alphabetical order
+(as listed in \Cref{tbl:classified}) and required researchers \rB and \rC \emph{independently}
+to classify all $100$ sampled mutants. % as killable or equivalent.
+%
+Killable mutants must be accompanied by a (hypothetical) unit test that could show the difference
+in behavior between that mutant and the original program. Similarly, equivalent mutants must be
+motivated with a convincing explanation. % why that mutant should be considered equivalent. % in a fashion to be acceptable to the other researchers.
+%
+As a result, for each sampled mutant, we collected % of the classification includes
+%the particular mutant identifier, 
+a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
+and optional comments.
+Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
+
+As final step, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
+and let the three classifiers discuss and resolve them. 
+%
+During the discussion, the lead classifier \rA acted as the moderator while 
+\rB and \rC could update their original classifications in light of the discussed
+arguments. The discussion continued until the final classification was accepted unanimously. 
+%
+%After reaching the consensus, we collected all the necessary data to assess the quality of
+%the statistical estimators and to study the effect of test suites and sampling strategies on them.
+%The next section summarizes and discusses our findings.
+
+Given the proportion of killable mutants in a sample, we obtained the population proportion---and thus an estimate of the total number of killable
+mutants---with population proportion confidence intervals~\cite{ott2015introduction}.
+%
+The estimates from manual classification are the 95\% confidence intervals based on random sampling.
 \section{Results}
 \label{sec:results}
-Our study seeks answer to three main research questions investigating
+Our study seeks answer the three main research questions investigating
 the ability of frequency based statistical estimators to predict the
-number of killable mutants in a project. RQ1 asks about the accuracy of
-frequency based estimators. RQ2 investigates the impact of sampling strategies
-and RQ3 evaluates whether the choice of sampling units have any impact.
+number of killable mutants in a project.
+%RQ1 asks about the accuracy of
+%frequency based estimators. RQ2 investigates the impact of sampling strategies
+%and RQ3 evaluates whether the choice of sampling units have any impact.
 %using original (RQ1) and unbiased (RQ2) test suites as well as the robustness of such estimators against changes in sampling strategy (RQ3).
 
 %\begin{figure*}
@@ -2503,7 +2504,8 @@ difference between the point estimate and manual classification estimate
 normalized by the manual classification estimate, i.e., $\frac{E - ME}{ME}$ ($\times$
 100 for percentage). We removed any estimate that resulted in negative
 CI upperbound, point estimate, or no estimate at all. We also removed any
-estimate that resulted in $\infty$ in upper CI. The count of such valid
+estimate that resulted in $\infty$ in upper CI\todo{
+We should also remove any that results in a point estimate above 100\%}. The count of such valid
 estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 
 \begin{table}
@@ -2549,7 +2551,7 @@ The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
 \Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original).
 
 
-\begin{table}
+\begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between method
 estimators across subjects---\EvosuiteRandom test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
@@ -2574,7 +2576,7 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \label{tbl:estrandom}
 \end{table}
 %
-\begin{table}
+\begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between method
 estimators across subjects---\EvosuiteDynamosa test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
@@ -2616,7 +2618,7 @@ difference with respect to manual classification.
 %
 The results are given in tables \Cref{tbl:estoriginalclass},
 \Cref{tbl:estrandomclass}, and \Cref{tbl:estdynamosaclass}.
-These results are also plotted as dotted lines in \Cref{fig:results}.
+%These results are also plotted as dotted lines in \Cref{fig:results}.
 
 \begin{table}[t]
 \caption{Comparison of \emph{mean difference (MD)} between class
@@ -2694,33 +2696,17 @@ Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
 \end{table}
 
 
-From \Cref{tbl:estoriginalclass}, we see that Bootstrap had the best
-overlap with CI (6 times), and mean difference (mean 16.9\%, Stdev. 19.2\%).
-%
-For \EvosuiteRandom and \EvosuiteDynamosa, the situation was the same as before
-with the manual classification and estimates confidence intervals not
-overlapping a majority of the time.
-%
-Furthermore, we also found that the estimates from method level sampling units
-and class level sampling units are also statistically significantly different.
-
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-The difference between estimates from test method and test class level
-estimators to the estimates from manual classification are statistically
-significant for every estimator examined. Furthermore, the difference between
-each other is statistically significant for every estimator examined.
-\end{tcolorbox}
-
 % DISCUSSION
 \section{Discussion}
+What does these results mean? We discuss the implications next.\\
 \noindent\textbf{RQ1} \textbf{How accurate are frequency based estimators in predicting
-    killable mutants?}
+    killable mutants?}\\
 Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
 statistical estimators were significantly different from the manual classification
 and their mean absolute difference varied considerably.
 % ADDED
 To illustrate the differences, we plot the results for \Chao estimator, the
-estimator suggested by the STADS framework in \cref{fig:groundtruth}.
+estimator suggested by the STADS framework in \Cref{fig:groundtruth}.
 
 %Out of \projectCount test subjects,
 We note that \Unpmle achieved a maximum of
@@ -2763,7 +2749,7 @@ Bootstrap (mean 39.1\% Stdev. 24.8\%).
 
 To illustrate the differences, we plot the results for \Chao estimator, the
 estimator suggested by the STADS framework in
-\cref{fig:methodsamplingunit} and \cref{fig:classsamplingunit}.
+\Cref{fig:methodsamplingunit} and \Cref{fig:classsamplingunit}.
 
 Comparing the estimators across \EvosuiteRandom and \EvosuiteDynamosa
 test suites, we also observed that none behaved consistently, i.e.,
@@ -2841,6 +2827,27 @@ than the ones from \EvosuiteDynamosa.
 % For reference, estimates from manual classification are reported in solid purple.
 % Projects (Y axis) numbered according to \Cref{tbl:subjectmeasures} column 1.
 % The estimates or CIs going beyond 200x of the generated mutants are not shown.}
+
+\noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}
+
+From \Cref{tbl:estoriginalclass}, we see that Bootstrap had the best
+overlap with CI (6 times), and mean difference (mean 16.9\%, Stdev. 19.2\%).
+%
+For \EvosuiteRandom and \EvosuiteDynamosa, the situation was the same as before
+with the manual classification and estimates confidence intervals not
+overlapping a majority of the time.
+%
+Furthermore, we also found that the estimates from method level sampling units
+and class level sampling units are also statistically significantly different.
+The differences observed are illustrated for \Chao estimator in \Cref{fig:groundtruth}.
+
+\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+The difference between estimates from test method and test class level
+estimators to the estimates from manual classification are statistically
+significant for every estimator examined. Furthermore, the difference between
+each other is statistically significant for every estimator examined.
+\end{tcolorbox}
+
 
 
 
