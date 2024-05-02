@@ -2500,14 +2500,13 @@ We first checked whether the statistical estimators are significantly different
 from the manual classification, i.e.,  their 95\% confidence interval did not overlap
 with the 95\% confidence intervals from manual classification. Next, we computed
 the difference between the two estimates using normalized mean difference (MD) computed as the
-difference between the point estimate $E$ and manual classification estimate $ME$
-normalized by the total number of mutants, i.e., $\frac{E - ME}{S}$ ($\times$
-100 for percentage). We removed any estimate that resulted in negative
+difference between the point estimate $E$ and manual classification estimate $E^M$,
+i.e., ${|E - E^M|}$. We removed any estimate that resulted in negative
 CI upperbound, point estimate, or no estimate at all.
 We also removed any estimate that was higher than the total number of mutants.
 %\todo{We should also remove any that results in a point estimate above 100\%}.
 The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
-The \emph{Mean} column shows the mean difference, and \emph{Stdev} shows the standard deviation in this estimate.
+The \emph{Mean} column shows the mean difference, and \emph{Stdev} shows the standard deviation of \emph{valid estimates}.
 
 %\begin{table}
 %\caption{Comparison of \emph{mean difference (MD)} between method estimators
@@ -2829,46 +2828,39 @@ The results are given in tables \Cref{tbl:estoriginalclass},
 \section{Discussion}
 What does these results mean? We discuss the implications next.\\
 \noindent\textbf{RQ1} \textbf{How accurate are frequency based estimators in predicting
-    killable mutants?}\\
-Inspecting \Cref{tbl:estoriginal}, we note that \Unpmle achieved a maximum of
-50\% agreement (five out of \projectCount test subjects, which was the highest,
-MD $11.1$\%, Stdev. 9.8\%.)\todo{
-This needs to be verified. Currently, it seems that we have a smaller number of
-valid estimates than 10, and their mean difference should be larger.
-} However, the confidence
-intervals were very large in many cases for
-\Unpmle\todo{Add a reference to appendix where we provide the CI}.
-For an estimator to be useful in predicting the killable mutants, it must be
-able to both \emph{accurate} and \emph{precise}. \textbf{Accuracy} means that the
-prediction must be close to the correct value, and \textbf{precision} means that
-the uncertainty in prediction must be low.
-While \Unpmle has moderate accuracy, its precision is very low.
-%The other estimators were significantly different % ($<5$)
-%(less than $5$ CI overlaps)
-%than manual classification.
+    killable mutants?}
+Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
+maximum overlap with manual estimates --- three out of \projectCount test
+subjects had overlapping CI with $E^M$.
+\ICEallrare achieves a smallest mean difference of 5.78 from $E^M$.
+Finally, \Bootstrap achieves the
+maximum number of \emph{valid estimates} with 9 valid estimates, but has a much
+larger difference from the manual estimate $E^M$ (19.76).
 
 Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
-statistical estimators were significantly different from the manual classification
-and their mean absolute difference varied considerably.
-% ADDED
-To illustrate the differences, we plot the results for \Chao estimator\todo{
-  We should do \Unpmle instead.} (the
-estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
-The figure shows that \Chao estimator irrespective of test suite used
-(\original, \EvosuiteDynamosa, or \EvosuiteRandom) does not predict the ground
-truth.
-%Out of \projectCount test subjects,
-%PCG was next nearest with a CI overlap 4~times with manual classification
-%estimate.
-%
-%
-%ALESSIO:  what <5 means here?
-
+statistical estimators were significantly different from the manual classification.
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 There is a statistically significant difference between the estimates
 from \original test suites and manual classification for
 every estimator examined.
 \end{tcolorbox}
+
+To illustrate the differences, we plot the results for \Chao estimator (the
+estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
+The figure shows that \Chao estimator irrespective of test suite used
+(\original, \EvosuiteDynamosa, or \EvosuiteRandom) does not predict the ground
+truth.
+
+
+Which estimator is useful to the developers?
+That is, can we recommend an estimator?
+When we have a statistically significant difference between manual estimate and
+point estimate, it is evidence that the estimator is unable to estimate the
+target value correctly.
+Hence, it is unclear if we can trust the results from \ICEallrare,
+\ChaoBunge, \PCG etc which has a significant number of non-overlapping estimates
+even though the difference from the manual estimates are the smallest.
+Hence, we withhold our recommendation at this stage.
 
 \noindent\textbf{RQ2.
 %Which statistical estimator best predicts the estimates
