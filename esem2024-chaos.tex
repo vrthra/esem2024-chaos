@@ -2858,7 +2858,7 @@ When we have a statistically significant difference between manual estimate and
 point estimate, it is evidence that the estimator is unable to estimate the
 target value correctly.
 Hence, it is unclear if we can trust the results from \ICEallrare,
-\ChaoBunge, \PCG etc which has a significant number of non-overlapping estimates
+\ChaoBunge, \PCG etc. which has a significant number of non-overlapping estimates
 even though the difference from the manual estimates are the smallest.
 Furthermore, at the confidence interval at 95\% the mean margin of error was
 just 1.9\%. That is, manual estimation from just 100 mutants can provide a
@@ -2876,16 +2876,20 @@ Inspecting \Cref{tbl:estrandom} for \EvosuiteRandom,
 a comparison reveals that the overlaps between confidence intervals
 from manual classification and \EvosuiteRandom (\Cref{tbl:estrandom}) was
 considerably fewer than that between manual and \original (\Cref{tbl:estoriginal}).
-The smallest difference in MD was observed for \Zelterman
-(mean 32.6\%, Stdev. 19.6\%).
-%
-For \EvosuiteDynamosa, the situation was slightly better (\Cref{tbl:estdynamosa}), \ICEallrare
-overlapped with manual classification estimates 4 times out of 10.
-The smallest difference in MD, with least variation was observed for
-Bootstrap (mean 39.1\% Stdev. 24.8\%).
+The smallest difference in MD was observed for \ICEallrare,
+(mean 19.51\%, Stdev. 21.08\%). However, the \emph{valid estimates}
+for \ICEallrare was just 2. For every other estimator, while the number of
+\emph{valid estimates} were considerably better, the number of CI overlaps were
+still dismal, and had a much larger mean difference, all above 30\%.
 
-To illustrate the differences, we plot the results for \Chao estimator, the
-estimator suggested by the STADS framework in
+%
+For \EvosuiteDynamosa, the situation was no better (\Cref{tbl:estdynamosa}),
+\ICEallrare which had the smallest mean difference (5.54) had just one valid
+estimate. Every other estimator had a larger mean difference, with very few CI
+overlaps.
+
+To illustrate the differences, as before, we plot the results for \Chao
+estimator, the estimator suggested by the STADS framework in
 \Cref{fig:methodsamplingunit} and \Cref{fig:classsamplingunit}.
 
 Comparing the estimators across \EvosuiteRandom and \EvosuiteDynamosa
