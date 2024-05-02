@@ -1,0 +1,138 @@
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---between \original and \EvosuiteRandom test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 1 & 0 & 34.16 &  \\
+\Zelterman & 5 & 1 & 25.38 & 10.19 \\
+\ChaoBunge & 5 & 0 & 27.73 & 16.02 \\
+\Jackknife & 5 & 1 & 22.32 & 11.01 \\
+\Chao & 7 & 0 & 22.46 & 13.29 \\
+\improvedChao & 6 & 0 & 22.45 & 13.34 \\
+\ICE & 7 & 1 & 19.81 & 15.3 \\
+\improvedICE & 7 & 1 & 20.34 & 13.24 \\
+\Unpmle & 5 & 2 & 31.82 & 24.87 \\
+\Bootstrap & 9 & 4 & 23.59 & 24.28 \\
+\Pnpmle & 4 & 1 & 24.08 & 13.34 \\
+\PCG & 5 & 2 & 32.99 & 28.56 \\
+\hline
+\end{tabular}
+\label{tbl:estoriginalrandommethod}
+\end{table}
+
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between class estimators across subjects---between \original and \EvosuiteRandom test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 1 & 0.0 & 32.81 &  \\
+\Zelterman & 4 & 2.0 & 10.65 & 10.92 \\
+\ChaoBunge & 0 &  &  &  \\
+\Jackknife & 2 & 1.0 & 7.91 & 7.57 \\
+\Chao & 4 & 1.0 & 13.07 & 9.64 \\
+\improvedChao & 2 & 0.0 & 7.6 & 2.87 \\
+\ICE & 2 & 1.0 & 7.72 & 10.66 \\
+\improvedICE & 1 & 0.0 & 10.51 &  \\
+\Unpmle & 1 & 0.0 & 11.65 &  \\
+\Bootstrap & 4 & 3.0 & 6.71 & 8.56 \\
+\Pnpmle & 0 &  &  &  \\
+\PCG & 0 &  &  &  \\
+\hline
+\end{tabular}
+\label{tbl:estoriginalrandomclass}
+\end{table}
+
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---between \original and \EvosuiteDynamosa test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 0 &  &  &  \\
+\Zelterman & 5 & 0.0 & 33.08 & 13.69 \\
+\ChaoBunge & 5 & 1.0 & 34.61 & 20.37 \\
+\Jackknife & 6 & 2.0 & 24.98 & 19.66 \\
+\Chao & 6 & 1.0 & 24.73 & 21.99 \\
+\improvedChao & 6 & 1.0 & 25.27 & 20.43 \\
+\ICE & 6 & 1.0 & 23.93 & 22.07 \\
+\improvedICE & 6 & 1.0 & 27.26 & 18.31 \\
+\Unpmle & 4 & 1.0 & 30.88 & 24.11 \\
+\Bootstrap & 7 & 3.0 & 28.93 & 28.59 \\
+\Pnpmle & 4 & 1.0 & 28.27 & 19.62 \\
+\PCG & 3 & 0.0 & 24.15 & 24.77 \\
+\hline
+\end{tabular}
+\label{tbl:estoriginaldynamosamethod}
+\end{table}
+
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between class estimators across subjects---between \original and \EvosuiteDynamosa test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 0 &  &  &  \\
+\Zelterman & 2 & 1.0 & 16.87 & 14.38 \\
+\ChaoBunge & 1 & 0.0 & 11.29 &  \\
+\Jackknife & 1 & 0.0 & 15.96 &  \\
+\Chao & 3 & 1.0 & 15.51 & 14.73 \\
+\improvedChao & 3 & 2.0 & 10.47 & 13.8 \\
+\ICE & 3 & 1.0 & 13.44 & 13.89 \\
+\improvedICE & 2 & 1.0 & 4.7 & 4.7 \\
+\Unpmle & 0 &  &  &  \\
+\Bootstrap & 4 & 1.0 & 21.66 & 26.34 \\
+\Pnpmle & 0 &  &  &  \\
+\PCG & 0 &  &  &  \\
+\hline
+\end{tabular}
+\label{tbl:estoriginaldynamosaclass}
+\end{table}
+
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---between \EvosuiteRandom and \EvosuiteDynamosa test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 0 &  &  &  \\
+\Zelterman & 5 & 2.0 & 7.82 & 4.58 \\
+\ChaoBunge & 6 & 4.0 & 11.66 & 10.04 \\
+\Jackknife & 6 & 1.0 & 18.15 & 11.85 \\
+\Chao & 7 & 2.0 & 6.79 & 6.52 \\
+\improvedChao & 7 & 2.0 & 7.24 & 7.7 \\
+\ICE & 7 & 4.0 & 5.56 & 7.32 \\
+\improvedICE & 6 & 4.0 & 7.74 & 8.28 \\
+\Unpmle & 4 & 2.0 & 11.49 & 8.89 \\
+\Bootstrap & 7 & 3.0 & 16.19 & 27.53 \\
+\Pnpmle & 6 & 4.0 & 14.32 & 14.12 \\
+\PCG & 5 & 3.0 & 18.55 & 26.39 \\
+\hline
+\end{tabular}
+\label{tbl:estrandomdynamosamethod}
+\end{table}
+
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between class estimators across subjects---between \EvosuiteRandom and \EvosuiteDynamosa test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 1 & 0.0 & 7.03 &  \\
+\Zelterman & 3 & 0.0 & 23.0 & 24.16 \\
+\ChaoBunge & 1 & 0.0 & 4.74 &  \\
+\Jackknife & 0 &  &  &  \\
+\Chao & 4 & 1.0 & 18.68 & 24.38 \\
+\improvedChao & 3 & 1.0 & 6.16 & 1.96 \\
+\ICE & 3 & 2.0 & 4.85 & 2.82 \\
+\improvedICE & 2 & 1.0 & 8.15 & 1.39 \\
+\Unpmle & 0 &  &  &  \\
+\Bootstrap & 5 & 4.0 & 5.47 & 3.89 \\
+\Pnpmle & 0 &  &  &  \\
+\PCG & 0 &  &  &  \\
+\hline
+\end{tabular}
+\label{tbl:estrandomdynamosaclass}
+\end{table}
+
