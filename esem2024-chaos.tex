@@ -2999,34 +2999,27 @@ each other is statistically significant for every estimator examined.
 
 
 \subsection{What Does This Mean in Practice?}
-% For an estimator to be useful to the developer, it should be able to produce
-% estimates that are accurate and precise. \todo{Better ones after we shift to MAE}
-% Previous work~\cite{papadakis2014mitigating} suggests that non-killable mutants
-% range from 9\% to 20\% of all mutants generated. To be useful, an estimator
-% should be able to consistently produce predictions that are more precise than
-% this range.
-% That is, the point estimate should be close enough
+For an estimator to be useful to the developer, it should be able to produce
+estimates that are accurate and precise.
+We note that examination of just 100 mutants are sufficient to produce an
+estimate with in 2\% of the true value. Assuming that examining 100 mutants is
+reasonable, we should expect any equivalent mutant estimator to do better than
+this value. However, the fact that none of the estimators could consistently
+produce estimates that are close to the manual estimates suggest that the
+estimators are not yet ready for use by developers.
 
+To verify that our manual analysis was not the cause of error, we also
+investigated whether the estimators could produce consistent values when
+estimating the same quantities, but using different sampling units---method and class.
+We observe that the estimates produced were inconsistent with few overlaps of
+the CI. This is a cause for concern, and points to violated assumptions in the
+underlying statistical model, which needs to be investigated further.
 
-
-We note that some of the estimators seem to have come close to the manual
-estimates some of the time. However, one of the dangers in relying on numerous
-statistical comparisons is that there may be statistical artifacts in the data,
-which may not correspond to the characteristics of the original population.
-To mitigate the impact of such artifacts, before starting the project, we
-decided that we will only consider those instances where estimators were
-able to consistently achieve reasonable results across at least a majority of
-the projects.
-
-%we have intentionally avoided investigating why certain estimators seem to have
-%worked in certain specific projects some of the time.
-
-
-Given that using various test suites and sampling strategies always produced
-inconsistent and unsatisfactory results for all the considered estimators
-even though the underlying sampled quantity, i.e., killable mutants, did not
-change, our (current) conclusion is that frequency based statistical %standard species richness 
-estimators are unsuitable for estimating killable mutants.
+%Given that using various test suites and sampling strategies always produced
+%inconsistent and unsatisfactory results for all the considered estimators
+%even though the underlying sampled quantity, i.e., killable mutants, did not
+%change, our (current) conclusion is that frequency based statistical %standard species richness 
+%estimators are unsuitable for estimating killable mutants.
 
 Our negative results
 % from applying species richness estimators to mutation analysis
