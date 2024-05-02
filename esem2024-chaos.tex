@@ -2500,13 +2500,14 @@ We first checked whether the statistical estimators are significantly different
 from the manual classification, i.e.,  their 95\% confidence interval did not overlap
 with the 95\% confidence intervals from manual classification. Next, we computed
 the difference between the two estimates using normalized mean difference (MD) computed as the
-difference between the point estimate and manual classification estimate
-normalized by the manual classification estimate, i.e., $\frac{E - ME}{ME}$ ($\times$
+difference between the point estimate $E$ and manual classification estimate $ME$
+normalized by the total number of mutants, i.e., $\frac{E - ME}{S}$ ($\times$
 100 for percentage). We removed any estimate that resulted in negative
-CI upperbound, point estimate, or no estimate at all. We also removed any
-estimate that resulted in $\infty$ in upper CI\todo{
-We should also remove any that results in a point estimate above 100\%}. The count of such valid
-estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
+CI upperbound, point estimate, or no estimate at all.
+We also removed any estimate that was higher than the total number of mutants.
+%estimate that resulted in $\infty$ in upper CI
+%\todo{We should also remove any that results in a point estimate above 100\%}.
+The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 
 %\begin{table}
 %\caption{Comparison of \emph{mean difference (MD)} between method estimators
