@@ -2898,10 +2898,21 @@ their 95\% confidence intervals almost never overlapped.
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
-to the estimates from manual classification is statistically significant for every estimator examined.
+to the estimates from manual classification is statistically significant for
+every estimator examined.
 Likewise, estimates from \EvosuiteRandom are always significantly differently
 than the ones from \EvosuiteDynamosa.
 \end{tcolorbox}
+
+We expected that introducing randomness to the test generation criteria would
+result in better estimates, as it can counteract the manual bias inherent in
+choosing which tests to write. However, in our experiment, we see that the
+mean difference observed from generated test suites is much higher than that
+observed from the \original test suite. This may mean that our generated test
+suites were not sufficiently large to make a precise prediction. However, the
+lack of CI overlaps is a large cause for concern as it indicates that the
+prediction was also lacking in accuracy. %\todo{should we introduce consistency here?}.
+
 \definecolor{coriginal}{RGB}{0,150,47}
 \definecolor{cdynamosa}{RGB}{0,108,168}
 \definecolor{crandom}{RGB}{219,36,42}
@@ -2971,15 +2982,9 @@ than the ones from \EvosuiteDynamosa.
 
 \noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}
 
-From \Cref{tbl:estoriginalclass}, we see that Bootstrap had the best
-overlap with CI (6 times), and mean difference (mean 16.9\%, Stdev. 19.2\%).
-%
-For \EvosuiteRandom and \EvosuiteDynamosa, the situation was the same as before
-with the manual classification and estimates confidence intervals not
-overlapping a majority of the time.
-%
-Furthermore, we also found that the estimates from method level sampling units
-and class level sampling units are also statistically significantly different.
+From \Cref{tbl:methodvsclassoriginal}, we find that the 
+estimates from method level sampling units
+and class level sampling units are statistically significantly different.
 The differences observed are illustrated for \Chao estimator in \Cref{fig:groundtruth}.
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
