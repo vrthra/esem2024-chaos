@@ -2508,30 +2508,52 @@ estimate that resulted in $\infty$ in upper CI\todo{
 We should also remove any that results in a point estimate above 100\%}. The count of such valid
 estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 
-\begin{table}
-\caption{Comparison of \emph{mean difference (MD)} between method estimators
-across subjects---\original test suites}
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-
-Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-\hline
-\ICEallrare		&	4	&	0	&5.8	&	6.6\\
-\Zelterman		&	6	&	1	&13.6	&	14.2\\
-\ChaoBunge		&	6	&	3	&9.8	&	11.2\\
-\Jackknife		&	6	&	0	&15.2	&	9.3\\
-\Chao	        	&	8	&	1	&18.3	&	16.6\\
-%\Chaobiascorrected	&	9	&	1	&16.9	&	16.1\\
-\improvedChao		&	7	&	2	&18.7	&	15.1\\
-\ICE			&	8	&	1	&19.4	&	16.8\\
-\improvedICE		&	8	&	2	&15.3	&	12.8\\
-\B{\Unpmle}			&	\B{6}	&	\B{5}	& \B{13.4}	&	\B{11.1}\\
-\Bootstrap		&	9	&	0	&19.9	&	20.6\\
-\Pnpmle			&	5	&	1	&17.5	&	11.9\\
-\PCG			&	6	&	4	&9.2	&	10.6\\
-\hline
-\end{tabular}
-\label{tbl:estoriginal}
+%\begin{table}
+%\caption{Comparison of \emph{mean difference (MD)} between method estimators
+%across subjects---\original test suites}
+%\begin{tabular}{|l|r|r|r|r|r|}
+%\hline
+%
+%Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
+%\hline
+%\ICEallrare		&	4	&	0	&5.8	&	6.6\\
+%\Zelterman		&	6	&	1	&13.6	&	14.2\\
+%\ChaoBunge		&	6	&	3	&9.8	&	11.2\\
+%\Jackknife		&	6	&	0	&15.2	&	9.3\\
+%\Chao	        	&	8	&	1	&18.3	&	16.6\\
+%%\Chaobiascorrected	&	9	&	1	&16.9	&	16.1\\
+%\improvedChao		&	7	&	2	&18.7	&	15.1\\
+%\ICE			&	8	&	1	&19.4	&	16.8\\
+%\improvedICE		&	8	&	2	&15.3	&	12.8\\
+%\B{\Unpmle}			&	\B{6}	&	\B{5}	& \B{13.4}	&	\B{11.1}\\
+%\Bootstrap		&	9	&	0	&19.9	&	20.6\\
+%\Pnpmle			&	5	&	1	&17.5	&	11.9\\
+%\PCG			&	6	&	4	&9.2	&	10.6\\
+%\hline
+%\end{tabular}
+%\label{tbl:estoriginal}
+%\end{table}
+\begin{table}[h]
+    \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\original test suites}
+    \begin{tabular}{|l|r|r|r|r|r|}
+        \hline
+        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        \hline
+        \ICEallrare & 4 & 0 & 5.78 & 6.52 \\
+        \Zelterman & 6 & 1 & 13.48 & 14.06 \\
+        \ChaoBunge & 6 & 1 & 9.77 & 11.03 \\
+        \Jackknife & 6 & 0 & 15.03 & 9.21 \\
+        \Chao & 8 & 1 & 18.19 & 16.47 \\
+        \improvedChao & 7 & 1 & 18.59 & 15.05 \\
+        \ICE & 8 & 1 & 19.22 & 16.7 \\
+        \improvedICE & 8 & 2 & 15.16 & 12.67 \\
+        \Unpmle & 6 & 2 & 13.28 & 11.0 \\
+        \Bootstrap & 9 & 0 & 19.76 & 20.51 \\
+        \Pnpmle & 5 & 1 & 17.31 & 11.84 \\
+        \PCG & 6 & 3 & 9.14 & 10.52 \\
+        \hline
+    \end{tabular}
+    \label{tbl:estoriginal}
 \end{table}
 
 \noindent\textbf{RQ2.
@@ -2550,56 +2572,99 @@ difference with respect to manual classification.
 The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
 \Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original).
 
-
 \begin{table}[h]
-\caption{Comparison of \emph{mean difference (MD)} between method
-estimators across subjects---\EvosuiteRandom test suites}
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-\hline
-\ICEallrare	&	2	&	1	&19.5	&	21.0\\
-\B{\Zelterman}	&	\B{8}	&	\B{1}	&\B{36.4}	&	\B{19.3}\\
-\ChaoBunge	&	8	&	1	&31.1	&	17.2\\
-\Jackknife	&	8	&	0	&34.4	&	19.6\\
-\Chao	&	9	&	1	&39.6	&	20.8\\
-%\Chaobiascorrected	&	10	&	1	&37.1	&	21.2\\
-\improvedChao	&	9	&	0	&37.6	&	20.6\\
-\ICE	&	9	&	1	&37.9	&	20.4\\
-\improvedICE	&	8	&	0	&38.3	&	17.2\\
-\Unpmle	&	8	&	2	&40.1	&	17.4\\
-\Bootstrap	&	10	&	2	&36.7	&	23.1\\
-\Pnpmle	&	9	&	1	&35.6	&	20.8\\
-\PCG	&	9	&	2	&35.3	&	22.1\\
-\hline
-\end{tabular}
-\label{tbl:estrandom}
+    \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
+    \begin{tabular}{|l|r|r|r|r|r|}
+        \hline
+        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        \hline
+        \ICEallrare & 2 & 1 & 19.51 & 21.08 \\
+        \Zelterman & 8 & 1 & 36.33 & 19.32 \\
+        \ChaoBunge & 8 & 1 & 30.95 & 17.16 \\
+        \Jackknife & 8 & 0 & 34.28 & 19.55 \\
+        \Chao & 9 & 1 & 39.42 & 20.82 \\
+        \improvedChao & 9 & 0 & 37.42 & 20.63 \\
+        \ICE & 9 & 1 & 37.79 & 20.41 \\
+        \improvedICE & 8 & 0 & 38.12 & 17.22 \\
+        \Unpmle & 8 & 2 & 39.9 & 17.42 \\
+        \Bootstrap & 10 & 2 & 36.53 & 23.15 \\
+        \Pnpmle & 9 & 1 & 35.45 & 20.76 \\
+        \PCG & 9 & 2 & 35.17 & 22.03 \\
+        \hline
+    \end{tabular}
+    \label{tbl:estrandom}
 \end{table}
+%\begin{table}[h]
+%\caption{Comparison of \emph{mean difference (MD)} between method
+%estimators across subjects---\EvosuiteRandom test suites}
+%\begin{tabular}{|l|r|r|r|r|r|}
+%\hline
+%Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
+%\hline
+%\ICEallrare	&	2	&	1	&19.5	&	21.0\\
+%\B{\Zelterman}	&	\B{8}	&	\B{1}	&\B{36.4}	&	\B{19.3}\\
+%\ChaoBunge	&	8	&	1	&31.1	&	17.2\\
+%\Jackknife	&	8	&	0	&34.4	&	19.6\\
+%\Chao	&	9	&	1	&39.6	&	20.8\\
+%%\Chaobiascorrected	&	10	&	1	&37.1	&	21.2\\
+%\improvedChao	&	9	&	0	&37.6	&	20.6\\
+%\ICE	&	9	&	1	&37.9	&	20.4\\
+%\improvedICE	&	8	&	0	&38.3	&	17.2\\
+%\Unpmle	&	8	&	2	&40.1	&	17.4\\
+%\Bootstrap	&	10	&	2	&36.7	&	23.1\\
+%\Pnpmle	&	9	&	1	&35.6	&	20.8\\
+%\PCG	&	9	&	2	&35.3	&	22.1\\
+%\hline
+%\end{tabular}
+%\label{tbl:estrandom}
+%\end{table}
 %
 \begin{table}[h]
-\caption{Comparison of \emph{mean difference (MD)} between method
-estimators across subjects---\EvosuiteDynamosa test suites}
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-\hline
-\ICEallrare	&	1	&	4	&5.6	&	--\\
-\Zelterman	&	6	&	1	&50.2	&	12.6\\
-\ChaoBunge	&	8	&	1	&40.1	&	23.5\\
-\Jackknife	&	7	&	1	&36.8	&	22.7\\
-\Chao	&	8	&	1	&43.8	&	25.5\\
-%\Chaobiascorrected	&	10	&	1	&39.1	&	24.9\\
-\improvedChao	&	8	&	0	&42.4	&	24.7\\
-\ICE	&	8	&	1	&44.0	&	25.3\\
-\improvedICE	&	8	&	1	&42.2	&	24.6\\
-\Unpmle	&	6	&	2	&39.5	&	29.4\\
-\B{\Bootstrap}	&	\B{7}	&	\B{3}	&\B{50.0}	&	\B{21.1}\\
-\Pnpmle	&	7	&	1	&38.0	&	19.4\\
-\PCG	&	6	&	1	&32.5	&	26.6\\
-\hline
-\end{tabular}
-\label{tbl:estdynamosa}
+    \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteDynamosa test suites}
+    \begin{tabular}{|l|r|r|r|r|r|}
+        \hline
+        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        \hline
+        \ICEallrare & 1 & 1 & 5.54 &  \\
+        \Zelterman & 6 & 0 & 49.86 & 12.08 \\
+        \ChaoBunge & 8 & 1 & 39.83 & 23.29 \\
+        \Jackknife & 7 & 1 & 36.58 & 22.31 \\
+        \Chao & 8 & 1 & 43.54 & 25.27 \\
+        \improvedChao & 8 & 0 & 42.15 & 24.45 \\
+        \ICE & 8 & 1 & 43.67 & 25.09 \\
+        \improvedICE & 8 & 1 & 41.92 & 24.36 \\
+        \Unpmle & 6 & 2 & 39.16 & 29.03 \\
+        \Bootstrap & 7 & 0 & 49.66 & 20.85 \\
+        \Pnpmle & 7 & 1 & 37.72 & 19.16 \\
+        \PCG & 6 & 0 & 32.21 & 26.21 \\
+        \hline
+    \end{tabular}
+    \label{tbl:estdynamosa}
 \end{table}
+%\begin{table}[h]
+%\caption{Comparison of \emph{mean difference (MD)} between method
+%estimators across subjects---\EvosuiteDynamosa test suites}
+%\begin{tabular}{|l|r|r|r|r|r|}
+%\hline
+%Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
+%\hline
+%\ICEallrare	&	1	&	4	&5.6	&	--\\
+%\Zelterman	&	6	&	1	&50.2	&	12.6\\
+%\ChaoBunge	&	8	&	1	&40.1	&	23.5\\
+%\Jackknife	&	7	&	1	&36.8	&	22.7\\
+%\Chao	&	8	&	1	&43.8	&	25.5\\
+%%\Chaobiascorrected	&	10	&	1	&39.1	&	24.9\\
+%\improvedChao	&	8	&	0	&42.4	&	24.7\\
+%\ICE	&	8	&	1	&44.0	&	25.3\\
+%\improvedICE	&	8	&	1	&42.2	&	24.6\\
+%\Unpmle	&	6	&	2	&39.5	&	29.4\\
+%\B{\Bootstrap}	&	\B{7}	&	\B{3}	&\B{50.0}	&	\B{21.1}\\
+%\Pnpmle	&	7	&	1	&38.0	&	19.4\\
+%\PCG	&	6	&	1	&32.5	&	26.6\\
+%\hline
+%\end{tabular}
+%\label{tbl:estdynamosa}
+%\end{table}
 %
 
 
@@ -2620,81 +2685,144 @@ The results are given in tables \Cref{tbl:estoriginalclass},
 \Cref{tbl:estrandomclass}, and \Cref{tbl:estdynamosaclass}.
 %These results are also plotted as dotted lines in \Cref{fig:results}.
 
-\begin{table}[t]
-\caption{Comparison of \emph{mean difference (MD)} between class
-estimators across subjects---\original test suites}
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-\hline
-\ICEallrare	&	9	&	1	&35.2	&	51.4\\
-\Zelterman	&	9	&	1	&36.7	&	51.8\\
-\ChaoBunge	&	7	&	0	&22.8	&	19.1\\
-\Jackknife	&	10	&	0	&41.2	&	53.5\\
-\Chao	&	9	&	1	&32.4	&	42.5\\
-%\Chaobiascorrected	&	9	&	1	&32.4	&	42.5\\
-\improvedChao	&	9	&	1	&35.9	&	49.5\\
-\ICE	&	9	&	0	&41.2	&	57.9\\
-\improvedICE	&	8	&	0	&40.2	&	43.5\\
-\Unpmle	&	6	&	0	&31.9	&	31.8\\
-\B{\Bootstrap}	&	\B{10}	&	\B{6}	&\B{16.9}	&	\B{19.2}\\
-\Pnpmle	&	8	&	1	&64.9	&	34.8\\
-\PCG	&	6	&	1	&43.9	&	39.5\\
-\hline
-\end{tabular}
-\label{tbl:estoriginalclass}
+%\begin{table}[t]
+%\caption{Comparison of \emph{mean difference (MD)} between class
+%estimators across subjects---\original test suites}
+%\begin{tabular}{|l|r|r|r|r|r|}
+%\hline
+%Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
+%\hline
+%\ICEallrare	&	9	&	1	&35.2	&	51.4\\
+%\Zelterman	&	9	&	1	&36.7	&	51.8\\
+%\ChaoBunge	&	7	&	0	&22.8	&	19.1\\
+%\Jackknife	&	10	&	0	&41.2	&	53.5\\
+%\Chao	&	9	&	1	&32.4	&	42.5\\
+%%\Chaobiascorrected	&	9	&	1	&32.4	&	42.5\\
+%\improvedChao	&	9	&	1	&35.9	&	49.5\\
+%\ICE	&	9	&	0	&41.2	&	57.9\\
+%\improvedICE	&	8	&	0	&40.2	&	43.5\\
+%\Unpmle	&	6	&	0	&31.9	&	31.8\\
+%\B{\Bootstrap}	&	\B{10}	&	\B{6}	&\B{16.9}	&	\B{19.2}\\
+%\Pnpmle	&	8	&	1	&64.9	&	34.8\\
+%\PCG	&	6	&	1	&43.9	&	39.5\\
+%\hline
+%\end{tabular}
+%\label{tbl:estoriginalclass}
+%\end{table}
+%
+\begin{table}[h]
+    \caption{Comparison of \emph{mean difference (MD)} between class estimators across subjects---\original test suites}
+    \begin{tabular}{|l|r|r|r|r|r|}
+        \hline
+        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        \hline
+        \ICEallrare & 4 & 1 & 6.26 & 9.77 \\
+        \Zelterman & 5 & 1 & 9.33 & 9.26 \\
+        \ChaoBunge & 4 & 0 & 9.64 & 10.86 \\
+        \Jackknife & 4 & 0 & 7.75 & 9.96 \\
+        \Chao & 5 & 1 & 14.89 & 10.35 \\
+        \improvedChao & 4 & 0 & 14.2 & 9.28 \\
+        \ICE & 4 & 0 & 16.54 & 10.51 \\
+        \improvedICE & 4 & 0 & 12.21 & 9.45 \\
+        \Unpmle & 3 & 0 & 11.14 & 9.63 \\
+        \Bootstrap & 5 & 2 & 25.83 & 22.67 \\
+        \PCG & 2 & 0 & 9.94 & 13.3 \\
+        \hline
+    \end{tabular}
+    \label{tbl:estoriginalclass}
 \end{table}
 %
-\begin{table}[t]
-\caption{Comparison of \emph{mean difference (MD)} between class
-estimators across subjects---\EvosuiteRandom test suites}
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-\hline
-\ICEallrare	&	8	&	1	&61.1	&	65.1\\
-\Zelterman	&	10	&	4	&25.4	&	39.0\\
-\ChaoBunge	&	4	&	1	&27.3	&	26.0\\
-\Jackknife	&	10	&	2	&33.1	&	44.7\\
-\Chao	&	10	&	2	&26.3	&	33.3\\
-%\Chaobiascorrected	&	10	&	2	&26.3	&	33.0\\
-\improvedChao	&	10	&	2	&27.7	&	40.7\\
-\ICE	&	10	&	1	&29.7	&	29.9\\
-\improvedICE	&	10	&	3	&52.4	&	61.1\\
-\Unpmle	&	7	&	3	&34.9	&	63.9\\
-\Bootstrap	&	10	&	2	&30.9	&	23.0\\
-\B{\Pnpmle}	&	\B{9}	&	\B{4}	&\B{23.6}	&	\B{24.9}\\
-\PCG	&	7	&	3	&24.3	&	29.2\\
-\hline
-\end{tabular}
-\label{tbl:estrandomclass}
+%\begin{table}[t]
+%\caption{Comparison of \emph{mean difference (MD)} between class
+%estimators across subjects---\EvosuiteRandom test suites}
+%\begin{tabular}{|l|r|r|r|r|r|}
+%\hline
+%Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
+%\hline
+%\ICEallrare	&	8	&	1	&61.1	&	65.1\\
+%\Zelterman	&	10	&	4	&25.4	&	39.0\\
+%\ChaoBunge	&	4	&	1	&27.3	&	26.0\\
+%\Jackknife	&	10	&	2	&33.1	&	44.7\\
+%\Chao	&	10	&	2	&26.3	&	33.3\\
+%%\Chaobiascorrected	&	10	&	2	&26.3	&	33.0\\
+%\improvedChao	&	10	&	2	&27.7	&	40.7\\
+%\ICE	&	10	&	1	&29.7	&	29.9\\
+%\improvedICE	&	10	&	3	&52.4	&	61.1\\
+%\Unpmle	&	7	&	3	&34.9	&	63.9\\
+%\Bootstrap	&	10	&	2	&30.9	&	23.0\\
+%\B{\Pnpmle}	&	\B{9}	&	\B{4}	&\B{23.6}	&	\B{24.9}\\
+%\PCG	&	7	&	3	&24.3	&	29.2\\
+%\hline
+%\end{tabular}
+%\label{tbl:estrandomclass}
+%\end{table}
+\begin{table}[h]
+    \caption{Comparison of \emph{mean difference (MD)} between class estimators across subjects---\EvosuiteRandom test suites}
+    \begin{tabular}{|l|r|r|r|r|r|}
+        \hline
+        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        \hline
+        \ICEallrare & 3 & 0 & 16.4 & 14.54 \\
+        \Zelterman & 7 & 4 & 10.65 & 9.61 \\
+        \ChaoBunge & 2 & 1 & 5.44 & 5.24 \\
+        \Jackknife & 4 & 2 & 7.23 & 6.24 \\
+        \Chao & 7 & 2 & 16.56 & 9.94 \\
+        \improvedChao & 5 & 1 & 15.56 & 5.6 \\
+        \ICE & 5 & 0 & 19.05 & 11.91 \\
+        \improvedICE & 3 & 2 & 6.5 & 0.63 \\
+        \Unpmle & 3 & 2 & 9.02 & 14.04 \\
+        \Bootstrap & 9 & 1 & 33.76 & 22.22 \\
+        \Pnpmle & 1 & 1 & 1.43 &  \\
+        \PCG & 2 & 2 & 1.56 & 1.58 \\
+        \hline
+    \end{tabular}
+    \label{tbl:estrandomclass}
 \end{table}
 %
-\begin{table}[t]
-\caption{Comparison of \emph{mean difference (MD)} between class
-estimators across subjects---\EvosuiteDynamosa test suites}
-\begin{tabular}{|l|r|r|r|r|r|}
-\hline
-Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
-\hline
-\ICEallrare	&	10	&	3	&49.3	&	46.4\\
-\Zelterman	&	10	&	1	&20.7	&	16.3\\
-\ChaoBunge	&	5	&	1	&34.6	&	42.4\\
-\Jackknife	&	10	&	0	&37.3	&	25.6\\
-\B{\Chao}	&	\B{10}	&	\B{2}	&\B{19.9}	&	\B{14.0}\\
-%\Chaobiascorrected	&	10	&	2	&19.7	&	14.0\\
-\improvedChao	&	10	&	0	&22.5	&	14.6\\
-\ICE	&	10	&	1	&28.0	&	15.4\\
-\improvedICE	&	10	&	1	&52.4	&	42.4\\
-\Unpmle	&	7	&	0	&35.5	&	19.4\\
-\Bootstrap	&	10	&	4	&36.9	&	20.9\\
-\Pnpmle	&	10	&	1	&55.7	&	44.5\\
-\PCG	&	8	&	0	&57.7	&	51.7\\
-\hline
-\end{tabular}
-\label{tbl:estdynamosaclass}
+%\begin{table}[t]
+%\caption{Comparison of \emph{mean difference (MD)} between class
+%estimators across subjects---\EvosuiteDynamosa test suites}
+%\begin{tabular}{|l|r|r|r|r|r|}
+%\hline
+%Estimator	&Valid Estimates	&CI Overlaps	&Mean	&Stdev	\\
+%\hline
+%\ICEallrare	&	10	&	3	&49.3	&	46.4\\
+%\Zelterman	&	10	&	1	&20.7	&	16.3\\
+%\ChaoBunge	&	5	&	1	&34.6	&	42.4\\
+%\Jackknife	&	10	&	0	&37.3	&	25.6\\
+%\B{\Chao}	&	\B{10}	&	\B{2}	&\B{19.9}	&	\B{14.0}\\
+%%\Chaobiascorrected	&	10	&	2	&19.7	&	14.0\\
+%\improvedChao	&	10	&	0	&22.5	&	14.6\\
+%\ICE	&	10	&	1	&28.0	&	15.4\\
+%\improvedICE	&	10	&	1	&52.4	&	42.4\\
+%\Unpmle	&	7	&	0	&35.5	&	19.4\\
+%\Bootstrap	&	10	&	4	&36.9	&	20.9\\
+%\Pnpmle	&	10	&	1	&55.7	&	44.5\\
+%\PCG	&	8	&	0	&57.7	&	51.7\\
+%\hline
+%\end{tabular}
+%\label{tbl:estdynamosaclass}
+%\end{table}
+\begin{table}[h]
+    \caption{Comparison of \emph{mean difference (MD)} between class estimators across subjects---\EvosuiteDynamosa test suites}
+    \begin{tabular}{|l|r|r|r|r|r|}
+        \hline
+        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        \hline
+        \ICEallrare & 1 & 1 & 0.73 &  \\
+        \Zelterman & 3 & 0 & 24.96 & 21.6 \\
+        \ChaoBunge & 2 & 1 & 4.19 & 0.3 \\
+        \Jackknife & 1 & 0 & 37.27 &  \\
+        \Chao & 4 & 0 & 23.86 & 21.07 \\
+        \improvedChao & 4 & 0 & 19.15 & 20.24 \\
+        \ICE & 4 & 1 & 21.01 & 21.93 \\
+        \improvedICE & 3 & 1 & 15.47 & 14.95 \\
+        \Bootstrap & 6 & 0 & 49.04 & 15.57 \\
+        \Pnpmle & 1 & 0 & 1.49 &  \\
+        \hline
+    \end{tabular}
+    \label{tbl:estdynamosaclass}
 \end{table}
-
 
 % DISCUSSION
 \section{Discussion}
