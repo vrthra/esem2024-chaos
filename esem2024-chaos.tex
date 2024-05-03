@@ -2493,7 +2493,7 @@ CI upper bound, or point estimate.
 We also removed any estimate that was higher than the total number of mutants.
 %\todo{We should also remove any that results in a point estimate above 100\%}.
 The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
-The \emph{Mean} column shows the mean difference, and \emph{Stdev} shows the standard deviation of \emph{valid estimates}.
+The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
 
 %\begin{table}
 %\caption{Comparison of \emph{mean difference (MD)} between method estimators
@@ -2779,7 +2779,7 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 \ChaoBunge & 4 & 2 & 2.15 & 4.19 \\
 \Jackknife & 3 & 0 & 4.14 & 6.42 \\
 \Chao & 5 & 2 & 10.66 & 16.86 \\
-\improvedChao & 4 & 2.0 & 4.55 & 5.27 \\
+\improvedChao & 4 & 2 & 4.55 & 5.27 \\
 \ICE & 4 & 1 & 4.56 & 5.63 \\
 \improvedICE & 4 & 1 & 6.06 & 7.78 \\
 \Unpmle & 3 & 0 & 4.19 & 5.23 \\
@@ -2840,15 +2840,15 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 \section{Discussion}
 \label{sec:discussion}
 What does these results mean? We discuss the implications next.\\
-\noindent\textbf{RQ1} \textbf{How accurate are frequency based estimators in predicting
-    killable mutants?}
+\noindent\textbf{RQ1.} \textbf{How accurate are frequency based estimators in predicting
+    killable mutants?}\\
 Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
 maximum overlap with manual estimates --- three out of \projectCount test
-subjects had overlapping CI with $E^M$.
-\ICEallrare achieves a smallest mean difference of 5.78 from $E^M$.
+subjects had overlapping confidence intervals (CI) with $E^M$.
+\ICEallrare achieves a smallest mean difference (MD) of 5.78 from $E^M$.
 Finally, \Bootstrap achieves the
-maximum number of \emph{valid estimates} with 9 valid estimates, but has a much
-larger difference from the manual estimate $E^M$ (19.76).
+maximum number of \emph{valid estimates} (VE) with 9 valid estimates,
+but has a much larger difference from the manual estimate $E^M$ (19.76).
 
 Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
 statistical estimators were significantly different from the manual classification.
@@ -2860,9 +2860,7 @@ every estimator examined.
 
 To illustrate the differences, we plot the results for \Chao estimator (the
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
-The figure shows that \Chao estimator irrespective of test suite used
-(\original, \EvosuiteDynamosa, or \EvosuiteRandom) does not predict the ground
-truth.
+The figure shows that irrespective of test suite used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---\Chao estimator predictions are far from the ground truth.
 
 
 Which estimator is useful to the developers?
@@ -2877,28 +2875,37 @@ Furthermore, at the confidence interval at 95\% the mean margin of error was
 just 1.9\%. That is, manual estimation from just 100 mutants can provide a
 better estimate than the estimators we examined.
 
-Hence, we withhold our recommendation at this stage.
+% Hence, we withhold our recommendation at this stage.
 
 \noindent\textbf{RQ2.
 %Which statistical estimator best predicts the estimates
 %from manual classification when given unbiased test suites?
-Are frequency based estimators affected by sampling strategies?}
-%
-Inspecting \Cref{tbl:estrandom} for \EvosuiteRandom,
-\Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original)
-a comparison reveals that the overlaps between confidence intervals
-from manual classification and \EvosuiteRandom (\Cref{tbl:estrandom}) was
-considerably fewer than that between manual and \original (\Cref{tbl:estoriginal}).
+Are frequency based estimators affected by sampling strategies?}\\
+As we noted in the introduction, it is possible that the frequency
+based estimators may not be robust to bias in sampling.
+To mitigate this bias, we used two generated test suites \EvosuiteRandom and
+\EvosuiteDynamosa without manual bias.
+%That is, when
+%developers write tests, they choose which parts of the code to focus on.
+%This may mean that the results from \original test suites may not be
+%usable for estimation since the live mutants remaining may be affected
+%by this bias. Hence, we used two more test suites with different test
+%objectives for evaluation.
+
+The results from \Cref{tbl:estrandom} for \EvosuiteRandom,
+(and \Cref{tbl:estoriginal} for \original)
+reveals that overlaps between CI from manual classification and
+\EvosuiteRandom was considerably fewer than that between manual and \original.
 The smallest difference in MD was observed for \ICEallrare,
-(mean 19.51\%, Stdev. 21.08\%). However, the \emph{valid estimates}
-for \ICEallrare was just 2. For every other estimator, while the number of
+(mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
+had just two \emph{valid estimates}.
+For every other estimator, while the number of
 \emph{valid estimates} were considerably better, the number of CI overlaps were
 still dismal, and had a much larger mean difference, all above 30\%.
 
-%
 For \EvosuiteDynamosa, the situation was no better (\Cref{tbl:estdynamosa}),
 \ICEallrare which had the smallest mean difference (5.54) had just one valid
-estimate. Every other estimator had a larger mean difference, with very few CI
+estimate. Other estimators had larger MD, and few CI
 overlaps.
 
 To illustrate the differences, as before, we plot the results for \Chao
@@ -2914,18 +2921,19 @@ estimator, the estimator suggested by the STADS framework in
 The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
 to the estimates from manual classification is statistically significant for
 every estimator examined.
-Likewise, estimates from \EvosuiteRandom are always significantly differently
-than the ones from \EvosuiteDynamosa.
+%Likewise, estimates from \EvosuiteRandom are always significantly differently
+%than the ones from \EvosuiteDynamosa.
 \end{tcolorbox}
 
-We expected that introducing randomness to the test generation criteria would
-result in better estimates, as it can counteract the manual bias inherent in
-choosing which tests to write. However, in our experiment, we see that the
-mean difference observed from generated test suites is much higher than that
-observed from the \original test suite. This may mean that our generated test
-suites were not sufficiently large to make a precise prediction. However, the
-lack of CI overlaps is a large cause for concern as it indicates that the
-prediction was also lacking in accuracy. %\todo{should we introduce consistency here?}.
+We expected that using random test generation strategies would mitigate
+manual bias, and hence result in better estimates. However, in our experiment,
+we see that the mean difference observed from generated test suites is much
+higher than that observed from the \original test suite.
+One may argue that it means that our generated test suites did not adequately
+sample the population. However, if the estimators were actually performing
+correctly, this should have resulted in a larger confidence interval, which
+would increase the \emph{accuracy} at the expense of \emph{precision}, and
+would have resulted in a larger number of overlaps.
 
 \definecolor{coriginal}{RGB}{0,150,47}
 \definecolor{cdynamosa}{RGB}{0,108,168}
@@ -2994,23 +3002,31 @@ prediction was also lacking in accuracy. %\todo{should we introduce consistency 
 % Projects (Y axis) numbered according to \Cref{tbl:subjectmeasures} column 1.
 % The estimates or CIs going beyond 200x of the generated mutants are not shown.}
 
-\noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}
+\noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}\\
+As we mentioned in the introduction, there is a possibility, however remote,
+that the manual estimation result was either in error, or the result was a
+statistical fluke. To discount this possibility we conducted the third
+experiment, where we compared estimators based on how they predict the same
+quantity when sampling units were changed. We expected individual estimators to
+return the same predictions irrespective of the sampling units used.
 
-From \Cref{tbl:methodvsclassoriginal}, we find that the 
+From \Cref{tbl:estoriginalclassmethod}, \Cref{tbl:estrandomclassmethod}, and
+and \Cref{tbl:estdynamosaclassmethod}, we find that the 
 estimates from method level sampling units
 and class level sampling units are statistically significantly different.
+\Bootstrap had the highest (50\%) overlap for \EvosuiteRandom. However, for
+other test suites, \Bootstrap did not produce a significant overlap of CI between
+method and class estimators.
+
 The differences observed are illustrated for \Chao estimator in \Cref{fig:groundtruth}.
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from test method and test class level
 estimators to the estimates from manual classification are statistically
-significant for every estimator examined. Furthermore, the difference between
-each other is statistically significant for every estimator examined.
+significant for every estimator examined.
+%  Furthermore, the difference between
+%each other is statistically significant for every estimator examined.
 \end{tcolorbox}
-
-
-
-
 
 \subsection{What Does This Mean in Practice?}
 For an estimator to be useful to the developer, it should be able to produce
