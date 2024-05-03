@@ -1414,10 +1414,10 @@ we let the \emph{kill incidence} matrix, or simply killmatrix, $W_{S\times T}$ b
 where $W_{ij} = 1$ if test $X_j$ kills mutant $M_i$ and $W_{ij} = 0$ otherwise.
 
 This way, the $i_{th}$-row sum of $W$ ($Y_i=\sum_{j=1}^{T}W_{i,j}$) denotes the
-incidence-based frequency of mutant $M_i$ (being killed).
-We further define the incidence frequency counts $Q_k$, where $0 \leq k \leq T$, as the number of mutants killed by exactly $k$ tests.
+incidence-based frequency of $M_i$ being killed.
+We define the incidence frequency counts $Q_k$, where $0 \leq k \leq T$, as the number of mutants killed by exactly $k$ tests.
 Consequently, the \emph{unobservable} frequency count $Q_0$
-denotes the number of mutants that remain undetected.
+denotes the number of undetected mutants.
 
 We assume that the probability that a mutant~$M_i$ is detected by a test~$X_j$ is defined as
 $P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$,
@@ -1461,23 +1461,24 @@ and the incidence frequency counts $Q_k$ can be derived as:
 %(2) species richness estimation.
 Estimators that can estimate the total number of colors under Bernoulli Product model belong to the class of frequency based estimators.
 They have been used extensively in biometrics (Ecology)
-to estimate \emph{unseen} species~\cite{chao2016species} and
+to estimate \emph{unseen} species~\cite{chao2016species}.
+%and
 %They have been successfully used  to
- address questions about population size %estimation
+% address questions about population size %estimation
 %(1) \emph{``How does one estimate the number of individuals that belong
 %to a particular species in a given geographical area?''} (i.e., population size estimation),
 %and 
 %(2) \emph{``How does one estimate the total number of species that 
 %can be found in a given geographical area?''} (i.e., species richness estimation).
 %(1) 
- (e.g.,\emph{``How many individuals of a particular species are in a given geographical area?''})
-and species richness % estimation
+% (e.g.,\emph{``How many individuals of a particular species are in a given geographical area?''})
+%and species richness % estimation
 %(2)
- (e.g., \emph{``How many species can be found in a given geographical area?''}).
+% (e.g., \emph{``How many species can be found in a given geographical area?''}).
 %One of the features of
 %Biometrics is that they are \textbf{highly robust}. In particular,
 %Biometrics estimators for species count are required to be \textbf{highly robust}.
-
+%
 %These estimators %from biometrics 
 %have also been successful in counting systems in
 %computer networks~\cite{accettura2015the} and
@@ -1488,10 +1489,10 @@ and species richness % estimation
 %Recently, they have been also proposed for estimating equivalent mutants~\cite{bohme2018assurances};
 %However, a precise formulation on how to apply them to the problem of equivalent mutant
 %estimation has not been spelt out.  
-
+%
 % examine the basic ideas behind population size, or species richness, estimation
 %and
-
+%
 %In the next sections, we
 %introduce the various statistical estimators that we considered in our study.
 %
@@ -1499,18 +1500,19 @@ and species richness % estimation
 %population size estimation according to Chao~\cite{chao2016species}.
 %
 %Later, we map these concepts into the mutation analysis domain.
-
+%
 %\subsection{Species Richness Estimation}
 %\label{sec:statistical}
-The problem of estimating species richness, firstly formulated in
-biometrics~\cite{chao2016species}, is challenging because the geographical area
+The problem of estimating species richness,
+%firstly formulated in biometrics~\cite{chao2016species},
+is challenging because the geographical area
 to consider while counting the number of species is often large,
 preventing exhaustive survey.
 %
 Hence, ecologists resort to \emph{sampling}:
 (1) they divide the area into \emph{sampling units}, and %, that can be surveyed comprehensively; 
 %
-(2) randomly select a number of sampling units to survey for number of species found.
+(2) randomly select sampling units to survey for number of species found.
 %In biometrics, a sampling unit is some grouping of observations as
 %belonging to a particular place, or category. % (e.g. package, class etc.)
 %A segment here is considered such a sampling unit.
