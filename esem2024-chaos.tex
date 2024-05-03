@@ -1430,19 +1430,25 @@ and their mutation analysis resulting in more than 2.5B test executions.
 \section{Statistical Framework}
 \label{sec:mapping}
 We wish to measure the number of killable mutants with help of statistical estimators from biometrics.
+%
+% ALESSIO: Possibly confusion/inconsitency: before we used the term Ecology (see the footnote)
+%
 These estimators
 %, which have been used to estimate the size of unknown populations, 
 have also been successful in counting systems in
 computer networks~\cite{accettura2015the} and
-estimating reachable coverage in the STADS framework~\cite{bohme2018stads}.
+estimating reachable coverage 
+%in the STADS framework~
+\cite{bohme2018stads}.
 % also suggested for use in the  using the
 % Alessio We discuss this in the previous section
 %residual defects predictions~\cite{bohme2018stads}.
 %Recently, they have been also proposed for estimating equivalent mutants~\cite{bohme2018assurances};
 
-In the next section, we introduce the underlying statistical model,
-which is used for the statistical estimators we considered.
-%we describe the various statistical estimators that we considered in our study.
+To make the paper self-containerd, the following sections introduce 
+the fundational model underlying statistical estimation and the statistical
+estimators our study considered.
+
 
 \subsection{The Urn Probabilistic Model}
 Consider the following probabilistic model:
@@ -1473,13 +1479,17 @@ Mutant ${M_i}$ can be detected with a probability $\pi_i$ that
 might be affected by factors specific to ${M_i}$'s definition (e.g.,
 the mutation operators that generated it or the location in the code where it is applied).
 %
+% ALESSIO: why not also features of the code under test?
+%
+%
 In the Bernoulli product model, a test can kill one or more mutants.
 For a testing campaign of size $T$, %$N$
 we let the \emph{kill incidence} matrix, or simply killmatrix, $W_{S\times T}$ be defined as
 \[
     W_{S\times T} = \left\{W_{ij} |i=1,2,\dots,S\land j=1,2,\dots,T \right\},
 \]
-where $W_{ij} = 1$ if test $X_j$ kills mutant $M_i$ and $W_{ij} = 0$ otherwise.
+where $W_{ij}=1$ if test $X_j$ kills mutant $M_i$, $0$ otherwise.
+%$W_{ij} = 0$ otherwise.
 
 This way, the $i_{th}$-row sum of $W$ ($Y_i=\sum_{j=1}^{T}W_{i,j}$) denotes the
 incidence-based frequency of mutant $M_i$ (being killed).
@@ -1490,7 +1500,10 @@ denotes the number of mutants that remain undetected.
 We assume that the probability that a mutant~$M_i$ is detected by a test~$X_j$ is defined as
 $P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$,
 where variables $\{\nu_{1}, \nu_{2},\cdots,\nu_{T}\}$ are responsible for test effects.
-Indeed, the ability of a test to kill mutants might be affected by various factors, such as coverage, input data, environment or flakiness.
+Indeed, the ability of a test to kill mutants might be affected by various factors, such as 
+coverage, % ALESSIO: Coverage is more a consequence, not a factor..
+input data, environment or flakiness.
+%
 We model those test effects as a random
 variable from an unknown probability density function $h(\nu)$, whereas
 we assume fixed mutant detection rates $\pi_i$.
@@ -1501,6 +1514,9 @@ Hence, we model probability distribution of each element $W_{ij}$ of the killmat
     P(\forall (i,j) W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}
 \end{displaymath}
 \normalsize
+%
+% ALESSIO: shouldn't the forall be OUTSIDE the probability?
+%
 
 The probability distribution for the incidence matrix can be expressed as the
 probability for all $i:1\leq i \leq S $ and $j:1\leq j\leq T$ that we have $W_{ij} = w_{ij}$.
@@ -1607,7 +1623,7 @@ can be estimated by considering the next rarest species, such as species
 % (e.g., 
 %\emph{singleton}
 %species 
-detected only once, or \emph{singleton}, twice, or \emph{doubleton}, %species detected only twice)
+detected only once (\emph{singleton}), twice (\emph{doubleton}), %species detected only twice)
 and the number of species found. % that comprise to them.
 %
 %that is from the number of species that were detected only in a single sampling
@@ -1769,7 +1785,7 @@ as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
 %
 %The coverage estimators (\emph{ACE} and \emph{ICE}) 
 %ICE generally under estimates, but improved version of this estimators exists (e.g., \emph{ICE-1})~\cite{chao2016species}.
-Gotelli~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
+Gotelli and Chao~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
 which underestimates less. % then the original one.
 
 %\todo{Do we use those? If so, where's the formula?}
@@ -1812,7 +1828,7 @@ where species $j$ is detected. % \todo{Why then Y j is not F j?!}
 
 \subsubsection{\Zelterman estimator~\cite{bohning2010some}}
 %\todo{Konstantin, please fill in.}
-Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit dug use research.
+Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit drug use research.
 %It is developed both for a Binomial and a Poisson models.
 %The Zelterman's estimate~\cite{bohning2010some} provides the following formula for
 %estimation of the missing zero count species.
@@ -1823,6 +1839,10 @@ It is defined as:
     S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1]
 \end{displaymath}
 where $\hat{\lambda} = 2f_2/(m-1)f_1$.
+%
+% ALESSIO: f1 and f2 undefined. Are they what we call Q1 and Q2?
+%
+%
 
 %\subsection{Abundance Sampling Estimators}
 %\label{sec:estimators-abundance}
@@ -1892,12 +1912,17 @@ where $\hat{\lambda} = 2f_2/(m-1)f_1$.
 %But it is robust to violation of ..\todo{Konstantin, please fill in.}
 
 \subsubsection{Other estimators}
-The estimators mentioned below are not intended to be directly applied to our model.
-Still, with the slight adaptation they can be used for our purposes.
-They have have complex formulation; hence, we only introduce them.
+%The estimators mentioned below are not intended to be directly applied to our model.
+%Still, with the slight adaptation they can be used for our purposes.
+%They have have complex formulation; hence, we only introduce them.
+
+The remaining estimators we considered, namely \<\ChaoBunge>, \<UNPMLE>, \<PNPMLE>, and \<PCG>,
+work with abundance data and have a complex formulation.
+In the following, we describe how we obtained the required data
+and briefly introduce them.
 
 %Along with the incidence based estimators,
-There is a class of species richness estimators that work with abundance data.
+% There is a class of species richness estimators that work with abundance data.
 Abundance sampling considers each individual to be a sampling unit
 and recognizes as the relevant (numerical) data the number of individuals
 that belong to each species.
@@ -1911,27 +1936,30 @@ that belong to each species.
 %number of undetected species.
 We can transform our data into abundance form by summing up values of the incidence matrix along the test axis,
 though, loosing information about the number of samples (tests). This way, we get a vector of counts for each mutant.
-Besides, sometimes estimates assume Poisson rather than Binomial distribution of counts, which can be considered the limiting case when the number of tests tends to infinity (i.e., is too big).
+Besides, sometimes estimates assume Poisson rather than Binomial distribution of counts, which can be considered the limiting case when the number of tests tends to infinity
+(i.e., $T$ is too big).
 %
 %Abundance sampling assumes independent random samples, but these estimators
 %but as the sampling in biometrics is rarely such, the estimators based on this
 %sampling
 %are considered robust against violations of these assumptions~\cite{gotelli2011estimating}.
-Therefore, we additionally analyse \<\ChaoBunge>, \<UNPMLE>, \<PNPMLE>, and \<PCG> estimators.
+Having abundance data, we can apply
+% Therefore, we additionally analyse 
+\<\ChaoBunge>, \<UNPMLE>, \<PNPMLE>, and \<PCG> estimators.
 %have complex formulation. % and can not fit here;
 %Hence, we only introduce them. % in this section.
-The \ChaoBunge estimator, proposed by Chao and Bunge~\cite{chao2002estimating},
+The \<\ChaoBunge> estimator, proposed by Chao and Bunge~\cite{chao2002estimating},
 %proposed by Chao and Bunge
 utilizes the gamma-Poisson model in which species are detected in the sample
 according to a Poisson process and rates of the processes follow a gamma distribution.
 %
-The Unconditional nonparametric maximum likelihood estimator (UNPMLE)
+The Unconditional nonparametric maximum likelihood estimator (\<UNPMLE>)
 was provided by Norris and Pollock~\cite{norris1998non}.
 %
-The Penalized nonparametric maximum likelihood estimator (PNPMLE)
+The Penalized nonparametric maximum likelihood estimator (\<PNPMLE>)
 was provided by Wang et al.~\cite{wang2005penalized}.
 %
-The Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (PCG)
+Finally, the Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (\<PCG>)
 was provided by Wang et al.~\cite{wang2010estimating}.
 
 
