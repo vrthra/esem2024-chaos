@@ -1362,17 +1362,19 @@ and their mutation analysis resulting in more than 2.5B test executions.
 \section{Statistical Framework}
 \label{sec:mapping}
 We wish to measure the number of killable mutants with help of statistical estimators from biometrics.
-These estimators, which have been used to estimate the size of unknown populations, 
+These estimators
+%, which have been used to estimate the size of unknown populations, 
 have also been successful in counting systems in
 computer networks~\cite{accettura2015the} and
-estimating residual defects in the STADS framework~\cite{bohme2018stads}.
+estimating reachable coverage in the STADS framework~\cite{bohme2018stads}.
 % also suggested for use in the  using the
 % Alessio We discuss this in the previous section
 %residual defects predictions~\cite{bohme2018stads}.
 %Recently, they have been also proposed for estimating equivalent mutants~\cite{bohme2018assurances};
 
-In the next sections, we first introduce the underlying statistical model and, then,
-we describe the various statistical estimators that we considered in our study.
+In the next section, we introduce the underlying statistical model,
+which is used for the statistical estimators we considered.
+%we describe the various statistical estimators that we considered in our study.
 
 \subsection{The Urn Probabilistic Model}
 Consider the following probabilistic model:
@@ -1388,7 +1390,7 @@ to formalize the intuition.
 
 Let $\mathcal{P}$ be the program under test and $\mathcal{D}$ the set of all tests $X$ that exercise $\mathcal{P}$.
 % can exercise.
-We can model a testing campaign $\mathcal{T}$ 
+We model a testing campaign $\mathcal{T}$ 
 %is modeled
 as a stochastic process
 \[
