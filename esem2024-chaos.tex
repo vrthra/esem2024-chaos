@@ -2641,6 +2641,32 @@ The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
     \end{tabular}
     \label{tbl:estdynamosa}
 \end{table}
+% ADDED MAY3 [
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---between \EvosuiteRandom and \EvosuiteDynamosa test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 0 &  &  &  \\
+\Zelterman & 5 & 2 & 7.82 & 4.58 \\
+\ChaoBunge & 6 & 4 & 11.66 & 10.04 \\
+\Jackknife & 6 & 1 & 18.15 & 11.85 \\
+\Chao & 7 & 2 & 6.79 & 6.52 \\
+\improvedChao & 7 & 2 & 7.24 & 7.7 \\
+\ICE & 7 & 4 & 5.56 & 7.32 \\
+\improvedICE & 6 & 4 & 7.74 & 8.28 \\
+\Unpmle & 4 & 2 & 11.49 & 8.89 \\
+\Bootstrap & 7 & 3 & 16.19 & 27.53 \\
+\Pnpmle & 6 & 4 & 14.32 & 14.12 \\
+\PCG & 5 & 3 & 18.55 & 26.39 \\
+\hline
+\end{tabular}
+\label{tbl:estrandomdynamosamethod}
+\end{table}
+% ADDED MAY3 ]
+
+
 %\begin{table}[h]
 %\caption{Comparison of \emph{mean difference (MD)} between method
 %estimators across subjects---\EvosuiteDynamosa test suites}
@@ -3491,14 +3517,15 @@ killable mutants in mutation analysis.
 \appendix
 
 
-\include{newdata/latex/latex-mae-total-valid.tex}
-\include{newdata/latex/latex-mae-total-all.tex}
-\include{newdata/latex/latex-mae-total-validci.tex}
-\include{newdata/latex/latex-mae-total-valid-pairs.tex}
-\include{newdata/latex/latex-mae-total-valid-classmethod.tex}
-\include{newdata/latex/latex-mape-all.tex}
-\include{newdata/latex/latex-mape-validci.tex}
-\include{newdata/latex/latex-mape-valid.tex}
+% \include{ newdata/latex/latex-mae-total-valid.tex}
+% \include{ newdata/latex/latex-mae-total-all.tex}
+% \include{ newdata/latex/latex-mae-total-validci.tex}
+% \include{ newdata/latex/latex-mae-total-valid-pairs.tex}
+
+% \include{ newdata/latex/latex-mae-total-valid-classmethod.tex}
+% \include{ newdata/latex/latex-mape-all.tex}
+% \include{ newdata/latex/latex-mape-validci.tex}
+% \include{ newdata/latex/latex-mape-valid.tex}
 %\subsection{\original}
 %\label{sec:original}
 %
