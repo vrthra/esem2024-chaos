@@ -3045,19 +3045,32 @@ We observe that the estimates produced were inconsistent with few overlaps of
 the CI. This is a cause for concern, and points to violated assumptions in the
 underlying statistical model, which needs to be investigated further.
 
+While overall, the result is negative, we observe a glimmer of hope. We note
+that in \Cref{tbl:estrandomclassmethod} comparing method and class sampling
+units using \EvosuiteRandom, \Bootstrap produced 50\% CI overlaps. Furthermore,
+the mean difference was 6.79\% with a similarly small standard deviation
+of 2.71\%. It is possible that not all the mutants that can be killed manually
+may be killable by automatic test generators due to deficiencies in oracles
+available. Hence, it is possible that \Bootstrap estimation is true to the
+actual value, albeit with a large amount of uncertainty. 
+
+Furthermore, unlike \EvosuiteDynamosa, \EvosuiteRandom is completely unguided in
+test generation, which may be a hint as to the better performance of \Bootstrap
+on \EvosuiteRandom, and points to the need for further study.
+
 %Given that using various test suites and sampling strategies always produced
 %inconsistent and unsatisfactory results for all the considered estimators
 %even though the underlying sampled quantity, i.e., killable mutants, did not
 %change, our (current) conclusion is that frequency based statistical %standard species richness 
 %estimators are unsuitable for estimating killable mutants.
 
-Our negative results
+% Our negative results
 % from applying species richness estimators to mutation analysis
-suggest a need of further empirical evidence and additional analysis
+% suggest a need of further empirical evidence and additional analysis
 % are
 %needed
-to understand the impact of various assumptions made by those %species richness 
-estimators and their applicability to mutation analysis.
+% to understand the impact of various assumptions made by those %species richness 
+% estimators and their applicability to mutation analysis.
 % whether and how good the 
 %hold when estimating equivalent mutants. 
 %
