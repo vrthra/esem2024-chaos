@@ -143,6 +143,12 @@ pdftitle={\mytitle}
 }
 
 \lstset{style=mystyle}
+
+\definecolor{cgroundtruth}{RGB}{163,124,194}
+\definecolor{cmethod}{RGB}{0,108,168}
+\definecolor{cclass}{RGB}{219,36,42}
+
+
 % The name of our central contribution, with variations
 \usepackage{xspace}
 
@@ -2434,25 +2440,6 @@ The estimates from manual classification are the 95\% confidence intervals based
 Our study seeks answer the three main research questions investigating
 the ability of frequency based statistical estimators to predict the
 number of killable mutants in a project.
-%RQ1 asks about the accuracy of
-%frequency based estimators. RQ2 investigates the impact of sampling strategies
-%and RQ3 evaluates whether the choice of sampling units have any impact.
-%using original (RQ1) and unbiased (RQ2) test suites as well as the robustness of such estimators against changes in sampling strategy (RQ3).
-
-%\begin{figure*}
-%\centering
-%\includegraphics[width=\textwidth]{all-together.pdf}
-%\caption{Killable mutants estimated by species richness estimators.
-%Each plot shows the performance of a single estimator across all projects,  
-%test suites (\original is red, \EvosuiteRandom is blue, and \EvosuiteDynamosa is green), and
-%using class sampling (dotted lines) and method sampling (solid lines).
-%For reference, estimates from manual classification are reported in solid purple.}
-%\label{fig:results}
-%\end{figure*}
-\definecolor{cgroundtruth}{RGB}{163,124,194}
-\definecolor{cmethod}{RGB}{0,108,168}
-\definecolor{cclass}{RGB}{219,36,42}
-
 \begin{figure*}
   %\centering
 \begin{subfigure}{.43\textwidth}
