@@ -66,13 +66,8 @@
 %SPACE \setlength{\parindent}{1em}
 \usepackage{paralist}
 %XXXXXXXXXXXXXX
-\newcommand{\mytitle}{Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants}
+\newcommand{\mytitle}{An Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants}
 
-% ALESSIO: A Large Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants
-% ALESSIO: Empirically Evaluating Frequency Based Statistical Models for Estimating Killable Mutants
-% ALESSIO: A Large Empirical Evaluation of Frequency Based Statistical Models applied to Mutation Testing
-
-% ALESSIO: Check whether we use "Frequency Based Statistical Models" in the paper or something else (e.g., "Bio-Inspired Estimators")
 
 
 %Estimating Equivalent Mutants: Are we there yet?}
@@ -727,25 +722,43 @@ Mutation analysis is the premier technique to evaluate software test suite
 quality and estimating residual software defects. However, the reliability of 
 mutation analysis is hampered by the so called equivalent mutants which are
 unkillable by any test case.
+%
+% ALESSIO: This part is not straightforward to follow as there's no connection between the sentences: we introduce equivalent mutant, and then jump to killable ones.
+%			Maybe we can avoid mentioning equivalent mutant and say estimating how many mutants can be effectively killed is paramount to reliably estimated the adequacy of the tests?
+%
 Reliably detecting and eliminating killable mutants is difficult
-as it is highly program and location dependent. Hence, statistical estimation of
+as it is highly program and location dependent. 
+%
+% ALESSIO: The next sentence is also difficult to follow... why statistical estimation should offere a prosiming approach? what's statistical estimation? 
+%			We introduce new terms and do not provide any argument. Maybe we can move the statistical estimation in the next "section"
+%
+Hence, statistical estimation of
 killable mutants offers a promising approach.
+% ALESSIO: This reads incomplete. An promising approach to what? 
 
 \noindent\textbf{Aims.}
-Recently, frequency based species estimation methods
+Recently, frequency based species estimation methods % ALESSIO: a widely used form of statistical estimation 
 has been proposed as a solution for related problems in software testing.
+%
+% ALESSIO: the "related problems" feels a bit too generic. Maybe we can say esitmating residual bugs and establish the connection to mutation analysis?
+%
 While promising, there has been no comprehensive study on whether
 such frequency based species estimation methods can
 deliver an accurate estimate for killable mutants.
+%
+% ALESSIO: Maybe restate WHY is this important? or How testers can use the results of this? 
+%
+%
 % While the approach of estimating killable mutants using the
 % family of richness of species estiation methods holds promise,
 % there has been no comprehensive study of the effectiveness of these
 % techniques.
-Hence, this paper investigates the following: \emph{Can
-the species richness estimation methods provide an accurate
+Hence, this paper investigates the following: % ALESSIO: empirically investigate the following research question/hyphothesis (?)
+\emph{Can
+the species richness estimation methods provide an accurate % ALESSIO: before we call them species estiation, not species "richness" estimation. A bit confusing/inconsistent..
 estimate for the number of killable mutants?}
 
-\noindent\textbf{Method.}
+\noindent\textbf{Method.} % ALESSIO: The text does not sound like a method. Maybe we can say something more about the empirical study ?
 In this paper, we report the results of a large-scale empirical study
 on the application of \estimatorCount widely known frequency based
 statistical models for estimating the number of killable mutants in
@@ -759,6 +772,11 @@ statistical models for estimating the number of killable mutants in
 Our investigation suggests that the considered statistical estimators
 lack sufficient predictive power and cannot produce reliable or useful estimates
 of killable mutants. % that are program and test suite dependent.
+%
+% ALESSIO: Probably we should add something for the future to make the message read more positive
+%
+%
+
 
 % using 1000 manually labelled live mutants.
 %
@@ -837,7 +855,7 @@ of killable mutants. % that are program and test suite dependent.
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
 Mutation analysis is the premier means of assessing the quality of
-software test suites~\cite{papadakis2019mutation} in preventing defects,
+software test suites in preventing defects~\cite{papadakis2019mutation},
 and estimating residual risk~\cite{horgan1996software}.
 Evaluating a test suite with mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration.
@@ -900,7 +918,7 @@ def determinant(a,b,c,d):
 %\vspace*{-5mm}
 
 A test case detects (or \emph{kills}) a mutant if it induces and observes
-a change in behavior in the mutant when compared to the original.
+a change in behavior in the mutant when compared to the original code.
 %A mutant that exhibits a detectable change in behavior of the program when
 %exercised by a test case is said to be detected, or \emph{killed}, by that
 %test case. Conversely,
@@ -926,7 +944,11 @@ effectiveness in preventing faults~\cite{jia2010an}.
 
 However, %not all the surviving mutants could be killed.
 some mutants (\Cref{fig:working-example-mutants}-right) %, called equivalent mutants
-are behaviorally \emph{equivalent} to the original~\cite{budd1982two}.
+are behaviorally \emph{equivalent} to the original code~\cite{budd1982two}.
+%
+% ALESSIO: Therefore they cannot be killed by any test.
+%
+%
 %no matter the test input used.
 %These
 %are called \emph{equivalent mutants}~\cite{budd1982two}.
@@ -946,7 +968,11 @@ and cannot be established
 %in general~\cite{budd1982two,rice1953classes}.
 %
 Consequently, the mutation score %and the estimate of residual risk
-might be inaccurate and highly variable.
+might be inaccurate and highly variable. 
+%
+% ALESSIO: Why so it is not necessary evident to everybody.
+%			We might possibly say: highly variable, as equivalent mutants "inflates" it? 
+%
 % and affected by high variability. %~\cite{gotelli2011estimating}. <-- incorrect citation.
 %to standard estimation techniques
 % ALESSIO: Not sure about this box fits here
@@ -955,6 +981,9 @@ Hence, an accurate estimate of the number of killable mutants is important in so
 An accurate estimate of the killable mutants is important for evaluating the \textbf{effectiveness
 of test suites} as well as evaluating \textbf{residual risk} after a test run. %  both of which are important problems for a practitioner.
 \end{tcolorbox}
+%
+% ALESSIO: The box is misplaced, we should remove it. Better merge the text inside the box with the previous sentence.
+%
 
 
 %
@@ -1002,6 +1031,10 @@ of test suites} as well as evaluating \textbf{residual risk} after a test run. %
 %\emph{number} of killable mutants is sufficient.
 Recently the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
 was proposed for estimating the number of \emph{unseen} elements remaining for coverage evaluation.
+%
+% ALESSIO: "\emph{unseen} elements remaining for coverage evaluation." this wording is confusing. Does this mean coverage targets not covered/missed by a test suite? 
+%
+%
 %gives us hope that such an estimation may be possible.
 %]
 %The STADS framework is based on an extension of Good-Turing estimator 
@@ -1025,16 +1058,26 @@ attractive in areas such as reachable coverage estimation
 which can be strongly program dependent.
 
 Given the closeness of mutation analysis
-and coverage analysis---covering a mutant
-s a prerequisite for killing it---%
-we adapted the STADS framework~\cite{bohme2018stads} for
+and coverage analysis---covering a mutant 
+is a prerequisite for killing it---%
+we adapted the STADS framework~\cite{bohme2018stads} 
+% for
 %, and the correlation between coverage and mutation score has been well established)
-predicting reachable coverage elements for predicting killable mutants.
+% predicting reachable coverage elements 
+for predicting killable mutants.
+%
 %We find
 %modeling of test cases or test classes as sampling units to be highly
 %intuitive.
-That is, we estimate the count of killable mutants from the frequency of
-mutant kills by test cases.
+That is, we estimate the count of possibly killable mutants from the frequency of
+mutant % kills
+killed by test cases.
+%
+%
+% ALESSIO: Also this box may create confusion. We should remove it and split the text around.
+%			The idea of comparing single, double, etc. sampling is not introduced before. Also, it does not seem a relevant detail in this context.
+%			If you think otherwise, probably we should introduce it when we firstly mention Chaos. 
+%
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency based estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
@@ -1049,7 +1092,7 @@ killed by no test cases.
 %mutation analysis,
 %we hypothesized that frequency based estimators can effectively
 %predict the number of killable mutants from the frequency of killed mutants.
-This leads to the first first research question. % investigates the effectiveness of frequency based estimators.
+This leads to the first research question. % investigates the effectiveness of frequency based estimators.
 \begin{description}
   \item[RQ1] \textbf{How accurate are frequency based estimators in predicting
     killable mutants?}
@@ -1062,7 +1105,11 @@ the state-of-the-art mutation testing framework \PIT~\cite{pit}.
 %\todo{Describe the basic model here}.
 %\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 
-For answering RQ1, we first use \emph{test methods} as sampling units.
+For answering RQ1, we first used \emph{test methods} as sampling units.
+%
+% ALESSIO: The above is uncalled for. And I wonder whether we should be so forthcoming with the Research Question.
+%			The Introduction is rather long and we should probably make it more on point.
+%
 %\end{tcolorbox}
 
 Chao's estimator preferred by STADS is one among the many frequency based species estimators in
@@ -1092,6 +1139,12 @@ the literature.
 %any mutation in that element. 
 %In the light of this observation,
 
+
+%
+% ALESSIO: We say before those estimators are known to be robust towards sampling biases... studying this point feelds counter intutive.
+%			We also have a footnote elaborating on this point...
+%
+%
 As there is little information on robustness of frequency based estimators to sampling biases,
 %Are frequency based estimators robust to different sampling strategies? There is
 %little guideance in the literature.
@@ -1101,7 +1154,11 @@ the second research question is:
 \end{description}
 %To evaluate the impact of different sampling strategies,
 We used three different
-test suites---developer written, random generated, and guided random to evaluate this question.
+test suites---developer written, randomly generated, and guided random to evaluate this question.
+%
+% ALESSIO: "guided random" is not a standard term to define dynamosa and the like. Why not using feedback-driven or search-based instead?
+%
+%
 %Our hypothesis was that,
 If the estimators are indeed robust to sampling bias,
 then the estimations should coincide, or at least overlap
@@ -1110,6 +1167,12 @@ significantly. We should also be able to identify best strategies by comparison 
 %brittle, then we should be able to identify these strategies by comparison
 %kto ground truth.
 
+%
+% ALESSIO: Starting the paragraph with another question to introduce yet another question does not read nice.
+%		This RQ seems a sub-question of RQ2, why not presenting it like that? Further, we are interested in studying ...
+%		The difference betweetn sampling strategies and sampling unit might be too subtle to appear that relevant. We can also say, sampling consists of two main dimensions: sampling strategy and granularity/unit. 
+%		We investigate both...
+%
 Are frequency based estimators affected by the specific sampling unit used, such
 as using test class as a test unit instead of test method? This informs our next question.
 %How robust are the these estimators to different sampling units? We
@@ -1132,7 +1195,12 @@ difference. We compare the results of both aggregations with the ground truth.
 % Can the inherent assumptions present in frequency based estimators be
 % violated?
 
-
+%
+%
+%%%%%% ALESSIO: The following part does not seem to fit well in the introduction. It reads like a timeline of the study and some way to cover ourselves.
+%			Instead of passing the message: we tried as much as possible, we might pass the message: the design was sloppy and they have to patch it.
+%
+%
 
 %Can how we model mutants affect the accuracy of prediction? In theory, the
 %impact should be minimal. If the end goal is to predict the number of killable
