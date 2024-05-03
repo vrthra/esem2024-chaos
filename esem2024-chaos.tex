@@ -2710,6 +2710,8 @@ difference with respect to manual classification.
 %
 The results are given in tables \Cref{tbl:estoriginalclass},
 \Cref{tbl:estrandomclass}, and \Cref{tbl:estdynamosaclass}.
+The comparision between class and method estimators for \original is given
+in \Cref{tbl:estoriginalclassmethod}.
 %These results are also plotted as dotted lines in \Cref{fig:results}.
 
 %\begin{table}[t]
@@ -2849,6 +2851,29 @@ The results are given in tables \Cref{tbl:estoriginalclass},
         \hline
     \end{tabular}
     \label{tbl:estdynamosaclass}
+\end{table}
+
+\begin{table}[h]
+\caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \original test suites}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+\hline
+\ICEallrare & 4 & 2 & 2.87 & 3.17 \\
+\Zelterman & 5 & 4 & 8.4 & 16.32 \\
+\ChaoBunge & 4 & 2 & 2.15 & 4.19 \\
+\Jackknife & 3 & 0 & 4.14 & 6.42 \\
+\Chao & 5 & 2 & 10.66 & 16.86 \\
+\improvedChao & 4 & 2.0 & 4.55 & 5.27 \\
+\ICE & 4 & 1 & 4.56 & 5.63 \\
+\improvedICE & 4 & 1 & 6.06 & 7.78 \\
+\Unpmle & 3 & 0 & 4.19 & 5.23 \\
+\Bootstrap & 5 & 3 & 5.71 & 2.73 \\
+\Pnpmle & 0 &  &  &  \\
+\PCG & 1 & 0 & 2.03 &  \\
+\hline
+\end{tabular}
+\label{tbl:estoriginalclassmethod}
 \end{table}
 
 % DISCUSSION
@@ -3525,6 +3550,7 @@ killable mutants in mutation analysis.
 % \include{ newdata/latex/latex-mae-total-valid-pairs.tex}
 
 % \include{ newdata/latex/latex-mae-total-valid-classmethod.tex}
+
 % \include{ newdata/latex/latex-mape-all.tex}
 % \include{ newdata/latex/latex-mape-validci.tex}
 % \include{ newdata/latex/latex-mape-valid.tex}
