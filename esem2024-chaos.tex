@@ -1249,18 +1249,27 @@ Once again, our results showed that the estimates from test methods and test cla
 significantly different, which left us with the only option that the considered frequency based statistical
 estimators cannot be reliably applied to mutation analysis.
 %
-That is, our results show that none of the considered statistical estimators
-behaved consistently, and none of them are
-robust to changes in the sampling strategy or sampling unit, or produce correct results.
+%That is, our results show that none of the considered statistical estimators
+%behaved consistently, and none of them are
+%robust to changes in the sampling strategy or sampling unit, or produce correct results.
 %For instance,
 %We found the estimators changed their predictions significantly
 %when using different sampling methods and, almost all the times %they use 
 %test class based sampling let to predict more killable mutants than the existing ones.
 %
-Additionally, we found that in several cases the results are program dependent,
-and that the predictions from manual classifications and
-statistical estimators agreed ($<1\%$ difference) only when there were
-exceptionally strong test suites (i.e., $>99\%$ killed mutants).\\
+
+% IMPORTANT: Not sure if we should include this because our tables do not have
+% any thing to conclude this from.
+%Additionally, we found that in several cases the results are program dependent,
+%and that the predictions from manual classifications and
+%statistical estimators agreed ($<1\%$ difference) only when there were
+%exceptionally strong test suites (i.e., $>99\%$ killed mutants).\\
+
+However, we found a glimmer of hope. \Bootstrap, when applied to \EvosuiteRandom
+test suites seem to produce some what close estimates even when using different
+sampling units. This may point to the utility of \Bootstrap as the starting
+point for a future investigationn on how to enhance the reliability of frequency
+based estimators for mutation analysis.
 
 \textbf{Contributions.}
 In summary, our main contributions are:
@@ -3534,16 +3543,16 @@ killable mutants in mutation analysis.
 \bibliographystyle{unsrt}
 \bibliography{esem2024-chaos}
 %
-\appendix
+% \appendix
 
 
 % \include{ newdata/latex/latex-mae-total-valid.tex}
 % \include{ newdata/latex/latex-mae-total-all.tex}
 % \include{ newdata/latex/latex-mae-total-validci.tex}
 % \include{ newdata/latex/latex-mae-total-valid-pairs.tex}
-
+%
 % \include{ newdata/latex/latex-mae-total-valid-classmethod.tex}
-
+%
 % \include{ newdata/latex/latex-mape-all.tex}
 % \include{ newdata/latex/latex-mape-validci.tex}
 % \include{ newdata/latex/latex-mape-valid.tex}
