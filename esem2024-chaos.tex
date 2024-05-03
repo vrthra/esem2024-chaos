@@ -1439,8 +1439,8 @@ probability for all $i:1\leq i \leq S $ and $j:1\leq j\leq T$ that we have $W_{i
 \[
     P\left(\forall (i,j) W_{ij}=w_{ij}|\nu_{i} \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-p_i)^{1-w_{ij}}
 \]
-Integrating out all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $M_i$,
-which follows a Binomial distribution:
+Integrating all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $M_i$,
+which follows Binomial distribution:
 \begin{gather*}
     \begin{split}
         P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
