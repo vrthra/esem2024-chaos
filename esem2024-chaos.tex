@@ -74,7 +74,6 @@
 
 % ALESSIO: Check whether we use "Frequency Based Statistical Models" in the paper or something else (e.g., "Bio-Inspired Estimators")
 
-
 %Estimating Equivalent Mutants: Are we there yet?}
 %\newcommand{\mytitle}{Estimating Equivalent Mutants: Are we there yet?}
 %\usepackage{hyperref}
@@ -148,7 +147,6 @@ pdftitle={\mytitle}
 \definecolor{cmethod}{RGB}{0,108,168}
 \definecolor{cclass}{RGB}{219,36,42}
 
-
 % The name of our central contribution, with variations
 \usepackage{xspace}
 
@@ -181,7 +179,6 @@ pdftitle={\mytitle}
 \newcommand{\Pnpmle}{PNPMLE\xspace}
 \newcommand{\PCG}{PCG\xspace}
 
-
 \newcommand{\chao}{$\hat{S}_\textit{Chao}$\xspace}
 
 \newcounter{todocounter}
@@ -203,7 +200,6 @@ pdftitle={\mytitle}
 \newcommand{\EvosuiteRandom}{\textsc{Random}\xspace}
 %\newcommand{\EvosuiteStd}{\textsc{Evosuite-Standard}\xspace}
 \newcommand{\EvosuiteDynamosa}{\textsc{DynaMOSA}\xspace}
-
 
 \usepackage{cleveref}
 
@@ -288,14 +284,11 @@ pdftitle={\mytitle}
 \medskip
 }
 
-
-
 \def\term#1{\texttt{'\textbf{#1}'}}
 \newcommand{\termC}[2]{\texttt{'\textbf{\color{#2}#1}'}}
 \def\nonterm#1{\textnormal{\emph{#1}}}
 \def\regex#1{\texttt{{\color{blue}/}#1{\color{blue}/}}}
 \def\expandsto{\(\rightarrow{}\)}
-
 
 \definecolor{nontermcolor}{rgb}{0.4, 0.05, 0.0} % dark orange
 \definecolor{absnontermcolor}{rgb}{0.4, 0.5, 0.0} % light green
@@ -321,8 +314,6 @@ pdftitle={\mytitle}
 \newcommand{\dmark}{\ding{108}}%
 \def\ret#1{\texttt{\color{retcolor}\textbf{\small#1}}}
 
-
-
 \def\Rincomplete{\texttt{\color{incompletecolor}\textbf{$\vartriangleright$}}\xspace}
 \def\Rincorrect{\texttt{\color{incorrectcolor}\textbf{$\ntriangleright$}}\xspace}
 \def\Rvalid{\texttt{\color{validcolor}\textbf{$\blacksquare$}}\xspace}
@@ -347,7 +338,6 @@ pdftitle={\mytitle}
 \newenvironment{Grammar}%
 {\begin{itemize}\item[]\begin{densegrammar}}%
 {\end{densegrammar}\end{itemize}}%
-
 
 \def\instrumentationless{instrumentationless\xspace}
 \def\Pyparsing{\emph{Pyparsing}\xspace}
@@ -384,7 +374,6 @@ pdftitle={\mytitle}
 \definecolor{eclipseBlue}{RGB}{42,0.0,255}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
 \definecolor{eclipsePurple}{RGB}{127,0,85}
-
 
 %\usepackage[procnames]{listings}
 \lstdefinestyle{asm}
@@ -456,7 +445,6 @@ pdftitle={\mytitle}
 
 \lstset{style=mystyle}
 
-
 \newcommand{\pdtg}{parser-directed fuzzing\xspace}
 \newcommand{\Pdtg}{Parser-directed fuzzing\xspace}
 \newcommand{\pdtgN}{\textsc{pFuzzer}\xspace}
@@ -471,7 +459,6 @@ pdftitle={\mytitle}
 {}%
 \algloopdefx{Case}[1]{\textbf{case} #1:}%
 \algdef{SE}[DOWHILE]{Do}{doWhile}{\algorithmicdo}[1]{\algorithmicwhile\ #1}%
-
 
 \newcommand{\json}{\textsc{json}\xspace}
 \newcommand{\csv}{\textsc{csv}\xspace}
@@ -506,7 +493,6 @@ pdftitle={\mytitle}
 %\acmPrice{15.00}
 %\acmISBN{978-1-4503-XXXX-X/18/06}
 
-
 %%
 %% Submission ID.
 %% Use this when submitting an article to a sponsored event. You'll
@@ -538,7 +524,6 @@ pdftitle={\mytitle}
 %% Uncommenting
 %% the next command will enable that style.
 %%\citestyle{acmauthoryear}
-
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -722,7 +707,6 @@ of killable mutants.
 %% information and builds the first part of the formatted document.
 \settopmatter{printacmref=false}
 
-
 \maketitle
 
 %XXXXXXXXXXXXXXXXXXXXXX
@@ -811,10 +795,6 @@ An accurate estimate of the killable mutants is important for evaluating the \te
 of test suites} as well as evaluating \textbf{residual risk} after a test run. %  both of which are important problems for a practitioner.
 \end{tcolorbox}
 
-
-
-
-
 Recently the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
 was proposed for estimating the number of \emph{unseen} elements remaining for coverage evaluation.
 The STADS framework relies on an estimator called Chao's estimator~\cite{chao2016species}
@@ -865,8 +845,6 @@ may be applicable to estimating killable mutants, we conducted a large scale
 empirical study of \textbf{\estimatorCount} different frequency based statistical estimators from
 the literature.
 
-
-
 \begin{comment}
 (2) See what assumptions are violated? (a) test suite difference (b) sampling different
 (3) Minor: Are they more sensitive to sampling or test suite?
@@ -897,16 +875,6 @@ We hypothesized that the estimates should overlap, with the difference in
 accuracy (as represented by the variance of the estimation) being the only major
 difference. We compare the results of both aggregations with the ground truth.
 
-
-
-
-
-
-
-
-
-
-
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Our large study empirically investigates the hypothesis that (at least)
 one of the surveyed frequency based estimators can be effectively used to
@@ -918,7 +886,6 @@ number of generated mutants.
 This paper summarizes 
 the main findings of our study and is complemented by
 the replication package~\cite{replication-package}.
-
 
 \textbf{Empirical Study Results Overview.}
 For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
@@ -966,7 +933,6 @@ Once again, our results showed that the estimates from test methods and test cla
 significantly different, which left us with the only option that the considered frequency based statistical
 estimators cannot be reliably applied to mutation analysis.
 
-
 However, we found a glimmer of hope. \Bootstrap, when applied to \EvosuiteRandom
 test suites seem to produce some what close estimates even when using different
 sampling units. This may point to the utility of \Bootstrap as the starting
@@ -988,12 +954,6 @@ classified by three researchers on \projectCount mature projects,
 multiple test suites generated manually and automatically,
 and their mutation analysis resulting in more than 2.5B test executions.
 \end{itemize}
-
-
-
-
-
-
 
 \section{Statistical Framework}
 \label{sec:mapping}
@@ -1108,10 +1068,6 @@ presence of species across multiple sampling units, or \emph{abundance data}, i.
 data about the number of individuals of different species found.
 As our model leverages kill incidence matrix, we primarly resort to incidence sampling estimators.
 
-
-
-
-
 Incidence sampling considers $T$ sampling units randomly selected among all
 the available ones and assumes these are independent~\cite{chao2016species}.
 In each sampling unit, the relevant (categorical) data is the presence of various species;
@@ -1135,7 +1091,6 @@ $Q_1$ and $Q_2$ the frequency of singleton and doubleton species,
 and $T$ is the number of sampled units.
 This estimator is represented as \<\Chao>
 in the rest of the paper.
-
 
 Chiu et al.~\cite{chiu2014improved} derived an improved version (referred to as \<iChao>), which makes use of the additional
 information of tripletons $Q_3$ and quadrupletons $Q_4$ to estimate undetected species richness.
@@ -1162,7 +1117,6 @@ We consider up to $\textsc{J}=5$, and automatically select the best performing
 one (referred as \<\Jackknife>).
 These estimators underestimate on small sample size, and overestimate otherwise~\cite{chao2016species}. 
 
-
 \subsubsection{Incidence coverage estimator~\cite{chao1992estimating}} %\todo{missing citation}
 The Incidence Coverage Estimator~(referred as \<ICE>) %were developed for cryptographic analysis by Good and Turing.
 is given by:
@@ -1185,11 +1139,7 @@ as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
 Gotelli~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
 which underestimates less. % then the original one.
 
-
 For all the aforementioned estimators, there is an analytical way of constructing the confidence interval.
-
-
-
 
 \subsubsection{Bootstrap estimator~\cite{smith1984nonparametric}} %\todo{description unclear!}
 The \Bootstrap estimator
@@ -1201,7 +1151,6 @@ S_{bootstrap}  = {avg}_{m}( S_{obs} + \sum^{S_{obs}}_{j=1} (1 - Y_j/T)^T)
 $Y_{j}$ is the number of sampling units %quadrats
 where species $j$ is detected. % \todo{Why then Y j is not F j?!}
 
-
 \subsubsection{\Zelterman estimator~\cite{bohning2010some}}
 Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit dug use research.
 It is defined as:
@@ -1209,15 +1158,6 @@ It is defined as:
     S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1]
 \end{displaymath}
 where $\hat{\lambda} = 2f_2/(m-1)f_1$.
-
-
-
-
-
-
-
-
-
 
 \subsubsection{Other estimators}
 The estimators mentioned below are not intended to be directly applied to our model.
@@ -1242,20 +1182,7 @@ was provided by Wang et al.~\cite{wang2005penalized}.
 The Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (PCG)
 was provided by Wang et al.~\cite{wang2010estimating}.
 
-
-
-
-
-
-
-
-
-
-
-
-
 \section{Methodology}
-
 
 Our methodology consisted of the following steps:
 \begin{enumerate*}[label=(\arabic*)]
@@ -1372,7 +1299,6 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
 }}
 \label{tbl:fullsubjects}
 \end{table}
-
 
 \begin{table*}
   \caption{Apache Commons projects --- Projects and test suites measures}
@@ -1504,8 +1430,6 @@ commons-collections  &100 & 3  & 2  &  1 \\
 \flushleft{$^*$We used commons-csv as a pilot to train researchers \rB and \rC.} 
 \end{table}
 
-
-
 After the initial training, the classification considered one project at a time in alphabetical order
 (as listed in \Cref{tbl:classified}) and required researchers \rB and \rC \emph{independently}
 to classify all $100$ sampled mutants. % as killable or equivalent.
@@ -1560,7 +1484,6 @@ The x-axis is the percentage of mutants, with 1.0 indicating the complete set of
   based estimators overlap with \textcolor{cgroundtruth}{ground truth CI} consistently.}
 \label{fig:groundtruth}
 \end{figure*}
-
 
 \noindent\textbf{RQ1.
 What is the accuracy of frequency based estimators in predicting killable mutants?}\\
@@ -1658,9 +1581,6 @@ The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
     \label{tbl:estdynamosa}
 \end{table}
 
-
-
-
 \noindent\textbf{RQ3. 
 Are frequency based estimators affected by sampling units?
 }\\ % when given unbiased test suites from \Evosuite?}
@@ -1672,7 +1592,6 @@ The comparison between class and method estimators for \original is given
 in \Cref{tbl:estoriginalclassmethod}.
 That for \EvosuiteRandom is given in \Cref{tbl:estrandomclassmethod},
 and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
-
 
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \original test suites}
@@ -1767,7 +1686,6 @@ To illustrate the differences, we plot the results for \Chao estimator (the
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
 The figure shows that irrespective of test suite used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---\Chao estimator predictions are far from the ground truth.
 
-
 Which estimator is useful to the developers?
 That is, can we recommend an estimator?
 When we have a statistically significant difference between manual estimate and
@@ -1779,7 +1697,6 @@ even though the difference from the manual estimates are the smallest.
 Furthermore, at the confidence interval at 95\% the mean margin of error was
 just 1.9\%. That is, manual estimation from just 100 mutants can provide a
 better estimate than the estimators we examined.
-
 
 \noindent\textbf{RQ2.
 Are frequency based estimators affected by sampling strategies?}\\
@@ -1807,7 +1724,6 @@ overlaps.
 To illustrate the differences, as before, we plot the results for \Chao
 estimator, the estimator suggested by the STADS framework in
 \Cref{fig:methodsamplingunit} and \Cref{fig:classsamplingunit}.
-
 
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
@@ -1883,8 +1799,6 @@ would have resulted in a larger number of overlaps.
 \label{fig:classsamplingunit}
 \end{figure*}
 
-
-
 \noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}\\
 As we mentioned in the introduction, there is a possibility, however remote,
 that the manual estimation result was either in error, or the result was a
@@ -1938,24 +1852,6 @@ actual value, albeit with a large amount of uncertainty.
 Furthermore, unlike \EvosuiteDynamosa, \EvosuiteRandom is completely unguided in
 test generation, which may be a hint as to the better performance of \Bootstrap
 on \EvosuiteRandom, and points to the need for further study.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \noindent\textbf{Empirical Strategy Used.}
 This paper uses the quantitative research, including systematic
@@ -2011,8 +1907,6 @@ our mapping of statistical estimators to the mutation testing domain
 might not to capture important variables. %We also acknowledge this threat.
 We tried to mitigate this threat by adopting different sampling strategies.
 
-
-
 \section{Related Work}
 \label{sec:related}
 Mutation analysis is considered a primary way of evaluating test quality~\cite{papadakis2019mutation};
@@ -2052,7 +1946,6 @@ to measure the intrinsic \emph{redundancy} in programs as a proxy for mutants eq
 Despite their potential benefits and promising initial results,
 none of those methods has been empirically evaluated yet.
 
-
 \noindent\textbf{Studies conducting mutant classification.}
 A few previous studies also relied on the manual mutants classification.
 Acree's study~\cite{acree1980mutation} 
@@ -2087,9 +1980,6 @@ difficult to evaluate, projects, and a representative set of mutation operators~
 Finally, we studied manually written and automatically generated unit test suites, 
 that covered more mutants and estimating a higher number (generally $> 90$\%) of killable mutants.
 
-
-
-
 We used statistical estimators for predicting killable mutants, others, instead, used
 them for estimating residual faults.
 For instance, B{\"o}hme~\cite{bohme2018stads} argued to use the same
@@ -2102,10 +1992,6 @@ Tohma et al.~\cite{tohma1989structural}, instead, modeled
 the distribution of observed faults as hyper-geometric distribution
 to estimate the number of residual defects.
 
-
-
-
-
 \section{Conclusions and Future Work}
 \label{sec:conclusions}
 Accurately estimating the number of killable mutants is crucial for estimating
@@ -2113,7 +1999,6 @@ the residual risk and the effectiveness of test generators.
 While a sound and complete classifier for killable and equivalent mutants is impossible,
 recent advances in statistical estimation using frequency %count 
 based estimators gave us hope that one could at least estimate the number of killable mutants.
-
 
 This research provides the first, large evaluation of these estimators on mutation analysis. 
 Our results show that the considered statistical estimators %for species richness 
@@ -2127,7 +2012,6 @@ killable mutants in mutation analysis.
 \bibliography{esem2024-chaos}
 %
 % \appendix
-
 
 % \include{ newdata/latex/latex-mae-total-valid.tex}
 % \include{ newdata/latex/latex-mae-total-all.tex}
@@ -2420,7 +2304,6 @@ killable mutants in mutation analysis.
 % } 
 %\label{fig:estimates4}
 %\end{figure*}
-
 
 %\maketitle
 \end{document}
