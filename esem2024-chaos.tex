@@ -955,10 +955,11 @@ We wish to measure the number of killable mutants with help of statistical estim
 These estimators
 have also been successful in counting systems in
 computer networks~\cite{accettura2015the} and
-estimating reachable coverage in the STADS framework~\cite{bohme2018stads}.
+estimating reachable coverage~\cite{bohme2018stads}.
 
-In the next section, we introduce the underlying statistical model,
-which is used for the statistical estimators we considered.
+The following sections introduce 
+the foundational model underlying statistical estimation and the statistical
+estimators our study considered.
 
 \subsection{The Urn Probabilistic Model}
 Consider the following probabilistic model:
@@ -998,7 +999,9 @@ denotes the number of undetected mutants.
 We assume that the probability that a mutant~$M_i$ is detected by a test~$X_j$ is defined as
 $P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$,
 where variables $\{\nu_{1}, \nu_{2},\cdots,\nu_{T}\}$ are responsible for test effects.
-Indeed, the ability of a test to kill mutants might be affected by various factors, such as coverage, input data, environment or flakiness.
+Indeed, the ability of a test to kill mutants might be affected by various factors, such as
+coverage,
+input data, environment or flakiness.
 We model those test effects as a random
 variable from an unknown probability density function $h(\nu)$, whereas
 we assume fixed mutant detection rates $\pi_i$.
@@ -1053,8 +1056,8 @@ The essential idea
 is that the number
 of species that are never sampled %did not show up in any sampling unit 
 can be estimated by considering the next rarest species, such as species
-detected only once, or \emph{singleton}, twice, or \emph{doubleton}, %species detected only twice)
-and the number of species found. % that comprise to them.
+detected only once (\emph{singleton}), twice (\emph{doubleton}),
+and the number of species found.
 
 Chao~\cite{chao2016species} identified two kinds of species richness
 estimators based on whether they adopt \emph{incidence data}, i.e., data about the
@@ -1130,7 +1133,7 @@ while $S_{\textit{infreq}}$ is those that do. % with incidence frequency no larg
 A $k=10$ cut-off is recommended. We also considered the original coverage estimator
 as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
 \<ICE> with $k=0$ (\<\ICEallrare>).
-Gotelli~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
+Gotelli et al.~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
 which underestimates less. % then the original one.
 
 For all the aforementioned estimators, there is an analytical way of constructing the confidence interval.
@@ -1146,7 +1149,7 @@ $Y_{j}$ is the number of sampling units %quadrats
 where species $j$ is detected. % \todo{Why then Y j is not F j?!}
 
 \subsubsection{\Zelterman estimator~\cite{bohning2010some}}
-Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit dug use research.
+Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit drug use research.
 It is defined as:
 \begin{displaymath}
     S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1]
@@ -1154,26 +1157,28 @@ It is defined as:
 where $\hat{\lambda} = 2f_2/(m-1)f_1$.
 
 \subsubsection{Other estimators}
-The estimators mentioned below are not intended to be directly applied to our model.
-Still, with the slight adaptation they can be used for our purposes.
-They have have complex formulation; hence, we only introduce them.
+The remaining estimators we considered, namely \ChaoBunge, \Unpmle, \Pnpmle, and \PCG,
+work with abundance data and have a complex formulation.
+In the following, we describe how we obtained the required data
+and briefly introduce them.
 
-There is a class of species richness estimators that work with abundance data.
 Abundance sampling considers each individual to be a sampling unit
 and recognizes as the relevant (numerical) data the number of individuals
 that belong to each species.
 We can transform our data into abundance form by summing up values of the incidence matrix along the test axis,
 though, loosing information about the number of samples (tests). This way, we get a vector of counts for each mutant.
-Besides, sometimes estimates assume Poisson rather than Binomial distribution of counts, which can be considered the limiting case when the number of tests tends to infinity (i.e., is too big).
-Therefore, we additionally analyse \<\ChaoBunge>, \<UNPMLE>, \<PNPMLE>, and \<PCG> estimators.
+Besides, sometimes estimates assume Poisson rather than Binomial distribution of counts, which can be considered the limiting case when the number of tests tends to infinity
+(i.e., $T$ is too big).
+Having abundance data, we can apply
+\<\ChaoBunge>, \Unpmle, \Pnpmle, and \PCG estimators.
 The \ChaoBunge estimator, proposed by Chao and Bunge~\cite{chao2002estimating},
 utilizes the gamma-Poisson model in which species are detected in the sample
 according to a Poisson process and rates of the processes follow a gamma distribution.
-The Unconditional nonparametric maximum likelihood estimator (UNPMLE)
+The Unconditional nonparametric maximum likelihood estimator (\Unpmle)
 was provided by Norris and Pollock~\cite{norris1998non}.
-The Penalized nonparametric maximum likelihood estimator (PNPMLE)
+The Penalized nonparametric maximum likelihood estimator (\Pnpmle)
 was provided by Wang et al.~\cite{wang2005penalized}.
-The Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (PCG)
+Finally, the Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (\PCG)
 was provided by Wang et al.~\cite{wang2010estimating}.
 
 \section{Methodology}
