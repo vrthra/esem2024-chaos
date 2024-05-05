@@ -167,7 +167,7 @@ pdftitle={\mytitle}
 
 \newcommand{\ICEallrare}{ICE-k0\xspace}
 \newcommand{\Zelterman}{Zelterman\xspace}
-\newcommand{\ChaoBunge}{Chao Bunge\xspace}
+\newcommand{\ChaoBunge}{Chao-Bunge\xspace}
 \newcommand{\Jackknife}{Jackknife\xspace}
 \newcommand{\Chao}{Chao\xspace}
 %\newcommand{\Chaobiascorrected}{Chao-bc\xspace}
@@ -1022,7 +1022,7 @@ which follows Binomial distribution:
 \begin{gather*}
     \begin{split}
         P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
-        &={T \choose y_i}{\lambda_i}^y_i (1-{\lambda_i}^y_i)^{T-y_i},
+        &={T \choose y_i}{\lambda_i}^{y_i} (1-{\lambda_i}^{y_i})^{T-y_i},
     \end{split}
 \end{gather*}
 where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
@@ -1112,7 +1112,7 @@ is more robust to sampling bias~\cite{hortal2006evaluating} but has larger stand
 Higher-order \Jackknife estimators ($S_{\textit{jack\textsc{J}}}$) are constructed similarly.
 We consider up to $\textsc{J}=5$, and automatically select the best performing
 one (referred as \<\Jackknife>).
-These estimators underestimate on small sample size, and overestimate otherwise~\cite{chao2016species}. 
+These estimators underestimate on small sample size and overestimate otherwise~\cite{chao2016species}.
 
 \subsubsection{Incidence coverage estimator~\cite{chao1992estimating}} %\todo{missing citation}
 The Incidence Coverage Estimator~(referred as \<ICE>) %were developed for cryptographic analysis by Good and Turing.
@@ -1157,20 +1157,26 @@ It is defined as:
 where $\hat{\lambda} = 2f_2/(m-1)f_1$.
 
 \subsubsection{Other estimators}
-The remaining estimators we considered, namely \ChaoBunge, \Unpmle, \Pnpmle, and \PCG,
-work with abundance data and have a complex formulation.
-In the following, we describe how we obtained the required data
-and briefly introduce them.
+So far we discussed incidence estimators that take as an input incidence data.
+However, we can consider the whole test suite as one single sample and count number of kills for each mutant.
+That is, by summing up values of the incidence matrix along the test axis, we can transform our data into abundance form and apply abundance estimators---
+though, loosing information about the number of samples (tests).
 
-Abundance sampling considers each individual to be a sampling unit
-and recognizes as the relevant (numerical) data the number of individuals
-that belong to each species.
-We can transform our data into abundance form by summing up values of the incidence matrix along the test axis,
-though, loosing information about the number of samples (tests). This way, we get a vector of counts for each mutant.
-Besides, sometimes estimates assume Poisson rather than Binomial distribution of counts, which can be considered the limiting case when the number of tests tends to infinity
-(i.e., $T$ is too big).
-Having abundance data, we can apply
-\<\ChaoBunge>, \Unpmle, \Pnpmle, and \PCG estimators.
+%The remaining estimators we consider, namely \ChaoBunge, \Unpmle, \Pnpmle, and \PCG,
+%work with abundance data and have a complex formulation.
+%In the following, we describe how we obtained the required data
+%and briefly introduce them.
+
+%Abundance sampling considers each individual to be a sampling unit
+%and recognizes as the relevant (numerical) data the number of individuals
+%that belong to each species.
+% by summing up values of the incidence matrix along the test axis,
+%though, loosing information about the number of samples (tests). This way, we get a vector of counts for each mutant.
+
+With abundance data, we explore \<\ChaoBunge>, \Unpmle, \Pnpmle, and \PCG estimators.
+Since they have complex formulation, we suggest the reader to refer to the corresponding papers for details.
+Some abundance estimators assume Poisson rather than Binomial distribution of counts, which can be considered as a limiting case when the number of tests tends to infinity
+(i.e., $T$ is sufficiently large).
 The \ChaoBunge estimator, proposed by Chao and Bunge~\cite{chao2002estimating},
 utilizes the gamma-Poisson model in which species are detected in the sample
 according to a Poisson process and rates of the processes follow a gamma distribution.
