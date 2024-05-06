@@ -188,9 +188,9 @@ pdftitle={\mytitle}
                                                                                  
 \newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
 
-%\renewcommand{\todo}[1]{}
-%\renewcommand{\done}[1]{}
-%\renewcommand{\rem}[1]{}
+\renewcommand{\todo}[1]{}
+\renewcommand{\done}[1]{}
+\renewcommand{\rem}[1]{}
 
 \newcommand{\Randoop}{\textsc{Randoop}\xspace}
 \newcommand{\Evosuite}{\textsc{EvoSuite}\xspace}
@@ -956,9 +956,9 @@ have also been successful in counting systems in
 computer networks~\cite{accettura2015the} and
 estimating reachable coverage~\cite{bohme2018stads}.
 
-The following sections introduce 
+We next introduce 
 the foundational model underlying statistical estimation and the statistical
-estimators our study considered.
+estimators for our study.
 
 \subsection{The Urn Probabilistic Model}
 Consider the following probabilistic model:
@@ -1135,7 +1135,7 @@ as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
 Gotelli et al.~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
 which underestimates less. % then the original one.
 
-For all the aforementioned estimators, there is an analytical way of constructing the confidence interval.
+We use the Bootstrap estimator to estimate confidence intervals.
 
 \subsubsection{Bootstrap estimator~\cite{smith1984nonparametric}} %\todo{description unclear!}
 The \Bootstrap estimator
@@ -1157,9 +1157,9 @@ It is defined as:
 
 \subsubsection{Other estimators}
 So far we discussed incidence estimators that take as an input incidence data.
-However, we can consider the whole test suite as one single sample and count number of kills for each mutant.
-That is, by summing up values of the incidence matrix along the test axis, we can transform our data into abundance form and apply abundance estimators---
-though, loosing information about the number of samples (tests).
+However, we can consider the whole test suite as one single sample and count mutant kills.
+%That is, by summing up values of the incidence matrix along the test axis, we can transform our data into abundance form and apply abundance estimators---
+%though, loosing information about the number of samples (tests).
 
 %The remaining estimators we consider, namely \ChaoBunge, \Unpmle, \Pnpmle, and \PCG,
 %work with abundance data and have a complex formulation.
@@ -1183,8 +1183,7 @@ The Unconditional nonparametric maximum likelihood estimator (\Unpmle)
 was provided by Norris and Pollock~\cite{norris1998non}.
 The Penalized nonparametric maximum likelihood estimator (\Pnpmle)
 was provided by Wang et al.~\cite{wang2005penalized}.
-Finally, the Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (\PCG)
-was provided by Wang et al.~\cite{wang2010estimating}.
+Wang et al.~\cite{wang2010estimating} provided the Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (\PCG).
 
 \section{Methodology}
 
@@ -1243,11 +1242,14 @@ projects that had no official release at the time we conducted this study and
 $17$ projects that have a complex structure, fail to build, do not pass the available tests,
 or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
 
-Since our methodology requires manual mutant classification, which is %notoriously
-expensive, we had to restrict the scope of our study; hence, we selected 
-as test subjects the ten largest projects fulfilling our criteria.
-We highlight these projects in \Cref{tbl:fullsubjects} and
-summarize their main properties in \Cref{tbl:subjectmeasures}.
+Since our methodology required expensive manual mutant classification, %, which is %notoriously
+%, we had to restrict the scope of our study; hence,
+we restricted our analysis 
+%as test subjects the
+to \emph{ten largest projects} (\Cref{tbl:fullsubjects}, \Cref{tbl:subjectmeasures}) fulfilling our
+criteria.
+%We highlight these projects in \Cref{tbl:fullsubjects} and
+%The main prsummarize their main properties in \Cref{tbl:subjectmeasures}.
 
 \begin{table}[t]
   \caption{List of considered Apache Commons projects}
@@ -1348,8 +1350,9 @@ domain- specific requirements.
 Therefore, one can argue that using such \original test suites 
 might result in a biased sampling of live mutants.
 To reduce this risk,
-we generated two additional test suites for each test subject.
-Specifically, we leveraged \Evosuite~\cite{fraser2011evosuite}
+%we generated two additional test suites for each test subject.
+%Specifically,
+we leveraged \Evosuite~\cite{fraser2011evosuite}
 to generate \EvosuiteRandom, a test suite that does not target any specific testing goal,
 and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Many-Objective Sorting Algorithm~\cite{panichella2015reformulating}.
 Consequently, we argue that the former test suite has the lowest generation bias, whereas
@@ -1512,8 +1515,8 @@ number of killable mutants in a project.
 \caption{\EvosuiteDynamosa} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth2}
 \end{subfigure}
-\caption{Killable mutants estimated by species richness estimators for \Chao estimator, comparison with ground truth.
-The x-axis is the ratio of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
+\caption{Killable mutants estimated by frequency estimators for \Chao estimator, comparison with ground truth.
+Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axis lists the projects.
   The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
   The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI (ground truth), with dark purple line the point estimate.
   The dotted black line indicates the total
