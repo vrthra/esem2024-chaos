@@ -1542,16 +1542,15 @@ from the manual classification estimates, i.e.,  their 95\% confidence intervals
 %
 % ALESSIO: I do not think we compute the Normalized MD, but the absolute one. Also, 
 %
-Next, we computed the % normalized
+Next, we computed the normalized
 mean difference (MD) between the point estimates of the
-statistical estimators ($E$) and the manual classification ($E^M$) as: ${|E - E^M|}$. 
+statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}{m}\sum_i{\frac{|E_i - E^M_i|}{S_i}}\times100\%$.
 %
 % We removed any estimate that resulted in negative
 % CI upper bound, or point estimate.
 % We also removed any estimate that was higher than the total number of mutants.
-Notably, we removed any invalid estimate before computing MD.
-We consider invalid any estimate that resulted in negative
-CI upper bound, negative point estimate, or a value higher than the total number of possible mutants.
+Notably, we removed any invalid estimate before computing MD, gaining $m$ valid estimates.
+We consider invalid any estimate that failed to compute, resulted in negative point estimate, or a value higher than the total number of possible mutants.
 %
 % The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 % The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
