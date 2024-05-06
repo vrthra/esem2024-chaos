@@ -1498,16 +1498,16 @@ number of killable mutants in a project.
 \label{fig:groundtruth1}
 \end{subfigure}
 \begin{subfigure}{.27\textwidth}
+  \includegraphics[width=1\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
+\vspace*{-3mm}
+\caption{\EvosuiteRandom} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
+\label{fig:groundtruth3}
+\end{subfigure}
+\begin{subfigure}{.27\textwidth}
       \includegraphics[width=\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
 \vspace*{-3mm}
 \caption{\EvosuiteDynamosa} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth2}
-\end{subfigure}
-\begin{subfigure}{.27\textwidth}
-      \includegraphics[width=1\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
-\vspace*{-3mm}
-  \caption{\EvosuiteRandom} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
-\label{fig:groundtruth3}
 \end{subfigure}
 \caption{Killable mutants estimated by species richness estimators for \Chao estimator, comparison with ground truth.
 The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
@@ -1822,51 +1822,100 @@ from the \original test suites using test method as sampling unit.
 %  for every estimator examined.
 \end{tcolorbox}
 
-%
-% ALESSIO: HERE
-%
 \noindent\textbf{RQ2.
 Are frequency based estimators affected by sampling strategies?}\\
-As we noted in the introduction, it is possible that the frequency
-based estimators may not be robust to bias in sampling.
-To mitigate this bias, we used two generated test suites \EvosuiteRandom and
-\EvosuiteDynamosa without manual bias.
+% As we noted in the introduction, 
+Statistical estimators rely on the data obtained by sampling campaigns;
+thus, it is possible that they %frequency based estimators
+may not be robust to bias in sampling, e.g., bias introduced by the developers.
+% To mitigate this bias, 
+To study how different sampling strategies affect the statistical estimators,
+we generated two test suites automatically, i.e., without manual bias:
+\EvosuiteRandom and \EvosuiteDynamosa.
 
-The results from \Cref{tbl:estrandom} for \EvosuiteRandom,
-(and \Cref{tbl:estoriginal} for \original)
-reveals that overlaps between CI from manual classification and
-\EvosuiteRandom was considerably fewer than that between manual and \original.
-The smallest difference in MD was observed for \ICEallrare,
-(mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
-had just two \emph{valid estimates}.
-For every other estimator, while the number of
-\emph{valid estimates} were considerably better, the number of CI overlaps were
-still dismal, and had a much larger mean difference, all above 30\%.
 
-For \EvosuiteDynamosa, the situation was no better (\Cref{tbl:estdynamosa}),
-\ICEallrare which had the smallest mean difference (5.54) had just one valid
-estimate. Other estimators had larger MD, and few CI
-overlaps.
+% The results from \Cref{tbl:estrandom} for \EvosuiteRandom,
+% (and \Cref{tbl:estoriginal} for \original)
+% reveals that overlaps between CI from manual classification and
+% \EvosuiteRandom was considerably fewer than that between manual and \original.
+% The smallest difference in MD was observed for \ICEallrare,
+% (mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
+% had just two \emph{valid estimates}.
+% For every other estimator, while the number of
+% \emph{valid estimates} were considerably better, the number of CI overlaps were
+% still dismal, and had a much larger mean difference, all above 30\%.
 
-To illustrate the differences, as before, we plot the results for \Chao
-estimator, the estimator suggested by the STADS framework in
-\Cref{fig:methodsamplingunit} and \Cref{fig:classsamplingunit}.
+\Cref{tbl:estrandom} reports the results obtained using \EvosuiteRandom,
+whereas \Cref{tbl:estdynamosa} the results obtained using \EvosuiteDynamosa.
+%
+Comparing the data in tables \ref{tbl:estoriginal}~and~\ref{tbl:estrandom}
+reveals that with \EvosuiteRandom
+(i) the estimators produced more valid estimates ($97$ vs. $79$);
+(ii) the number of overlaps between CI from the estimators and manual classification
+was comparable ($12$ vs. $13$), although not all the estimators behaved consistently;
+% ALESSIO: some lost, some gain, the majority stayed the same
+and, (iii) the mean difference deagraded considerably ($+20\%$ on average).
+% \EvosuiteRandom was considerably fewer than that between manual and \original.
+% The smallest difference in MD was observed for \ICEallrare,
+% (mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
+% had just two \emph{valid estimates}.
+% For every other estimator, while the number of
+% \emph{valid estimates} were considerably better, the number of CI overlaps were
+% still dismal, and had a much larger mean difference, all above 30\%.
 
+% For \EvosuiteDynamosa, the situation was no better (\Cref{tbl:estdynamosa}),
+% \ICEallrare which had the smallest mean difference (5.54) had just one valid
+% estimate. Other estimators had larger MD, and few CI
+% overlaps.
+
+Comparing the data in tables \ref{tbl:estoriginal}~and~\ref{tbl:estdynamosa}
+reveals that the situation did not improve using an advanced test generation algorithm.
+Although the valid estimates with \EvosuiteDynamosa are comparable to those with \original ($80$ vs. $79$),
+the number of CI overlaps was smaller ($9$ vs. $13$) and the mean difference was even larger than \EvosuiteRandom ($+24\%$ on average).
+
+As before, we plot the results for \Chao estimator with each sampling strategy %, the estimator suggested by the STADS framework in - ALESSIO: Repeated
+in figures~\ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
+Instead, we plot in \Cref{fig:methodsamplingunit} the comparison of the sampling strategies.% and \Cref{fig:classsamplingunit}
+%
+% ALESSIO: Is this just reshuffling the content of the Figure 3? Do we really need it?
+% ALESSIO: We should comment something about the figure...
+%
+
+We expected that using automated test generation strategies would mitigate
+manual bias, and hence result in better estimates. Likewise, we expected that
+using unbiased sampling, i.e., random search, would produce better results than
+otherwise.
+%
+Our expectations were met but only partially.
+Sampling killable mutants using \EvosuiteRandom, the estimators performed better
+than with \EvosuiteDynamosa, confirming that unbiased sampling is beneficial. 
+Moreover, the estimators produced more valid estimates with \EvosuiteRandom than any other sampling strategy.
+However, we also observed that with \EvosuiteRandom the mean difference, i.e., the precision of the estimations,
+drastically worsened compared to \original and that with \EvosuiteDynamosa the situation worsened.
+
+% One may argue that it means that our generated test suites did not adequately
+% sample the population. However, if the estimators were actually performing
+% correctly, this should have resulted in a larger confidence interval, which
+% would increase the \emph{accuracy} at the expense of \emph{precision}, and
+% would have resulted in a larger number of overlaps.
+
+One possible explanation of these results is that the automatically generated test suites
+did not adequately sample the population (see statement and branch coverage in \Cref{tbl:subjectmeasures}).
+However, our counterargument is that if the estimators were actually performing as expected,
+they should have produced larger confidence interval in the face of fewer samples.
+In turn, large CIs would have increased the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
+at the expense of their \emph{precision}, i.e., mean difference. 
+But this was not the case; therefore, we answer RQ2 as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
-to the estimates from manual classification is statistically significant for
-every estimator examined.
+The estimation quality is affected by the sampling strategy. For instance,
+unbiased sampling improved the reliability of the estimators but reduced their precision.
+Additionally, no matter the chosen sampling strategy, none of the estimators showed
+satisfactory results.
+%   The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
+% to the estimates from manual classification is statistically significant for
+% every estimator examined.
 \end{tcolorbox}
 
-We expected that using random test generation strategies would mitigate
-manual bias, and hence result in better estimates. However, in our experiment,
-we see that the mean difference observed from generated test suites is much
-higher than that observed from the \original test suite.
-One may argue that it means that our generated test suites did not adequately
-sample the population. However, if the estimators were actually performing
-correctly, this should have resulted in a larger confidence interval, which
-would increase the \emph{accuracy} at the expense of \emph{precision}, and
-would have resulted in a larger number of overlaps.
 
 \definecolor{coriginal}{RGB}{0,150,47}
 \definecolor{cdynamosa}{RGB}{0,108,168}
