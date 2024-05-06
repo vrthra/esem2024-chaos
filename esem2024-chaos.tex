@@ -468,7 +468,7 @@ pdftitle={\mytitle}
 \newcommand{\BC}{Branch Coverage\xspace}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-\captionsetup{skip=7pt}
+\captionsetup[figure]{skip=2pt}
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
 %% values in them; it is your responsibility as an author to replace
@@ -1098,16 +1098,18 @@ information of tripletons $Q_3$ and quadrupletons $Q_4$ to estimate undetected s
 \noindent Chao estimators are known to provide \emph{lower bounds} estimates.
 
 \subsubsection{\Jackknife estimator~\cite{burnham1978estimation,burnham1979robust}}
-The basic, first order, \Jackknife estimator is computed as follows: %. The formula is given by
+The first and second order \Jackknife estimators are computed as follows: %. The formula is given by
 \begin{displaymath}
-  S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right)
+    S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right); S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
 \end{displaymath}
-
-The second order \Jackknife~\cite{smith1984nonparametric}, which
-is more robust to sampling bias~\cite{hortal2006evaluating} but has larger standard error, is given by:
-\begin{displaymath}
-  S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
-\end{displaymath}
+%\begin{displaymath}
+%  S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right)
+%\end{displaymath}
+The second order \Jackknife~\cite{smith1984nonparametric}
+is more robust to sampling bias~\cite{hortal2006evaluating} but has larger standard error.
+%\begin{displaymath}
+%    S_{\textit{jack1}} = S_{\Unless stated otherwise, we reportextit{obs}} + Q_1\left(\frac{T-1}{T}\right); S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
+%\end{displaymath}
 Higher-order \Jackknife estimators ($S_{\textit{jack\textsc{J}}}$) are constructed similarly.
 We consider up to $\textsc{J}=5$, and automatically select the best performing
 one (referred as \<\Jackknife>).
@@ -1387,7 +1389,7 @@ To reduce the risk of misclassifying ``slow'' mutants as killed,
 we conservatively granted each unit test a generous timeout of 10 seconds.
 Finally, we estimated the live mutant species richness
 on the \projectCount test subjects using the \estimatorCount 
-estimators on each of the three test suites using both test class and test method sampling.
+estimators on each of the three test suites using both test class and test method as sampling units.
 \todo{
 ALESSIO: AFAIK we never explicitly introduce test class and test method sampling
 }
