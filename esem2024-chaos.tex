@@ -226,7 +226,6 @@ pdftitle={\mytitle}
 \usepackage{float}
 \usepackage{soul}
 \usepackage{alltt}
-\usepackage{caption}
 
 %\usepackage{mdwtab}
 \usepackage{syntax}
@@ -1152,9 +1151,9 @@ where species $j$ is detected. % \todo{Why then Y j is not F j?!}
 Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit drug use research.
 It is defined as:
 \begin{displaymath}
-    S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1]
+    S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1], \hat{\lambda} = 2Q_2/(m-1)Q_1
 \end{displaymath}
-where $\hat{\lambda} = 2Q_2/(m-1)Q_1$.
+%where $\hat{\lambda} = 2Q_2/(m-1)Q_1$.
 
 \subsubsection{Other estimators}
 So far we discussed incidence estimators that take as an input incidence data.
@@ -1567,7 +1566,7 @@ in \Cref{tbl:estoriginal}.
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across test subjects---\original test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
-        Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
+        Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
         \ICEallrare & 4 & 0 & 5.78 & 6.52 \\
         \Zelterman & 6 & 1 & 13.48 & 14.06 \\
@@ -1605,7 +1604,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
-        Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
+        Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
         \ICEallrare & 2 & 1 & 19.51 & 21.08 \\
         \Zelterman & 8 & 1 & 36.33 & 19.32 \\
@@ -1627,7 +1626,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteDynamosa test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
-        Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
+        Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
         \ICEallrare & 1 & 1 & 5.54 & - \\
         \Zelterman & 6 & 0 & 49.86 & 12.08 \\
@@ -1672,7 +1671,7 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \original test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
+Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
 \ICEallrare & 4 & 2 & 2.87 & 3.17 \\
 \Zelterman & 5 & 4 & 8.4 & 16.32 \\
@@ -1694,7 +1693,7 @@ Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteRandom test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
+Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
 \ICEallrare & 2 & 2 & 3.29 & 2.74 \\
 \Zelterman & 5 & 1 & 33.82 & 19.44 \\
@@ -1717,7 +1716,7 @@ Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteDynamosa test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
+Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
 \ICEallrare & 0 & - & - & - \\
 \Zelterman & 2 & 0 & 22.0 & 0.85 \\
