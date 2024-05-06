@@ -1902,9 +1902,10 @@ drastically worsened compared to \original and that with \EvosuiteDynamosa the s
 One possible explanation of these results is that the automatically generated test suites
 did not adequately sample the population (see statement and branch coverage in \Cref{tbl:subjectmeasures}).
 However, our counterargument is that if the estimators were actually performing as expected,
-they should have produced larger confidence interval in the face of fewer samples.
-In turn, large CIs would have increased the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
-at the expense of their \emph{precision}, i.e., mean difference. 
+they should have produced larger confidence interval, hence increasing
+the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
+at the expense of their \emph{precision}, i.e., mean difference.
+%
 But this was not the case; therefore, we answer RQ2 as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The estimation quality is affected by the sampling strategy. For instance,
@@ -2011,7 +2012,7 @@ did not produce a significant overlap of CI between method and class estimators
 for other test suites.
 
 This situation is clearly exemplified in figures
-\ref{fig:groundtruth}, \ref{fig:groundtruth3}, and \ref{fig:groundtruth2}
+\ref{fig:groundtruth1}, \ref{fig:groundtruth3}, and \ref{fig:groundtruth2}
 for \Chao estimator, in which almost all the CI's for the same test subject
 and sampling strategy do not overlap.
 
