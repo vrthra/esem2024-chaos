@@ -1749,52 +1749,83 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 
 Inspecting \Cref{tbl:estoriginal}, we can observe that
 (i) none of the \estimatorCount statistical estimators generated a valid estimate (VE) for all the test subjects (VE $\in [4, 9]$);
-(ii) in most of the cases ($11/12$), the statistical estimators were significantly different than manual estimates (CI Overlaps $\le 3$), and
-(iii) their mean difference show extreme variability (MD $\in (5.78 \pm 6.52, 19.76 \pm 20.51)$).
+(ii) in most of the cases ($11/12$), the estimations were significantly different than manual estimates (CI Overlaps $\le 3$), and
+(iii) their mean difference showed extreme variability (MD $\in (5.78 \pm 6.52, 19.76 \pm 20.51)$).
+
 %
-Focusing on the best performing statistical estimators, we can also observe that
-\PCG, which achieved the maximum overlap with manual estimates, had overlapping CI with $E^M$ only in three out of \projectCount test subjects;
-\ICEallrare, which achieved the smallest mean difference of 5.78 from $E^M$, 
+% ALESSIO: I am not sure where the description of the figure fits... Somehow, it seems that tables are more than enough...
+%
+To better interpret the results in \Cref{tbl:estoriginal}, we plot the results for \Chao estimator (the
+estimator suggested by the STADS framework) in \Cref{fig:groundtruth1}.\footnote{Similar plots for the remaining estimators can be found in the replication package.}
+%
+In the figure, the x-axis represents the percentage of mutants, with 1.0 (bold solid line) indicating the complete set of generated
+mutants, whereas the y-axis lists all the test subjects.
+For each test subject, the figure shows the percentage of killed mutants (black dotted line),
+the estimate and the $95\%$ CI of the manual estimate of killable mutants (purple band), 
+and the estimate and the $95\%$ CI produced by \Chao using the test methods (blue square) as sampling unit.
+For completeness, the figure also reports the estimates produced by \Chao using test classes (red circle) as sampling unit.
+%
+From the figure, it becomes evident that \Chao's predictions are far from the manual estimates and their CIs almost never
+overlap.
+
+% The figure shows that irrespective of test suite
+% used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---
+% \Chao estimator's predictions are far from the ground truth.
+
+Focusing on the best performing statistical estimators (\Cref{tbl:estoriginal}),
+we can also observe that 
+\PCG achieved the maximum overlap with manual estimates; however, its CI overlapped $E^M$'s only in three out of \projectCount test subjects.
+Likewise, \ICEallrare, which achieved the smallest mean difference of 5.78 from $E^M$, 
 and \Bootstrap, which achieved the maximum number ($9$) of \emph{valid estimates},
 never had any prediction's CI overlapping the manual estimates' CI.
-%  had a large difference (19.76) from the manual estimate $E^M$.
+%
+% To illustrate the differences, we plot the results for \Chao estimator (the
+% estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
+% The figure shows that irrespective of test suite
+% used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---
+% \Chao estimator's predictions are far from the ground truth.
+%
 
-Therefore, 
+% Which estimator is useful to the developers?
+% That is, can we recommend an estimator?
+
+In light of these observations, we cannot reliably say whether any of
+the studied estimators might be useful to the developers in practice
+or reccomend any of them to be used in mutation analysis.
+%
+% Only one statistical estimator resulted in an accuracy level below $15$.
+% Additionally, no estimator produced a valid estimate for all the project, and
+% their estimates  were significantly different from
+% manual classification.
+%
+%
+% ALESSIO: This seems to restated the observations made above... 
+%
+% When we have a statistically significant difference between manual estimate and
+% point estimate, it is evidence that the estimator is unable to estimate the
+% target value correctly.
+% Hence, it is unclear if we can trust the results from \ICEallrare,
+% \ChaoBunge, \PCG etc. which has a significant number of non-overlapping estimates
+% even though the difference from the manual estimates are the smallest.
+% Furthermore, at the confidence interval at 95\% the mean margin of error was
+% just 1.9\%. That is, manual estimation from just 100 mutants can provide a
+% better estimate than the estimators we examined.
+%
+% Therefore, 
 % Inspecting \Cref{tbl:estoriginal} reveals that 
 % in the majority of the cases the statistical estimators were significantly different from the manual classification.
 % in light of these results, 
-we answer RQ1 as follows:
+Consequently, we answer RQ1 as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-Only one statistical estimator resulted in an accuracy level below $15$,
-whereas all the other 
-Additionally, no estimator produced a valid estimate for all the project, and
-their estimates from \original test suites were significantly different from
-manual classification.
+Despite some positive results, in general the \estimatorCount statistical
+estimators we considered were neither accurate nor reliable in predicting killable mutants
+from the \original test suites using test method as sampling unit.
 %  for every estimator examined.
 \end{tcolorbox}
 
-%%%
-%%% Alessio here
-%%%
-
-To illustrate the differences, we plot the results for \Chao estimator (the
-estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
-The figure shows that irrespective of test suite used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---\Chao estimator's predictions are far from the ground truth.
-
-
-
-Which estimator is useful to the developers?
-That is, can we recommend an estimator?
-When we have a statistically significant difference between manual estimate and
-point estimate, it is evidence that the estimator is unable to estimate the
-target value correctly.
-Hence, it is unclear if we can trust the results from \ICEallrare,
-\ChaoBunge, \PCG etc. which has a significant number of non-overlapping estimates
-even though the difference from the manual estimates are the smallest.
-Furthermore, at the confidence interval at 95\% the mean margin of error was
-just 1.9\%. That is, manual estimation from just 100 mutants can provide a
-better estimate than the estimators we examined.
-
+%
+% ALESSIO: HERE
+%
 \noindent\textbf{RQ2.
 Are frequency based estimators affected by sampling strategies?}\\
 As we noted in the introduction, it is possible that the frequency
