@@ -1976,63 +1976,94 @@ satisfactory results.
 \end{figure*}
 
 \noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}\\
-As we mentioned in the introduction, there is a possibility, however remote,
-that the manual estimation result was either in error, or the result was a
-statistical fluke. To discount this possibility we conducted the third
-experiment, where we compared estimators based on how they predict the same
-quantity when sampling units were changed. We expected individual estimators to
-return the same predictions irrespective of the sampling units used.
+% As we mentioned in the introduction, there is a possibility, however remote,
+% that the manual estimation result was either in error, or the result was a
+% statistical fluke. To discount this possibility we conducted the third
+% experiment, where we compared estimators based on how they predict the same
+% quantity when sampling units were changed. We expected individual estimators to
+% return the same predictions irrespective of the sampling units used.
+RQ2 showed that the estimators are affected by the adopted sampling strategy,
+speficically by bias in sampling of killable mutants. RQ3, instead, focuses on the
+granularity at which sampling happens, i.e., the sampling unit.
+%
+Using the same sampling strategy but different granularities, i.e., test method and class,
+we expect estimators to produce comparable results, as they ultimately
+predict the same quantity. Therefore, studying this aspect would let us draw
+conclusions on the estimators' consistency. Moreover, this study could let us
+discount the possibility that the manual classification result was either in error,
+or the (bad) results achieved in RQ1 were a statistical fluke.
+%
+% As we mentioned in the introduction, there is a possibility, however remote,
+% that the manual estimation result was either in error, or the result was a
+% statistical fluke. To discount this possibility we conducted the third
+% experiment, where we compared estimators based on how they predict the same
+% quantity when sampling units were changed. We expected individual estimators to
+% return the same predictions irrespective of the sampling units used.
+
 
 From \Cref{tbl:estoriginalclassmethod}, \Cref{tbl:estrandomclassmethod}, and
-and \Cref{tbl:estdynamosaclassmethod}, we find that the 
-estimates from method level sampling units
-and class level sampling units are statistically significantly different.
-\Bootstrap had the highest (50\%) overlap for \EvosuiteRandom. However, for
-other test suites, \Bootstrap did not produce a significant overlap of CI between
-method and class estimators.
+and \Cref{tbl:estdynamosaclassmethod}, we can observe that the 
+estimates from method level sampling units and class level sampling units
+are %statistically
+significantly different.
+Even \Bootstrap, which had the highest (50\%) overlap for \EvosuiteRandom, 
+did not produce a significant overlap of CI between method and class estimators
+for other test suites.
 
-The differences observed are illustrated for \Chao estimator in \Cref{fig:groundtruth}.
+This situation is clearly exemplified in figures
+\ref{fig:groundtruth}, \ref{fig:groundtruth3}, and \ref{fig:groundtruth2}
+for \Chao estimator, in which almost all the CI's for the same test subject
+and sampling strategy do not overlap.
 
+In light of these results, we answer RQ3:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from test method and test class level
-estimators to the estimates from manual classification are statistically
-significant for every estimator examined.
+estimators %to the estimates from manual classification
+are statistically significant for every estimator examined. Consequently,
+none of the \estimatorCount estimators was robust against changes in sampling
+unit.
 \end{tcolorbox}
 
 \subsection{What Does This Mean in Practice?}
-For an estimator to be useful to the developer, it should be able to produce
-estimates that are accurate and precise.
-We note that examination of just 100 mutants are sufficient to produce an
-estimate with in 2\% of the true value. Assuming that examining 100 mutants is
+For an estimator to be useful to the developers, it should be able to produce
+estimates that are accurate and precise. Additionally, the estimators must be reliable, i.e.,
+its ability to produce valid estimates should not strongly depend on the project under analysis.
+
+We note that examination of just $100$ mutants are sufficient to produce an
+estimate with in $2\%$ of the true value. Assuming that examining $100$ mutants is
 reasonable, we should expect any equivalent mutant estimator to do better than
 this value. However, the fact that none of the estimators could consistently
 produce estimates that are close to the manual estimates suggest that the
-estimators are not yet ready for use by developers.
+frequency based estimators are not yet ready for use by developers.
 
 To verify that our manual analysis was not the cause of error, we also
 investigated whether the estimators could produce consistent values when
 estimating the same quantities, but using different sampling units---method and class.
-We observe that the estimates produced were inconsistent with few overlaps of
-the CI. This is a cause for concern, and points to violated assumptions in the
+We observed that the estimates produced were inconsistent, i.e., only few CIs overlapped.
+%s of the CI. 
+This is a cause for concern, and points to violated assumptions in the
 underlying statistical model, which needs to be investigated further.
 
-While overall, the result is negative, we observe a glimmer of hope. We note
-that in \Cref{tbl:estrandomclassmethod} comparing method and class sampling
-units using \EvosuiteRandom, \Bootstrap produced 50\% CI overlaps. Furthermore,
-the mean difference was 6.79\% with a similarly small standard deviation
-of 2.71\%. It is possible that not all the mutants that can be killed manually
-may be killable by automatic test generators due to deficiencies in oracles
-available. Hence, it is possible that \Bootstrap estimation is true to the
+While overall, the result of our study is negative, we observe a glimmer of hope.
+We note that in \Cref{tbl:estrandomclassmethod} comparing method and class sampling
+units using \EvosuiteRandom, \Bootstrap produced $50\%$ CI overlaps. Furthermore,
+the mean difference was $6.79\%$ with a similarly small standard deviation
+of $2.71\%$. It is possible that not all the mutants that can be killed manually
+may be killable by automatic test generators due to techinical limitations or
+deficiencies in the test oracles. Hence, it is possible that \Bootstrap estimation is true to the
 actual value, albeit with a large amount of uncertainty. 
 
 Furthermore, unlike \EvosuiteDynamosa, \EvosuiteRandom is completely unguided in
 test generation, which may be a hint as to the better performance of \Bootstrap
 on \EvosuiteRandom, and points to the need for further study.
 
-\noindent\textbf{Empirical Strategy Used.}
-This paper uses the quantitative research, including systematic
-collection of data about different mutants, and comparing classifications by
-different experts, and the agreement is computed by Cohen's Kappa.%\todo{TODO}
+%
+% ALESSIO: We mention already Cohen's Kappa for the classification
+%
+% \noindent\textbf{Empirical Strategy Used.}
+% This paper uses the quantitative research, including systematic
+% collection of data about different mutants, and comparing classifications by
+% different experts, and the agreement is computed by Cohen's Kappa.%\todo{TODO}
 
 \noindent\textbf{Data Availability.}
 The replication package~\cite{replication-package} contains data about manual
