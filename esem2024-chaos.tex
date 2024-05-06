@@ -884,7 +884,7 @@ the replication package~\cite{replication-package}.
 \textbf{Empirical Study Results Overview.}
 For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
 open-source projects and analyzing them
-using PIT, we manually classified 1016 surviving mutants
+using \PIT, we manually classified 1016 surviving mutants
 and used this result for assessing the prediction quality of
 frequency based statistical estimators (see~\Cref{sec:estimators}).
 We found that
@@ -1219,13 +1219,13 @@ Hence, we focused on large open-source \emph{Java} projects that do
 not depend on
 external resources (e.g., databases), and built using a standard tool such as Maven~\cite{maven}.
 We found that the libraries published by \emph{Apache Commons}~\cite{commons} met our criteria.
-In particular, they are written to an exacting standard, follows common syntactic
-and semantic guidelines as in large enterprise projects, and our classifiers
-after some initial training could understand their functioning % source code of programs
-reasonably well.
+In particular, they are written to an exacting standard and follow common syntactic
+and semantic guidelines as in large enterprise projects. Thus, our classifiers
+could understand their functioning % source code of programs
+reasonably well after some initial training.
 At the time we conducted this study,
-Apache Commons contained the 41 projects
-(\Cref{tbl:fullsubjects}).
+Apache Commons contained the $41$ projects listed in \Cref{tbl:fullsubjects}.
+%
 Among those, for our study, we selected only projects that
 \begin{enumerate*}[label=(\arabic*)]
   \item could be built and tested successfully with minimal effort;
@@ -1236,11 +1236,13 @@ Among those, for our study, we selected only projects that
 
 For the sake of clarity, in \Cref{tbl:fullsubjects} we group the
 Apache Commons projects into two groups:
-the first group (top) contains the 21 projects (name, release, and commit hash)
+the first group (top) contains the $21$ projects (name, release, and commit hash)
 that we could build, test, and analyze successfully;
 the second group (bottom) contains the projects (name, release, and rejection note) that we discarded.
-Specifically, we discarded three projects that had no official release at the time we conducted this study and 
-17 projects that have a complex structure, fail to build, do not pass the available tests, or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
+Specifically, we discarded $3$ %three
+projects that had no official release at the time we conducted this study and 
+$17$ projects that have a complex structure, fail to build, do not pass the available tests,
+or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
 
 Since our methodology requires manual mutant classification, which is %notoriously
 expensive, we had to restrict the scope of our study; hence, we selected 
@@ -1340,10 +1342,11 @@ summarize their main properties in \Cref{tbl:subjectmeasures}.
 
 \subsection{Test Suites Generation}
 \label{sec:testgeneration}
-Because the \original test suites in each project contain unit tests
-that developers manually wrote to check application- and
-domain- specific requirements, one can argue that using
-the \original test suites %for mutation analysis the \original test suites 
+The selected test subjects contain unit tests
+that developers %manually
+wrote to check application- and
+domain- specific requirements.
+Therefore, one can argue that using such \original test suites 
 might result in a biased sampling of live mutants.
 To reduce this risk,
 we generated two additional test suites for each test subject.
@@ -1361,12 +1364,20 @@ generate assertions for 120 seconds, and minimize the tests for 300 seconds.
 
 \subsection{Killable Mutants Estimation}
 \label{sec:estimation}
-We executed all the available test suites against all the generated mutants for each project, resulting in the execution of more than 2.5B test methods.
-We noticed that \PIT
+We leveraged the mutation testing framework \PIT~\cite{pit} (v~1.4.9)
+to generate the mutants for each project
+and executed all the available test suites against them. %all the generated mutants .
+Since mutation analysis is almost always used with unit
+tests in practice, we did not consider integration or system tests.
+Nevertheless, this activity resulted in the execution of more than $2.5$B test methods.
+%
+We configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
+mutation operators and the \emph{killmatrix} option enabled; however, we noticed that \PIT
 (1) did not always identify all the mutants covered by the test cases; hence, it did not execute them;
 and (2) it did not always report the name of the test methods killing mutants, which is required by one of our sampling strategies.
 For the test execution, we chose \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
-the open-source infrastructure developed for the SBST Java unit test tool competition, and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes (we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
+the open-source infrastructure developed for the SBST Java unit test tool competition,
+and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes (we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
 
 After executing the tests, we
 filtered out faulty samples related to invalid and timed-out mutants.
@@ -1375,20 +1386,29 @@ we conservatively granted each unit test a generous timeout of 10 seconds.
 Finally, we estimated the live mutant species richness
 on the \projectCount test subjects using the \estimatorCount 
 estimators on each of the three test suites using both test class and test method sampling.
-The estimates are plotted along with the 95\% confidence intervals.
+%
+% ALESSIO: AFAIK we never explicitly introduce test class and test method sampling
+%
+% ALESSIO: The following is not really relevant at this point. We should mention this when we describe the plots.
+Unless stated otherwise, we report the estimates with 95\% confidence interval.
 
 \subsection{Survived Mutants Collection}
 \label{sec:mutant-generation}
 To assess the quality of the statistical estimators, we needed a reliable approximation of
 killable and equivalent mutants in the \projectCount test subjects; therefore, we opted to
 sample and manually classify the mutants that survived mutation analysis.
-As the first step, we used \PIT~\cite{pit} (v 1.4.9) to evaluate the \emph{\original} test suites
-and identified mutants that \PIT marked \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
-Specifically, we configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
-mutation operators and the \emph{killmatrix} option enabled.
-Since mutation analysis is almost always used with unit
-tests, we did not consider any integration test that might appear
-in the \emph{\original} test suite in this step. % for generating live mutants.
+%
+% ALESSIO: The following applies to all the test suite, so I moved where we talk about killable mutants, here I state we sample survided mutants only in the ORIGINAL test suite.
+%
+% As the first step, we used \PIT~\cite{pit} (v 1.4.9) to evaluate the \emph{\original} test suites
+% and identified mutants that \PIT marked \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
+% Specifically, we configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
+% mutation operators and the \emph{killmatrix} option enabled.
+% Since mutation analysis is almost always used with unit
+% tests, we did not consider any integration test that might appear
+% in the \emph{\original} test suite in this step. % for generating live mutants.
+Specifically, we considered the mutants that survived the \emph{\original} test suites
+by looking at those mutants that \PIT marked as \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
 
 \subsection{Manual Mutants Classification}
 \label{sec:mutant-classification}
@@ -1408,7 +1428,8 @@ instead, have experience in programming (between three and five years)
 but were unfamiliar with mutation analysis before the start of this study.
 To cope with that, we organized a pilot study for training \rB and \rC
 using \emph{commons-csv}, the smallest among the selected projects, 
-and all the $116$ surviving mutants of \emph{commons-csv}.
+and all the $116$ %surviving mutants of \emph{commons-csv}.
+mutants that survived its \original test suite. 
 
 \begin{table}[h]
   \caption{Manual classification of live mutants.} % for the selected Apache Common projects.
@@ -1432,23 +1453,31 @@ commons-collections  &100 & 3  & 2  &  1 \\
 \end{tabular}
 }
 \label{tbl:classified}
-\flushleft{$^*$We used commons-csv as a pilot to train researchers \rB and \rC.} 
+\flushleft{\small{$^*$We used commons-csv as a pilot to train researchers \rB and \rC.}}
 \end{table}
-
-After the initial training, the classification considered one project at a time in alphabetical order
-(as listed in \Cref{tbl:classified}) and required researchers \rB and \rC \emph{independently}
-to classify all $100$ sampled mutants. % as killable or equivalent.
+%
+% ALESSIO: 
+%   - We never mention misclassifications, only conflicts and Cohen's Kappa.
+%   - Should we also report the total number of survining mutants in the table above to contextualize the 100 mutants we sampled?
+%
+After the initial training, the classification considered one project at a time %in alphabetical order
+as listed in \Cref{tbl:classified} and required researchers \rB and \rC 
+to classify \emph{independently} all $100$ sampled mutants. % as killable or equivalent.
 Killable mutants must be accompanied by a (hypothetical) unit test that could show the difference
 in behavior between that mutant and the original program. Similarly, equivalent mutants must be
 motivated with a convincing explanation. % why that mutant should be considered equivalent. % in a fashion to be acceptable to the other researchers.
 As a result, for each sampled mutant, we collected % of the classification includes
 a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
 and optional comments.
-Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
+%
+% ALESSIO: Shouldn't this \rB and \rC?
+% Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
+Between \rB and \rC we achieved a Cohen's Kappa of $0.48$ (moderate agreement).
 
 As final step, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
 and let the three classifiers discuss and resolve them. 
-During the discussion, the lead classifier \rA acted as the moderator while 
+During the discussion, %the lead classifier
+\rA acted as the moderator while 
 \rB and \rC could update their original classifications in light of the discussed
 arguments. The discussion continued until the final classification was accepted unanimously. 
 
@@ -1463,21 +1492,21 @@ number of killable mutants in a project.
 \begin{figure*}
   %\centering
 \begin{subfigure}{.43\textwidth}
-      \includegraphics[width=0.95\linewidth]{chaoplots/3/Chao-organic.pdf}
+      \includegraphics[width=0.98\linewidth]{chaoplots/3/Chao-organic.pdf}
 \vspace*{-3mm}
-  \caption{\original \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
+  \caption{\original} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth1}
 \end{subfigure}
-\begin{subfigure}{.28\textwidth}
-      \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
+\begin{subfigure}{.27\textwidth}
+      \includegraphics[width=\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
 \vspace*{-3mm}
-\caption{\EvosuiteDynamosa \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
+\caption{\EvosuiteDynamosa} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth2}
 \end{subfigure}
-\begin{subfigure}{.28\textwidth}
-      \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
+\begin{subfigure}{.27\textwidth}
+      \includegraphics[width=1\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
 \vspace*{-3mm}
-  \caption{\EvosuiteRandom \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
+  \caption{\EvosuiteRandom} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth3}
 \end{subfigure}
 \caption{Killable mutants estimated by species richness estimators for \Chao estimator, comparison with ground truth.
@@ -1492,23 +1521,47 @@ The x-axis is the percentage of mutants, with 1.0 indicating the complete set of
 
 \noindent\textbf{RQ1.
 What is the accuracy of frequency based estimators in predicting killable mutants?}\\
-To answer this question, we considered the statistical estimators computed
-using test methods for the \original test suite as sampling unit and determined
-their 95\% confidence intervals. Then, we compared them against the manual
-classification estimates (i.e., the ground truth).
+% To answer this question, we considered the statistical estimators computed
+% using test methods for the \original test suite as sampling unit and determined
+% their 95\% confidence intervals. Then, we compared them against the manual
+% classification estimates (i.e., the ground truth).
+To answer this question, we compared 
+the \estimatorCount statistical estimators against the corresponding manual classification estimates (see~\Cref{sec:mutant-classification}).
+We considered estimates computed for the \original test suite using test methods as sampling unit.
+%
+% We first checked whether the statistical estimators are significantly different
+% from the manual classification, i.e.,  their 95\% confidence interval did not overlap
+% with the 95\% confidence intervals from manual classification.
 We first checked whether the statistical estimators are significantly different
-from the manual classification, i.e.,  their 95\% confidence interval did not overlap
-with the 95\% confidence intervals from manual classification. Next, we computed
-the difference between the two estimates using normalized mean difference (MD) computed as the
-difference between the point estimate $E$ and manual classification estimate $E^M$,
-i.e., ${|E - E^M|}$. We removed any estimate that resulted in negative
-CI upper bound, or point estimate.
-We also removed any estimate that was higher than the total number of mutants.
-The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
-The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
+from the manual classification estimates, i.e.,  their 95\% confidence intervals do not overlap.
+%
+% Next, we computed
+% the difference between the two estimates using normalized mean difference (MD) computed as the
+% difference between the point estimate $E$ and manual classification estimate $E^M$,
+% i.e., ${|E - E^M|}$. 
+%
+% ALESSIO: I do not think we compute the Normalized MD, but the absolute one. Also, 
+%
+Next, we computed the % normalized
+mean difference (MD) between the point estimates of the
+statistical estimators ($E$) and the manual classification ($E^M$) as: ${|E - E^M|}$. 
+%
+% We removed any estimate that resulted in negative
+% CI upper bound, or point estimate.
+% We also removed any estimate that was higher than the total number of mutants.
+Notably, we removed any invalid estimate before computing MD.
+We consider invalid any estimate that resulted in negative
+CI upper bound, negative point estimate, or a value higher than the total number of possible mutants.
+%
+% The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
+% The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
+We report the counts of valid estimates (column \emph{Valid Estimates})
+and statistics about MD (columns \emph{Mean} and \emph{Stdev}) aggregated across test subjects
+in \Cref{tbl:estoriginal}.
+
 
 \begin{table}[h]
-    \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\original test suites}
+    \caption{Comparison of \emph{mean difference (MD)} between method estimators across test subjects---\original test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
         Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
@@ -1532,14 +1585,18 @@ The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the stand
 
 \noindent\textbf{RQ2.
 Are frequency based estimators affected by sampling strategies?}\\
-To answer this question, we considered the statistical estimators computed
-using test methods for \EvosuiteRandom and \EvosuiteDynamosa test suites as sampling unit
-and determined their 95\% confidence intervals.
-Next, we checked whether the estimators' 95\% confidence intervals consistently
-overlapped with the one from manual classification, and computed their mean absolute
-difference with respect to manual classification.
-The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
-\Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original).
+% To answer this question, we considered the statistical estimators computed
+% using test methods for \EvosuiteRandom and \EvosuiteDynamosa test suites as sampling unit
+% and determined their 95\% confidence intervals.
+% Next, we checked whether the estimators' 95\% confidence intervals consistently
+% overlapped with the one from manual classification, and computed their mean absolute
+% difference with respect to manual classification.
+% The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
+% \Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original).
+To answer this questions, we follow the same approach adopted to answer RQ1.
+However, for this research question we compared the estimates from the manual classification
+also against those obtained by the \estimatorCount statistical estimators for \EvosuiteRandom (\Cref{tbl:estrandom})
+and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling unit.
 
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
@@ -1589,10 +1646,19 @@ The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
 \noindent\textbf{RQ3. 
 Are frequency based estimators affected by sampling units?
 }\\ % when given unbiased test suites from \Evosuite?}
-To answer this question, we compared the estimations 
-using test methods as sampling units to estimations using test classes as
-sampling units for all tests suites and
-determined their 95\% confidence intervals.
+% To answer this question, we compared the estimations 
+% using test methods as sampling units to estimations using test classes as
+% sampling units for all tests suites and
+% determined their 95\% confidence intervals.
+% The comparison between class and method estimators for \original is given
+% in \Cref{tbl:estoriginalclassmethod}.
+% That for \EvosuiteRandom is given in \Cref{tbl:estrandomclassmethod},
+% and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
+To answer this question, we compared the estimations of the 
+\estimatorCount statistical estimators using test methods as sampling unit 
+against the corresponsing estimations using test classes as
+sampling unit for all tests suites. 
+% As before, we remove invalid estimates. ALESSIO: Do we?
 The comparison between class and method estimators for \original is given
 in \Cref{tbl:estoriginalclassmethod}.
 That for \EvosuiteRandom is given in \Cref{tbl:estrandomclassmethod},
@@ -1668,19 +1734,35 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 
 \section{Discussion}
 \label{sec:discussion}
-What does these results mean? We discuss the implications next.\\
+% ALESSIO: This does not read really professional
+% What does these results mean? We discuss the implications next.\\
+
 \noindent\textbf{RQ1.} \textbf{How accurate are frequency based estimators in predicting
     killable mutants?}\\
-Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
-maximum overlap with manual estimates --- three out of \projectCount test
-subjects had overlapping confidence intervals (CI) with $E^M$.
-\ICEallrare achieves a smallest mean difference (MD) of 5.78 from $E^M$.
-Finally, \Bootstrap achieves the
-maximum number of \emph{valid estimates} (VE) with 9 valid estimates,
-but has a much larger difference from the manual estimate $E^M$ (19.76).
+% Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
+% maximum overlap with manual estimates --- three out of \projectCount test
+% subjects had overlapping confidence intervals (CI) with $E^M$.
+% \ICEallrare achieved the smallest mean difference (MD) of 5.78 from $E^M$.
+% Finally, \Bootstrap achieved the
+% maximum number of \emph{valid estimates} (VE) with 9 valid estimates,
+% but had a much larger difference from the manual estimate $E^M$ (19.76).
 
-Inspecting \Cref{tbl:estoriginal} reveals that in the majority of the cases the
-statistical estimators were significantly different from the manual classification.
+Inspecting \Cref{tbl:estoriginal}, we can observe that
+(i) none of the \estimatorCount statistical estimators generated a valid estimate (VE) for all the test subjects (VE $\in [4, 9]$);
+(ii) in most of the cases, the statistical estimators were significantly different than manual estimates (CI Overlaps $\le 3$) despite 
+(iii) they resulted is bounded mean differences (MD $\in (5, 20)$).
+%
+Focusing on the best performing statistical estimators, we can also observe that
+\PCG, which achieved the maximum overlap with manual estimates, had overlapping CI with $E^M$ only in three out of \projectCount test subjects;
+\ICEallrare, which achieved the smallest mean difference of 5.78 from $E^M$, 
+and \Bootstrap, which achieved the maximum number ($9$) of \emph{valid estimates},
+never had any prediction's CI overlapping the manual estimates' CI.
+%  had a large difference (19.76) from the manual estimate $E^M$.
+
+Therefore, 
+% Inspecting \Cref{tbl:estoriginal} reveals that 
+% in the majority of the cases the statistical estimators were significantly different from the manual classification.
+in light of these results, we can answer RQ1 as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 There is a statistically significant difference between the estimates
 from \original test suites and manual classification for
@@ -1689,7 +1771,13 @@ every estimator examined.
 
 To illustrate the differences, we plot the results for \Chao estimator (the
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
-The figure shows that irrespective of test suite used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---\Chao estimator predictions are far from the ground truth.
+The figure shows that irrespective of test suite used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---\Chao estimator's predictions are far from the ground truth.
+
+%%%%
+%%%%
+%%%% ALESSIO HERE
+%%%%
+%%%%
 
 Which estimator is useful to the developers?
 That is, can we recommend an estimator?
