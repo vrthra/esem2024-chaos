@@ -1510,11 +1510,11 @@ number of killable mutants in a project.
 \label{fig:groundtruth2}
 \end{subfigure}
 \caption{Killable mutants estimated by species richness estimators for \Chao estimator, comparison with ground truth.
-The x-axis is the percentage of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
+The x-axis is the ratio of mutants, with 1.0 indicating the complete set of generated mutants. The y-axis lists the projects.
   The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
   The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI (ground truth), with dark purple line the point estimate.
   The dotted black line indicates the total
-  percentage of killed mutants, which is the absolute lower-bound. The figure shows how neither \textcolor{cmethod}{method} nor \textcolor{cclass}{class}
+  ratio of killed mutants, which is the absolute lower-bound. The figure shows how neither \textcolor{cmethod}{method} nor \textcolor{cclass}{class}
   based estimators overlap with \textcolor{cgroundtruth}{ground truth CI} consistently.}
 \label{fig:groundtruth}
 \end{figure*}
@@ -1563,7 +1563,7 @@ in \Cref{tbl:estoriginal}.
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across test subjects---\original test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
-        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
         \ICEallrare & 4 & 0 & 5.78 & 6.52 \\
         \Zelterman & 6 & 1 & 13.48 & 14.06 \\
@@ -1601,7 +1601,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
-        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
         \ICEallrare & 2 & 1 & 19.51 & 21.08 \\
         \Zelterman & 8 & 1 & 36.33 & 19.32 \\
@@ -1623,7 +1623,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteDynamosa test suites}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
-        Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+        Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
         \ICEallrare & 1 & 1 & 5.54 & - \\
         \Zelterman & 6 & 0 & 49.86 & 12.08 \\
@@ -1667,7 +1667,7 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \original test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
 \ICEallrare & 4 & 2 & 2.87 & 3.17 \\
 \Zelterman & 5 & 4 & 8.4 & 16.32 \\
@@ -1689,7 +1689,7 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteRandom test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
 \ICEallrare & 2 & 2 & 3.29 & 2.74 \\
 \Zelterman & 5 & 1 & 33.82 & 19.44 \\
@@ -1712,7 +1712,7 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteDynamosa test suites}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
-Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
+Estimator & Valid Estimates & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
 \ICEallrare & 0 & - & - & - \\
 \Zelterman & 2 & 0 & 22.0 & 0.85 \\
@@ -1724,7 +1724,7 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 \improvedICE & 3 & 0 & 23.85 & 19.12 \\
 \Unpmle & 0 & - & - & - \\
 \Bootstrap & 6 & 1 & 7.11 & 2.76 \\
-\Pnpmle & 1 & 0 & 58.84 &  \\
+\Pnpmle & 1 & 0 & 58.84 & - \\
 \PCG & 0 & - & - & - \\
 \hline
 \end{tabular}
@@ -1757,9 +1757,9 @@ Inspecting \Cref{tbl:estoriginal}, we can observe that
 To better interpret the results in \Cref{tbl:estoriginal}, we plot the results for \Chao estimator (the
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth1}.\footnote{Similar plots for the remaining estimators can be found in the replication package.}
 %
-In the figure, the x-axis represents the percentage of mutants, with 1.0 (bold solid line) indicating the complete set of generated
+In the figure, the x-axis represents the ratio of mutants, with 1.0 (bold solid line) indicating the complete set of generated
 mutants, whereas the y-axis lists all the test subjects.
-For each test subject, the figure shows the percentage of killed mutants (black dotted line),
+For each test subject, the figure shows the ratio of killed mutants (black dotted line),
 the estimate and the $95\%$ CI of the manual estimate of killable mutants (purple band), 
 and the estimate and the $95\%$ CI produced by \Chao using the test methods (blue square) as sampling unit.
 For completeness, the figure also reports the estimates produced by \Chao using test classes (red circle) as sampling unit.
@@ -1776,7 +1776,7 @@ we can also observe that
 \PCG achieved the maximum overlap with manual estimates; however, its CI overlapped $E^M$'s only in three out of \projectCount test subjects.
 Likewise, \ICEallrare, which achieved the smallest mean difference of 5.78 from $E^M$, 
 and \Bootstrap, which achieved the maximum number ($9$) of \emph{valid estimates},
-never had any prediction's CI overlapping the manual estimates' CI.
+never had any prediction's CI overlapping the manual estimates' CI\@.
 %
 % To illustrate the differences, we plot the results for \Chao estimator (the
 % estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
@@ -1790,7 +1790,7 @@ never had any prediction's CI overlapping the manual estimates' CI.
 
 In light of these observations, we cannot reliably say whether any of
 the studied estimators might be useful to the developers in practice
-or reccomend any of them to be used in mutation analysis.
+or recommend any of them to be used in mutation analysis.
 %
 % Only one statistical estimator resulted in an accuracy level below $15$.
 % Additionally, no estimator produced a valid estimate for all the project, and
