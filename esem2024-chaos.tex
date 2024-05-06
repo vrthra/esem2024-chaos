@@ -1749,8 +1749,8 @@ Estimator & Valid Estimates & CI Overlaps & Mean & Stdev \\
 
 Inspecting \Cref{tbl:estoriginal}, we can observe that
 (i) none of the \estimatorCount statistical estimators generated a valid estimate (VE) for all the test subjects (VE $\in [4, 9]$);
-(ii) in most of the cases, the statistical estimators were significantly different than manual estimates (CI Overlaps $\le 3$) despite 
-(iii) they resulted is bounded mean differences (MD $\in (5, 20)$).
+(ii) in most of the cases ($11/12$), the statistical estimators were significantly different than manual estimates (CI Overlaps $\le 3$), and
+(iii) their mean difference show extreme variability (MD $\in (5.78 \pm 6.52, 19.76 \pm 20.51)$).
 %
 Focusing on the best performing statistical estimators, we can also observe that
 \PCG, which achieved the maximum overlap with manual estimates, had overlapping CI with $E^M$ only in three out of \projectCount test subjects;
@@ -1759,21 +1759,23 @@ and \Bootstrap, which achieved the maximum number ($9$) of \emph{valid estimates
 never had any prediction's CI overlapping the manual estimates' CI.
 %  had a large difference (19.76) from the manual estimate $E^M$.
 
-%%%%
-%%%%
-%%%% ALESSIO HERE
-%%%%
-%%%%
-
 Therefore, 
 % Inspecting \Cref{tbl:estoriginal} reveals that 
 % in the majority of the cases the statistical estimators were significantly different from the manual classification.
-in light of these results, we can answer RQ1 as follows:
+% in light of these results, 
+we answer RQ1 as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-There is a statistically significant difference between the estimates
-from \original test suites and manual classification for
-every estimator examined.
+Only one statistical estimator resulted in an accuracy level below $15$,
+whereas all the other 
+Additionally, no estimator produced a valid estimate for all the project, and
+their estimates from \original test suites were significantly different from
+manual classification.
+%  for every estimator examined.
 \end{tcolorbox}
+
+%%%
+%%% Alessio here
+%%%
 
 To illustrate the differences, we plot the results for \Chao estimator (the
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
