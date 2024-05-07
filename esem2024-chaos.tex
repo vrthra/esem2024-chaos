@@ -50,6 +50,7 @@
 % All submissions must be written in English and must be submitted via EasyChair
 % in the PDF format, and they must be formatted according to the ACM proceedings
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
+\PassOptionsToPackage{table}{xcolor}
 \documentclass[sigconf,anonymous,review,nonacm]{acmart}
 %\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 \hypersetup{
@@ -1282,6 +1283,7 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
   \caption{List of considered Apache Commons projects}
   \resizebox{\columnwidth}{!}{%
     \footnotesize{
+    \rowcolors{1}{white}{yellow}
   \begin{tabular}{|l|l|l| }
     \hline
     \textbf{Project} & \textbf{Release} & \textbf{Commit Hash/Note} \\
@@ -1338,6 +1340,7 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
 \begin{table*}
   \caption{Apache Commons projects --- Projects and test suites measures}
   \resizebox{\textwidth}{!}{%
+    \rowcolors{1}{white}{yellow}
   \begin{tabular}{|r| l | r | r | r|r|r|r | r|r|r|r | r|r|r|r |}
     \hline
     \multicolumn{3}{|c|}{Project} & 
@@ -1485,6 +1488,7 @@ mutants that survived its \original test suite.
 \begin{table}[h]
   \caption{Manual classification of live mutants.} % for the selected Apache Common projects.
 \resizebox{\columnwidth}{!}{%
+    \rowcolors{1}{white}{yellow}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
 \multicolumn{1}{|c|}{Project} & \multicolumn{1}{c|}{Sampled} & \multicolumn{2}{|c|}{Misclass.} & \multicolumn{1}{c|}{Equivalent}\\
@@ -1616,6 +1620,7 @@ in \Cref{tbl:estoriginal}.
 
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across test subjects---\original test suites}
+    \rowcolors{1}{white}{yellow}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
         Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
@@ -1653,6 +1658,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
 
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
+    \rowcolors{1}{white}{yellow}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
         Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
@@ -1675,6 +1681,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
 \end{table}
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteDynamosa test suites}
+    \rowcolors{1}{white}{yellow}
     \begin{tabular}{|l|r|r|r|r|r|}
         \hline
         Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
@@ -1720,6 +1727,7 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \original test suites}
+    \rowcolors{1}{white}{yellow}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
 Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
@@ -1742,6 +1750,7 @@ Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \end{table}
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteRandom test suites}
+    \rowcolors{1}{white}{yellow}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
 Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
@@ -1765,6 +1774,7 @@ Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteDynamosa test suites}
+    \rowcolors{1}{white}{yellow}
 \begin{tabular}{|l|r|r|r|r|r|}
 \hline
 Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
