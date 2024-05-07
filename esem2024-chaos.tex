@@ -1199,10 +1199,10 @@ After estimating the killable mutants for each test suite, sampling strategy, an
 we needed ground truth data about killable mutants
 to assess the estimation accuracy. % of species richness estimators.
 Since such data was not available, % and we needed highly accurate data,
-we collected it by 
+we 
 \begin{enumerate*}[label=(\arabic*),start=4]   
-     \item collecting survived mutants (\Cref{sec:mutant-generation}) and
-     \item manually classify them as killable or equivalent (\Cref{sec:mutant-classification}).
+     %\item collecting survived mutants (\Cref{sec:mutant-generation}) and
+     \item manually classified a sample of surviving mutants as killable or equivalent (\Cref{sec:mutant-classification}).
 \end{enumerate*}
 
 \subsection{Test Subjects Selection}
@@ -1396,6 +1396,8 @@ After executing the tests, we
 filtered out faulty samples related to invalid and timed-out mutants.
 To reduce the risk of misclassifying ``slow'' mutants as killed,
 we conservatively granted each unit test a generous timeout of 10 seconds.
+We considered those mutants that 
+\PIT marked as \texttt{SURVIVED} or \texttt{NOT\_COVERED} as the surviving mutants.
 
 \noindent{\textbf{Sampling units.}}
 We first estimated the killable mutants
@@ -1415,11 +1417,11 @@ mutant kills by each test class.
 %}
 %Unless stated otherwise, we report the estimates with 95\% confidence interval.
 
-\subsection{Survived Mutants Collection}
-\label{sec:mutant-generation}
-To assess the quality of the statistical estimators, we needed a reliable approximation of
-killable and equivalent mutants in the \projectCount test subjects; therefore, we opted to
-sample and manually classify the mutants that survived mutation analysis.
+%\subsection{Survived Mutants Collection}
+%\label{sec:mutant-generation}
+%To assess the quality of the statistical estimators, we needed a reliable approximation of
+%killable and equivalent mutants in the \projectCount test subjects; therefore, we opted to
+%sample and manually classify the mutants that survived mutation analysis.
 %\done{
 %ALESSIO: The following applies to all the test suite, so I moved where we talk about killable mutants, here I state we sample survided mutants only in the ORIGINAL test suite.
 %}
@@ -1430,8 +1432,9 @@ sample and manually classify the mutants that survived mutation analysis.
 % Since mutation analysis is almost always used with unit
 % tests, we did not consider any integration test that might appear
 % in the \emph{\original} test suite in this step. % for generating live mutants.
-Specifically, we considered the mutants that survived the \emph{\original} test suites
-by looking at those mutants that \PIT marked as \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
+%We considered those mutants that 
+%survived the \emph{\original} test suites
+%by looking at those mutants that
 
 \subsection{Manual Mutants Classification}
 \label{sec:mutant-classification}
