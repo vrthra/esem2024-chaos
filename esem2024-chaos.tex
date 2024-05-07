@@ -1125,16 +1125,16 @@ information of tripletons $Q_3$ and quadrupletons $Q_4$ to estimate undetected s
 \noindent Chao estimators are known to provide \emph{lower bounds} estimates.
 
 \subsubsection{\Jackknife estimator~\cite{burnham1978estimation,burnham1979robust}}
-The basic, first order, \Jackknife estimator is computed as follows: %. The formula is given by
+The first and second order \Jackknife estimators are computed as follows: %. The formula is given by
 \begin{displaymath}
-  S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right)
+  S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right); S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
 \end{displaymath}
 
-The second order \Jackknife~\cite{smith1984nonparametric}, which
-is more robust to sampling bias~\cite{hortal2006evaluating} but has larger standard error, is given by:
-\begin{displaymath}
-  S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
-\end{displaymath}
+The second order \Jackknife~\cite{smith1984nonparametric}
+is more robust to sampling bias~\cite{hortal2006evaluating} but has larger standard error.
+%\begin{displaymath}
+%  S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
+%\end{displaymath}
 Higher-order \Jackknife estimators ($S_{\textit{jack\textsc{J}}}$) are constructed similarly.
 We consider up to $\textsc{J}=5$, and automatically select the best performing
 one (referred as \<\Jackknife>).
@@ -2158,7 +2158,7 @@ estimating the same quantities but using different sampling units---method and c
 We observed that the estimates produced were inconsistent, i.e., only few CIs overlapped.
 %s of the CI. 
 This is a cause for concern and points to violated assumptions in the
-underlying statistical model, which needs to be investigated further.
+underlying model, which needs to be investigated further.
 
 While overall, the result of our study is negative, we observe a glimmer of hope.
 We note that in \Cref{tbl:estrandomclassmethod} comparing method and class sampling
@@ -2236,10 +2236,10 @@ We tried to mitigate this threat by adopting different sampling strategies.
 \label{sec:related}
 Mutation analysis is considered a primary way of evaluating test quality~\cite{papadakis2019mutation};
 thus, mutation score is usually considered as a test suite adequacy metrics~\cite{just2014are,andrews2005is,andrews2006using,daran1996software}. 
-Unfortunately, equivalent mutants have vexed practitioners from the very beginning~\cite{budd1982two},
-and remains an open issue~\cite{madeyski2014overcoming} that affects also residual risk estimation.
+Unfortunately, equivalent mutants have vexed practitioners from the very beginning~\cite{budd1982two}
+and remain an open issue~\cite{madeyski2014overcoming} that affects also residual risk estimation.
 To address this issue, we proposed to estimate killable mutants using
-frequency based statistical estimators that have been applied recently to 
+frequency based statistical estimators that have been applied recently to
 estimate reachable coverage
 and conducted a large empirical study that included
 $10$ mature open-source Java projects, $3$ types of test suites, and the 
