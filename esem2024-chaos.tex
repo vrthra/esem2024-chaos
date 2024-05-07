@@ -1789,8 +1789,8 @@ We next discuss each of the research questions, and corresponding observations i
 % but had a much larger difference from the manual estimate $E^M$ (19.76).
 
 Inspecting \Cref{tbl:estoriginal}, we can observe that
-(i) none of the \estimatorCount statistical estimators generated a valid estimate (VE) for all the test subjects (VE $\in [4, 9]$);
-(ii) in most of the cases ($11/12$), the estimations were significantly different than manual estimates (CI Overlaps $\le 3$), and
+(i) none of the \estimatorCount frequency based estimators generated a valid estimate (VE) for all the test subjects (VE $\in [4, 9]$);
+(ii) in most of the cases ($11/12$), the estimates were significantly different than manual estimates (CI Overlaps $\le 3$), and
 (iii) their mean difference showed extreme variability (MD $\in (5.78 \pm 6.52, 19.76 \pm 20.51)$).
 
 %
@@ -1800,7 +1800,7 @@ To better interpret the results in \Cref{tbl:estoriginal}, we plot the results f
 estimator suggested by the STADS framework) in \Cref{fig:groundtruth1}.\footnote{Similar plots for the remaining estimators can be found in the replication package.}
 %
 In the figure, the x-axis represents the ratio of mutants, with 1.0 (bold solid line) indicating the complete set of generated
-mutants, and y-axis lists all the test subjects.
+mutants. The y-axis, instead, lists all the test subjects.
 For each test subject, the figure shows the ratio of killed mutants (black dotted line),
 the estimate and the $95\%$ CI of the manual estimate of killable mutants (purple band), 
 and the estimate and the $95\%$ CI produced by \Chao using the test methods (blue square) as sampling unit.
@@ -1817,7 +1817,7 @@ Focusing on the best performing statistical estimators (\Cref{tbl:estoriginal}),
 we can also observe that 
 \PCG achieved the maximum overlap with manual estimates; however, its CI overlapped $E^M$'s only in three out of \projectCount test subjects.
 Likewise, \ICEallrare, which achieved the smallest mean difference of 5.78 from $E^M$, 
-and \Bootstrap, which achieved the maximum number ($9$) of \emph{valid estimates},
+and \Bootstrap, which achieved the maximum number ($9$) of valid estimates,
 never had any prediction's CI overlapping the manual estimates' CI\@.
 %
 % To illustrate the differences, we plot the results for \Chao estimator (the
@@ -1858,7 +1858,7 @@ the studied estimators might be useful to developers in practice.
 % in light of these results, 
 Consequently, we answer \RQA as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-Despite some positive results, in general the \estimatorCount statistical
+Despite some positive results, in general the \estimatorCount frequency based
 estimators we considered were neither accurate nor reliable in predicting killable mutants
 from the \original test suites using test method as sampling unit.
 %  for every estimator examined.
@@ -1887,10 +1887,12 @@ from the \original test suites using test method as sampling unit.
 \caption{\EvosuiteDynamosa} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth2}
 \end{subfigure}
-\caption{Killable mutants estimated by frequency estimators for \Chao estimator, comparison with ground truth.
+\caption{Killable mutants estimated by %frequency estimators for
+ \Chao estimator and manual sampling (i.e., ground truth). %, comparison with ground truth.
 Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axis lists the projects.
   The method based estimators are in \textcolor{cmethod}{blue}, while class based estimators are in \textcolor{cclass}{red}.
-  The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI (ground truth), with dark purple line the point estimate.
+  The \textcolor{cgroundtruth}{purple} band is the manual sampling based estimate CI, %(ground truth),
+   with dark purple line the point estimate.
   The dotted black line indicates the total
   ratio of killed mutants, which is the absolute lower-bound. The figure shows how neither \textcolor{cmethod}{method} nor \textcolor{cclass}{class}
   based estimators overlap with \textcolor{cgroundtruth}{ground truth CI} consistently.}
@@ -1953,13 +1955,14 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
 
 \RQBx
 % As we noted in the introduction, 
-Statistical estimators rely on the data obtained by sampling campaigns;
+%Statistical 
+Frequency based estimators rely on the data obtained by sampling campaigns;
 thus, it is possible that they %frequency based estimators
 may not be robust to bias in sampling, e.g., bias introduced by the developers.
 % To mitigate this bias, 
 To study how different sampling strategies affect the statistical estimators,
 we generated two test suites automatically, i.e., without manual bias:
-\EvosuiteRandom (results in \Cref{tbl:estrandom}) and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}).
+\EvosuiteRandom (results in \Cref{tbl:estrandom}) and \EvosuiteDynamosa (results in \Cref{tbl:estdynamosa}).
 
 
 % The results from \Cref{tbl:estrandom} for \EvosuiteRandom,
@@ -1997,7 +2000,8 @@ and, (iii) the mean difference degraded considerably ($+20\%$ on average).
 % overlaps.
 
 Comparing the data in tables \ref{tbl:estoriginal}~and~\ref{tbl:estdynamosa}
-reveals that the situation did not improve using an advanced test generation algorithm.
+reveals that the situation did not improve using \EvosuiteDynamosa.
+%an advanced test generation algorithm.
 Although the valid estimates with \EvosuiteDynamosa are comparable to those with \original ($80$ vs. $79$),
 the number of CI overlaps was smaller ($9$ vs. $13$) and the mean difference was even larger than \EvosuiteRandom ($+24\%$ on average).
 
@@ -2014,7 +2018,8 @@ manual bias, and hence result in better estimates. Likewise, we expected that
 using unbiased sampling, i.e., random search, would produce better results than
 otherwise.
 %
-Our expectations were met but only partially.
+Our expectations were met %but 
+only partially.
 Sampling killable mutants using \EvosuiteRandom, the estimators performed better
 than with \EvosuiteDynamosa, confirming that unbiased sampling is beneficial. 
 Moreover, the estimators produced more valid estimates with \EvosuiteRandom than any other sampling strategy.
@@ -2054,7 +2059,7 @@ satisfactory results.
 % quantity when sampling units were changed. We expected individual estimators to
 % return the same predictions irrespective of the sampling units used.
 \RQB showed that the estimators are affected by the sampling strategy,
-i.e, the bias in sampling of killable mutants. \RQC, instead, focuses on the
+i.e., the bias in sampling of killable mutants. \RQC, instead, focuses on the
 granularity at which sampling happens, i.e., the sampling unit.
 %
 Using the same sampling strategy but different granularities, i.e., test method and class,
@@ -2081,8 +2086,8 @@ Even \Bootstrap, which had the highest (50\%) overlap for \EvosuiteRandom,
 did not produce a significant overlap of CI between method and class estimators
 for other test suites.
 
-This situation is clearly exemplified in figures
-\ref{fig:groundtruth1}, \ref{fig:groundtruth3}, and \ref{fig:groundtruth2}
+This situation is clearly exemplified in \Cref{fig:groundtruth}
+%figures \ref{fig:groundtruth1}, \ref{fig:groundtruth3}, and \ref{fig:groundtruth2}
 for \Chao estimator, in which almost all the CIs for the same test subject
 and sampling strategy do not overlap.
 
