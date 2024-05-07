@@ -1244,7 +1244,7 @@ projects that had no official release at the time we conducted this study and
 $17$ projects that have a complex structure, fail to build, do not pass the available tests,
 or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
 
-Since our methodology required expensive manual mutant classification, %, which is %notoriously
+Since we required expensive manual mutant classification, %, which is %notoriously
 %, we had to restrict the scope of our study; hence,
 we restricted our analysis 
 %as test subjects the
@@ -1369,20 +1369,26 @@ generate assertions for 120 seconds, and minimize the tests for 300 seconds.
 
 \subsection{Killable Mutants Estimation}
 \label{sec:estimation}
-We leveraged the mutation testing framework \PIT~\cite{pit} (v~1.4.9)
-to generate the mutants for each project
-and executed all the available test suites against them. %all the generated mutants .
-Since mutation analysis is almost always used with unit
-tests in practice, we did not consider integration or system tests.
-Nevertheless, this activity resulted in the execution of more than $2.5$B test methods.
+We used \PIT~\cite{pit} (v~1.4.9)
+to generate the mutants
+%for each project
+and execute test suites.
+%all the available test suites against them, %all the generated mutants .
+%Since mutation analysis is almost always used with unit
+%tests in practice, we did not consider integration or system tests.
+%Nevertheless,
+%This activity
+This resulted in $2.5$B test method executions.
 %
 We configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
 mutation operators and the \emph{killmatrix} option enabled; however, we noticed that \PIT
 (1) did not always identify all the mutants covered by the test cases; hence, it did not execute them;
-and (2) it did not always report the name of the test methods killing mutants, which is required by one of our sampling strategies.
-For the test execution, we chose \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
-the open-source infrastructure developed for the SBST Java unit test tool competition,
-and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes.
+and (2) it did not always report the name of the test methods killing mutants. % which is required by one of our sampling strategies.
+For the test execution, we used \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
+%the open-source infrastructure,
+which we
+%developed for the SBST Java unit test tool competition,
+extended to address \PIT's limitations and parallelize the test executions across multiple computing nodes.
 %(we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
 
 After executing the tests, we
