@@ -211,12 +211,19 @@ pdftitle={\mytitle}
 \usepackage{pgf,tikz}
 
 \usepackage{xcolor}
+%\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            %\node[shape=circle,fill,inner sep=2pt] (char) {\textcolor{white}{#1}};}}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
-            \node[shape=circle,fill,inner sep=2pt] (char) {\textcolor{white}{#1}};}}
-\newcommand{\RQA}{RQ1\xspace} %\circled{A}\xspace}
-\newcommand{\RQB}{RQ2\xspace} %\circled{B}\xspace}
-\newcommand{\RQC}{RQ3\xspace} %\circled{C}\xspace}
-\newcommand{\RQD}{RQ4\xspace} %\circled{D}\xspace}
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+% \newcommand{\RQA}{RQ1\xspace} %\circled{A}\xspace}
+% \newcommand{\RQB}{RQ2\xspace} %\circled{B}\xspace}
+% \newcommand{\RQC}{RQ3\xspace} %\circled{C}\xspace}
+% \newcommand{\RQD}{RQ4\xspace} %\circled{D}\xspace}
+\newcommand{\RQA}{\circled{1}\xspace}
+\newcommand{\RQB}{\circled{2}\xspace}
+\newcommand{\RQC}{\circled{3}\xspace}
+\newcommand{\RQD}{\circled{4}\xspace}
+
 
 \newcommand{\RQAx}{%
 \begin{description}\item[\RQA]\textbf{What is the accuracy of frequency based estimators in predicting killable mutants?}\end{description}}
