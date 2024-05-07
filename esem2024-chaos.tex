@@ -2213,13 +2213,13 @@ we note that our approach is similar to the one adopted by established biometric
 studies that draw conclusions from single sampling campaigns.
 
 \noindent\textbf{Internal Validity.}
-The test suites automatically generated did not always achieve high coverage, 
+The test suites automatically generated did not always achieve high coverage;
 hence, they can lead to larger uncertainty in the final estimation of equivalent mutants. 
 However, we note that this situation is similar to the one currently faced by software practitioner. % has to contend with.
 Next, our analysis can be subject to bugs, sampling errors, and misclassification of mutants 
 that might bias our results.
 For instance, the test generator could not generate unit tests for all the classes under analysis,
-hence failing to sample their mutants.
+thus failing to sample their mutants.
 We tried to mitigate this risk by reviewing the code of JUGE and our scripts, 
 cross-checking the results, and use the largest possible subset of classes for which
 test generation succeeded.
