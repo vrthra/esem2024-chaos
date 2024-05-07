@@ -1904,49 +1904,55 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
     \centering
       \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-methods-dynamosa-organic.pdf}
 %\vspace*{-3mm}
-  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
+  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original~(methods)}
+\label{fig:am}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-dynamosa-random.pdf}
 %\vspace*{-3mm}
-\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
+\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom~(methods)}
+\label{fig:bm}
 \end{subfigure}
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-organic-random.pdf}
 %\vspace*{-3mm}
-\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
+\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom~(methods)}
+\label{fig:cm}
 \end{subfigure}
-\caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit for \Chao estimator.
-  The \original is \textcolor{coriginal}{green}, 
-  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
-  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
-\label{fig:methodsamplingunit}
-\end{figure*}
+%\caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit for \Chao estimator.
+%  The \original is \textcolor{coriginal}{green}, 
+%  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
+%  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
+%\label{fig:methodsamplingunit}
+%\end{figure*}
 
-\begin{figure*}
+%\begin{figure*}
 \begin{subfigure}{.43\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-classes-dynamosa-organic.pdf}
 %\vspace*{-3mm}
-\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original}
+  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original~(classes)}
+\label{fig:ac}
 \end{subfigure}
 \hfill
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-dynamosa-random.pdf}
 %\vspace*{-3mm}
-\caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom}
+  \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom~(classes)}
+\label{fig:bc}
 \end{subfigure}
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-organic-random.pdf}
 %\vspace*{-3mm}
-\caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom}
+  \caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom~(classes)}
+\label{fig:cc}
 \end{subfigure}
-  \caption{Comparison of estimates from different test suites with \textbf{classes} as sampling unit for \Chao estimator.
+  \caption{Comparison of estimates from different test suites with \textbf{methods} (\Cref{fig:am}\ldots\Cref{fig:cm}) and \textbf{classes} (\Cref{fig:ac}\ldots\Cref{fig:cc}) as sampling units for \Chao estimator.
   The \original is \textcolor{coriginal}{green}, 
   \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
   and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
@@ -2006,12 +2012,16 @@ Although the valid estimates with \EvosuiteDynamosa are comparable to those with
 the number of CI overlaps was smaller ($9$ vs. $13$) and the mean difference was even larger than \EvosuiteRandom ($+24\%$ on average).
 
 As before, we plot the results for \Chao estimator with each sampling strategy %, the estimator suggested by the STADS framework in - ALESSIO: Repeated
-in figures~\ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
-Instead, we plot in \Cref{fig:methodsamplingunit} the comparison of the sampling strategies.% and \Cref{fig:classsamplingunit}
+in \ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
+We also plot the results for \Chao estimator test suite pairs across \Cref{fig:am}\ldots\Cref{fig:cc} along with the manual estimate.
+%~\ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
+%\Cref{fig:methodsamplingunit}
+%the comparison of the sampling strategies in pairs.% and \Cref{fig:classsamplingunit}
 %
 \todo{ALESSIO: Is this just reshuffling the content of the Figure 3? Do we really need it?}
 \todo{ALESSIO: We should comment something about the figure...}
 %
+
 
 We expected that using automated test generation strategies would mitigate
 manual bias, and hence result in better estimates. Likewise, we expected that
@@ -2020,6 +2030,11 @@ otherwise.
 %
 Our expectations were met %but 
 only partially.
+
+
+We expected that if the estimators were robust to sampling strategies used,
+the estimates in each pairs would coincide. However, we found significant
+differences between each pair.
 Sampling killable mutants using \EvosuiteRandom, the estimators performed better
 than with \EvosuiteDynamosa, confirming that unbiased sampling is beneficial. 
 Moreover, the estimators produced more valid estimates with \EvosuiteRandom than any other sampling strategy.
