@@ -1038,25 +1038,23 @@ and the incidence frequency counts $Q_k$ can be derived as:
 Estimators that can estimate the total number of colors under Bernoulli Product model belong to the class of frequency based estimators.
 They have been used extensively in biometrics (Ecology)
 to estimate \emph{unseen} species~\cite{chao2016species}, and are also called \emph{species richness} estimators.
-The problem of estimating species richness,
-is challenging because the geographical area
-to consider while counting the number of species is often large,
-preventing exhaustive survey.
-Hence, ecologists resort to \emph{sampling}:
-(1) they divide the area into \emph{sampling units}, and %, that can be surveyed comprehensively; 
-(2) randomly select sampling units to survey for number of species found.
+Estimating species richness in a given geographical area is challenging
+because the number of species is often very large,
+preventing an exhaustive survey.
+Hence, ecologists use \emph{sampling}:
+(1) dividing the area into \emph{sampling units}, and %, that can be surveyed comprehensively; 
+(2) randomly selecting sampling units to survey for number of species found.
 
 Sampling data might show different distributions of species in sampling units
 and might be incomplete.
 Hence, %the problem of 
 species richness estimation %with (partial) sampling
-requires to estimate the total number of species that is present
-in the considered geographical area including species not found in
+estimates the \emph{total number of species} that is present
+in the considered geographical area \emph{including species not found} in
 any sampling unit.
-The essential idea
-is that the number
-of species that are never sampled %did not show up in any sampling unit 
-can be estimated by considering the next rarest species, such as species
+The idea is that we can estimate the number
+of species that did not show up in any sampling unit 
+by considering the next rarest species, such as species
 detected only once (\emph{singleton}), twice (\emph{doubleton}),
 and the number of species found.
 
