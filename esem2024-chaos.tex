@@ -2099,18 +2099,18 @@ are statistically significant for every estimator examined. Consequently,
 none of the \estimatorCount estimators was robust against changes in sampling
 unit.
 \end{tcolorbox}
-
-We also observe that (1) test method estimators for most subjects seem to
-overlap and have a smaller variance than class estimators, and (2) test method
-estimators often (but not always) appear to provide an underestimate compared to
+\subsection{Additional Observations}
+We also observe that (1) method estimators for most subjects seem to
+overlap and have a smaller variance than class estimators, and (2) method
+estimators often (but not always) appear to underestimate compared to
 the manual estimates, while the same cannot be said for class estimators.
 (3) Bootstrap tends to produce consistent estimates for method and class
 estimators with small CIs when the number of mutants killed is far from the total
-generated mutants. However, the uncertainties in CI increase drastically as the
+generated. However, the uncertainties in CI increase drastically as the
 number of killed mutants approaches the total generated. We observe the opposite
 behavior in all other estimators. (4) In a significant number
 of subjects, the difference between class and method estimators seems to
-diminish as the number of killed mutants approaches the total generated mutants.
+diminish as the number of killed mutants approaches the total generated.
 This is an intriguing hint because the total number of generated mutants is
 not part of the estimator equations. Hence, it is likely that the observed
 pattern is linked to the total killable mutants, which is close to the total
@@ -2119,7 +2119,7 @@ generated mutants.
 considerably based on the subject in question.
 While there are several other interesting patterns in the data (see Appendix~\cite{replication-package}), the data we have
 is insufficient to explore these fully. Therefore, we will refrain
-from interpreting or commenting on these until a larger follow-up study can be
+from interpreting these until a larger follow-up study can be
 conducted.
 
 \subsection{What Does This Mean in Practice?}
