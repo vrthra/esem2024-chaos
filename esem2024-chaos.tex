@@ -1470,11 +1470,13 @@ commons-collections  &100 & 3  & 2  &  1 \\
 \label{tbl:classified}
 \flushleft{\small{$^*$We used commons-csv as a pilot to train researchers \rB and \rC.}}
 \end{table}
-\todo{
-ALESSIO: 
-   - We never mention misclassifications, only conflicts and Cohen's Kappa.
-   - Should we also report the total number of survining mutants in the table above to contextualize the 100 mutants we sampled?
-}
+%\done{
+%ALESSIO: 
+%   - We never mention misclassifications, only conflicts and Cohen's Kappa.
+%     RAHUL: We do not know misclassification beyond Cohen's Kappa.
+%   - Should we also report the total number of survining mutants in the table above to contextualize the 100 mutants we sampled?
+%     RAHUL: The surviving mutants are given in Table 2 as percentage. I think adding the huge number would be counterproductive here.
+%}
 
 After the initial training, the classification considered one project at a time %in alphabetical order
 as listed in \Cref{tbl:classified} and required researchers \rB and \rC 
@@ -1485,9 +1487,10 @@ motivated with a convincing explanation. % why that mutant should be considered 
 As a result, for each sampled mutant, we collected % of the classification includes
 a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
 and optional comments.
-\todo{
-ALESSIO: Shouldn't this \rB and \rC?
-}
+%\done{
+%ALESSIO: Shouldn't this \rB and \rC?
+% RAHUL: Yes
+%}
 % Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
 Between \rB and \rC we achieved a Cohen's Kappa of $0.48$ (moderate agreement).
 
@@ -1557,9 +1560,9 @@ from the manual classification estimates, i.e.,  their 95\% confidence intervals
 % difference between the point estimate $E$ and manual classification estimate $E^M$,
 % i.e., ${|E - E^M|}$. 
 %
-\todo{ ALESSIO: I do not think we compute the Normalized MD, but the absolute one. Also, }
+%\done{ ALESSIO: I do not think we compute the Normalized MD, but the absolute one. Also, }
 %
-Next, we computed the normalized
+Next, we computed the absolute
 mean difference (MD) between the point estimates of the
 statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}{m}\sum_i{\frac{|E_i - E^M_i|}{S_i}}\times100\%$.
 %
