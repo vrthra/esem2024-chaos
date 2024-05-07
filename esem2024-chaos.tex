@@ -2024,7 +2024,7 @@ We also plot the results for \Chao estimator test suite pairs across \Cref{fig:a
 
 
 We expected that using automated test generation strategies would mitigate
-manual bias, and hence result in better estimates. Likewise, we expected that
+manual bias and hence result in better estimates. Likewise, we expected that
 using unbiased sampling, i.e., random search, would produce better results than
 otherwise.
 %
@@ -2081,7 +2081,7 @@ Using the same sampling strategy but different granularities, i.e., test method 
 we expect estimators to produce comparable results, as they
 predict the same quantity. Therefore, studying this aspect would let us draw
 conclusions on the estimators' consistency. Moreover, this study could let us
-discount the possibility that the manual classification result was either in error,
+discount the possibility that either the manual classification was incorrect
 or the (bad) results achieved in \RQA were a statistical fluke.
 %
 % As we mentioned in the introduction, there is a possibility, however remote,
@@ -2092,7 +2092,7 @@ or the (bad) results achieved in \RQA were a statistical fluke.
 % return the same predictions irrespective of the sampling units used.
 
 
-From \Cref{tbl:estoriginalclassmethod}, \Cref{tbl:estrandomclassmethod}, and
+From \Cref{tbl:estoriginalclassmethod}, \Cref{tbl:estrandomclassmethod},
 and \Cref{tbl:estdynamosaclassmethod}, we observe that the 
 estimates from method and class level sampling units
 are %statistically
@@ -2110,7 +2110,7 @@ In light of these results, we answer \RQC:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from test method and test class level
 estimators %to the estimates from manual classification
-are statistically significant for every estimator examined. Consequently,
+is statistically significant for every estimator examined. Consequently,
 none of the \estimatorCount estimators was robust against changes in sampling
 unit.
 \end{tcolorbox}
