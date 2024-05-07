@@ -2117,7 +2117,7 @@ none of the \estimatorCount estimators was robust against changes in sampling
 unit.
 \end{tcolorbox}
 \subsection{Additional Observations}
-From a detailed analysis of the data (see Appendix for detailed plots and tables)
+From a detailed analysis of the data (see Appendix~\cite{replication-package} for detailed plots and tables)
 we also observe that (1) method estimators for different test suites for same
 subjects overlap and have a smaller variance than class estimators, and (2) method
 estimators often (but not always) appear to underestimate compared to
@@ -2131,7 +2131,7 @@ of subjects, the difference between class and method estimators seems to
 diminish as the number of killed mutants approaches the total generated.
 This is an intriguing hint because the total number of generated mutants is
 not part of the estimator equations. Hence, it is likely that the observed
-pattern is linked to the total killable mutants, which is close to the total
+pattern is linked to the total of killable mutants, which is close to the total of
 generated mutants.
 (5) Finally, we observe that the plots vary
 considerably based on the subject in question.
@@ -2145,19 +2145,19 @@ For an estimator to be useful to the developers, it should be able to produce
 estimates that are accurate and precise. Additionally, the estimators must be reliable, i.e.,
 its ability to produce valid estimates should not strongly depend on the project under analysis.
 
-We note that examination of just $100$ mutants are sufficient to produce an
-estimate with in $2\%$ of the true value. Assuming that examining $100$ mutants is
+We note that examination of just $100$ mutants is sufficient to produce an
+estimate within $2\%$ of the true value. Assuming that examining $100$ mutants is
 reasonable, we should expect any equivalent mutant estimator to do better than
 this value. However, the fact that none of the estimators could consistently
-produce estimates that are close to the manual estimates suggest that the
+produce estimates that are close to the manual estimates suggests that the
 frequency based estimators are not yet ready for use by developers.
 
-To verify that our manual analysis was not the cause of error, we also
+To verify that our manual analysis was not the cause of an error, we also
 investigated whether the estimators could produce consistent values when
-estimating the same quantities, but using different sampling units---method and class.
+estimating the same quantities but using different sampling units---method and class.
 We observed that the estimates produced were inconsistent, i.e., only few CIs overlapped.
 %s of the CI. 
-This is a cause for concern, and points to violated assumptions in the
+This is a cause for concern and points to violated assumptions in the
 underlying statistical model, which needs to be investigated further.
 
 While overall, the result of our study is negative, we observe a glimmer of hope.
@@ -2171,7 +2171,7 @@ actual value, albeit with a large amount of uncertainty.
 
 Furthermore, unlike \EvosuiteDynamosa, \EvosuiteRandom is unguided in
 test generation, which may be a hint as to the better performance of \Bootstrap
-on \EvosuiteRandom, and points to the need for further study.
+on \EvosuiteRandom and points to the need for further study.
 
 
 %\done{
@@ -2180,7 +2180,7 @@ on \EvosuiteRandom, and points to the need for further study.
 %
 \noindent\textbf{Empirical Strategy Used.}
 This paper uses the quantitative research, including systematic
-collection of data about different mutants, and comparing classifications by
+collection of data about different mutants and comparing classifications by
 different experts, and the agreement is computed by Cohen's Kappa.%\todo{TODO}
 
 \noindent\textbf{Data Availability.}
