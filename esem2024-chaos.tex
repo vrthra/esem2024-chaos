@@ -1959,7 +1959,7 @@ may not be robust to bias in sampling, e.g., bias introduced by the developers.
 % To mitigate this bias, 
 To study how different sampling strategies affect the statistical estimators,
 we generated two test suites automatically, i.e., without manual bias:
-\EvosuiteRandom and \EvosuiteDynamosa.
+\EvosuiteRandom (results in \Cref{tbl:estrandom}) and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}).
 
 
 % The results from \Cref{tbl:estrandom} for \EvosuiteRandom,
@@ -1973,8 +1973,8 @@ we generated two test suites automatically, i.e., without manual bias:
 % \emph{valid estimates} were considerably better, the number of CI overlaps were
 % still dismal, and had a much larger mean difference, all above 30\%.
 
-\Cref{tbl:estrandom} reports the results obtained using \EvosuiteRandom,
-whereas \Cref{tbl:estdynamosa} the results obtained using \EvosuiteDynamosa.
+%\Cref{tbl:estrandom} reports the results obtained using \EvosuiteRandom,
+%whereas \Cref{tbl:estdynamosa} the results obtained using \EvosuiteDynamosa.
 %
 Comparing the data in tables \ref{tbl:estoriginal}~and~\ref{tbl:estrandom}
 reveals that with \EvosuiteRandom
@@ -2020,13 +2020,13 @@ than with \EvosuiteDynamosa, confirming that unbiased sampling is beneficial.
 Moreover, the estimators produced more valid estimates with \EvosuiteRandom than any other sampling strategy.
 However, we also observed that with \EvosuiteRandom the mean difference, i.e., the precision of the estimations,
 drastically worsened compared to \original and that with \EvosuiteDynamosa the situation worsened.
-
+%
 % One may argue that it means that our generated test suites did not adequately
 % sample the population. However, if the estimators were actually performing
 % correctly, this should have resulted in a larger confidence interval, which
 % would increase the \emph{accuracy} at the expense of \emph{precision}, and
 % would have resulted in a larger number of overlaps.
-
+%
 One possible explanation of these results is that the automatically generated test suites
 did not adequately sample the population (see statement and branch coverage in \Cref{tbl:subjectmeasures}).
 However, our counterargument is that if the estimators were actually performing as expected,
@@ -2053,12 +2053,12 @@ satisfactory results.
 % experiment, where we compared estimators based on how they predict the same
 % quantity when sampling units were changed. We expected individual estimators to
 % return the same predictions irrespective of the sampling units used.
-\RQB showed that the estimators are affected by the adopted sampling strategy,
-specifically by bias in sampling of killable mutants. \RQC, instead, focuses on the
+\RQB showed that the estimators are affected by the sampling strategy,
+i.e, the bias in sampling of killable mutants. \RQC, instead, focuses on the
 granularity at which sampling happens, i.e., the sampling unit.
 %
 Using the same sampling strategy but different granularities, i.e., test method and class,
-we expect estimators to produce comparable results, as they ultimately
+we expect estimators to produce comparable results, as they
 predict the same quantity. Therefore, studying this aspect would let us draw
 conclusions on the estimators' consistency. Moreover, this study could let us
 discount the possibility that the manual classification result was either in error,
@@ -2073,8 +2073,8 @@ or the (bad) results achieved in \RQA were a statistical fluke.
 
 
 From \Cref{tbl:estoriginalclassmethod}, \Cref{tbl:estrandomclassmethod}, and
-and \Cref{tbl:estdynamosaclassmethod}, we can observe that the 
-estimates from method level sampling units and class level sampling units
+and \Cref{tbl:estdynamosaclassmethod}, we observe that the 
+estimates from method and class level sampling units
 are %statistically
 significantly different.
 Even \Bootstrap, which had the highest (50\%) overlap for \EvosuiteRandom, 
