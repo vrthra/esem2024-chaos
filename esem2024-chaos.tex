@@ -1381,22 +1381,31 @@ mutation operators and the \emph{killmatrix} option enabled; however, we noticed
 and (2) it did not always report the name of the test methods killing mutants, which is required by one of our sampling strategies.
 For the test execution, we chose \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
 the open-source infrastructure developed for the SBST Java unit test tool competition,
-and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes (we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
+and extended it to address \PIT's limitations and heavily parallelize the test executions across multiple computing nodes.
+%(we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
 
 After executing the tests, we
 filtered out faulty samples related to invalid and timed-out mutants.
 To reduce the risk of misclassifying ``slow'' mutants as killed,
 we conservatively granted each unit test a generous timeout of 10 seconds.
-We estimated the killable mutants
+
+\noindent{\textbf{Sampling units.}}
+We first estimated the killable mutants
 on the \projectCount test subjects using the \estimatorCount 
-estimators on each of the three test suites using both test class and test method as sampling units.
-\todo{
-ALESSIO: AFAIK we never explicitly introduce test class and test method sampling
-}
-\todo{
-ALESSIO: The following is not really relevant at this point. We should mention this when we describe the plots.
-}
-Unless stated otherwise, we report the estimates with 95\% confidence interval.
+estimators on each of the test suites. We first estimated the
+killable units using test methods as sampling units. That is, each
+mutant kill by a test method is counted separately. Next, we evaluated
+the same using test classes as sampling units. That is, we counted
+mutant kills by each test class.
+%which is an aggregation of all kills by the methods of that class.
+%using both test class and test method as sampling units.
+%\done{
+%ALESSIO: AFAIK we never explicitly introduce test class and test method sampling
+%}
+%\done{
+%ALESSIO: The following is not really relevant at this point. We should mention this when we describe the plots.
+%}
+%Unless stated otherwise, we report the estimates with 95\% confidence interval.
 
 \subsection{Survived Mutants Collection}
 \label{sec:mutant-generation}
