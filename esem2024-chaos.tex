@@ -50,7 +50,7 @@
 % All submissions must be written in English and must be submitted via EasyChair
 % in the PDF format, and they must be formatted according to the ACM proceedings
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
-\documentclass[sigconf,anonymous,nonacm]{acmart}
+\documentclass[sigconf,anonymous,review,nonacm]{acmart}
 %\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 \hypersetup{
    colorlinks=true,
@@ -1345,11 +1345,12 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
 \subsection{Test Suites Generation}
 \label{sec:testgeneration}
 The selected test subjects contain unit tests
-that developers %manually
-wrote to check application- and
+from developers %manually
+for application- and
 domain- specific requirements.
-Therefore, one can argue that using such \original test suites 
-might result in a biased sampling of live mutants.
+One may argue that the mutants killed by
+\original test suites might be far from random as expected by a statistical process.
+%might result in a biased sampling of live mutants.
 For mitigation,
 %we generated two additional test suites for each test subject.
 %Specifically,
@@ -1357,7 +1358,7 @@ we leveraged \Evosuite~\cite{fraser2011evosuite}
 to generate \EvosuiteRandom, a test suite that does not target any specific testing goal,
 and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Many-Objective Sorting Algorithm~\cite{panichella2015reformulating}.
 Consequently, we argue that the former test suite has the lowest generation bias, whereas
-the latter might introduce some bias being not completely random.
+the latter might introduce some bias being not completely random, but still free from manual bias.
 For generating both test suites, we followed the best practice from
 SBST~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22},
 with test generation for 60 seconds each, and test minimization for 300 seconds each.
@@ -1391,9 +1392,9 @@ extended to address \PIT's limitations and parallelize the test executions acros
 %(we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
 
 After executing the tests, we
-filtered out faulty samples related to invalid and timed-out mutants.
+removed faulty samples related to invalid and timed-out mutants.
 To reduce the risk of misclassifying ``slow'' mutants as killed,
-we conservatively granted each unit test a generous timeout of 10 seconds.
+we conservatively granted each unit test a timeout of 10 seconds.
 We considered those mutants that 
 \PIT marked as \texttt{SURVIVED} or \texttt{NOT\_COVERED} as the surviving mutants.
 
@@ -1447,8 +1448,8 @@ of the obtained results. Nevertheless, the whole manual classification took six 
 Given the sampled mutants, we adopted a structured classification protocol
 that involved three classifiers. %, all co-authors of this paper.
 The lead classifier (\rA) has ten years of experience in programming with Java and is
-an expert in mutation analysis. The other two classifiers (\rB and \rC), 
-instead, have experience in programming (between three and five years) 
+an expert in mutation analysis. The classifiers \rB and \rC 
+have experience in programming (between three and five years),
 but were unfamiliar with mutation analysis before the start of this study.
 To cope with that, we organized a pilot study for training \rB and \rC
 using \emph{commons-csv}, the smallest among the selected projects, 
@@ -1503,11 +1504,11 @@ and optional comments.
 % Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
 Between \rB and \rC we achieved a Cohen's Kappa of $0.48$ (moderate agreement).
 
-As final step, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
+Finally, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
 and let the three classifiers discuss and resolve them. 
 During the discussion, %the lead classifier
 \rA acted as the moderator while 
-\rB and \rC could update their original classifications in light of the discussed
+\rB and \rC could update their classifications in light of the discussed
 arguments. The discussion continued until the final classification was accepted unanimously. 
 
 Given the proportion of killable mutants in a sample, we obtained the population proportion---and thus an estimate of the total number of killable
@@ -1578,13 +1579,13 @@ statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}
 % We removed any estimate that resulted in negative
 % CI upper bound, or point estimate.
 % We also removed any estimate that was higher than the total number of mutants.
-Notably, we removed any invalid estimate before computing MD, gaining $m$ valid estimates.
+We removed any invalid estimate before computing MD, gaining $m$ valid estimates.
 We consider invalid any estimate that failed to compute, resulted in negative point estimate, or a value higher than the total number of possible mutants.
 %
 % The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 % The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
 We report the counts of valid estimates (column \emph{Valid Estimates})
-and statistics about MD (columns \emph{Mean} and \emph{Stdev}) aggregated across test subjects
+and statistics about MD (\emph{Mean} and \emph{Stdev}) aggregated across test subjects
 in \Cref{tbl:estoriginal}.
 
 
