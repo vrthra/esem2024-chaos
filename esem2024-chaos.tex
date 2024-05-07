@@ -1062,7 +1062,7 @@ Chao~\cite{chao2016species} identified two kinds of species richness
 estimators based on whether they adopt \emph{incidence data}, i.e., data about the
 presence of species across multiple sampling units, or \emph{abundance data}, i.e.,
 data about the number of individuals of different species found.
-As our model leverages kill incidence matrix, we primarly resort to incidence sampling estimators.
+As our model leverages kill incidence matrix, we primarily resort to incidence sampling estimators.
 
 Incidence sampling considers $T$ sampling units randomly selected among all
 the available ones and assumes these are independent~\cite{chao2016species}.
@@ -1250,7 +1250,7 @@ to \emph{ten largest projects}
 fulfilling our
 criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are given in \Cref{tbl:subjectmeasures}.
 %We highlight these projects in \Cref{tbl:fullsubjects} and
-%The main prsummarize their main properties in \Cref{tbl:subjectmeasures}.
+%The main summarize their main properties in \Cref{tbl:subjectmeasures}.
 
 \begin{table}[t]
   \caption{List of considered Apache Commons projects}
@@ -1421,7 +1421,7 @@ mutant kills by each test class.
 %killable and equivalent mutants in the \projectCount test subjects; therefore, we opted to
 %sample and manually classify the mutants that survived mutation analysis.
 %\done{
-%ALESSIO: The following applies to all the test suite, so I moved where we talk about killable mutants, here I state we sample survided mutants only in the ORIGINAL test suite.
+%ALESSIO: The following applies to all the test suite, so I moved where we talk about killable mutants, here I state we sample survived mutants only in the ORIGINAL test suite.
 %}
 % As the first step, we used \PIT~\cite{pit} (v 1.4.9) to evaluate the \emph{\original} test suites
 % and identified mutants that \PIT marked \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
@@ -1452,7 +1452,7 @@ instead, have experience in programming (between three and five years)
 but were unfamiliar with mutation analysis before the start of this study.
 To cope with that, we organized a pilot study for training \rB and \rC
 using \emph{commons-csv}, the smallest among the selected projects, 
-and all the $116$ %surviving mutants of \emph{commons-csv}.
+and all the $116$ 
 mutants that survived its \original test suite. 
 
 \begin{table}[h]
@@ -1684,7 +1684,7 @@ Are frequency based estimators affected by sampling units?
 % and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 To answer this question, we compared the estimations of the 
 \estimatorCount statistical estimators using test methods as sampling unit 
-against the corresponsing estimations using test classes as
+against the corresponding estimations using test classes as
 sampling unit for all test suites. 
 % As before, we remove invalid estimates.
 %\done{ALESSIO: Do we?
@@ -1887,7 +1887,7 @@ reveals that with \EvosuiteRandom
 (ii) the number of overlaps between CI from the estimators and manual classification
 was comparable ($12$ vs. $13$), although not all the estimators behaved consistently;
 \todo{ALESSIO: some lost, some gain, the majority stayed the same}
-and, (iii) the mean difference deagraded considerably ($+20\%$ on average).
+and, (iii) the mean difference degraded considerably ($+20\%$ on average).
 % \EvosuiteRandom was considerably fewer than that between manual and \original.
 % The smallest difference in MD was observed for \ICEallrare,
 % (mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
@@ -2017,7 +2017,7 @@ satisfactory results.
 % quantity when sampling units were changed. We expected individual estimators to
 % return the same predictions irrespective of the sampling units used.
 RQ2 showed that the estimators are affected by the adopted sampling strategy,
-speficically by bias in sampling of killable mutants. RQ3, instead, focuses on the
+specifically by bias in sampling of killable mutants. RQ3, instead, focuses on the
 granularity at which sampling happens, i.e., the sampling unit.
 %
 Using the same sampling strategy but different granularities, i.e., test method and class,
@@ -2133,7 +2133,7 @@ studies that draw conclusions from single sampling campaigns.
 The test suites automatically generated did not always achieve high coverage, 
 hence, they can lead to larger uncertainty in the final estimation of equivalent mutants. 
 However, we note that this situation is similar to the one currently faced by software practitioner. % has to contend with.
-Next, our analysis can be subject to bugs, sampling errors, and mutant mis-classifications
+Next, our analysis can be subject to bugs, sampling errors, and misclassification of mutants 
 that might bias our results.
 For instance, the test generator could not generate unit tests for all the classes under analysis,
 hence failing to sample their mutants.
