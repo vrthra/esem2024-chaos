@@ -218,6 +218,18 @@ pdftitle={\mytitle}
 \newcommand{\RQC}{RQ3\xspace} %\circled{C}\xspace}
 \newcommand{\RQD}{RQ4\xspace} %\circled{D}\xspace}
 
+\newcommand{\RQAx}{%
+\begin{description}\item[\RQA]\textbf{What is the accuracy of frequency based estimators in predicting killable mutants?}\end{description}}
+
+\newcommand{\RQBx}{%
+\begin{description}\item[\RQB]\textbf{Are frequency based estimators affected by sampling strategies?}\end{description}}
+
+\newcommand{\RQCx}{%
+\begin{description}\item[\RQC] \textbf{Are frequency based estimators affected by sampling units?}\end{description}}
+
+
+
+
 \usepackage{endnotes}
 \usepackage{pifont}
 \usepackage{widetable}
@@ -840,6 +852,7 @@ This leads to the first research question. % investigates the effectiveness of f
   \item[\RQA]\textbf{How accurate are frequency based estimators in predicting
     killable mutants?}
 \end{description}
+%\RQAx
 
 To ensure \textbf{ground truth} for comparison, we first conducted
 a large scale \textbf{manual evaluation of surviving mutants} from \projectCount
@@ -856,9 +869,10 @@ the literature.
 
 As there is little information on robustness of frequency based estimators to sampling biases,
 the second research question is:
-\begin{description}
-  \item[\RQB] \textbf{Are frequency based estimators affected by sampling strategies?}
-\end{description}
+%\begin{description}
+%  \item[\RQB] \textbf{Are frequency based estimators affected by sampling strategies?}
+%\end{description}
+\RQBx
 We used three different
 test suites---\emph{developer written}, \emph{randomly generated}, and \emph{feedback-driven} to evaluate this question.
 If the estimators are indeed robust to sampling bias,
@@ -867,11 +881,7 @@ significantly. We should also be able to identify best strategies by comparison 
 
 Are frequency based estimators affected by the specific sampling unit used, such
 as using test class as a test unit instead of test method? This informs our next question.
-
-\begin{description}
-  \item[\RQC] \textbf{Are frequency based estimators affected by sampling units?}% class and unit
-\end{description}
-
+\RQCx
 To evaluate the impact of different sampling units, we reanalyzed the
 data from our first experiment, but with test classes (which contain multiple
 test methods) as sampling units.
@@ -1620,8 +1630,7 @@ in \Cref{tbl:estoriginal}.
     \label{tbl:estoriginal}
 \end{table}
 
-\noindent\textbf{\RQB.
-Are frequency based estimators affected by sampling strategies?}\\
+\RQBx
 % To answer this question, we considered the statistical estimators computed
 % using test methods for \EvosuiteRandom and \EvosuiteDynamosa test suites as sampling unit
 % and determined their 95\% confidence intervals.
@@ -1680,9 +1689,8 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \label{tbl:estdynamosa}
 \end{table}
 
-\noindent\textbf{\RQC. 
-Are frequency based estimators affected by sampling units?
-}\\ % when given unbiased test suites from \Evosuite?}
+\RQCx 
+% when given unbiased test suites from \Evosuite?}
 % To answer this question, we compared the estimations 
 % using test methods as sampling units to estimations using test classes as
 % sampling units for all test suites and
@@ -1777,9 +1785,7 @@ Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 % RAHU: Do you mean no introduction? Does this help?
 %}
 We next discuss each of the research questions, and corresponding observations in depth.
-
-\noindent\RQA\textbf{How accurate are frequency based estimators in predicting
-    killable mutants?}\\
+\RQAx
 % Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
 % maximum overlap with manual estimates --- three out of \projectCount test
 % subjects had overlapping confidence intervals (CI) with $E^M$.
@@ -1864,8 +1870,7 @@ from the \original test suites using test method as sampling unit.
 %  for every estimator examined.
 \end{tcolorbox}
 
-\noindent\textbf{\RQB.
-Are frequency based estimators affected by sampling strategies?}\\
+\RQBx
 % As we noted in the introduction, 
 Statistical estimators rely on the data obtained by sampling campaigns;
 thus, it is possible that they %frequency based estimators
@@ -2018,7 +2023,7 @@ satisfactory results.
 \label{fig:classsamplingunit}
 \end{figure*}
 
-\noindent\textbf{\RQC. Are frequency based estimators affected by sampling units?}\\
+\RQCx
 % As we mentioned in the introduction, there is a possibility, however remote,
 % that the manual estimation result was either in error, or the result was a
 % statistical fluke. To discount this possibility we conducted the third
