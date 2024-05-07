@@ -1958,6 +1958,7 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
   and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
 \label{fig:classsamplingunit}
 \end{figure*}
+\vspace{-2cm}
 
 \RQBx
 % As we noted in the introduction, 
@@ -2115,8 +2116,9 @@ none of the \estimatorCount estimators was robust against changes in sampling
 unit.
 \end{tcolorbox}
 \subsection{Additional Observations}
-We also observe that (1) method estimators for most subjects seem to
-overlap and have a smaller variance than class estimators, and (2) method
+From a detailed analysis of the data (see Appendix for detailed plots)
+we also observe that (1) method estimators for different test suites for same
+subjects overlap and have a smaller variance than class estimators, and (2) method
 estimators often (but not always) appear to underestimate compared to
 the manual estimates, while the same cannot be said for class estimators.
 (3) Bootstrap tends to produce consistent estimates for method and class
@@ -2132,7 +2134,7 @@ pattern is linked to the total killable mutants, which is close to the total
 generated mutants.
 (5) Finally, we observe that the plots vary
 considerably based on the subject in question.
-While there are several other interesting patterns in the data (see Appendix~\cite{replication-package}), the data we have
+While there are several other interesting patterns in the data, the data we have
 is insufficient to explore these fully. Therefore, we will refrain
 from interpreting these until a larger follow-up study can be
 conducted.
