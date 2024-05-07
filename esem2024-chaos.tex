@@ -1352,7 +1352,7 @@ wrote to check application- and
 domain- specific requirements.
 Therefore, one can argue that using such \original test suites 
 might result in a biased sampling of live mutants.
-To reduce this risk,
+For mitigation,
 %we generated two additional test suites for each test subject.
 %Specifically,
 we leveraged \Evosuite~\cite{fraser2011evosuite}
@@ -1361,9 +1361,10 @@ and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Ma
 Consequently, we argue that the former test suite has the lowest generation bias, whereas
 the latter might introduce some bias being not completely random.
 For generating both test suites, we followed the best practice from
-SBST testing tool competition~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22}
-and let \Evosuite generate unit tests for each class for 60 seconds,
-generate assertions for 120 seconds, and minimize the tests for 300 seconds.
+SBST~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22},
+with test generation for 60 seconds, and test minimization for 300 seconds.
+%and let \Evosuite generate unit tests for each class for 60 seconds,
+%generate assertions for 120 seconds, and minimize the tests for 300 seconds.
 
  % prevent mutation analysis from producing reliable results, 
 
