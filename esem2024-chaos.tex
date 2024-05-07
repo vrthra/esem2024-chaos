@@ -188,9 +188,11 @@ pdftitle={\mytitle}
                                                                                  
 \newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
 
-%\renewcommand{\todo}[1]{}
-%\renewcommand{\done}[1]{}
-%\renewcommand{\rem}[1]{}
+\InputIfFileExists{SUBMIT}{
+\renewcommand{\todo}[1]{}
+\renewcommand{\done}[1]{}
+\renewcommand{\rem}[1]{}
+}{}
 
 \newcommand{\Randoop}{\textsc{Randoop}\xspace}
 \newcommand{\Evosuite}{\textsc{EvoSuite}\xspace}
@@ -640,7 +642,7 @@ While promising, there has been no comprehensive study on whether
 such frequency based species estimation methods can
 deliver an accurate estimate for killable mutants.
 Hence, this paper investigates the following: \emph{Can
-the species richness estimation methods provide an accurate
+the frequency based estimation methods provide an accurate
 estimate for the number of killable mutants?}
 
 \noindent\textbf{Method.}
@@ -1035,7 +1037,7 @@ and the incidence frequency counts $Q_k$ can be derived as:
 \label{sec:estimators}
 Estimators that can estimate the total number of colors under Bernoulli Product model belong to the class of frequency based estimators.
 They have been used extensively in biometrics (Ecology)
-to estimate \emph{unseen} species~\cite{chao2016species}.
+to estimate \emph{unseen} species~\cite{chao2016species}, and are also called \emph{species richness} estimators.
 The problem of estimating species richness,
 is challenging because the geographical area
 to consider while counting the number of species is often large,
@@ -1387,7 +1389,7 @@ After executing the tests, we
 filtered out faulty samples related to invalid and timed-out mutants.
 To reduce the risk of misclassifying ``slow'' mutants as killed,
 we conservatively granted each unit test a generous timeout of 10 seconds.
-Finally, we estimated the live mutant species richness
+We estimated the live mutant species richness
 on the \projectCount test subjects using the \estimatorCount 
 estimators on each of the three test suites using both test class and test method as sampling units.
 \todo{
