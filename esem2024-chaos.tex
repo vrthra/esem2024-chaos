@@ -1580,7 +1580,7 @@ statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}
 % CI upper bound, or point estimate.
 % We also removed any estimate that was higher than the total number of mutants.
 We removed any invalid estimate before computing MD, gaining $m$ valid estimates.
-We consider invalid any estimate that failed to compute, resulted in negative point estimate, or a value higher than the total number of possible mutants.
+We consider invalid any estimate that failed to compute, resulted in negative point estimate or a value higher than the total number of possible mutants.
 %
 % The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
 % The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
@@ -1778,7 +1778,7 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 %\done{ALESSIO: This does not read really professional
 % RAHU: Do you mean no introduction? Does this help?
 %}
-We next discuss each of the research questions, and corresponding observations in depth.
+We next discuss each of the research questions and corresponding observations in depth.
 \RQAx
 % Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
 % maximum overlap with manual estimates --- three out of \projectCount test
@@ -2102,31 +2102,25 @@ unit.
 
 We also observe that (1) test method estimators for most subjects seem to
 overlap and have a smaller variance than class estimators, and (2) test method
-estimators often (but not always) seem to provide an underestimate compared to
-the manual estimates, while the same can't be said for class estimators.
-(3) \Bootstrap seems to produce consistent estimates for method and class
-estimators with small CIs when the number of mutants killed is far from total
-generated mutants, while the uncertainties in CI increases drastically as the
-killed mutants come close to total generated mutants. We observe the opposite
+estimators often (but not always) appear to provide an underestimate compared to
+the manual estimates, while the same cannot be said for class estimators.
+(3) Bootstrap tends to produce consistent estimates for method and class
+estimators with small CIs when the number of mutants killed is far from the total
+generated mutants. However, the uncertainties in CI increase drastically as the
+number of killed mutants approaches the total generated. We observe the opposite
 behavior in all other estimators. (4) In a significant number
-of subjects, the difference between class and method estimators seem to
-reduce the closer the number of killed mutants are to total generated.
-This is a tantalizing hint because the number of total generated mutants is
+of subjects, the difference between class and method estimators seems to
+diminish as the number of killed mutants approaches the total generated mutants.
+This is an intriguing hint because the total number of generated mutants is
 not part of the estimator equations. Hence, it is likely that the observed
-pattern is linked to the total killable mutants which is close to the total
+pattern is linked to the total killable mutants, which is close to the total
 generated mutants.
-%In all these cases, the data is insufficient to clearly distinguish between
-%whether the observations are related to the total number of generated mutants
-%or the number of killable mutants because we found that in all \projectCount
-%subjects, the number of mutants were very small.
 (5) Finally, we observe that the plots vary
-considerably based on the subject in question. 
-
-While there are several other enticing patterns in the data (see Appendix~\cite{replication-package}), the data we have
-is insufficient to explore these fully. Hence, we will refrain
-from interpreting or commenting on these until a larger follow up study can be
-made.
-
+considerably based on the subject in question.
+While there are several other interesting patterns in the data (see Appendix~\cite{replication-package}), the data we have
+is insufficient to explore these fully. Therefore, we will refrain
+from interpreting or commenting on these until a larger follow-up study can be
+conducted.
 
 \subsection{What Does This Mean in Practice?}
 For an estimator to be useful to the developers, it should be able to produce
@@ -2319,6 +2313,10 @@ applied to the killable mutants estimation do not produce consistent results acr
 projects, test suites, and when computed using different sampling strategies.
 Hence, they are, as yet, unsuitable for use as statistical estimators for
 killable mutants in mutation analysis.
+
+We also found tantalizing evidence that may indicate that statistical estimation
+may be possible with more sophisticated models or more data. Further study is
+required to investigate this aspect.
 
 %\bibliographystyle{ACM-Reference-Format}
 \bibliographystyle{unsrt}
