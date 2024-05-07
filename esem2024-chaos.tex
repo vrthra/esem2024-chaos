@@ -966,7 +966,7 @@ estimators for our study.
 Consider the following probabilistic model:
 We have an urn with colored balls from which $n$ balls are
 sampled with replacement. Let $S(n)$ be the colors observed.
-Furthermore, let's assume that each ball has multiple colors.
+Furthermore, let us assume that each ball has multiple colors.
 We are interested in how many colors $S$ this urn can contain.
 In application to our problem, this urn sampling, which is described with the Bernoulli product model, associates each test (a ball) with the killed mutants (the colors of that ball). % or `species`
 We use the definitions from the Bernoulli product described in the STADS framework
@@ -1130,7 +1130,7 @@ is given by:
 $S_{\textit{freq}}$ is the number of species that occur more than $k$ times,
 while $S_{\textit{infreq}}$ is those that do. % with incidence frequency no larger than $k$.
 A $k=10$ cut-off is recommended. We also considered the original coverage estimator
-as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
+as first proposed in~\cite{lee1994estimating}, which is equivalent to the
 \<ICE> with $k=0$ (\<\ICEallrare>).
 Gotelli et al.~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
 which underestimates less. % then the original one.
@@ -1215,7 +1215,7 @@ on different computing infrastructures, thus %clusters,
 increasing the reproducibility of our results. 
 Hence, we focused on large open-source \emph{Java} projects that do
 not depend on
-external resources (e.g., databases), and built using a standard tool such as Maven~\cite{maven}.
+external resources (e.g., databases), and built using standard tools such as Maven~\cite{maven}.
 We found that the libraries published by \emph{Apache Commons}~\cite{commons} met our criteria.
 In particular, they are written to an exacting standard and follow common syntactic
 and semantic guidelines as in large enterprise projects. Thus, our classifiers
@@ -1360,7 +1360,7 @@ Consequently, we argue that the former test suite has the lowest generation bias
 the latter might introduce some bias being not completely random.
 For generating both test suites, we followed the best practice from
 SBST~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22},
-with test generation for 60 seconds, and test minimization for 300 seconds.
+with test generation for 60 seconds each, and test minimization for 300 seconds each.
 %and let \Evosuite generate unit tests for each class for 60 seconds,
 %generate assertions for 120 seconds, and minimize the tests for 300 seconds.
 
