@@ -209,6 +209,15 @@ pdftitle={\mytitle}
 \usepackage{adjustbox}
 %\usepackage{graphicx}
 \usepackage{pgf,tikz}
+
+\usepackage{xcolor}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,fill,inner sep=2pt] (char) {\textcolor{white}{#1}};}}
+\newcommand{\RQA}{RQ1\xspace} %\circled{A}\xspace}
+\newcommand{\RQB}{RQ2\xspace} %\circled{B}\xspace}
+\newcommand{\RQC}{RQ3\xspace} %\circled{C}\xspace}
+\newcommand{\RQD}{RQ4\xspace} %\circled{D}\xspace}
+
 \usepackage{endnotes}
 \usepackage{pifont}
 \usepackage{widetable}
@@ -828,7 +837,7 @@ killed by no test cases.
 \end{tcolorbox}
 This leads to the first research question. % investigates the effectiveness of frequency based estimators.
 \begin{description}
-  \item[RQ1] \textbf{How accurate are frequency based estimators in predicting
+  \item[\RQA]\textbf{How accurate are frequency based estimators in predicting
     killable mutants?}
 \end{description}
 
@@ -848,7 +857,7 @@ the literature.
 As there is little information on robustness of frequency based estimators to sampling biases,
 the second research question is:
 \begin{description}
-  \item[RQ2] \textbf{Are frequency based estimators affected by sampling strategies?}
+  \item[\RQB] \textbf{Are frequency based estimators affected by sampling strategies?}
 \end{description}
 We used three different
 test suites---\emph{developer written}, \emph{randomly generated}, and \emph{feedback-driven} to evaluate this question.
@@ -860,7 +869,7 @@ Are frequency based estimators affected by the specific sampling unit used, such
 as using test class as a test unit instead of test method? This informs our next question.
 
 \begin{description}
-  \item[RQ3] \textbf{Are frequency based estimators affected by sampling units?}% class and unit
+  \item[\RQC] \textbf{Are frequency based estimators affected by sampling units?}% class and unit
 \end{description}
 
 To evaluate the impact of different sampling units, we reanalyzed the
@@ -883,7 +892,7 @@ the main findings of our study and is complemented by
 the replication package~\cite{replication-package}.
 
 \textbf{Empirical Study Results Overview.}
-For evaluating \textbf{RQ1}, after selecting \projectCount well maintained,
+For evaluating \RQA, after selecting \projectCount well maintained,
 open-source projects and analyzing them
 using \PIT, we manually classified 1016 surviving mutants
 and used this result for assessing the prediction quality of
@@ -904,7 +913,7 @@ using two fundamentally different configurations (i.e., a random strategy and gu
 We expected the estimations obtained from manual test suites
 to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
-We evaluate this in \textbf{RQ2.}
+We evaluate this in \textbf{\RQB.}
 To mitigate second threat, we compared the estimates from \Evosuite
 test suites and from the manual classification. We expected
 the estimates from \Evosuite to match estimates from manually classified live
@@ -920,7 +929,7 @@ in generating test suites may have an impact.
 If so, and if estimation from at least one of the test
 suites is correct, then changing the sampling unit from test methods to test
 classes should not have a significant impact for estimate from a given test suite.
-We investigated this in \textbf{RQ3.}
+We investigated this in \textbf{\RQC.}
 As both test methods and test classes sample the same quantity, i.e., the killed mutants,
 we expected that the estimators to produce consistent estimates.
 
@@ -1549,8 +1558,7 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
 \label{fig:groundtruth}
 \end{figure*}
 
-\noindent\textbf{RQ1.
-What is the accuracy of frequency based estimators in predicting killable mutants?}\\
+\noindent\RQA\textbf{What is the accuracy of frequency based estimators in predicting killable mutants?}\\
 % To answer this question, we considered the statistical estimators computed
 % using test methods for the \original test suite as sampling unit and determined
 % their 95\% confidence intervals. Then, we compared them against the manual
@@ -1612,7 +1620,7 @@ in \Cref{tbl:estoriginal}.
     \label{tbl:estoriginal}
 \end{table}
 
-\noindent\textbf{RQ2.
+\noindent\textbf{\RQB.
 Are frequency based estimators affected by sampling strategies?}\\
 % To answer this question, we considered the statistical estimators computed
 % using test methods for \EvosuiteRandom and \EvosuiteDynamosa test suites as sampling unit
@@ -1622,7 +1630,7 @@ Are frequency based estimators affected by sampling strategies?}\\
 % difference with respect to manual classification.
 % The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
 % \Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original).
-To answer this questions, we follow the same approach adopted to answer RQ1.
+To answer this questions, we follow the same approach adopted to answer \RQA.
 However, for this research question we compared the estimates from the manual classification
 also against those obtained by the \estimatorCount statistical estimators for \EvosuiteRandom (\Cref{tbl:estrandom})
 and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling unit.
@@ -1672,7 +1680,7 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \label{tbl:estdynamosa}
 \end{table}
 
-\noindent\textbf{RQ3. 
+\noindent\textbf{\RQC. 
 Are frequency based estimators affected by sampling units?
 }\\ % when given unbiased test suites from \Evosuite?}
 % To answer this question, we compared the estimations 
@@ -1770,7 +1778,7 @@ Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 %}
 We next discuss each of the research questions, and corresponding observations in depth.
 
-\noindent\textbf{RQ1.} \textbf{How accurate are frequency based estimators in predicting
+\noindent\RQA\textbf{How accurate are frequency based estimators in predicting
     killable mutants?}\\
 % Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
 % maximum overlap with manual estimates --- three out of \projectCount test
@@ -1848,7 +1856,7 @@ or recommend any of them to be used in mutation analysis.
 % Inspecting \Cref{tbl:estoriginal} reveals that 
 % in the majority of the cases the statistical estimators were significantly different from the manual classification.
 % in light of these results, 
-Consequently, we answer RQ1 as follows:
+Consequently, we answer \RQA as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Despite some positive results, in general the \estimatorCount statistical
 estimators we considered were neither accurate nor reliable in predicting killable mutants
@@ -1856,7 +1864,7 @@ from the \original test suites using test method as sampling unit.
 %  for every estimator examined.
 \end{tcolorbox}
 
-\noindent\textbf{RQ2.
+\noindent\textbf{\RQB.
 Are frequency based estimators affected by sampling strategies?}\\
 % As we noted in the introduction, 
 Statistical estimators rely on the data obtained by sampling campaigns;
@@ -1940,7 +1948,7 @@ they should have produced larger confidence interval, hence increasing
 the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
 at the expense of their \emph{precision}, i.e., mean difference.
 %
-But this was not the case; therefore, we answer RQ2 as follows:
+But this was not the case; therefore, we answer \RQB as follows:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The estimation quality is affected by the sampling strategy. For instance,
 unbiased sampling improved the reliability of the estimators but reduced their precision.
@@ -2010,15 +2018,15 @@ satisfactory results.
 \label{fig:classsamplingunit}
 \end{figure*}
 
-\noindent\textbf{RQ3. Are frequency based estimators affected by sampling units?}\\
+\noindent\textbf{\RQC. Are frequency based estimators affected by sampling units?}\\
 % As we mentioned in the introduction, there is a possibility, however remote,
 % that the manual estimation result was either in error, or the result was a
 % statistical fluke. To discount this possibility we conducted the third
 % experiment, where we compared estimators based on how they predict the same
 % quantity when sampling units were changed. We expected individual estimators to
 % return the same predictions irrespective of the sampling units used.
-RQ2 showed that the estimators are affected by the adopted sampling strategy,
-specifically by bias in sampling of killable mutants. RQ3, instead, focuses on the
+\RQB showed that the estimators are affected by the adopted sampling strategy,
+specifically by bias in sampling of killable mutants. \RQC, instead, focuses on the
 granularity at which sampling happens, i.e., the sampling unit.
 %
 Using the same sampling strategy but different granularities, i.e., test method and class,
@@ -2026,7 +2034,7 @@ we expect estimators to produce comparable results, as they ultimately
 predict the same quantity. Therefore, studying this aspect would let us draw
 conclusions on the estimators' consistency. Moreover, this study could let us
 discount the possibility that the manual classification result was either in error,
-or the (bad) results achieved in RQ1 were a statistical fluke.
+or the (bad) results achieved in \RQA were a statistical fluke.
 %
 % As we mentioned in the introduction, there is a possibility, however remote,
 % that the manual estimation result was either in error, or the result was a
@@ -2050,7 +2058,7 @@ This situation is clearly exemplified in figures
 for \Chao estimator, in which almost all the CI's for the same test subject
 and sampling strategy do not overlap.
 
-In light of these results, we answer RQ3:
+In light of these results, we answer \RQC:
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from test method and test class level
 estimators %to the estimates from manual classification
