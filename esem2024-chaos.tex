@@ -1115,7 +1115,7 @@ We consider up to $\textsc{J}=5$, and automatically select the best performing
 one (referred as \<\Jackknife>).
 These estimators underestimate on small sample size and overestimate otherwise~\cite{chao2016species}.
 
-\subsubsection{Incidence coverage estimator~\cite{chao1992estimating}} %\todo{missing citation}
+\subsubsection{Incidence coverage estimator~\cite{chao1992estimating}}
 The Incidence Coverage Estimator~(referred as \<ICE>) %were developed for cryptographic analysis by Good and Turing.
 is given by:
 \begin{gather*}
@@ -1129,7 +1129,7 @@ is given by:
   } -1,0
   \right]
 \end{gather*}
-$S_{\textit{freq}}$ is the number of species that occur more than $k$ times, % \todo{is this one species or many species?}
+$S_{\textit{freq}}$ is the number of species that occur more than $k$ times,
 while $S_{\textit{infreq}}$ is those that do. % with incidence frequency no larger than $k$.
 A $k=10$ cut-off is recommended. We also considered the original coverage estimator
 as firstly proposed in~\cite{lee1994estimating}, which is equivalent to the
@@ -1139,7 +1139,7 @@ which underestimates less. % then the original one.
 
 We use the Bootstrap estimator to estimate confidence intervals.
 
-\subsubsection{Bootstrap estimator~\cite{smith1984nonparametric}} %\todo{description unclear!}
+\subsubsection{Bootstrap estimator~\cite{smith1984nonparametric}}
 The \Bootstrap estimator
 is based on resampling $T$ sampling units with replacement from a set of
 initially observed $T$ sampling units a sufficient number of times $m$.
@@ -1147,7 +1147,7 @@ initially observed $T$ sampling units a sufficient number of times $m$.
 S_{bootstrap}  = {avg}_{m}( S_{obs} + \sum^{S_{obs}}_{j=1} (1 - Y_j/T)^T)
 \end{displaymath}
 $Y_{j}$ is the number of sampling units %quadrats
-where species $j$ is detected. % \todo{Why then Y j is not F j?!}
+where species $j$ is detected.
 
 \subsubsection{\Zelterman estimator~\cite{bohning2010some}}
 Zelterman's estimator~(referred as \<Zelterman>) is frequently used in Social Sciences, in particular in illicit drug use research.
@@ -1248,8 +1248,9 @@ Since our methodology required expensive manual mutant classification, %, which 
 %, we had to restrict the scope of our study; hence,
 we restricted our analysis 
 %as test subjects the
-to \emph{ten largest projects} (\Cref{tbl:fullsubjects}, \Cref{tbl:subjectmeasures}) fulfilling our
-criteria.
+to \emph{ten largest projects} 
+fulfilling our
+criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are given in \Cref{tbl:subjectmeasures}.
 %We highlight these projects in \Cref{tbl:fullsubjects} and
 %The main prsummarize their main properties in \Cref{tbl:subjectmeasures}.
 
@@ -1755,8 +1756,10 @@ Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 
 \section{Discussion}
 \label{sec:discussion}
-\todo{ALESSIO: This does not read really professional}
-% What does these results mean? We discuss the implications next.\\
+%\done{ALESSIO: This does not read really professional
+% RAHU: Do you mean no introduction? Does this help?
+%}
+We next discuss each of the research questions, and corresponding observations in depth.
 
 \noindent\textbf{RQ1.} \textbf{How accurate are frequency based estimators in predicting
     killable mutants?}\\
