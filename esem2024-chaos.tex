@@ -51,7 +51,7 @@
 % in the PDF format, and they must be formatted according to the ACM proceedings
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
 \PassOptionsToPackage{table}{xcolor}
-\documentclass[sigconf,anonymous,review,nonacm]{acmart}
+\documentclass[sigconf,nonacm]{acmart}
 %\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 \hypersetup{
    colorlinks=true,
@@ -554,6 +554,21 @@ pdftitle={\mytitle}
 %% Uncommenting
 %% the next command will enable that style.
 %%\citestyle{acmauthoryear}
+\author{Konstantin Kuznetsov}
+\affiliation{\institution{CISPA}\country{Germany}}
+\email{konstantin.kuznetsov@cispa.de}
+\author{Alessio Gambi}
+\affiliation{\institution{Fachhochschule Kärnten}\country{Austria}}
+\email{alessio.gambi@fh-kerns.ac.at}
+\author{Saikrishna Dhiddi}
+\affiliation{\institution{University of Passau}\country{Germany}}
+\email{dhiddi@ads.uni-passau.de}
+\author{Julia Hess}
+\affiliation{\institution{Saarland University}\country{Germany}}
+\email{s9jahess@stud.uni-saarland.de}
+\author{Rahul Gopinath}
+\affiliation{\institution{University of Sydney}\country{Australia}}
+\email{rahul.gopinath@sydney.edu.au}
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -656,13 +671,13 @@ pdftitle={\mytitle}
 %% article.
 \begin{abstract}
 \noindent\textbf{Background.}
-Mutation analysis is the premier technique to evaluate software test suite
+Mutation analysis is the premier technique for evaluating software test suite
 quality and estimating residual software defects. However, the reliability of 
 mutation analysis is hampered by the so called equivalent mutants which are
 unkillable by any test case.
 Reliably detecting and eliminating killable mutants is difficult
-as it is highly program and location dependent. Hence, statistical estimation of
-killable mutants offers a promising approach.
+as it is highly program and location dependent. Statistical estimation of
+killable mutants seems to be a promising approach to tackle this problem.
 
 \noindent\textbf{Aims.}
 Recently, frequency based species estimation methods
