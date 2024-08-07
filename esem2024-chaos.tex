@@ -1300,7 +1300,7 @@ Since we required expensive manual mutant classification, %, which is %notorious
 %, we had to restrict the scope of our study; hence,
 we restricted our analysis 
 %as test subjects the
-to \emph{ten largest projects} 
+to \emph{ten largest projects} (in terms of project KLOC)
 fulfilling our
 criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are given in \Cref{tbl:subjectmeasures}.
 %We highlight these projects in \Cref{tbl:fullsubjects} and
@@ -1382,16 +1382,16 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
     Size & Stmt & Branch & Kill &
     Size & Stmt & Branch & Kill \\
     \hline
-1 & commons-net         & 20	& 5764	&	254		& 33 & 28 & 28\% & 1988	& 48 & 35 & 32\% & 3499	& 51 & 42 & 35\%\\
-2 & commons-math        & 100	& 47881	& 6377	& 92 & 84 & 76\%  & 11956	& 74 & 61 & 77\% & 17450	& 79 & 68 & 18\% \\
-3 & commons-lang         & 28 		& 13061	& 	4114	& 95 & 91 & 66\%  & 4500	& 73 & 60 & 72\% & 9027	& 89 & 86 & 86\% \\
-4 & commons-io          & 10 	& 3273	&	1316	& 90 & 88 & 94\%  & 1677	& 72 & 65 & 58\% & 2822	& 81 & 79 & 87\% \\
-5 & commons-imaging      & 31 	& 11597	&	563		& 73 & 59 & 47\% & 2974	& 63 & 45 & 44\% & 4935	& 67 & 53 & 45\% \\
-6 & commons-dbcp        & 14	& 4230	& 	1409	& 66 & 66 & 99\%  & 1026	& 39 & 42 & 20\% & 2970	& 47 & 58 & 27\% \\
-7 & commons-csv          & 2	& 635		& 312		& 89 & 85 & 81\%  & 365		& 78 & 63 & 60\% & 647		& 89 & 83 & 76\% \\
-8 & commons-configuration& 28		& 6279	& 	2803	& 87 & 83 & 99\% & 2991	& 75 & 62 & 39\% & 4956	& 80 & 72 & 40\% \\
-9 & commons-compress     & 24 	& 9566	& 	1047	& 	84 & 76 & 65\% & 2610 	& 	63 & 45 & 44\% & 4306	 & 	70 & 57 & 49\% \\
-10 & commons-collections  & 29 	& 8309 	& 25011 	& 	86 & 81 & 75\% & 3954 	&	67 & 59 & 57\% & 5659	&	74 & 69 & 93\% \\
+1 & commons-net             & 20	  & 5764	&	254		& 33\% & 28\% & 28\%  & 1988	& 48\% & 35\% & 32\% & 3499	  & 51\% & 42\% & 35\%\\
+2 & commons-math            & 100	  & 47881	& 6377	& 92\% & 84\% & 76\%  & 11956	& 74\% & 61\% & 77\% & 17450	& 79\% & 68\% & 18\% \\
+3 & commons-lang            & 28 		& 13061	& 4114	& 95\% & 91\% & 66\%  & 4500	& 73\% & 60\% & 72\% & 9027	  & 89\% & 86\% & 86\% \\
+4 & commons-io              & 10 	  & 3273	&	1316	& 90\% & 88\% & 94\%  & 1677	& 72\% & 65\% & 58\% & 2822	  & 81\% & 79\% & 87\% \\
+5 & commons-imaging         & 31 	  & 11597	&	563		& 73\% & 59\% & 47\%  & 2974	& 63\% & 45\% & 44\% & 4935	  & 67\% & 53\% & 45\% \\
+6 & commons-dbcp            & 14	  & 4230	& 1409	& 66\% & 66\% & 99\%  & 1026	& 39\% & 42\% & 20\% & 2970	  & 47\% & 58\% & 27\% \\
+7 & commons-csv             & 2	    & 635		& 312		& 89\% & 85\% & 81\%  & 365		& 78\% & 63\% & 60\% & 647		& 89\% & 83\% & 76\% \\
+8 & commons-configuration   & 28		& 6279	& 2803	& 87\% & 83\% & 99\%  & 2991	& 75\% & 62\% & 39\% & 4956	  & 80\% & 72\% & 40\% \\
+9 & commons-compress        & 24  	& 9566	& 1047	& 84\% & 76\% & 65\%  & 2610 	& 63\% & 45\% & 44\% & 4306	  & 70\% & 57\% & 49\% \\
+10 & commons-collections    & 29  	& 8309 	& 25011 & 86\% & 81\% & 75\%  & 3954 	&	67\% & 59\% & 57\% & 5659	  &	74\% & 69\% & 93\% \\
     \hline
 \end{tabular}
 }
@@ -2240,13 +2240,14 @@ we note that our approach is similar to the one adopted by established biometric
 studies that draw conclusions from single sampling campaigns.
 
 \noindent\textbf{Internal Validity.}
-The test suites automatically generated did not always achieve high coverage;
+Automatically generated test suites did not always achieve high coverage;
 hence, they can lead to larger uncertainty in the final estimation of equivalent mutants. 
 However, we note that this situation is similar to the one currently faced by software practitioner. % has to contend with.
-Next, our analysis can be subject to bugs, sampling errors, and misclassification of mutants 
-that might bias our results.
-For instance, the test generator could not generate unit tests for all the classes under analysis,
-thus failing to sample their mutants.
+Next, our analysis can be subject to bugs, sampling errors, and manual-misclassification of mutants 
+as equivalents.
+%that might bias our results.
+%For instance, the test generator could not generate unit tests for all the classes under analysis,
+%thus failing to sample their mutants.
 We tried to mitigate this risk by reviewing the code of JUGE and our scripts, 
 cross-checking the results, and use the largest possible subset of classes for which
 test generation succeeded.
