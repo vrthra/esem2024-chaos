@@ -852,7 +852,7 @@ Hence, an accurate estimate of the number of killable mutants is important in so
 %\end{tcolorbox}
 
 Recently the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
-was proposed for estimating the number of \emph{reachable} but yet-to-be-covered elements remaining for coverage evaluation.
+was proposed for estimating \emph{reachable but yet to be covered} elements remaining for coverage evaluation.
 The STADS framework relies on an estimator called Chao's estimator~\cite{chao2016species}
 and is based on the idea
 that the relative frequency of coverage of software
@@ -864,7 +864,7 @@ These estimators are commonly used in Ecology to estimate the count of various
 species, which are often highly correlated and geography specific.
 The constraints in Ecology seems to mirror the conditions of defects in software
 elements, which are also program specific and often highly correlated---some
-modules may be highly defect prone, while others may not be.} which makes them
+modules may be highly defect prone, while others may not be.} making them
 attractive in areas such as reachable coverage estimation
 which can be strongly program dependent.
 
@@ -875,13 +875,13 @@ we adapted the STADS framework~\cite{bohme2018stads}
 for predicting killable mutants.
 That is, we estimate the count of killable mutants from the frequency of
 mutants killed by test cases.
+This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency-based estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
 two test cases etc. contains the information for predicting those that are
 killed by no test cases.
 \end{tcolorbox}
-This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
 \begin{description}
   \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
     killable mutants?}
