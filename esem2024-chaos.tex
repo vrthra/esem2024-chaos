@@ -679,40 +679,37 @@ pdftitle={\mytitle}
 \begin{abstract}
   % Background, Aims, Method, Results, and Conclusions
 \noindent\textbf{Background.}
-Mutation analysis is the premier technique for evaluating software test suite
-quality and estimating residual software defects. However, the reliability of 
-mutation analysis is hampered by the so called \emph{equivalent mutants} which
-are undetectable by any test case.
+Mutation analysis is the premier technique for evaluating test suite
+quality estimating residual software defects. However, the reliability of 
+mutation analysis is hampered by \emph{equivalent mutants} which
+are undetectable by test cases.
 Reliably detecting and eliminating killable mutants is difficult
 as it is highly program and location dependent. Statistical estimation of
-killable mutants seems to be a promising approach to tackle this problem.
-
+killable mutants seems to be a promising approach to tackle this problem.\\
 \noindent\textbf{Aims.}
-Recently, frequency-based species estimation methods
+Frequency-based species estimation methods
 have been proposed as a solution for several related problems in software
 testing.
 %While promising, there has been no comprehensive study on whether
 %such frequency based species estimation methods can
 %deliver an accurate estimate for killable mutants.
 This paper investigates whether such frequency-based estimation methods
-can provide an accurate estimate for the number of killable mutants.
-
+can accurately estimate the number of killable mutants.\\
 \noindent\textbf{Method.}
 We conducted a large-scale empirical study
 on the ability of \estimatorCount widely known frequency-based
-statistical models to estimate the number of killable mutants in
-\projectCount mature software projects.
-
+estimators to predict the number of killable mutants in
+\projectCount mature software projects.\\
 \noindent\textbf{Result.}
 Our investigation finds limited or no evidence that any of the statistical
 estimators are able to consistently predict the number of killable mutants in
-projects evaluated.
-
+projects evaluated.\\
 \noindent\textbf{Conclusion.}
-Our results suggest that the considered statistical estimators lack sufficient
-predictive power and cannot produce reliable or useful estimates of killable
-mutants. We further find that the \emph{bootstrap} method was the best
-performing method out of all methods considered.
+We found that the investigated estimators lack sufficient
+predictive power and cannot produce reliable and useful estimates of killable
+mutants. However, we found that the \emph{bootstrap} was the
+best performing%, and most promising 
+method out of all methods considered.
 \end{abstract}
 
 %%

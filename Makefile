@@ -35,4 +35,4 @@ pull:
 	git pull --rebase origin master --autostash
 
 push:
-	git push origin master
+	git push ox master
