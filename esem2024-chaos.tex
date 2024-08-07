@@ -707,9 +707,13 @@ projects evaluated.\\
 \noindent\textbf{Conclusion.}
 We found that the investigated estimators lack sufficient
 predictive power and cannot produce reliable and useful estimates of killable
-mutants. However, we found that the \emph{bootstrap} was the
+mutants. 
+
+\ifdefined\BOOTSTRAP
+However, we found that the \emph{bootstrap} was the
 best performing%, and most promising 
 method out of all methods considered.
+\fi
 \end{abstract}
 
 %%
@@ -874,8 +878,12 @@ and coverage analysis---covering a mutant
 is a prerequisite for killing it---%
 we adapted the STADS framework~\cite{bohme2018stads}
 for predicting killable mutants.
+%XXXXXXXXXXX
 That is, we estimate the count of killable mutants from the frequency of
-mutants killed by test cases.
+mutants killed by test cases. That is, we count the number of mutants killed
+by a single test case, those killed by two test cases, and so on, and use this
+to predict the remaining mutants that can be killed.
+%XXXXXXXXXXX
 This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency-based estimation is that the ratio
@@ -982,11 +990,13 @@ Once again, our results showed that the estimates from test methods and test cla
 significantly different, which left us with the only option that the considered frequency-based statistical
 estimators cannot be reliably applied to mutation analysis.
 
+\ifdefined\BOOTSTRAP
 However, we found a glimmer of hope. \Bootstrap, when applied to \EvosuiteRandom
 test suites seem to produce some what close estimates even when using different
 sampling units. This may point to the utility of \Bootstrap as the starting
 point for a future investigation on how to enhance the reliability of frequency
 based estimators for mutation analysis.
+\fi
 
 \textbf{Contributions.}
 In summary, our main contributions are:
@@ -1824,7 +1834,8 @@ Inspecting \Cref{tbl:estoriginal}, we can observe that
 \todo{ALESSIO: I am not sure where the description of the figure fits... Somehow, it seems that tables are more than enough...}
 %
 To better interpret the results in \Cref{tbl:estoriginal}, we plot the results for \Chao estimator (the
-estimator suggested by the STADS framework) in \Cref{fig:groundtruth1}.\footnote{Similar plots for the remaining estimators can be found in the replication package.}
+estimator suggested by the STADS framework) in \Cref{fig:groundtruth1}.
+%\footnote{Similar plots for the remaining estimators can be found in the replication package.}
 %
 In the figure, the x-axis represents the ratio of mutants, with 1.0 (bold solid line) indicating the complete set of generated
 mutants. The y-axis, instead, lists all the test subjects.
@@ -1833,7 +1844,7 @@ the estimate and the $95\%$ CI of the manual estimate of killable mutants (purpl
 and the estimate and the $95\%$ CI produced by \Chao using the test methods (blue square) as sampling unit.
 For completeness, the figure also reports the estimates produced by \Chao using test classes (red circle) as sampling unit.
 %
-From the figure, it becomes evident that \Chao's predictions are far from the manual estimates and their CIs almost never
+From the figure, it is evident that \Chao's predictions are far from the manual estimates and their CIs almost never
 overlap.
 
 % The figure shows that irrespective of test suite
@@ -2046,8 +2057,6 @@ We also plot the results for \Chao estimator test suite pairs across \Cref{fig:a
 %\Cref{fig:methodsamplingunit}
 %the comparison of the sampling strategies in pairs.% and \Cref{fig:classsamplingunit}
 %
-\todo{ALESSIO: Is this just reshuffling the content of the Figure 3? Do we really need it?}
-\todo{ALESSIO: We should comment something about the figure...}
 %
 
 
@@ -2143,29 +2152,31 @@ is statistically significant for every estimator examined. Consequently,
 none of the \estimatorCount estimators was robust against changes in sampling
 unit.
 \end{tcolorbox}
+%XXXXXXXXXXXXXXX
 \subsection{Additional Observations}
-From a detailed analysis of the data (see Appendix~\cite{replication-package} for detailed plots and tables)
-we also observe that (1) method estimators for different test suites for same
-subjects overlap and have a smaller variance than class estimators, and (2) method
-estimators often (but not always) appear to underestimate compared to
-the manual estimates, while the same cannot be said for class estimators.
-(3) Bootstrap tends to produce consistent estimates for method and class
-estimators with small CIs when the number of mutants killed is far from the total
-generated. However, the uncertainties in CI increase drastically as the
-number of killed mutants approaches the total generated. We observe the opposite
-behavior in all other estimators. (4) In a significant number
-of subjects, the difference between class and method estimators seems to
-diminish as the number of killed mutants approaches the total generated.
-This is an intriguing hint because the total number of generated mutants is
-not part of the estimator equations. Hence, it is likely that the observed
-pattern is linked to the total of killable mutants, which is close to the total of
-generated mutants.
-(5) Finally, we observe that the plots vary
+% From a detailed analysis of the data (see Appendix~\cite{replication-package} for detailed plots and tables)
+% we also observe that (1) method estimators for different test suites for same
+% subjects overlap and have a smaller variance than class estimators, and (2) method
+% estimators often (but not always) appear to underestimate compared to
+% the manual estimates, while the same cannot be said for class estimators.
+% (3) Bootstrap tends to produce consistent estimates for method and class
+% estimators with small CIs when the number of mutants killed is far from the total
+% generated. However, the uncertainties in CI increase drastically as the
+% number of killed mutants approaches the total generated. We observe the opposite
+% behavior in all other estimators. (4) In a significant number
+% of subjects, the difference between class and method estimators seems to
+% diminish as the number of killed mutants approaches the total generated.
+% This is an intriguing hint because the total number of generated mutants is
+% not part of the estimator equations. Hence, it is likely that the observed
+% pattern is linked to the total of killable mutants, which is close to the total of
+% generated mutants.
+We observe that the plots vary
 considerably based on the subject in question.
-While there are several other interesting patterns in the data, the data we have
+While there are several interesting patterns in the data, the data we have
 is insufficient to explore these fully. Therefore, we will refrain
 from interpreting these until a larger follow-up study can be
 conducted.
+%XXXXXXXXXXXXXXX
 
 \subsection{What Does This Mean in Practice?}
 For an estimator to be useful to the developers, it should be able to produce
@@ -2214,7 +2225,7 @@ different experts, and the agreement is computed by Cohen's Kappa.%\todo{TODO}
 The replication package~\cite{replication-package} contains data about manual
 classification of mutants, test suites, kill matrices, and scripts
 to compute and plot estimations.
-The data will be made publicly available.
+%The data will be made publicly available.
 
 \section{Threats to Validity}
 \label{sec:threats}
