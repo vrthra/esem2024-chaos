@@ -1377,7 +1377,7 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
 \begin{table*}
   \caption{Apache Commons projects --- Projects and test suites measures}
   \resizebox{\textwidth}{!}{%
-    \rowcolors{1}{white}{yellow}
+    \rowcolors{3}{yellow}{white}
   \begin{tabular}{|r| l | r | r | r|r|r|r | r|r|r|r | r|r|r|r |}
     \hline
     \multicolumn{3}{|c|}{Project} & 
@@ -1386,8 +1386,8 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
     \multicolumn{4}{c|}{\EvosuiteRandom} &
     \multicolumn{4}{c|}{\EvosuiteDynamosa}\\
 
-    \multicolumn{1}{|c}{Id} &     \multicolumn{1}{|c}{Name} &     \multicolumn{1}{|c|}{KLOC} &
-    \multicolumn{1}{|c|}{Mutants} & 
+    \multicolumn{1}{|c|}{Id} &     \multicolumn{1}{c|}{Name} &     \multicolumn{1}{c|}{KLOC} &
+    \multicolumn{1}{c|}{Mutants} &
     Size & Stmt & Branch & Kill &
     Size & Stmt & Branch & Kill &
     Size & Stmt & Branch & Kill \\
@@ -1525,10 +1525,10 @@ mutants that survived its \original test suite.
 \begin{table}[h]
   \caption{Manual classification of live mutants.} % for the selected Apache Common projects.
 \resizebox{\columnwidth}{!}{%
-    \rowcolors{1}{white}{yellow}
+    \rowcolors{3}{yellow}{white}
 \begin{tabular}{|r|l|r|r|r|r|r|}
 \hline
-\multicolumn{1}{|c|}{Id} & \multicolumn{1}{|c|}{Project} & \multicolumn{1}{c|}{Sampled} & \multicolumn{2}{|c|}{Misclass.} & \multicolumn{1}{c|}{Equivalent}\\
+\multirow{2}{*}{Id} & \multicolumn{1}{c|}{\multirow{2}{*}{Project}} & \multirow{2}{*}{Sampled} & \multicolumn{2}{c|}{Misclass.} & \multirow{2}{*}{Equivalent}\\
     & & & \rB & \rC & \\
 \hline
   1 & commons-net          &100 & 0  & 4  &  1 \\
