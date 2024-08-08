@@ -32,7 +32,7 @@ clean:
 	# rm -rf charts-test
 
 pull:
-	git pull --rebase origin master --autostash
+	git pull --rebase ox master --autostash
 
 push:
 	git push ox master
