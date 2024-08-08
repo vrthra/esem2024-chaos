@@ -855,12 +855,12 @@ Hence, an accurate estimate of the number of killable mutants is important in so
 %of test suites} as well as evaluating \textbf{residual risk} after a test run. %  both of which are important problems for a practitioner.
 %\end{tcolorbox}
 
-Recently the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
+Recently, the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
 was proposed for estimating \emph{reachable but yet to be covered} elements remaining for coverage evaluation.
-The STADS framework relies on an estimator called Chao's estimator~\cite{chao2016species}
-and is based on the idea
+The STADS framework relies on an estimator called Chao's estimator~\cite{chao2016species}.
+It is based on the idea
 that the relative frequency of coverage of software
-elements such as statements or branches by test cases contain information about
+elements, such as statements or branches, by test cases contains information about
 the number of similar software elements that are reachable but yet to be covered.
 Frequency-based estimators such as Chao's~\cite{chao2016species} are designed to
 be robust toward strong biases in sampling
@@ -881,14 +881,14 @@ for predicting killable mutants.
 %XXXXXXXXXXX
 That is, we estimate the count of killable mutants from the frequency of
 mutants killed by test cases. We count the number of mutants killed
-by a single test case, those killed by two test cases, and so on, and use this
+by a single test case, those killed by two test cases, and so on, and use this data
 to predict the remaining mutants that can be killed.
 %XXXXXXXXXXX
 This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency-based estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
-two test cases etc. contains the information for predicting those that are
+two test cases, etc., contains the information for predicting those that are
 killed by no test cases.
 \end{tcolorbox}
 \begin{description}
@@ -919,14 +919,14 @@ the second research question is:
 We used three different
 test suites---\emph{developer written}, \emph{randomly generated}, and \emph{feedback-driven} to evaluate this question.
 If the estimators are indeed robust to sampling bias,
-then the estimations should coincide, or at least overlap
+then the estimations should coincide or at least overlap
 significantly. We should also be able to identify best strategies by comparison to ground truth.
 
 Are frequency-based estimators affected by the specific sampling unit used, such
 as using test class as a test unit instead of test method? This informs our next question.
 \RQCx
 To evaluate the impact of different sampling units, we reanalyzed the
-data from our first experiment, but with test classes (which contain multiple
+data from our first experiment but with test classes (which contain multiple
 test methods) as sampling units.
 We hypothesized that the estimates should overlap, with the difference in
 accuracy (i.e., variance of the estimation) being the only major
