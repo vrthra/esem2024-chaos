@@ -775,7 +775,7 @@ Mutation analysis is the premier means of assessing the quality of
 software test suites in preventing defects~\cite{papadakis2019mutation},
 and estimating residual risk~\cite{horgan1996software}.
 Mutation analysis involves
-generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration.
+generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration
 (\Cref{fig:working-example}-right).
 %
 Mutants are copies of the original code (\Cref{fig:working-example}-left) in which artificial code %simple, 
@@ -833,7 +833,7 @@ def determinant(a,b,c,d):
 %\vspace*{-5mm}
 
 A test case detects (or \emph{kills}) a mutant if it induces and observes
-a change in behavior in the mutant when compared to the original program.
+a change that mutant's behavior when compared to the original program.
 The mutants undetected by any test case are called \emph{surviving} mutants.
 The ratio of the number of mutants killed by a test suite to the 
 number of \emph{killable} mutants
@@ -844,7 +844,7 @@ some mutants (\Cref{fig:working-example-mutants}-right)
 are behaviorally \emph{equivalent} to the original program~\cite{budd1982two}.
 The amount of
 such mutants is
-program specific~\cite{offutt1994using,grun2009impact},
+program specific~\cite{offutt1994using,grun2009impact}  %,
 and cannot be established 
 \emph{a-priori}.
 Consequently, the mutation score
@@ -880,9 +880,14 @@ we adapted the STADS framework~\cite{bohme2018stads}
 for predicting killable mutants.
 %XXXXXXXXXXX
 That is, we estimate the count of killable mutants from the frequency of
-mutants killed by test cases. That is, we count the number of mutants killed
+mutants killed by test cases. %That is, 
+We count the number of mutants killed
 by a single test case, those killed by two test cases, and so on, and use this
 to predict the remaining mutants that can be killed.
+%XXXXXXXXXXX
+%
+% ALESSIO: The placement and meaning of those gray boxes is not straightforward. If they are not necessary, I suggest we hide them 
+%
 %XXXXXXXXXXX
 This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
 \begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
@@ -962,14 +967,14 @@ not sufficiently random.
 
 To mitigate the first threat, we extended our initial study with test suites created with
 \Evosuite~\cite{fraser2011evosuite},
-using two fundamentally different configurations (i.e., a random strategy and guided by coverage).
+using two fundamentally different configurations (i.e., a random strategy and a strategy guided by coverage).
 We expected the estimations obtained from manual test suites
 to coincide with estimations from \Evosuite test suites
 as they predict the same quantity.
 We evaluate this in \RQB.
-To mitigate second threat, we compared the estimates from \Evosuite
+To mitigate the second threat, we compared the estimates from \Evosuite
 test suites and from the manual classification. We expected
-the estimates from \Evosuite to match estimates from manually classified live
+the estimates from \Evosuite to match the estimates from manually classified live
 mutants as \Evosuite test suites are free of manual bias. % of test case selection.
 
 We, again, found that manual classification was significantly different from
@@ -981,7 +986,7 @@ possible error source--perhaps, different test objectives
 in generating test suites may have an impact.
 If so, and if estimation from at least one of the test
 suites is correct, then changing the sampling unit from test methods to test
-classes should not have a significant impact for estimate from a given test suite.
+classes should not significantly impact the estimates from a given test suite.
 We investigated this in \RQC.
 As both test methods and test classes sample the same quantity, i.e., the killed mutants,
 we expected that the estimators to produce consistent estimates.
@@ -1163,9 +1168,12 @@ information of tripletons $Q_3$ and quadrupletons $Q_4$ to estimate undetected s
 
 \subsubsection{\Jackknife estimator~\cite{burnham1978estimation,burnham1979robust}}
 The first and second order \Jackknife estimators are computed as follows: %. The formula is given by
-\begin{displaymath}
-  S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right); S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
-\end{displaymath}
+%\begin{displaymath}
+\begin{gather*}
+  S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right) \\ %;
+  S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
+\end{gather*}
+%\end{displaymath}
 
 The second order \Jackknife~\cite{smith1984nonparametric}
 is more robust to sampling bias~\cite{hortal2006evaluating} but has larger standard error.
@@ -1581,11 +1589,12 @@ arguments. The discussion continued until the final classification was accepted 
 Given the proportion of killable mutants in a sample, we obtained the population proportion---and thus an estimate of the total number of killable
 mutants---with population proportion confidence intervals~\cite{ott2015introduction}.
 The estimates from manual classification are the 95\% confidence intervals based on random sampling.
+
 \section{Results}
 \label{sec:results}
-Our study seeks answer the three main research questions investigating
-the ability of frequency-based statistical estimators to predict the
-number of killable mutants in a project.
+Our study %seeks answer the three main research questions investigating
+investigated the ability of frequency-based statistical estimators to predict the
+number of killable mutants. % in a project.
 
 \RQAx
 % To answer this question, we considered the statistical estimators computed
