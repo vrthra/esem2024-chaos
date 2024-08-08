@@ -880,7 +880,7 @@ we adapted the STADS framework~\cite{bohme2018stads}
 for predicting killable mutants.
 %XXXXXXXXXXX
 That is, we estimate the count of killable mutants from the frequency of
-mutants killed by test cases. That is, we count the number of mutants killed
+mutants killed by test cases. We count the number of mutants killed
 by a single test case, those killed by two test cases, and so on, and use this
 to predict the remaining mutants that can be killed.
 %XXXXXXXXXXX
@@ -1192,7 +1192,7 @@ is given by:
   \right]
 \end{gather*}
 $S_{\textit{freq}}$ is the number of species that occur more than $k$ times,
-while $S_{\textit{infreq}}$ is those that does not. % with incidence frequency no larger than $k$.
+while $S_{\textit{infreq}}$ is those that do not. % with incidence frequency no larger than $k$.
 A $k=10$ cut-off is recommended. We also considered the original coverage estimator
 as first proposed by Lee et al.~\cite{lee1994estimating}, which is equivalent to the
 \<ICE> with $k=0$ (\<\ICEallrare>).
