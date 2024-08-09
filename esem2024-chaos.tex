@@ -864,12 +864,12 @@ elements, such as statements or branches, by test cases contains information abo
 the number of similar software elements that are reachable but yet to be covered.
 Frequency-based estimators such as Chao's~\cite{chao2016species} are designed to
 be robust toward strong biases in sampling
-%\footnote{%
-%These estimators are commonly used in Ecology to estimate the count of various
-%species, which are often highly correlated and geography specific.
-%The constraints in Ecology seems to mirror the conditions of defects in software
-%elements, which are also program specific and often highly correlated---some
-%modules may be highly defect prone, while others may not be.}
+\footnote{%
+These estimators are commonly used in Ecology to estimate the count of various
+species, which are often highly correlated and geography specific.
+The constraints in Ecology seems to mirror the conditions of defects in software
+elements, which are also program specific and often highly correlated---some
+modules may be highly defect prone, while others may not be.}
 making them attractive in areas such as reachable coverage estimation
 which can be strongly program dependent.
 
@@ -2264,10 +2264,10 @@ Automatically generated test suites did not always achieve high coverage;
 hence, they can lead to larger uncertainty in the final estimation of equivalent mutants. 
 However, we note that this situation is similar to the one currently faced by software practitioner. % has to contend with.
 Next, our analysis can be subject to bugs, sampling errors, and manual-misclassification of mutants 
-as equivalents.
-%that might bias our results.
-%For instance, the test generator could not generate unit tests for all the classes under analysis,
-%thus failing to sample their mutants.
+as equivalents
+that might bias our results.
+For instance, the test generator could not generate unit tests for all the classes under analysis,
+thus failing to sample their mutants.
 We tried to mitigate this risk by reviewing the code of JUGE and our scripts, 
 cross-checking the results, and use the largest possible subset of classes for which
 test generation succeeded.
