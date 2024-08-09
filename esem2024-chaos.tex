@@ -102,25 +102,16 @@ pdftitle={\mytitle}
 %{\end{minipage}}
 
 %\newenvironment{custombox}
-%{\par\smallskip\noindent\begin{tabular}{|p{\columnwidth}|}
+%{\par\smallskip\noindent\begin{tabular}{|p{\linewidth}|}
 %\hline\smallskip\small\itshape}
 %{\smallskip\\\hline\end{tabular}\par\smallskip}
 \newenvironment{custombox}
-{\par\noindent
- \begin{minipage}{\linewidth}
- \small\itshape
- \hrule
- \vspace{1ex}}
-{\vspace{1ex}
- \hrule
- \end{minipage}
- \par\vspace{\baselineskip}}
-
+{\begin{minipage}{\columnwidth-2\fboxsep-2\fboxrule}\small\itshape}
+{\end{minipage}}
 
 \newcommand{\boxedtext}[1]{%
-%\noindent\fbox{
-\begin{custombox}#1\end{custombox}%
-%    }%
+\noindent\fbox{\begin{custombox}#1\end{custombox}%
+}%
 }
 
 %\newenvironment{custombox}
@@ -942,7 +933,7 @@ This leads to the first research question. % investigates the effectiveness of f
 The idea in frequency-based estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
 two test cases, etc., contains the information for predicting those that are
-killed by no test cases.}
+not yet killed.}
 
 \begin{description}
   \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
@@ -2149,6 +2140,7 @@ the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
 at the expense of their \emph{precision}, i.e., mean difference.
 %
 But this was not the case; therefore, we answer \RQB as follows:
+
 \boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The estimation quality is affected by the sampling strategy. For instance,
 unbiased sampling improved the reliability of the estimators but reduced their precision.
