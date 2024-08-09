@@ -51,22 +51,20 @@
 % in the PDF format, and they must be formatted according to the ACM proceedings
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
 \PassOptionsToPackage{table}{xcolor}
-\documentclass[natbib=false,sigconf]{acmart}
+\documentclass[sigconf]{acmart}
+\usepackage{hyperref}
 %\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
-\hypersetup{
-   colorlinks=true,
-  pdfborder={0 0 0},
-}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
-%\AtBeginDocument{%
-%  \providecommand\BibTeX{{%
-%    Bib\TeX}}}
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
 
 %SPACE \setlength{\parskip}{0cm}
 %SPACE \setlength{\parindent}{1em}
 \usepackage{balance}
-\usepackage{paralist}
+%\usepackage{paralist}
+% paralist.sty tcolorbox.sty adjustbox.sty ulem.sty biblatex.sty):
 %XXXXXXXXXXXXXX
 \newcommand{\mytitle}{An Empirical Evaluation of Frequency-Based Statistical Models for Estimating Killable Mutants}
 
@@ -93,6 +91,33 @@ pdftitle={\mytitle}
 }
 \newif\ifdraft\drafttrue
 \newif\iflong\longfalse
+\usepackage{calc}
+
+%\newenvironment{custombox}
+%{\noindent\begin{minipage}{\linewidth-2\fboxsep-2\fboxrule}\small\itshape}
+%{\end{minipage}}
+
+\newenvironment{custombox}
+{\begin{minipage}{\columnwidth-2\fboxsep-2\fboxrule}\small\itshape}
+{\end{minipage}}
+
+
+
+\newcommand{\boxedtext}[1]{%
+  \noindent\fbox{\begin{custombox}#1\end{custombox}}%
+}
+
+%\newenvironment{custombox}
+%{\begin{quotation}
+% \setlength{\leftmargini}{0pt}
+% \itshape
+% \list{}{\leftmargin=10pt\rightmargin=10pt}
+% \item\relax
+% \small
+%}
+%{\endlist
+% \end{quotation}
+%}
 
 \definecolor{eclipseBlue}{RGB}{42,0.0,255}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
@@ -115,7 +140,7 @@ pdftitle={\mytitle}
     columns=flexible,
     identifierstyle=
 }
-\usepackage{tcolorbox}
+%\usepackage{tcolorbox}
 \usepackage{amsfonts}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -208,7 +233,7 @@ pdftitle={\mytitle}
 \usepackage{cleveref}
 
 %XXXXXXXXXXXXXX
-\usepackage{adjustbox}
+%\usepackage{adjustbox}
 %\usepackage{graphicx}
 \usepackage{pgf,tikz}
 
@@ -296,9 +321,9 @@ pdftitle={\mytitle}
 \algnewcommand\RETURN{\State \algorithmicreturn}%
 
 \usepackage{contour}
-\usepackage[normalem]{ulem}
+%\usepackage[normalem]{ulem}
 
-\setlength{\ULdepth}{1.8pt}
+%\setlength{\ULdepth}{1.8pt}
 \contourlength{0.8pt}
 
 \newcommand{\myuline}[1]{%
@@ -498,9 +523,10 @@ pdftitle={\mytitle}
 \newcommand{\mjs}{\textsc{mjs}\xspace}
 \newcommand{\SC}{Statement Coverage\xspace}
 \newcommand{\BC}{Branch Coverage\xspace}
-%\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \captionsetup{skip=7pt}
+
 %% Rights management information.  This information is sent to you
 %% when you complete the rights form.  These commands have SAMPLE
 %% values in them; it is your responsibility as an author to replace
@@ -551,8 +577,8 @@ pdftitle={\mytitle}
 %\usepackage[style=ACM-Reference-Format]{biblatex}
 %\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
 %\usepackage[backend=biber,bibstyle=ACM-Reference-Format]{biblatex}
-\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
-\addbibresource{esem2024-chaos.bib}
+%\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
+%\addbibresource{esem2024-chaos.bib}
 %%
 %% The majority of ACM publications use numbered citations and
 %% references.  The command \citestyle{authoryear} switches to the
@@ -895,12 +921,12 @@ to predict the remaining mutants that can be killed.
 %
 %XXXXXXXXXXX
 This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency-based estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
 two test cases, etc., contains the information for predicting those that are
-killed by no test cases.
-\end{tcolorbox}
+killed by no test cases.}
+
 \begin{description}
   \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
     killable mutants?}
@@ -942,14 +968,14 @@ We hypothesized that the estimates should overlap, with the difference in
 accuracy (i.e., variance of the estimation) being the only major
 difference. We compare the results of both aggregations with the ground truth.
 
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Our large study empirically investigates the hypothesis that (at least)
 one of the surveyed frequency-based estimators can be effectively used to
-estimate killable mutants.
+estimate killable mutants.}
 %That is, it is accurate, reliable, and
 %produces better estimates than the na\"ive upper bound of total
 %number of generated mutants.
-\end{tcolorbox}
+
 This paper summarizes 
 the main findings of our study and is complemented by
 the replication package~\cite{replication-package}.
@@ -1010,7 +1036,7 @@ based estimators for mutation analysis.
 
 \textbf{Contributions.}
 In summary, our main contributions are:
-\begin{compactitem}[$\bullet$]
+\begin{itemize}
    \item The first empirical study on the application of \estimatorCount,
          widely used frequency-based statistical %species richness 
          estimators
@@ -1022,7 +1048,7 @@ mutation analysis datasets containing 1016 live mutants manually
 classified by three researchers on \projectCount mature projects,
 multiple test suites generated manually and automatically,
 and their mutation analysis resulting in more than 2.5B test executions.
-\end{compactitem}
+\end{itemize}
 
 \section{Statistical Framework}
 \label{sec:mapping}
@@ -1909,12 +1935,11 @@ the studied estimators might be useful to developers in practice.
 % in the majority of the cases the statistical estimators were significantly different from the manual classification.
 % in light of these results, 
 Consequently, we answer \RQA as follows:
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Despite some positive results, in general the \estimatorCount frequency-based
 estimators we considered were neither accurate nor reliable in predicting killable mutants
-from the \original test suites using test method as sampling unit.
+from the \original test suites using test method as sampling unit.}
 %  for every estimator examined.
-\end{tcolorbox}
 
 \definecolor{coriginal}{RGB}{0,150,47}
 \definecolor{cdynamosa}{RGB}{0,108,168}
@@ -2106,15 +2131,14 @@ the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
 at the expense of their \emph{precision}, i.e., mean difference.
 %
 But this was not the case; therefore, we answer \RQB as follows:
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The estimation quality is affected by the sampling strategy. For instance,
 unbiased sampling improved the reliability of the estimators but reduced their precision.
 Additionally, no matter the chosen sampling strategy, none of the estimators showed
-satisfactory results.
+satisfactory results.}
 %   The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
 % to the estimates from manual classification is statistically significant for
 % every estimator examined.
-\end{tcolorbox}
 
 
 \RQCx
@@ -2159,13 +2183,12 @@ for \Chao estimator, in which almost all the CIs for the same test subject
 and sampling strategy do not overlap.
 
 In light of these results, we answer \RQC:
-\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from test method and test class level
 estimators %to the estimates from manual classification
 is statistically significant for every estimator examined. Consequently,
 none of the \estimatorCount estimators was robust against changes in sampling
-unit.
-\end{tcolorbox}
+unit.}
 %XXXXXXXXXXXXXXX
 \subsection{Additional Observations}
 % From a detailed analysis of the data (see Appendix~\cite{replication-package} for detailed plots and tables)
@@ -2396,10 +2419,10 @@ may be possible, with more sophisticated models and more data, to successfully p
 However, further study is required to investigate this aspect.
 
 \balance
-\printbibliography
-%\bibliographystyle{ACM-Reference-Format}
+%\printbibliography
+\bibliographystyle{ACM-Reference-Format}
 %\bibliographystyle{unsrt}
-%\bibliography{esem2024-chaos}
+\bibliography{esem2024-chaos}
 %
 % \appendix
 
