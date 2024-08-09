@@ -51,7 +51,7 @@
 % in the PDF format, and they must be formatted according to the ACM proceedings
 % template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
 \PassOptionsToPackage{table}{xcolor}
-\documentclass[sigconf]{acmart}
+\documentclass[natbib=false,sigconf]{acmart}
 %\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 \hypersetup{
    colorlinks=true,
@@ -65,6 +65,7 @@
 
 %SPACE \setlength{\parskip}{0cm}
 %SPACE \setlength{\parindent}{1em}
+\usepackage{balance}
 \usepackage{paralist}
 %XXXXXXXXXXXXXX
 \newcommand{\mytitle}{An Empirical Evaluation of Frequency-Based Statistical Models for Estimating Killable Mutants}
@@ -182,18 +183,18 @@ pdftitle={\mytitle}
 
 \newcommand{\chao}{$\hat{S}_\textit{Chao}$\xspace}
 
-\newcounter{todocounter}
-\newcommand{\todo}[1]{\marginpar{$|$}\textcolor{red}{\stepcounter{todocounter}\footnote[\thetodocounter]{\textcolor{red}{\textbf{TODO }}\textit{#1}}}}
-\newcommand{\repl}[2]{\textcolor{red}{\textbf{REPLACE }\st{#1} \textit{#2}}}     
-\newcommand{\rem}[1]{\textcolor{red}{\textbf{REMOVED }\st{#1}}}                  
+%\newcounter{todocounter}
+%\newcommand{\todo}[1]{\marginpar{$|$}\textcolor{red}{\stepcounter{todocounter}\footnote[\thetodocounter]{\textcolor{red}{\textbf{TODO }}\textit{#1}}}}
+%\newcommand{\repl}[2]{\textcolor{red}{\textbf{REPLACE }\st{#1} \textit{#2}}}     
+%\newcommand{\rem}[1]{\textcolor{red}{\textbf{REMOVED }\st{#1}}}                  
                                                                                  
-\newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
+%\newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
 
-\InputIfFileExists{SUBMIT}{
-\renewcommand{\todo}[1]{}
-\renewcommand{\done}[1]{}
-\renewcommand{\rem}[1]{}
-}{}
+%\InputIfFileExists{SUBMIT}{
+%\renewcommand{\todo}[1]{}
+%\renewcommand{\done}[1]{}
+%\renewcommand{\rem}[1]{}
+%}{}
 
 \newcommand{\Randoop}{\textsc{Randoop}\xspace}
 \newcommand{\Evosuite}{\textsc{EvoSuite}\xspace}
@@ -238,7 +239,7 @@ pdftitle={\mytitle}
 
 
 
-\usepackage{endnotes}
+%\usepackage{endnotes}
 \usepackage{pifont}
 \usepackage{widetable}
 \usepackage{mathtools}
@@ -383,12 +384,12 @@ pdftitle={\mytitle}
 % 
 % \newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
 
-\IfFileExists{SUBMIT}{
-\renewcommand{\todo}[1]{}
-\renewcommand{\done}[1]{}
-\renewcommand{\rem}[1]{}
-\renewcommand{\theendnotes}{}
-}
+%\IfFileExists{SUBMIT}{
+\newcommand{\todo}[1]{}
+\newcommand{\done}[1]{}
+\newcommand{\rem}[1]{}
+%\renewcommand{\theendnotes}{}
+%}
 
 \definecolor{eclipseBlue}{RGB}{42,0.0,255}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
@@ -547,7 +548,11 @@ pdftitle={\mytitle}
 %% Look at the sample-*-biblatex.tex files for templates showcasing
 %% the biblatex styles.
 %%
+%\usepackage[style=ACM-Reference-Format]{biblatex}
 %\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
+%\usepackage[backend=biber,bibstyle=ACM-Reference-Format]{biblatex}
+\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
+\addbibresource{esem2024-chaos.bib}
 %%
 %% The majority of ACM publications use numbered citations and
 %% references.  The command \citestyle{authoryear} switches to the
@@ -2390,9 +2395,11 @@ Nonetheless, our observations pointed out that it
 may be possible, with more sophisticated models and more data, to successfully put statistical estimation in use. 
 However, further study is required to investigate this aspect.
 
+\balance
+\printbibliography
 %\bibliographystyle{ACM-Reference-Format}
-\bibliographystyle{unsrt}
-\bibliography{esem2024-chaos}
+%\bibliographystyle{unsrt}
+%\bibliography{esem2024-chaos}
 %
 % \appendix
 
