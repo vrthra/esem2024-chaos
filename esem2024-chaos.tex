@@ -945,18 +945,19 @@ mutants killed by test cases.
 We count the number of mutants killed
 by a single test case, those killed by two test cases, and so on, and use this data
 to predict the remaining mutants that can be killed.
+
+\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+The idea in frequency-based mutant count estimation is that the ratio
+of number of mutants that are killed by a single test case vs those killed by
+two test cases, etc., contains the information for predicting those that are
+not yet killed.}
+
 %XXXXXXXXXXX
 %
 % ALESSIO: The placement and meaning of those gray boxes is not straightforward. If they are not necessary, I suggest we hide them 
 %
 %XXXXXXXXXXX
 This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
-
-\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-The idea in frequency-based estimation is that the ratio
-of number of mutants that are killed by a single test case vs those killed by
-two test cases, etc., contains the information for predicting those that are
-not yet killed.}
 
 \begin{description}
   \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
