@@ -97,14 +97,30 @@ pdftitle={\mytitle}
 %{\noindent\begin{minipage}{\linewidth-2\fboxsep-2\fboxrule}\small\itshape}
 %{\end{minipage}}
 
-\newenvironment{custombox}
-{\begin{minipage}{\columnwidth-2\fboxsep-2\fboxrule}\small\itshape}
-{\end{minipage}}
+%\newenvironment{custombox}
+%{\begin{minipage}{\columnwidth-2\fboxsep-2\fboxrule}\small\itshape}
+%{\end{minipage}}
 
+%\newenvironment{custombox}
+%{\par\smallskip\noindent\begin{tabular}{|p{\columnwidth}|}
+%\hline\smallskip\small\itshape}
+%{\smallskip\\\hline\end{tabular}\par\smallskip}
+\newenvironment{custombox}
+{\par\noindent
+ \begin{minipage}{\linewidth}
+ \small\itshape
+ \hrule
+ \vspace{1ex}}
+{\vspace{1ex}
+ \hrule
+ \end{minipage}
+ \par\vspace{\baselineskip}}
 
 
 \newcommand{\boxedtext}[1]{%
-  \noindent\fbox{\begin{custombox}#1\end{custombox}}%
+%\noindent\fbox{
+\begin{custombox}#1\end{custombox}%
+%    }%
 }
 
 %\newenvironment{custombox}
@@ -155,7 +171,7 @@ pdftitle={\mytitle}
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-    basicstyle=\linespread{0.8}\ttfamily,
+    basicstyle=\ttfamily,
     breakatwhitespace=false,
     breaklines=true,
     captionpos=b,
@@ -796,7 +812,7 @@ method out of all methods considered.
 %%
 %% This command processes the author and affiliation and title
 %% information and builds the first part of the formatted document.
-\settopmatter{printacmref=false}
+%\settopmatter{printacmref=false}
 
 \maketitle
 
@@ -895,12 +911,12 @@ elements, such as statements or branches, by test cases contains information abo
 the number of similar software elements that are reachable but yet to be covered.
 Frequency-based estimators such as Chao's~\cite{chao2016species} are designed to
 be robust toward strong biases in sampling
-\footnote{%
-These estimators are commonly used in Ecology to estimate the count of various
-species, which are often highly correlated and geography specific.
-The constraints in Ecology seems to mirror the conditions of defects in software
-elements, which are also program specific and often highly correlated---some
-modules may be highly defect prone, while others may not be.}
+%\footnote{%
+%These estimators are commonly used in Ecology to estimate the count of various
+%species, which are often highly correlated and geography specific.
+%The constraints in Ecology seems to mirror the conditions of defects in software
+%elements, which are also program specific and often highly correlated---some
+%modules may be highly defect prone, while others may not be.}
 making them attractive in areas such as reachable coverage estimation
 which can be strongly program dependent.
 
