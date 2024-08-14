@@ -5,9 +5,6 @@
 \usepackage{hyperref}
 \usepackage{framed}
 \usepackage{colortbl}
-%\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
-%%
-%% \BibTeX command to typeset BibTeX logo in the docs
 \AtBeginDocument{%
   \providecommand\BibTeX{{%
     Bib\TeX}}}
@@ -20,25 +17,12 @@
 \acmDOI{10.1145/3674805.3686669}
 \acmISBN{979-8-4007-1047-6/24/10}
 
-%SPACE \setlength{\parskip}{0cm}
-%SPACE \setlength{\parindent}{1em}
 \usepackage{balance}
-%\usepackage{paralist}
-% paralist.sty tcolorbox.sty adjustbox.sty ulem.sty biblatex.sty):
-%XXXXXXXXXXXXXX
 \newcommand{\mytitle}{Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants}
 
 
-% ALESSIO: A Large Empirical Evaluation of Frequency-Based Statistical Models for Estimating Killable Mutants
-% ALESSIO: Empirically Evaluating Frequency-Based Statistical Models for Estimating Killable Mutants
-% ALESSIO: A Large Empirical Evaluation of Frequency-Based Statistical Models applied to Mutation Testing
 
-% ALESSIO: Check whether we use "Frequency-Based Statistical Models" in the paper or something else (e.g., "Bio-Inspired Estimators")
 
-%Estimating Equivalent Mutants: Are we there yet?}
-%\newcommand{\mytitle}{Estimating Equivalent Mutants: Are we there yet?}
-%\usepackage{hyperref}
-%\usepackage{xcolor}
 
 \definecolor{coriginal}{RGB}{0,150,47}
 \definecolor{cdynamosa}{RGB}{0,108,168}
@@ -61,18 +45,8 @@ pdftitle={\mytitle}
 
 \definecolor{shadecolor}{rgb}{0.9,0.9,0.9}
 
-%\newenvironment{custombox}
-%{\noindent\begin{minipage}{\linewidth-2\fboxsep-2\fboxrule}\small\itshape}
-%{\end{minipage}}
 
-%\newenvironment{custombox}
-%{\begin{minipage}{\columnwidth-2\fboxsep-2\fboxrule}\small\itshape}
-%{\end{minipage}}
 
-%\newenvironment{custombox}
-%{\par\smallskip\noindent\begin{tabular}{|p{\linewidth}|}
-%\hline\smallskip\small\itshape}
-%{\smallskip\\\hline\end{tabular}\par\smallskip}
 \newenvironment{custombox}
 {\begin{minipage}{\columnwidth-2\fboxsep-2\fboxrule}}
 {\end{minipage}}
@@ -82,17 +56,6 @@ pdftitle={\mytitle}
 }%
 }
 
-%\newenvironment{custombox}
-%{\begin{quotation}
-% \setlength{\leftmargini}{0pt}
-% \itshape
-% \list{}{\leftmargin=10pt\rightmargin=10pt}
-% \item\relax
-% \small
-%}
-%{\endlist
-% \end{quotation}
-%}
 
 \definecolor{eclipseBlue}{RGB}{42,0.0,255}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
@@ -115,7 +78,6 @@ pdftitle={\mytitle}
     columns=flexible,
     identifierstyle=
 }
-%\usepackage{tcolorbox}
 \usepackage{amsfonts}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
@@ -149,16 +111,8 @@ pdftitle={\mytitle}
 \definecolor{cmethod}{RGB}{0,108,168}
 \definecolor{cclass}{RGB}{219,36,42}
 
-% The name of our central contribution, with variations
 \usepackage{xspace}
 
-%%%%
-%
-%
-% How Many estimators do we consider?
-%
-%
-%%%%
 \newcommand{\estimatorCount}{twelve\xspace}
 \newcommand{\projectCount}{ten\xspace}
 \newcommand{\mutantCount}{110595\xspace}
@@ -172,7 +126,6 @@ pdftitle={\mytitle}
 \newcommand{\ChaoBunge}{Chao-Bunge\xspace}
 \newcommand{\Jackknife}{Jackknife\xspace}
 \newcommand{\Chao}{Chao\xspace}
-%\newcommand{\Chaobiascorrected}{Chao-bc\xspace}
 \newcommand{\improvedChao}{iChao\xspace}
 \newcommand{\ICE}{ICE\xspace}
 \newcommand{\improvedICE}{ICE-1\xspace}
@@ -183,18 +136,8 @@ pdftitle={\mytitle}
 
 \newcommand{\chao}{$\hat{S}_\textit{Chao}$\xspace}
 
-%\newcounter{todocounter}
-%\newcommand{\todo}[1]{\marginpar{$|$}\textcolor{red}{\stepcounter{todocounter}\footnote[\thetodocounter]{\textcolor{red}{\textbf{TODO }}\textit{#1}}}}
-%\newcommand{\repl}[2]{\textcolor{red}{\textbf{REPLACE }\st{#1} \textit{#2}}}     
-%\newcommand{\rem}[1]{\textcolor{red}{\textbf{REMOVED }\st{#1}}}                  
                                                                                  
-%\newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
 
-%\InputIfFileExists{SUBMIT}{
-%\renewcommand{\todo}[1]{}
-%\renewcommand{\done}[1]{}
-%\renewcommand{\rem}[1]{}
-%}{}
 
 \newcommand{\Randoop}{\textsc{Randoop}\xspace}
 \newcommand{\Evosuite}{\textsc{EvoSuite}\xspace}
@@ -202,25 +145,16 @@ pdftitle={\mytitle}
 \newcommand{\PIT}{\textsc{PIT}\xspace}
 
 \newcommand{\EvosuiteRandom}{\textsc{Random}\xspace}
-%\newcommand{\EvosuiteStd}{\textsc{Evosuite-Standard}\xspace}
 \newcommand{\EvosuiteDynamosa}{\textsc{DynaMOSA}\xspace}
 
 \usepackage{cleveref}
 
-%XXXXXXXXXXXXXX
-%\usepackage{adjustbox}
-%\usepackage{graphicx}
 \usepackage{pgf,tikz}
 
 \usepackage{xcolor}
-%\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             %\node[shape=circle,fill,inner sep=2pt] (char) {\textcolor{white}{#1}};}}
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
-% \newcommand{\RQA}{RQ1\xspace} %\circled{A}\xspace}
-% \newcommand{\RQB}{RQ2\xspace} %\circled{B}\xspace}
-% \newcommand{\RQC}{RQ3\xspace} %\circled{C}\xspace}
-% \newcommand{\RQD}{RQ4\xspace} %\circled{D}\xspace}
 \newcommand{\RQA}{\textcircled{1}\xspace}
 \newcommand{\RQB}{\textcircled{2}\xspace}
 \newcommand{\RQC}{\textcircled{3}\xspace}
@@ -239,15 +173,12 @@ pdftitle={\mytitle}
 
 
 
-%\usepackage{endnotes}
 \usepackage{pifont}
 \usepackage{widetable}
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 \usepackage{doi}
-%\usepackage{microtype}
 \usepackage{forest}
-%\usepackage{comment}
 \usepackage{footmisc}
 \usepackage[noend]{algpseudocode}
 \usepackage{algorithm}
@@ -259,29 +190,20 @@ pdftitle={\mytitle}
 \usepackage{soul}
 \usepackage{alltt}
 
-%\usepackage{mdwtab}
 \usepackage{syntax}
 \usepackage{lstautogobble}
 \usepackage{qtree}
 
-% \Crefname{figure}{Fig.}{Figs.}
-% \Crefname{equation}{Eqn.}{Eqns.}
-% \crefname{section}{Section}{Sections}
-% \Crefname{subsection}{Section}{Sections}
-% \Crefname{Algorithm}{Alg.}{Algs.}
 
 \usepackage{subcaption}
 \usepackage{multirow}
 
-%\usepackage{balance}
 \usepackage[inline]{enumitem}
 \usetikzlibrary{shapes.misc, positioning}
 
 \usepackage{url}
-%\usepackage{booktabs}
 
 \usepackage{amsmath}
-%\usepackage{amssymb}
 
 \newcommand{\B}[1]{\textbf{#1}}
 
@@ -296,9 +218,7 @@ pdftitle={\mytitle}
 \algnewcommand\RETURN{\State \algorithmicreturn}%
 
 \usepackage{contour}
-%\usepackage[normalem]{ulem}
 
-%\setlength{\ULdepth}{1.8pt}
 \contourlength{0.8pt}
 
 \newcommand{\myuline}[1]{%
@@ -375,21 +295,11 @@ pdftitle={\mytitle}
 \def\Gparsing{\emph{General Parsers}\xspace}
 \def\|#1|{\textit{#1}}
 \def\<#1>{\texttt{#1}}
-%\def\[[#1\]]{\texttt{#1}} % better?
 
-% \newcounter{todocounter}
-% \newcommand{\todo}[1]{\marginpar{$|$}\textcolor{red}{\stepcounter{todocounter}\footnote[\thetodocounter]{\textcolor{red}{\textbf{TODO }}\textit{#1}}}}
-% \newcommand{\repl}[2]{\textcolor{red}{\textbf{REPLACE }\st{#1} \textit{#2}}}
-% \newcommand{\rem}[1]{\textcolor{red}{\textbf{REMOVED }\st{#1}}}
-% 
-% \newcommand{\done}[1]{\textcolor{green}{\stepcounter{todocounter}\endnote[\thetodocounter]{\textbf{DONE }\textit{#1}}}}
 
-%\IfFileExists{SUBMIT}{
 \newcommand{\todo}[1]{}
 \newcommand{\done}[1]{}
 \newcommand{\rem}[1]{}
-%\renewcommand{\theendnotes}{}
-%}
 
 \definecolor{eclipseBlue}{RGB}{42,0.0,255}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
@@ -406,7 +316,6 @@ pdftitle={\mytitle}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
 \definecolor{eclipsePurple}{RGB}{127,0,85}
 
-%\usepackage[procnames]{listings}
 \lstdefinestyle{asm}
 {
     basicstyle=\footnotesize\ttfamily,
@@ -502,79 +411,18 @@ pdftitle={\mytitle}
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \captionsetup{skip=7pt}
 
-%% Rights management information.  This information is sent to you
-%% when you complete the rights form.  These commands have SAMPLE
-%% values in them; it is your responsibility as an author to replace
-%% the commands and values with those provided to you when you
-%% complete the rights form.
-%\setcopyright{acmcopyright}
-%\copyrightyear{2018}
-%\acmYear{2018}
-%\acmDOI{XXXXXXX.XXXXXXX}
-
-%% These commands are for a PROCEEDINGS abstract or paper.
-%\acmConference[Conference acronym 'XX]{Make sure to enter the correct
-%  conference title from your rights confirmation emai}{June 03--05,
-%  2018}{Woodstock, NY}
-%%
-%%  Uncomment \acmBooktitle if the title of the proceedings is different
-%%  from ``Proceedings of ...''!
-%%
-%%\acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection,
-%%  June 03--05, 2018, Woodstock, NY}
-%\acmPrice{15.00}
-%\acmISBN{978-1-4503-XXXX-X/18/06}
-
-%%
-%% Submission ID.
-%% Use this when submitting an article to a sponsored event. You'll
-%% receive a unique submission ID from the organizers
-%% of the event, and this ID should be used as the parameter to this command.
-%%\acmSubmissionID{123-A56-BU3}
-
-%%
-%% For managing citations, it is recommended to use bibliography
-%% files in BibTeX format.
-%%
-%% You can then either use BibTeX with the ACM-Reference-Format style,
-%% or BibLaTeX with the acmnumeric or acmauthoryear sytles, that include
-%% support for advanced citation of software artefact from the
-%% biblatex-software package, also separately available on CTAN.
-%%
-%% Look at the sample-*-biblatex.tex files for templates showcasing
-%% the biblatex styles.
-%%
-%\usepackage[style=ACM-Reference-Format]{biblatex}
-%\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
-%\usepackage[backend=biber,bibstyle=ACM-Reference-Format]{biblatex}
-%\usepackage[style=ACM-Reference-Format,backend=bibtex,sorting=none]{biblatex}
-%\addbibresource{esem2024-chaos.bib}
-%%
-%% The majority of ACM publications use numbered citations and
-%% references.  The command \citestyle{authoryear} switches to the
-%% "author year" style.
-%%
-%% If you are preparing content for an event
-%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
-%% citations and references.
-%% Uncommenting
-%% the next command will enable that style.
-%%\citestyle{acmauthoryear}
 
 
-%%
-%% end of the preamble, start of the body of the document source.
+
+
+
 \begin{document}
 
-%%
-%% The "title" command has an optional parameter,
-%% allowing the author to define a "short title" to be used in page headers.
 \title{\mytitle}
 
 
 
 \author{Konstantin Kuznetsov}
-% \authornote{Both authors contributed equally to the paper}
 \affiliation{
 \institution{Saarland University}
 \country{Germany}
@@ -582,7 +430,6 @@ pdftitle={\mytitle}
 \email{konstantin.kuznetsov@cispa.de}
 
 \author{Alessio Gambi}
-% \authornotemark[1]
 \affiliation{
 \institution{Austrian Institute of Technology}
 \country{Austria}
@@ -610,96 +457,10 @@ pdftitle={\mytitle}
 }
 \email{rahul.gopinath@sydney.edu.au}
 
-%%
-%% The "author" command and its associated commands are used to define
-%% the authors and their affiliations.
-%% Of note is the shared affiliation of the first two authors, and the
-%% "authornote" and "authornotemark" commands
-%% used to denote shared contribution to the research.
 
-%\author{Ben Trovato}
-%\authornote{Both authors contributed equally to this research.}
-%\email{trovato@corporation.com}
-%\orcid{1234-5678-9012}
-%\author{G.K.M. Tobin}
-%\authornotemark[1]
-%\email{webmaster@marysville-ohio.com}
-%\affiliation{%
-%  \institution{Institute for Clarity in Documentation}
-%  \streetaddress{P.O. Box 1212}
-%  \city{Dublin}
-%  \state{Ohio}
-%  \country{USA}
-%  \postcode{43017-6221}
-%}
-%
-%\author{Lars Th{\o}rv{\"a}ld}
-%\affiliation{%
-%  \institution{The Th{\o}rv{\"a}ld Group}
-%  \streetaddress{1 Th{\o}rv{\"a}ld Circle}
-%  \city{Hekla}
-%  \country{Iceland}}
-%\email{larst@affiliation.org}
-%
-%\author{Valerie B\'eranger}
-%\affiliation{%
-%  \institution{Inria Paris-Rocquencourt}
-%  \city{Rocquencourt}
-%  \country{France}
-%}
-%
-%\author{Aparna Patel}
-%\affiliation{%
-% \institution{Rajiv Gandhi University}
-% \streetaddress{Rono-Hills}
-% \city{Doimukh}
-% \state{Arunachal Pradesh}
-% \country{India}}
-%
-%\author{Huifen Chan}
-%\affiliation{%
-%  \institution{Tsinghua University}
-%  \streetaddress{30 Shuangqing Rd}
-%  \city{Haidian Qu}
-%  \state{Beijing Shi}
-%  \country{China}}
 
-%\author{Charles Palmer}
-%\affiliation{%
-%  \institution{Palmer Research Laboratories}
-%  \streetaddress{8600 Datapoint Drive}
-%  \city{San Antonio}
-%  \state{Texas}
-%  \country{USA}
-%  \postcode{78229}}
-%\email{cpalmer@prl.com}
-%
-%\author{John Smith}
-%\affiliation{%
-%  \institution{The Th{\o}rv{\"a}ld Group}
-%  \streetaddress{1 Th{\o}rv{\"a}ld Circle}
-%  \city{Hekla}
-%  \country{Iceland}}
-%\email{jsmith@affiliation.org}
-%
-%\author{Julius P. Kumquat}
-%\affiliation{%
-%  \institution{The Kumquat Consortium}
-%  \city{New York}
-%  \country{USA}}
-%\email{jpkumquat@consortium.net}
 
-%%
-%% By default, the full list of authors will be used in the page
-%% headers. Often, this list is too long, and will overlap
-%% other information printed in the page headers. This command allows
-%% the author to define a more concise list
-%% of authors' names for this purpose.
-%\renewcommand{\shortauthors}{Trovato et al.}
 
-%%
-%% The abstract is a short summary of the work to be presented in the
-%% article.
 \begin{abstract}
 \textbf{Background.}
 Mutation analysis is the premier technique for evaluating test suite
@@ -713,9 +474,6 @@ killable mutants seems to be a promising approach to tackle this problem.\\
 Frequency-based species estimation methods
 have been proposed as a solution for several related problems in software
 testing.
-%While promising, there has been no comprehensive study on whether
-%such frequency-based species estimation methods can
-%deliver an accurate estimate for killable mutants.
 This paper investigates whether such frequency-based estimation methods
 can accurately estimate the number of killable mutants.\\
 \textbf{Method.}
@@ -733,10 +491,6 @@ predictive power and cannot produce reliable and useful estimates of killable
 mutants. 
 \end{abstract}
 
-%%
-%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
-%% Please copy and paste the code instead of the example below.
-%%
 \begin{CCSXML}
 <ccs2012>
    <concept>
@@ -760,56 +514,12 @@ mutants.
 \ccsdesc[500]{Software and its engineering~Software verification and validation}
 \ccsdesc[500]{Software and its engineering~Software testing and debugging}
 \ccsdesc[500]{Software and its engineering~Empirical software validation}
-%\begin{CCSXML}
-%<ccs2012>
-%<concept>
-%<concept_id>10010520.10010553.10010562</concept_id>
-%<concept_desc>Computer systems organization~Embedded systems</concept_desc>
-%<concept_significance>500</concept_significance>
-%</concept>
-%<concept>
-%<concept_id>10010520.10010575.10010755</concept_id>
-%<concept_desc>Computer systems organization~Redundancy</concept_desc>
-%<concept_significance>300</concept_significance>
-%</concept>
-%<concept>
-%<concept_id>10010520.10010553.10010554</concept_id>
-%<concept_desc>Computer systems organization~Robotics</concept_desc>
-%<concept_significance>100</concept_significance>
-%</concept>
-%<concept>
-%<concept_id>10003033.10003083.10003095</concept_id>
-%<concept_desc>Networks~Network reliability</concept_desc>
-%<concept_significance>100</concept_significance>
-%</concept>
-%</ccs2012>
-%\end{CCSXML}
-%
-%\ccsdesc[500]{Computer systems organization~Embedded systems}
-%\ccsdesc[300]{Computer systems organization~Redundancy}
-%\ccsdesc{Computer systems organization~Robotics}
-%\ccsdesc[100]{Networks~Network reliability}
 
-%%
-%% Keywords. The author(s) should pick words that accurately describe
-%% the work being presented. Separate the keywords with commas.
-%\keywords{mutation analysis, equivalent mutants, residual risk}
-%% A "teaser" image appears between the author and affiliation
-%% information and the body of the document, and typically spans the
-%% page.
 
-%\received{20 February 2007}
-%\received[revised]{12 March 2009}
-%\received[accepted]{5 June 2009}
 
-%%
-%% This command processes the author and affiliation and title
-%% information and builds the first part of the formatted document.
-%\settopmatter{printacmref=false}
 
 \maketitle
 
-%XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
 Mutation analysis is the premier means of assessing the quality of
 software test suites in preventing defects~\cite{papadakis2019mutation}
@@ -817,13 +527,11 @@ and estimating residual risk~\cite{horgan1996software}.
 Mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration
 (\Cref{fig:working-example}-right).
-%
 Mutants are copies of the original code (\Cref{fig:working-example}-left) in which artificial code %simple, 
 \emph{mutations} that share strong similarities with real faults are inserted (\Cref{fig:working-example-mutants})~\cite{daran1996software,just2014are,andrews2005is,andrews2006using}.
 
 \begin{figure}[t]
 \begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
-%\lstset{linewidth = 4cm, breaklines=true} %set your listing lines widths, and set breaklines to true
 \begin{lstlisting}[style=python]
 def determinant(a,b,c,d):
   ad = a * d
@@ -840,12 +548,9 @@ def determinant(a,b,c,d):
 +$\vdash$+ determinant(1,2,3,4) +$=$+ -2
 \end{lstlisting}
 \end{minipage}
-%\vspace*{-4mm}
 \caption{A simple program (left) and two of its tests (right)}
 \label{fig:working-example}
-%
 \end{figure}
-%
 \begin{figure}[t]
 \begin{minipage}{.45\columnwidth}  %listing bloc will have 50% of the line width 
 \begin{lstlisting}[style=python,escapechar=!]
@@ -866,11 +571,9 @@ def determinant(a,b,c,d):
   return ad - bc
 \end{lstlisting}
 \end{minipage}
-%\vspace*{-4mm}
 \caption{Killable (left) and equivalent (right) mutants}
 \label{fig:working-example-mutants}
 \end{figure}
-%\vspace*{-5mm}
 
 A test case detects (or \emph{kills}) a mutant if it induces and observes
 a change in behavior in the mutant when compared to the original program.
@@ -890,10 +593,6 @@ and cannot be established
 Consequently, the mutation score
 might be inaccurate and highly variable.
 Hence, an accurate estimate of the number of killable mutants is important in software testing but has remained unsolved.
-%\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
-%An accurate estimate of the killable mutants is important for evaluating the \textbf{effectiveness
-%of test suites} as well as evaluating \textbf{residual risk} after a test run. %  both of which are important problems for a practitioner.
-%\end{tcolorbox}
 
 Recently, the \emph{Software Testing as Species Discovery (STADS) framework}~\cite{bohme2018assurances}
 was proposed for estimating \emph{reachable but yet to be covered} elements remaining for coverage evaluation.
@@ -904,12 +603,6 @@ elements, such as statements or branches, by test cases contains information abo
 the number of similar software elements that are reachable but yet to be covered.
 Frequency-based estimators such as Chao's~\cite{chao2016species} are designed to
 be robust toward strong biases in sampling
-%\footnote{%
-%These estimators are commonly used in Ecology to estimate the count of various
-%species, which are often highly correlated and geography specific.
-%The constraints in Ecology seems to mirror the conditions of defects in software
-%elements, which are also program specific and often highly correlated---some
-%modules may be highly defect prone, while others may not be.}
 making them attractive in areas such as reachable coverage estimation,
 which can be strongly program dependent.
 
@@ -918,7 +611,6 @@ and coverage analysis---covering a mutant
 is a prerequisite for killing it---%
 we adapted the STADS framework~\cite{bohme2018stads}
 for predicting killable mutants.
-%XXXXXXXXXXX
 That is, we estimate the count of killable mutants from the frequency of
 mutants killed by test cases.
 We count the number of mutants killed
@@ -944,23 +636,13 @@ not yet killed.}}
 
 
 
-%XXXXXXXXXXX
-%
-% ALESSIO: The placement and meaning of those gray boxes is not straightforward. If they are not necessary, I suggest we hide them 
-%
-%XXXXXXXXXXX
 This leads to the first research question: % investigates the effectiveness of frequency-based estimators.
 
-%\begin{description}
-%  \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
-%    killable mutants?}
-%\end{description}
 
 \begin{description}
   \item[] \textcircled{1} \textbf{How accurate are frequency-based estimators in predicting
     killable mutants?}
 \end{description}
-%\RQAx
 
 To ensure \textbf{ground truth} for comparison, we first conducted
 a large scale \textbf{manual evaluation of surviving mutants} from \projectCount
@@ -973,13 +655,9 @@ Since it is not clear which of these estimators
 may be applicable to estimating killable mutants, we conducted a large scale
 empirical study of \textbf{\estimatorCount} different frequency-based statistical estimators from
 the literature.
-% We used \emph{test methods} as sampling units for this part.
 
 As there is little information on robustness of frequency-based estimators to sampling biases,
 the second research question is:
-%\begin{description}
-%  \item[\RQB] \textbf{Are frequency-based estimators affected by sampling strategies?}
-%\end{description}
 \RQBx
 We used three different
 test suites---\emph{developer written}, \emph{randomly generated}, and \emph{feedback-driven}---to evaluate this question.
@@ -1009,9 +687,6 @@ estimate killable mutants.
 Our large study empirically investigates the hypothesis that (at least)
 one of the surveyed frequency-based estimators can be effectively used to
 estimate killable mutants.}}
-%That is, it is accurate, reliable, and
-%produces better estimates than the na\"ive upper bound of total
-%number of generated mutants.
 
 This paper summarizes 
 the main findings of our study and is complemented by
@@ -1065,7 +740,7 @@ estimators cannot be reliably applied to mutation analysis.
 
 \ifdefined\BOOTSTRAP
 However, we found a glimmer of hope. \Bootstrap, when applied to \EvosuiteRandom
-test suites seem to produce some what close estimates even when using different
+test suites seems to produce somewhat close estimates even when using different
 sampling units. This may point to the utility of \Bootstrap as the starting
 point for a future investigation on how to enhance the reliability of frequency
 based estimators for mutation analysis.
@@ -1236,18 +911,13 @@ information of tripletons $Q_3$ and quadrupletons $Q_4$ to estimate undetected s
 
 \subsubsection{\Jackknife estimator~\cite{burnham1978estimation,burnham1979robust}}
 The first and second order \Jackknife estimators are computed as follows: %. The formula is given by
-%\begin{displaymath}
 \begin{gather*}
   S_{\textit{jack1}} = S_{\textit{obs}} + Q_1\left(\frac{T-1}{T}\right) \\ %;
   S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
 \end{gather*}
-%\end{displaymath}
 
 The second order \Jackknife~\cite{smith1984nonparametric}
 is more robust to sampling bias~\cite{hortal2006evaluating} but has larger standard error.
-%\begin{displaymath}
-%  S_{\textit{jack2}} = S_{\textit{obs}} + \frac{2T-3}{T}Q_1 - \frac{(T-2)^2}{T(T-1)}Q_2.
-%\end{displaymath}
 Higher-order \Jackknife estimators ($S_{\textit{jack\textsc{J}}}$) are constructed similarly.
 We consider up to $\textsc{J}=5$, and automatically select the best performing
 one (referred as \<\Jackknife>).
@@ -1275,7 +945,6 @@ as first proposed by Lee et al.~\cite{lee1994estimating}, which is equivalent to
 Gotelli et al.~\cite{gotelli2013measuring} provided a version (referred as \<ICE-1>) for highly heterogeneous communities,
 which underestimates less. % then the original one.
 
-%We use bootstrapping to estimate confidence intervals.
 
 \subsubsection{Bootstrap estimator~\cite{smith1984nonparametric}}
 The \Bootstrap estimator
@@ -1293,24 +962,12 @@ It is defined as:
 \begin{displaymath}
     S_{zelterman} = S_{obs} + S_{obs}/[(1+\lambda)^T - 1], \hat{\lambda} = 2Q_2/(m-1)Q_1
 \end{displaymath}
-%where $\hat{\lambda} = 2Q_2/(m-1)Q_1$.
 
 \subsubsection{Other estimators}
 So far we discussed incidence estimators that take as an input incidence data.
 However, we can consider the whole test suite as one single sample and count mutant kills.
-%That is, by summing up values of the incidence matrix along the test axis, we can transform our data into abundance form and apply abundance estimators---
-%though, loosing information about the number of samples (tests).
 
-%The remaining estimators we consider, namely \ChaoBunge, \Unpmle, \Pnpmle, and \PCG,
-%work with abundance data and have a complex formulation.
-%In the following, we describe how we obtained the required data
-%and briefly introduce them.
 
-%Abundance sampling considers each individual to be a sampling unit
-%and recognizes as the relevant (numerical) data the number of individuals
-%that belong to each species.
-% by summing up values of the incidence matrix along the test axis,
-%though, loosing information about the number of samples (tests). This way, we get a vector of counts for each mutant.
 
 With abundance data, we explore \<\ChaoBunge>, \Unpmle, \Pnpmle, and \PCG estimators.
 Since they have complex formulation, we suggest the reader to refer to the corresponding papers for details.
@@ -1363,7 +1020,6 @@ could understand their functioning % source code of programs
 reasonably well after some initial training.
 At the time we conducted this study,
 Apache Commons contained the $41$ projects listed in \Cref{tbl:fullsubjects}.
-%
 Among those, for our study, we selected only projects that
 \begin{enumerate*}[label=(\arabic*)]
   \item could be built and tested successfully with minimal effort;
@@ -1383,18 +1039,13 @@ $17$ projects that have a complex structure, fail to build, do not pass the avai
 or break mutation analysis even after some effort into fixing them.%, although we put some effort into fixing existing problems.
 
 Since we required expensive manual mutant classification, %, which is %notoriously
-%, we had to restrict the scope of our study; hence,
 we restricted our analysis 
-%as test subjects the
 to \emph{ten largest projects} (in terms of project KLOC)
 fulfilling our
 criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are given in \Cref{tbl:subjectmeasures}.
-%We highlight these projects in \Cref{tbl:fullsubjects} and
-%The main summarize their main properties in \Cref{tbl:subjectmeasures}.
 
 \begin{table}[t]
   \caption{List of considered Apache Commons projects}
-% \resizebox{\columnwidth}{!}{%
     \small
   \begin{tabular}{|l|l|l| }
     \hline
@@ -1466,7 +1117,6 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
     commons-jci           & 1.1             & complex structure \\ 
     \hline
 \end{tabular}
-%}
 \label{tbl:fullsubjects}
 \end{table}
 
@@ -1500,7 +1150,6 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
 10 & commons-collections    & 29  	& 8309 	& 25011 & 86\% & 81\% & 75\%  & 3954 	&	67\% & 59\% & 57\% & 5659	  &	74\% & 69\% & 93\% \\
     \hline
 \end{tabular}
-%}
 \label{tbl:subjectmeasures}
 \end{table*}
 
@@ -1512,10 +1161,7 @@ for application- and
 domain- specific requirements.
 One may argue that the mutants killed by
 \original test suites might be far from random as expected by a statistical process.
-%might result in a biased sampling of live mutants.
 For mitigation,
-%we generated two additional test suites for each test subject.
-%Specifically,
 we leveraged \Evosuite~\cite{fraser2011evosuite}
 to generate \EvosuiteRandom, a test suite that does not target any specific testing goal,
 and \EvosuiteDynamosa, a test suite that maximizes coverage using the Dynamic Many-Objective Sorting Algorithm~\cite{panichella2015reformulating}.
@@ -1524,8 +1170,6 @@ the latter might introduce some bias being not completely random, but still free
 For generating both test suites, we followed the best practice from
 SBST~\cite{devroey2020java,panichella2021sbst,DBLP:conf/sbst/GambiJRZ22},
 with test generation for 60 seconds each, and test minimization for 300 seconds each.
-%and let \Evosuite generate unit tests for each class for 60 seconds,
-%generate assertions for 120 seconds, and minimize the tests for 300 seconds.
 
  % prevent mutation analysis from producing reliable results, 
 
@@ -1533,25 +1177,15 @@ with test generation for 60 seconds each, and test minimization for 300 seconds 
 \label{sec:estimation}
 We used \PIT~\cite{pit} (v~1.4.9)
 to generate the mutants
-%for each project
 and execute test suites.
-%all the available test suites against them, %all the generated mutants .
-%Since mutation analysis is almost always used with unit
-%tests in practice, we did not consider integration or system tests.
-%Nevertheless,
-%This activity
 This resulted in $2.5$B test method executions.
-%
 We configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
 mutation operators and the \emph{killmatrix} option enabled; however, we noticed that \PIT
 (1) did not always identify all the mutants covered by the test cases; hence, it did not execute them;
 and (2) it did not always report the name of the test methods killing mutants. % which is required by one of our sampling strategies.
 For the test execution, we used \emph{JUGE}~\cite{DBLP:journals/corr/abs-2106-07520},
-%the open-source infrastructure,
 which we
-%developed for the SBST Java unit test tool competition,
 extended to address \PIT's limitations and parallelize the test executions across multiple computing nodes.
-%(we used a cluster of 50 nodes featuring heterogeneous hardware configurations).
 
 After executing the tests, we
 removed faulty samples related to invalid and timed-out mutants.
@@ -1568,34 +1202,7 @@ killable units using test methods as sampling units. That is, each
 mutant kill by a test method is counted separately. Next, we evaluated
 the same using test classes as sampling units. That is, we counted
 mutant kills by each test class.
-%which is an aggregation of all kills by the methods of that class.
-%using both test class and test method as sampling units.
-%\done{
-%ALESSIO: AFAIK we never explicitly introduce test class and test method sampling
-%}
-%\done{
-%ALESSIO: The following is not really relevant at this point. We should mention this when we describe the plots.
-%}
-%Unless stated otherwise, we report the estimates with 95\% confidence interval.
 
-%\subsection{Survived Mutants Collection}
-%\label{sec:mutant-generation}
-%To assess the quality of the statistical estimators, we needed a reliable approximation of
-%killable and equivalent mutants in the \projectCount test subjects; therefore, we opted to
-%sample and manually classify the mutants that survived mutation analysis.
-%\done{
-%ALESSIO: The following applies to all the test suite, so I moved where we talk about killable mutants, here I state we sample survived mutants only in the ORIGINAL test suite.
-%}
-% As the first step, we used \PIT~\cite{pit} (v 1.4.9) to evaluate the \emph{\original} test suites
-% and identified mutants that \PIT marked \texttt{SURVIVED} or \texttt{NOT\_COVERED}.
-% Specifically, we configured \PIT to use its \emph{default}\footnote{\url{https://pitest.org/quickstart/mutators/}}
-% mutation operators and the \emph{killmatrix} option enabled.
-% Since mutation analysis is almost always used with unit
-% tests, we did not consider any integration test that might appear
-% in the \emph{\original} test suite in this step. % for generating live mutants.
-%We considered those mutants that 
-%survived the \emph{\original} test suites
-%by looking at those mutants that
 
 \subsection{Manual Mutants Classification}
 \label{sec:mutant-classification}
@@ -1642,13 +1249,6 @@ mutants that survived its \original test suite.
 \label{tbl:classified}
 \flushleft{\small{$^*$We used commons-csv as a pilot to train researchers \rB and \rC.}}
 \end{table}
-%\done{
-%ALESSIO: 
-%   - We never mention misclassifications, only conflicts and Cohen's Kappa.
-%     RAHUL: We do not know misclassification beyond Cohen's Kappa.
-%   - Should we also report the total number of survining mutants in the table above to contextualize the 100 mutants we sampled?
-%     RAHUL: The surviving mutants are given in Table 2 as percentage. I think adding the huge number would be counterproductive here.
-%}
 
 After the initial training, the classification considered one project at a time %in alphabetical order
 as listed in \Cref{tbl:classified} and required researchers \rB and \rC 
@@ -1659,11 +1259,6 @@ motivated with a convincing explanation. % why that mutant should be considered 
 As a result, for each sampled mutant, we collected % of the classification includes
 a label (killable or equivalent) along with how confident the classifier was in the classification (high, medium, low), %time taken for classification, 
 and optional comments.
-%\done{
-%ALESSIO: Shouldn't this \rB and \rC?
-% RAHUL: Yes
-%}
-% Between \rA and \rB we achieved a Cohen's Kappa of 0.48 (moderate agreement).
 Between \rB and \rC we achieved a Cohen's Kappa of $0.48$ (moderate agreement).
 
 Finally, we identified conflicting classifications (avg $4.9\%$) %, sd $3.4$)
@@ -1684,39 +1279,16 @@ investigated the ability of frequency-based statistical estimators to predict th
 number of killable mutants. % in a project.
 
 \RQAx
-% To answer this question, we considered the statistical estimators computed
-% using test methods for the \original test suite as sampling unit and determined
-% their 95\% confidence intervals. Then, we compared them against the manual
-% classification estimates (i.e., the ground truth).
 To answer this question, we compared 
 the \estimatorCount statistical estimators against the corresponding manual classification estimates (see~\Cref{sec:mutant-classification}).
 We considered estimates computed for the \original test suite using test methods as sampling unit.
-%
-% We first checked whether the statistical estimators are significantly different
-% from the manual classification, i.e.,  their 95\% confidence interval did not overlap
-% with the 95\% confidence intervals from manual classification.
 We first checked whether the statistical estimators are significantly different
 from the manual classification estimates, i.e.,  their 95\% confidence intervals do not overlap.
-%
-% Next, we computed
-% the difference between the two estimates using normalized mean difference (MD) computed as the
-% difference between the point estimate $E$ and manual classification estimate $E^M$,
-% i.e., ${|E - E^M|}$. 
-%
-%\done{ ALESSIO: I do not think we compute the Normalized MD, but the absolute one. Also, }
-%
 Next, we computed the
 mean absolute percentage difference (MD) between the point estimates of the
 statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}{m}\sum_i{\frac{|E_i - E^M_i|}{S_i}}\times100\%$.
-%
-% We removed any estimate that resulted in negative
-% CI upper bound, or point estimate.
-% We also removed any estimate that was higher than the total number of mutants.
 We removed any invalid estimate before computing MD, gaining $m$ valid estimates.
 We consider invalid any estimate that failed to compute, resulted in negative point estimate or a value higher than the total number of possible mutants.
-%
-% The counts of such valid estimates are given in the column \emph{Valid Estimates} in \Cref{tbl:estoriginal}.
-% The \emph{Mean} column is the \emph{mean difference}, and \emph{Stdev} the standard deviation of \emph{valid estimates}.
 We report the counts of valid estimates (column \emph{Valid Estimates})
 and statistics about MD (\emph{Mean} and \emph{Stdev}) aggregated across test subjects
 in \Cref{tbl:estoriginal}.
@@ -1753,20 +1325,6 @@ in \Cref{tbl:estoriginal}.
     \label{tbl:estoriginal}
 \end{table}
 
-\RQBx
-% To answer this question, we considered the statistical estimators computed
-% using test methods for \EvosuiteRandom and \EvosuiteDynamosa test suites as sampling unit
-% and determined their 95\% confidence intervals.
-% Next, we checked whether the estimators' 95\% confidence intervals consistently
-% overlapped with the one from manual classification, and computed their mean absolute
-% difference with respect to manual classification.
-% The results are given in \Cref{tbl:estrandom} for \EvosuiteRandom, and in
-% \Cref{tbl:estdynamosa} for \EvosuiteDynamosa (and \Cref{tbl:estoriginal} for \original).
-To answer this questions, we follow the same approach adopted to answer \RQA.
-However, for this research question we compared the estimates from the manual classification
-also against those obtained by the \estimatorCount statistical estimators for \EvosuiteRandom (\Cref{tbl:estrandom})
-and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling unit.
-
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
   %  \rowcolors{1}{white}{yellow}
@@ -1797,6 +1355,13 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
     \end{tabular}}
     \label{tbl:estrandom}
 \end{table}
+\RQBx
+To answer this question, we follow the same approach adopted to answer \RQA.
+However, for this research question we compared the estimates from the manual classification
+also against those obtained by the \estimatorCount statistical estimators for \EvosuiteRandom (\Cref{tbl:estrandom})
+and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling unit.
+
+
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteDynamosa test suites}
  %   \rowcolors{1}{white}{yellow}
@@ -1829,22 +1394,10 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
 \end{table}
 
 \RQCx 
-% when given unbiased test suites from \Evosuite?}
-% To answer this question, we compared the estimations 
-% using test methods as sampling units to estimations using test classes as
-% sampling units for all test suites and
-% determined their 95\% confidence intervals.
-% The comparison between class and method estimators for \original is given
-% in \Cref{tbl:estoriginalclassmethod}.
-% That for \EvosuiteRandom is given in \Cref{tbl:estrandomclassmethod},
-% and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 To answer this question, we compared the estimations of the 
 \estimatorCount statistical estimators using test methods as sampling unit 
 against the corresponding estimations using test classes as
 sampling unit for all test suites. 
-% As before, we remove invalid estimates.
-%\done{ALESSIO: Do we?
-% RAHUL: Not sure what you mean here?}
 The comparison between class and method estimators for \original is given
 in \Cref{tbl:estoriginalclassmethod}.
 That for \EvosuiteRandom is given in \Cref{tbl:estrandomclassmethod},
@@ -1944,44 +1497,26 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 
 \section{Discussion}
 \label{sec:discussion}
-%\done{ALESSIO: This does not read really professional
-% RAHU: Do you mean no introduction? Does this help?
-%}
 We next discuss each of the research questions and corresponding observations in depth.
 \RQAx
-% Inspecting \Cref{tbl:estoriginal}, we note that \PCG estimator achieved the
-% maximum overlap with manual estimates --- three out of \projectCount test
-% subjects had overlapping confidence intervals (CI) with $E^M$.
-% \ICEallrare achieved the smallest mean difference (MD) of 5.78 from $E^M$.
-% Finally, \Bootstrap achieved the
-% maximum number of \emph{valid estimates} (VE) with 9 valid estimates,
-% but had a much larger difference from the manual estimate $E^M$ (19.76).
 
 Inspecting \Cref{tbl:estoriginal}, we can observe that
 (i) none of the \estimatorCount frequency-based estimators generated a valid estimate (VE) for all the test subjects (VE $\in [4, 9]$);
 (ii) in most of the cases ($11/12$), the estimates were significantly different than manual estimates (CI Overlaps $\le 3$), and
 (iii) their mean difference showed extreme variability (MD $\in (5.78 \pm 6.52, 19.76 \pm 20.51)$).
 
-%
 \todo{ALESSIO: I am not sure where the description of the figure fits... Somehow, it seems that tables are more than enough...}
-%
 To better interpret the results in \Cref{tbl:estoriginal}, we plot the results for \Chao estimator (the
 estimator suggested by the STADS framework) in Figure~\ref{fig:groundtruth1}.
-%\footnote{Similar plots for the remaining estimators can be found in the replication package.}
-%
 In the figure, the x-axis represents the ratio of mutants, with 1.0 (bold solid line) indicating the complete set of generated
 mutants. The y-axis, instead, lists all the test subjects.
 For each test subject, the figure shows the ratio of killed mutants (black dotted line),
 the estimate and the $95\%$ CI of the manual estimate of killable mutants (purple band), 
 and the estimate and the $95\%$ CI produced by \Chao using the test methods (blue square) as sampling unit.
 For completeness, the figure also reports the estimates produced by \Chao using test classes (red circle) as sampling unit.
-%
 From the figure, it is evident that \Chao's predictions are far from the manual estimates and their CIs almost never
 overlap.
 
-% The figure shows that irrespective of test suite
-% used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---
-% \Chao estimator's predictions are far from the ground truth.
 
 Focusing on the best performing statistical estimators (\Cref{tbl:estoriginal}),
 we can also observe that 
@@ -1989,43 +1524,12 @@ we can also observe that
 Likewise, \ICEallrare, which achieved the smallest mean difference of 5.78 from $E^M$, 
 and \Bootstrap, which achieved the maximum number ($9$) of valid estimates,
 never had any prediction's CI overlapping the manual estimates' CI\@.
-%
-% To illustrate the differences, we plot the results for \Chao estimator (the
-% estimator suggested by the STADS framework) in \Cref{fig:groundtruth}.
-% The figure shows that irrespective of test suite
-% used---\original, \EvosuiteDynamosa, or \EvosuiteRandom---
-% \Chao estimator's predictions are far from the ground truth.
-%
 
-% Which estimator is useful to the developers?
-% That is, can we recommend an estimator?
 
 In light of these observations, we cannot reliably say if any of
 the studied estimators might be useful to developers in practice.
-%or recommend any of them to be used in mutation analysis.
-%
-% Only one statistical estimator resulted in an accuracy level below $15$.
-% Additionally, no estimator produced a valid estimate for all the project, and
-% their estimates  were significantly different from
-% manual classification.
-%
-%
 \todo{ALESSIO: This seems to restated the observations made above... }
 
-% When we have a statistically significant difference between manual estimate and
-% point estimate, it is evidence that the estimator is unable to estimate the
-% target value correctly.
-% Hence, it is unclear if we can trust the results from \ICEallrare,
-% \ChaoBunge, \PCG etc. which has a significant number of non-overlapping estimates
-% even though the difference from the manual estimates are the smallest.
-% Furthermore, at the confidence interval at 95\% the mean margin of error was
-% just 1.9\%. That is, manual estimation from just 100 mutants can provide a
-% better estimate than the estimators we examined.
-%
-% Therefore, 
-% Inspecting \Cref{tbl:estoriginal} reveals that 
-% in the majority of the cases the statistical estimators were significantly different from the manual classification.
-% in light of these results, 
 Consequently, we answer \RQA as follows:
 
 \aptLtoX[graphic=no,type=html]{
@@ -2039,26 +1543,22 @@ from the \original test suites using test method as sampling unit.
 Despite some positive results, in general the \estimatorCount frequency-based
 estimators we considered were neither accurate nor reliable in predicting killable mutants
 from the \original test suites using test method as sampling unit.}}
-%  for every estimator examined.
 
 
 \begin{figure*}
   %\centering
 \begin{subfigure}{.42\textwidth}
       \includegraphics[width=0.98\linewidth]{chaoplots/3/Chao-organic.pdf}
-%\vspace*{-3mm}
   \caption{\original} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth1}
 \end{subfigure}
 \begin{subfigure}{.27\textwidth}
   \includegraphics[width=1\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-random.pdf}
-%\vspace*{-3mm}
 \caption{\EvosuiteRandom} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth3}
 \end{subfigure}
 \begin{subfigure}{.27\textwidth}
       \includegraphics[width=\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/3/Chao-dynamosa.pdf}
-%\vspace*{-3mm}
 \caption{\EvosuiteDynamosa} % \textcolor{cmethod}{method}, \textcolor{cclass}{class}, \textcolor{cgroundtruth}{manual}}
 \label{fig:groundtruth2}
 \end{subfigure}
@@ -2078,7 +1578,6 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
 \begin{subfigure}{.43\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-methods-dynamosa-organic.pdf}
-%\vspace*{-3mm}
   \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original~(methods)}
 \label{fig:am}
 \end{subfigure}
@@ -2086,29 +1585,19 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-dynamosa-random.pdf}
-%\vspace*{-3mm}
 \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom~(methods)}
 \label{fig:bm}
 \end{subfigure}
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-methods-organic-random.pdf}
-%\vspace*{-3mm}
 \caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom~(methods)}
 \label{fig:cm}
 \end{subfigure}
-%\caption{Comparison of estimates from different test suites with \textbf{methods} as sampling unit for \Chao estimator.
-%  The \original is \textcolor{coriginal}{green}, 
-%  \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
-%  and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
-%\label{fig:methodsamplingunit}
-%\end{figure*}
 
-%\begin{figure*}
 \begin{subfigure}{.43\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth]{chaoplots/4/Chao-classes-dynamosa-organic.pdf}
-%\vspace*{-3mm}
   \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{coriginal}\original~(classes)}
 \label{fig:ac}
 \end{subfigure}
@@ -2116,14 +1605,12 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-dynamosa-random.pdf}
-%\vspace*{-3mm}
   \caption{\textcolor{cdynamosa}\EvosuiteDynamosa vs \textcolor{crandom}\EvosuiteRandom~(classes)}
 \label{fig:bc}
 \end{subfigure}
 \begin{subfigure}{.28\textwidth}
     \centering
       \includegraphics[width=0.95\linewidth,trim=12.8cm 0cm 0cm 0cm, clip=true]{chaoplots/4/Chao-classes-organic-random.pdf}
-%\vspace*{-3mm}
   \caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom~(classes)}
 \label{fig:cc}
 \end{subfigure}
@@ -2133,34 +1620,17 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
   and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
 \label{fig:classsamplingunit}
 \end{figure*}
-%\vspace{-4mm}
 
 \RQBx
-% As we noted in the introduction, 
-%Statistical 
 Frequency-based estimators rely on the data obtained by sampling campaigns;
 thus, it is possible that they %frequency-based estimators
 may not be robust to bias in sampling, e.g., bias introduced by the developers.
-% To mitigate this bias, 
 To study how different sampling strategies affect the statistical estimators,
 we generated two test suites automatically, i.e., without manual bias:
 \EvosuiteRandom (results in \Cref{tbl:estrandom}) and \EvosuiteDynamosa (results in \Cref{tbl:estdynamosa}).
 
 
-% The results from \Cref{tbl:estrandom} for \EvosuiteRandom,
-% (and \Cref{tbl:estoriginal} for \original)
-% reveals that overlaps between CI from manual classification and
-% \EvosuiteRandom was considerably fewer than that between manual and \original.
-% The smallest difference in MD was observed for \ICEallrare,
-% (mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
-% had just two \emph{valid estimates}.
-% For every other estimator, while the number of
-% \emph{valid estimates} were considerably better, the number of CI overlaps were
-% still dismal, and had a much larger mean difference, all above 30\%.
 
-%\Cref{tbl:estrandom} reports the results obtained using \EvosuiteRandom,
-%whereas \Cref{tbl:estdynamosa} the results obtained using \EvosuiteDynamosa.
-%
 Comparing the data in tables \ref{tbl:estoriginal}~and~\ref{tbl:estrandom}
 reveals that with \EvosuiteRandom
 (i) the estimators produced more valid estimates ($97$ vs. $79$);
@@ -2168,40 +1638,22 @@ reveals that with \EvosuiteRandom
 was comparable ($12$ vs. $13$), although not all the estimators behaved consistently;
 \todo{ALESSIO: some lost, some gain, the majority stayed the same}
 and, (iii) the mean difference degraded considerably ($+20\%$ on average).
-% \EvosuiteRandom was considerably fewer than that between manual and \original.
-% The smallest difference in MD was observed for \ICEallrare,
-% (mean 19.51\%, Stdev. 21.08\%). However, \ICEallrare
-% had just two \emph{valid estimates}.
-% For every other estimator, while the number of
-% \emph{valid estimates} were considerably better, the number of CI overlaps were
-% still dismal, and had a much larger mean difference, all above 30\%.
 
-% For \EvosuiteDynamosa, the situation was no better (\Cref{tbl:estdynamosa}),
-% \ICEallrare which had the smallest mean difference (5.54) had just one valid
-% estimate. Other estimators had larger MD, and few CI
-% overlaps.
 
 Comparing the data in tables \ref{tbl:estoriginal}~and~\ref{tbl:estdynamosa}
 reveals that the situation did not improve using \EvosuiteDynamosa.
-%an advanced test generation algorithm.
 Although the valid estimates with \EvosuiteDynamosa are comparable to those with \original ($80$ vs. $79$),
 the number of CI overlaps was smaller ($9$ vs. $13$) and the mean difference was even larger than \EvosuiteRandom ($+24\%$ on average).
 
 As before, we plot the results for \Chao estimator with each sampling strategy %, the estimator suggested by the STADS framework in - ALESSIO: Repeated
 in \ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
 We also plot the results for \Chao estimator test suite pairs across Figure~\ref{fig:am}\ldots Figure~\ref{fig:cc} along with the manual estimate.
-%~\ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
-%\Cref{fig:methodsamplingunit}
-%the comparison of the sampling strategies in pairs.% and \Cref{fig:classsamplingunit}
-%
-%
 
 
 We expected that using automated test generation strategies would mitigate
 manual bias and hence result in better estimates. Likewise, we expected that
 using unbiased sampling, i.e., random search, would produce better results than
 otherwise.
-%
 Our expectations were met %but 
 only partially.
 
@@ -2214,20 +1666,12 @@ than with \EvosuiteDynamosa, confirming that unbiased sampling is beneficial.
 Moreover, the estimators produced more valid estimates with \EvosuiteRandom than any other sampling strategy.
 However, we also observed that with \EvosuiteRandom the mean difference, i.e., the precision of the estimations,
 drastically worsened compared to \original and that with \EvosuiteDynamosa the situation worsened.
-%
-% One may argue that it means that our generated test suites did not adequately
-% sample the population. However, if the estimators were actually performing
-% correctly, this should have resulted in a larger confidence interval, which
-% would increase the \emph{accuracy} at the expense of \emph{precision}, and
-% would have resulted in a larger number of overlaps.
-%
 One possible explanation of these results is that the automatically generated test suites
 did not adequately sample the population (see statement and branch coverage in \Cref{tbl:subjectmeasures}).
 However, our counterargument is that if the estimators were actually performing as expected,
 they should have produced larger confidence interval, hence increasing
 the \emph{accuracy} of the predictions, i.e., the number of CI overlaps,
 at the expense of their \emph{precision}, i.e., mean difference.
-%
 But this was not the case; therefore, we answer \RQB as follows:
 
 
@@ -2251,7 +1695,6 @@ satisfactory results.}}
 \textcircled{2} showed that the estimators are affected by the sampling strategy,
 i.e., the bias in sampling of killable mutants. \RQC, instead, focuses on the
 granularity at which sampling happens, i.e., the sampling unit.
-%
 Using the same sampling strategy but different granularities, i.e., test method and class,
 we expect estimators to produce comparable results, as they
 predict the same quantity. Therefore, studying this aspect would let us draw
@@ -2259,13 +1702,6 @@ conclusions on the estimators' consistency. Moreover, this study could let us
 discount the possibility that either the manual classification was incorrect
 or the (bad) results achieved in \RQA were a statistical flukei---which would
 be the case if the estimators from other test generators coincide.
-%
-% As we mentioned in the introduction, there is a possibility, however remote,
-% that the manual estimation result was either in error, or the result was a
-% statistical fluke. To discount this possibility we conducted the third
-% experiment, where we compared estimators based on how they predict the same
-% quantity when sampling units were changed. We expected individual estimators to
-% return the same predictions irrespective of the sampling units used.
 
 
 From \Cref{tbl:estoriginalclassmethod}, \Cref{tbl:estrandomclassmethod},
@@ -2274,11 +1710,10 @@ estimates from method and class level sampling units
 are %statistically
 significantly different.
 Even \Bootstrap, which had the highest (50\%) overlap for \EvosuiteRandom, 
-did not produce a significant overlap of CI between method and class estimators
+did not produce a significant overlap of CIs between method and class estimators
 for other test suites.
 
 This situation is clearly exemplified in \Cref{fig:groundtruth}
-%figures \ref{fig:groundtruth1}, \ref{fig:groundtruth3}, and \ref{fig:groundtruth2}
 for \Chao estimator, in which almost all the CIs for the same test subject
 and sampling strategy do not overlap.
 
@@ -2299,31 +1734,13 @@ estimators %to the estimates from manual classification
 is statistically significant for every estimator examined. Consequently,
 none of the \estimatorCount estimators was robust against changes in sampling
 unit.}}
-%XXXXXXXXXXXXXXX
 \subsection{Additional Observations}
-% From a detailed analysis of the data (see Appendix~\cite{replication-package} for detailed plots and tables)
-% we also observe that (1) method estimators for different test suites for same
-% subjects overlap and have a smaller variance than class estimators, and (2) method
-% estimators often (but not always) appear to underestimate compared to
-% the manual estimates, while the same cannot be said for class estimators.
-% (3) Bootstrap tends to produce consistent estimates for method and class
-% estimators with small CIs when the number of mutants killed is far from the total
-% generated. However, the uncertainties in CI increase drastically as the
-% number of killed mutants approaches the total generated. We observe the opposite
-% behavior in all other estimators. (4) In a significant number
-% of subjects, the difference between class and method estimators seems to
-% diminish as the number of killed mutants approaches the total generated.
-% This is an intriguing hint because the total number of generated mutants is
-% not part of the estimator equations. Hence, it is likely that the observed
-% pattern is linked to the total of killable mutants, which is close to the total of
-% generated mutants.
 We observe that the plots vary
 considerably based on the subject in question.
 While there are several interesting patterns in the data, the data we have
 is insufficient to explore these fully. Therefore, we will refrain
 from interpreting these until a larger follow-up study can be
 conducted.
-%XXXXXXXXXXXXXXX
 
 \subsection{What Does This Mean in Practice?}
 For an estimator to be useful to the developers, it should be able to produce
@@ -2341,7 +1758,6 @@ To verify that our manual analysis was not the cause of an error, we also
 investigated whether the estimators could produce consistent values when
 estimating the same quantities but using different sampling units---method and class.
 We observed that the estimates produced were inconsistent, i.e., only few CIs overlapped.
-%s of the CI. 
 This is a cause for concern and points to violated assumptions in the
 underlying model, which needs to be investigated further.
 
@@ -2359,10 +1775,6 @@ test generation, which may be a hint as to the better performance of \Bootstrap
 on \EvosuiteRandom and points to the need for further study.
 
 
-%\done{
-%ALESSIO: We mention already Cohen's Kappa for the classification}
-%RAHUL: The following two sections are necessary by ESEM requirements.
-%
 \noindent\textbf{Empirical Strategy Used.}
 This paper uses the quantitative research, including systematic
 collection of data about different mutants and comparing classifications by
@@ -2372,7 +1784,6 @@ different experts, and the agreement is computed by Cohen's Kappa.%\todo{TODO}
 The replication package~\cite{replication-package} contains data about manual
 classification of mutants, test suites, kill matrices, and scripts
 to compute and plot estimations.
-%The data will be made publicly available.
 
 \section{Threats to Validity}
 \label{sec:threats}
@@ -2404,10 +1815,8 @@ However, we note that this situation is similar to the one currently faced by so
 Next, our analysis can be subject to bugs, sampling errors, and manual-misclassification of mutants 
 as equivalents
 that might bias our results.
-%For instance, the test generator could not generate unit tests for all the classes under analysis,
-%thus failing to sample their mutants.
 We tried to mitigate this risk by reviewing the code of JUGE and our scripts, 
-cross-checking the results, and use the largest possible subset of classes for which
+cross-checking the results, and using the largest possible subset of classes for which
 test generation succeeded.
 It is possible that our manual classification is biased. We tried to mitigate it by cross-checking between three classifiers.
 
@@ -2424,16 +1833,10 @@ Mutation analysis is considered a primary way of evaluating test quality~\cite{p
 thus, mutation score is usually considered as a test suite adequacy metrics~\cite{just2014are,andrews2005is,andrews2006using,daran1996software}. 
 Unfortunately, equivalent mutants have vexed practitioners from the very beginning~\cite{budd1982two}
 and remain an open issue~\cite{madeyski2014overcoming} that affects also residual risk estimation.
-%To address this issue, we proposed to estimate killable mutants using
-%frequency-based statistical estimators that have been applied recently to
-%estimate reachable coverage.
-%and conducted a large empirical study that included
-%$10$ mature open-source Java projects, $3$ types of test suites, and the 
-%manual classification of $1016$ live mutants involving $3$ researchers.
 
 \noindent\textbf{Studies focusing on estimating killable or equivalent mutants.}
 Papadakis et al.~\cite{papadakis2014mitigating} conducted a study
-for estimating killable mutants with more numerous subjects.
+for estimating killable mutants with numerous subjects.
 We note that this approach requires manual classification,
 however limited, for residual defect estimation.
 This may not be feasible in many cases where the testers may not be program experts.
@@ -2510,324 +1913,22 @@ the residual risk and the effectiveness of test generators.
 While a sound and complete classifier for killable and equivalent mutants is impossible,
 recent advances in statistical estimation using frequency %count 
 based estimators gave us hope that one could at least estimate the number of killable mutants.
-%
 Consequently, we organized the first, large evaluation of these estimators on mutation analysis spanning several projects and multiple sampling strategies.
-%
-%
-%This research provides the first, large evaluation of these estimators on mutation analysis. 
 
 Unfortunately, the results we achieved show that the considered statistical estimators %for species richness 
 applied to the killable mutants estimation are not ready for prime time, as they did not produce consistent, accurate, or precise estimates.
-% results across projects, test suites, and when computed using different sampling strategies.
-%Hence, they are, as yet, unsuitable for use as statistical estimators for
-%killable mutants in mutation analysis.
 
 Nonetheless, our observations pointed out that it 
-%We also found tantalizing evidence that may indicate that
-% statistical estimation
 may be possible, with more sophisticated models and more data, to successfully put statistical estimation in use. 
 However, further study is required to investigate this aspect.
 
 \balance
-%\printbibliography
 \bibliographystyle{ACM-Reference-Format}
-%\bibliographystyle{unsrt}
 \bibliography{esem2024-chaos}
-%
-% \appendix
 
-% \include{ newdata/latex/latex-mae-total-valid.tex}
-% \include{ newdata/latex/latex-mae-total-all.tex}
-% \include{ newdata/latex/latex-mae-total-validci.tex}
-% \include{ newdata/latex/latex-mae-total-valid-pairs.tex}
-%
-% \include{ newdata/latex/latex-mae-total-valid-classmethod.tex}
-%
-% \include{ newdata/latex/latex-mape-all.tex}
-% \include{ newdata/latex/latex-mape-validci.tex}
-% \include{ newdata/latex/latex-mape-valid.tex}
-%\subsection{\original}
-%\label{sec:original}
-%
-%\begin{figure*}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-collections.pdf}
-%        %\caption{1a}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-compress.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-configuration.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-csv.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-dbcp.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-imaging.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-io.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-lang.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-math.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts_test/organic/commons-net.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%  \caption{Estimators from test \original. The red is from \emph{class test set} data, and blue from \emph{method test set} data.}
-%\label{fig:original}
-%\end{figure*}
 
-%
-%
-%\subsection{\EvosuiteRandom}
-%\label{sec:random}
-%\subsection{\EvosuiteStd}
-%\label{sec:std}
-%
 
-%
-%\subsection{Challenges Faced}
-%During our empirical evaluation, we faced a number of challenges, and here is
-%a list of some of the tougher challenges we faced.
-%\begin{description}[leftmargin=0cm,labelindent=0cm]
-%\item[Flacky tests.] Flaky tests were a major source of problems during our
-%evaluation. In particular, tests that run and report no failure during manual
-%runs sometimes fail during \PIT runs for extracting coverage.
-%\item[Residual Errors in Classification.] We found that even after three fold confirmation,
-%one of the mutants marked as equivalent was actually killed by an automatically
-%generated test case.
-%\item[\PIT bugs] The \PIT version we used sometimes resulted in corrupted XML
-%files as output. Furthermore, \PIT would sometimes fail to detect bugs due to
-%its incorrect coverage heuristics. We found that some such tests would detect
-%mutants.
-%\item[Sandboxes] When \PIT was used in programs that contained file IO, it
-%often corrupted the file system, overwriting unintended files.
-%\item[Bugs in R packages] Some of the statistical estimation packages had bugs
-%in them, which we found thanks to implementing the estimation formulas
-%ourselves and cross checking the results.
-%\item[Limitations of \Evosuite] The \Evosuite test generator would not run on
-%all programs we used.
-%\end{description}
-%
 
-%\begin{figure*}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-collections.pdf}
-%        %\caption{1a}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-compress.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-configuration.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-csv.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-dbcp.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-imaging.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-io.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-lang.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-math.pdf}
-%        %\caption{1b}
-%\end{subfigure}%
-%\begin{subfigure}{.5\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{charts/graph2/graph2/commons-net.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%  \caption{method test data, with test suites indicated by color.
-%  \original is \textcolor{red}{red}, \EvosuiteRandom is \textcolor{blue}{blue}
-%  and \EvosuiteDynamosa is \textcolor{green}{green}.
-%  Dashed lines represent killed mutants by respective test cases,
-%  and error bars represent estimates from
-%  mutant kills by each estimator. The solid black line is the total mutants
-%  generated, dashed black line the manual estimate, and gray dashed lines the
-%  error bars.}
-%\label{fig:testmethods}
-%\end{figure*}
-%
-%
-%\begin{figure*}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Bootstrap.pdf}
-%        %\caption{1a}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Chao.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Chao_bias_corrected.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Chao_Bunge.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%  \caption{test data, with test suites indicated by color.
-%  The manual classification is in \textcolor{purple}{purple}.
-%  \original is \textcolor{red}{red}, \EvosuiteRandom is \textcolor{blue}{blue}
-%  and \EvosuiteDynamosa is \textcolor{green}{green}.
-%  Dashed lines represent estimates and errorbars from class based samples
-%  while solid lines represent estimates and errorbars from method based
-%  samples.
-% } 
-%\label{fig:estimates}
-%\end{figure*}
-%
-%
-%\begin{figure*}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/ICE.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/ICE_all_rare.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/improved_Chao.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/improved_ICE.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%% \begin{subfigure}{\textwidth}
-%%     \centering
-%%       \includegraphics[width=0.9\linewidth]{estimators/Jackknife.pdf}
-%%         %\caption{1b}
-%% \end{subfigure}
-%% \begin{subfigure}{\textwidth}
-%%     \centering
-%%       \includegraphics[width=0.9\linewidth]{estimators/PCG.pdf}
-%%         %\caption{1b}
-%% \end{subfigure}
-%  \caption{test data, with test suites indicated by color.
-%  The manual classification is in \textcolor{purple}{purple}.
-%  \original is \textcolor{red}{red}, \EvosuiteRandom is \textcolor{blue}{blue}
-%  and \EvosuiteDynamosa is \textcolor{green}{green}.
-%  Dashed lines represent estimates and errorbars from class based samples
-%  while solid lines represent estimates and errorbars from method based
-%  samples.
-% } 
-%\label{fig:estimates2}
-%\end{figure*}
-%
-%\begin{figure*}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Jackknife.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/PCG.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Pnpmle.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Unpmle.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%%\begin{subfigure}{\textwidth}
-%%    \centering
-%%      \includegraphics[width=0.9\linewidth]{estimators/Zelterman.pdf}
-%%        %\caption{1b}
-%%\end{subfigure}
-%  \caption{test data, with test suites indicated by color.
-%  The manual classification is in \textcolor{purple}{purple}.
-%  \original is \textcolor{red}{red}, \EvosuiteRandom is \textcolor{blue}{blue}
-%  and \EvosuiteDynamosa is \textcolor{green}{green}.
-%  Dashed lines represent estimates and errorbars from class based samples
-%  while solid lines represent estimates and errorbars from method based
-%  samples.
-% } 
-%\label{fig:estimates3}
-%\end{figure*}
-%\begin{figure*}
-%\begin{subfigure}{\textwidth}
-%    \centering
-%      \includegraphics[width=0.9\linewidth]{estimators/Zelterman.pdf}
-%        %\caption{1b}
-%\end{subfigure}
-%  \caption{test data, with test suites indicated by color.
-%  The manual classification is in \textcolor{purple}{purple}.
-%  \original is \textcolor{red}{red}, \EvosuiteRandom is \textcolor{blue}{blue}
-%  and \EvosuiteDynamosa is \textcolor{green}{green}.
-%  Dashed lines represent estimates and errorbars from class based samples
-%  while solid lines represent estimates and errorbars from method based
-%  samples.
-% } 
-%\label{fig:estimates4}
-%\end{figure*}
 
-%\maketitle
 \end{document}
 \endinput
