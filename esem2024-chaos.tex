@@ -833,7 +833,7 @@ method out of all methods considered.
 %XXXXXXXXXXXXXXXXXXXXXX
 \section{Introduction}
 Mutation analysis is the premier means of assessing the quality of
-software test suites in preventing defects~\cite{papadakis2019mutation},
+software test suites in preventing defects~\cite{papadakis2019mutation}
 and estimating residual risk~\cite{horgan1996software}.
 Mutation analysis involves
 generating mutants \emph{exhaustively} and evaluating them against the test suite under consideration
@@ -897,8 +897,8 @@ A test case detects (or \emph{kills}) a mutant if it induces and observes
 a change in behavior in the mutant when compared to the original program.
 The mutants undetected by any test case are called \emph{surviving} mutants.
 The ratio of the number of mutants killed by a test suite to the 
-number of \emph{killable} mutants
-is called \emph{mutation score} a good indicator for test suite
+number of \emph{killable} mutants,
+called \emph{mutation score}, is a good indicator for test suite
 effectiveness in preventing faults~\cite{jia2010an}.
 However,
 some mutants (\Cref{fig:working-example-mutants}-right)
@@ -910,7 +910,7 @@ and cannot be established
 \emph{a-priori}.
 Consequently, the mutation score
 might be inaccurate and highly variable.
-Hence, an accurate estimate of the number of killable mutants is important in software testing, but has remained unsolved.
+Hence, an accurate estimate of the number of killable mutants is important in software testing but has remained unsolved.
 %\begin{tcolorbox}[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 %An accurate estimate of the killable mutants is important for evaluating the \textbf{effectiveness
 %of test suites} as well as evaluating \textbf{residual risk} after a test run. %  both of which are important problems for a practitioner.
@@ -931,7 +931,7 @@ be robust toward strong biases in sampling
 %The constraints in Ecology seems to mirror the conditions of defects in software
 %elements, which are also program specific and often highly correlated---some
 %modules may be highly defect prone, while others may not be.}
-making them attractive in areas such as reachable coverage estimation
+making them attractive in areas such as reachable coverage estimation,
 which can be strongly program dependent.
 
 Given the closeness of mutation analysis
@@ -957,7 +957,7 @@ not yet killed.}
 % ALESSIO: The placement and meaning of those gray boxes is not straightforward. If they are not necessary, I suggest we hide them 
 %
 %XXXXXXXXXXX
-This leads to the first research question. % investigates the effectiveness of frequency-based estimators.
+This leads to the first research question: % investigates the effectiveness of frequency-based estimators.
 
 \begin{description}
   \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
@@ -985,13 +985,13 @@ the second research question is:
 %\end{description}
 \RQBx
 We used three different
-test suites---\emph{developer written}, \emph{randomly generated}, and \emph{feedback-driven} to evaluate this question.
+test suites---\emph{developer written}, \emph{randomly generated}, and \emph{feedback-driven}---to evaluate this question.
 If the estimators are indeed robust to sampling bias,
 then the estimations should coincide or at least overlap
 significantly. We should also be able to identify best strategies by comparison to ground truth.
 
 Are frequency-based estimators affected by the specific sampling unit used, such
-as using test class as a test unit instead of test method? This informs our next question.
+as using a test class as a test unit instead of a test method? This informs our next question:
 \RQCx
 To evaluate the impact of different sampling units, we reanalyzed the
 data from our first experiment but with test classes (which contain multiple
@@ -1025,20 +1025,20 @@ Hence, we questioned our experimental settings
 and identified two major threats to the validity of our study:
 (1) the manual classification of live mutants could be in error, or
 (2) the tests themselves could have been biased, with more effective tests checking
-only specific parts of the code (e.g., business logic), and hence,
+only specific parts of the code (e.g., business logic), and hence
 not sufficiently random.
 
 To mitigate the first threat, we extended our initial study with test suites created with
 \Evosuite~\cite{fraser2011evosuite},
 using two fundamentally different configurations (i.e., a random strategy and a strategy guided by coverage).
 We expected the estimations obtained from manual test suites
-to coincide with estimations from \Evosuite test suites
+to coincide with estimations from \Evosuite test suites,
 as they predict the same quantity.
 We evaluate this in \RQB.
 To mitigate the second threat, we compared the estimates from \Evosuite
 test suites and from the manual classification. We expected
 the estimates from \Evosuite to match estimates from manually classified live
-mutants as \Evosuite test suites are free of manual bias. % of test case selection.
+mutants, as \Evosuite test suites are free of manual bias. % of test case selection.
 
 We, again, found that manual classification was significantly different from
 estimations from automatically generated test suites, and the estimates from the automatically
@@ -1047,12 +1047,12 @@ were significantly different from each other.
 Therefore, we critically inspected our experiment and identified another
 possible error source--perhaps, different test objectives
 in generating test suites may have an impact.
-If so, and if estimation from at least one of the test
+If so, and if the estimation from at least one of the test
 suites is correct, then changing the sampling unit from test methods to test
 classes should not significantly impact the estimates from a given test suite.
 We investigated this in \RQC.
 As both test methods and test classes sample the same quantity, i.e., the killed mutants,
-we expected that the estimators to produce consistent estimates.
+we expected the estimators to produce consistent estimates.
 
 Once again, our results showed that the estimates from test methods and test classes were
 significantly different, which left us with the only option that the considered frequency-based statistical
