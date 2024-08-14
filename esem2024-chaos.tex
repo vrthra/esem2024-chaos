@@ -1278,22 +1278,6 @@ Our study %seeks answer the three main research questions investigating
 investigated the ability of frequency-based statistical estimators to predict the
 number of killable mutants. % in a project.
 
-\RQAx
-To answer this question, we compared 
-the \estimatorCount statistical estimators against the corresponding manual classification estimates (see~\Cref{sec:mutant-classification}).
-We considered estimates computed for the \original test suite using test methods as sampling unit.
-We first checked whether the statistical estimators are significantly different
-from the manual classification estimates, i.e.,  their 95\% confidence intervals do not overlap.
-Next, we computed the
-mean absolute percentage difference (MD) between the point estimates of the
-statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}{m}\sum_i{\frac{|E_i - E^M_i|}{S_i}}\times100\%$.
-We removed any invalid estimate before computing MD, gaining $m$ valid estimates.
-We consider invalid any estimate that failed to compute, resulted in negative point estimate or a value higher than the total number of possible mutants.
-We report the counts of valid estimates (column \emph{Valid Estimates})
-and statistics about MD (\emph{Mean} and \emph{Stdev}) aggregated across test subjects
-in \Cref{tbl:estoriginal}.
-
-
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across test subjects---\original test suites}
 \resizebox{\columnwidth}{!}{%
@@ -1324,6 +1308,20 @@ in \Cref{tbl:estoriginal}.
     \end{tabular}}
     \label{tbl:estoriginal}
 \end{table}
+\RQAx
+To answer this question, we compared 
+the \estimatorCount statistical estimators against the corresponding manual classification estimates (see~\Cref{sec:mutant-classification}).
+We considered estimates computed for the \original test suite using test methods as sampling unit.
+We first checked whether the statistical estimators are significantly different
+from the manual classification estimates, i.e.,  their 95\% confidence intervals do not overlap.
+Next, we computed the
+mean absolute percentage difference (MD) between the point estimates of the
+statistical estimators ($E$) and the manual classification ($E^M$) as: $\frac{1}{m}\sum_i{\frac{|E_i - E^M_i|}{S_i}}\times100\%$.
+We removed any invalid estimate before computing MD, gaining $m$ valid estimates.
+We consider invalid any estimate that failed to compute, resulted in negative point estimate or a value higher than the total number of possible mutants.
+We report the counts of valid estimates (column \emph{Valid Estimates})
+and statistics about MD (\emph{Mean} and \emph{Stdev}) aggregated across test subjects
+in \Cref{tbl:estoriginal}.
 
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
