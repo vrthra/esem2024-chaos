@@ -811,7 +811,7 @@ denotes the number of undetected mutants.
 
 We assume that the probability that a mutant~$M_i$ is detected by a test~$X_j$ is defined as
 $P(W_{i,j}=1) = \pi_{i} \cdot \nu_{j}$,
-where variables $\{\nu_{1}, \nu_{2},\cdots,\nu_{T}\}$ are responsible for test effects.
+where variables $\{\nu_{1}, \nu_{2},\dots,\nu_{T}\}$ are responsible for test effects.
 Indeed, the ability of a test to kill mutants might be affected by various factors, such as
 coverage,
 input data, environment or flakiness.
@@ -821,28 +821,30 @@ we assume fixed mutant detection rates $\pi_i$.
 Hence, we model probability distribution of each element $W_{ij}$ of the killmatrix as a Bernoulli random variable conditioned on $\nu_j$:
 \small
 \begin{displaymath}
-    P(\forall (i,j) W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}
+    P(W_{ij}=w_{ij}|\nu_j)=(\pi_i \nu_j)^{w_{ij}}(1-\pi_i \nu_j)^{1-w_{ij}}, \forall (i,j)
 \end{displaymath}
 \normalsize
 
 The probability distribution for the incidence matrix can be expressed as the
 probability for all $i:1\leq i \leq S $ and $j:1\leq j\leq T$ that we have $W_{ij} = w_{ij}$.
-\[
-    P\left(\forall (i,j) W_{ij}=w_{ij}|\nu_{i} \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-p_i)^{1-w_{ij}}
-\]
-Integrating all possible values of $\left\{\nu_1, \nu_2,\cdots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $M_i$,
+\small
+\begin{displaymath}
+    P\left(\left\{W_{ij}=w_{ij}\right\}_{1\leq i\leq S,1\leq j\leq T}|\{\nu_{j}\}_{j=1}^T \right)= \prod_{j=1}^{T}\prod_{i=1}^{S} {\pi_i \nu_j}^{w_{ij}} (1-{\pi_i \nu_j})^{1-w_{ij}}
+\end{displaymath}
+\normalsize
+Integrating all possible values of $\left\{\nu_1, \nu_2,\dots,\nu_T \right\}$, we obtain the unconditional marginal distribution for the incidence-based frequency $Y_i$ for the mutant $M_i$,
 which follows Binomial distribution:
 \begin{gather*}
     \begin{split}
         P(Y_i=y_i)&={T \choose y_i}\left[\pi_i\int \nu h(\nu) d\nu\right]^{y_i} \left[1-\pi_i\int \nu h(\nu) d\nu \right]^{T-y_i} \\
-        &={T \choose y_i}{\lambda_i}^{y_i} (1-{\lambda_i}^{y_i})^{T-y_i},
+        &={T \choose y_i}{\lambda_i}^{y_i} (1-{\lambda_i})^{T-y_i},
     \end{split}
 \end{gather*}
 where  $\lambda_i=\pi_i \int \nu h(\nu)d\nu$.
-That is, the frequency $Y_i$ is a binomial random variable with detection probability $\lambda_i$,
-and the incidence frequency counts $Q_k$ can be derived as:
+That is, the frequency $Y_i$ is a binomial random variable with detection probability $\lambda_i$.
+The expected value of incidence frequency counts $Q_k$ can be derived as:
 \[
-    Q_k=E\left[ \sum_{i=1}^{S}I(Y_i=k)  \right]=\sum_{i=1}^{S}{T \choose k}\lambda_{i}^k(1-\lambda_{i})^{T-k}.
+    E(Q_k)=E\left[ \sum_{i=1}^{S}I(Y_i=k)  \right]=\sum_{i=1}^{S}{T \choose k}\lambda_{i}^k(1-\lambda_{i})^{T-k}, ~k=0,\dots,T.
 \]
 
 \subsection{Frequency-Based Estimators}
