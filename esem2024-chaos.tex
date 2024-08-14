@@ -52,12 +52,17 @@ pdftitle={\mytitle}
 {\end{minipage}}
 
 \newcommand{\boxedtext}[1]{%
-    \vspace*{2pt}
+%    \vspace*{2pt}
   \noindent\fcolorbox{black}{lightgray!30}{\begin{custombox}#1\end{custombox}%
 }%
+%    \vspace{1pt}
+}
+\newcommand{\vspaceboxedtext}[1]{%
+    \vspace*{2pt}
+    \noindent\fcolorbox{black}{lightgray!30}{\begin{custombox}#1\end{custombox}%
+    }%
     \vspace{1pt}
 }
-
 
 \definecolor{eclipseBlue}{RGB}{42,0.0,255}
 \definecolor{eclipseGreen}{RGB}{63,127,95}
@@ -628,7 +633,7 @@ two test cases, etc., contains the information for predicting those that are
 not yet killed.
 \end{shaded}
 }{
-\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\vspaceboxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency-based mutant count estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
 two test cases, etc., contains the information for predicting those that are
@@ -685,7 +690,7 @@ one of the surveyed frequency-based estimators can be effectively used to
 estimate killable mutants.
 \end{shaded}
 }{
-\boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
+\vspaceboxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Our large study empirically investigates the hypothesis that (at least)
 one of the surveyed frequency-based estimators can be effectively used to
 estimate killable mutants.}}
@@ -936,7 +941,7 @@ is given by:
   + \frac{Q_1}{\hat{C}_{\textit{infreq}}}\hat{\gamma}^2_{\textit{infreq}},\;\; \hat{C}_{\textit{infreq}}=1-Q_{1}/\sum_{i=1}^{k}Q_{i},
 \end{gather*}
 \begin{gather*}
-  \hat{\gamma}_{\textit{infreq}}^2 = \max\left[\frac{S_{\textit{infreq}}}{\hat{C}_{\textit{infreq}}}\frac{T}{T-1}
+  \hat{\gamma}_{\textit{infreq}}^2 = \max\left[\frac{S_{\textit{infreq}}}{\hat{C}_{\textit{infreq}}}\frac{T_\textit{infreq}}{T_\textit{infreq}-1}
   \frac{\sum_{i=1}^{k} i(i-1)Q_i}{
     \big(\sum_{i=1}^{k} iQ_i\big) \big(\sum_{i=1}^{k} iQ_i-1\big)
   } -1,0
@@ -944,6 +949,7 @@ is given by:
 \end{gather*}
 $S_{\textit{freq}}$ is the number of species that occur more than $k$ times,
 while $S_{\textit{infreq}}$ is those that do not. % with incidence frequency no larger than $k$.
+%$T_\textit{infreq}$ is the number of sampling units that include at least one infrequent species.
 A $k=10$ cut-off is recommended. We also considered the original coverage estimator
 as first proposed by Lee et al.~\cite{lee1994estimating}, which is equivalent to the
 \<ICE> with $k=0$ (\<\ICEallrare>).
