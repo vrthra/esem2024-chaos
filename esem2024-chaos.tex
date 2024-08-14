@@ -1,58 +1,10 @@
-%%
-%% This is file `sample-acmsmall-conf.tex',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% samples.dtx  (with options: `acmsmall-conf')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from sample-acmsmall-conf.tex.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file samples.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
-%%
-%% Commands for TeXCount
-%TC:macro \cite [option:text,text]
-%TC:macro \citep [option:text,text]
-%TC:macro \citet [option:text,text]
-%TC:envir table 0 1
-%TC:envir table* 0 1
-%TC:envir tabular [ignore] word
-%TC:envir displaymath 0 word
-%TC:envir math 0 word
-%TC:envir comment 0 0
-%%
-%%
-%% The first command in your LaTeX source must be the \documentclass
-%% command.
-%%
-%% For submission and review of your manuscript please change the
-%% command to \documentclass[manuscript, screen, review]{acmart}.
-%%
-%% When submitting camera ready or to TAPS, please change the command
-%% to \documentclass[sigconf]{acmart} or whichever template is required
-%% for your publication.
-%%
-%%
-%\documentclass[sigconf,anonymous]{acmart}
-% https://conf.researchr.org/track/esem-2024/esem-2024-technical-track
-% All submissions must be written in English and must be submitted via EasyChair
-% in the PDF format, and they must be formatted according to the ACM proceedings
-% template, which can be found at ACM Proceedings Template (https://www.acm.org/publications/proceedings-template) or in Overleaf at https://www.overleaf.com/gallery/tagged/acm).
+
 \PassOptionsToPackage{table}{xcolor}
 \documentclass[sigconf]{acmart}
+\usepackage{acmart-taps}
 \usepackage{hyperref}
+\usepackage{framed}
+\usepackage{colortbl}
 %\acmConference[ESEC/FSE 2023]{The 31st ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering}{11 - 17 November, 2023}{San Francisco, USA}
 %%
 %% \BibTeX command to typeset BibTeX logo in the docs
@@ -60,13 +12,22 @@
   \providecommand\BibTeX{{%
     Bib\TeX}}}
 
+
+\copyrightyear{2024}
+\acmYear{2024}
+\setcopyright{acmlicensed}\acmConference[ESEM '24]{Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement}{October 24--25, 2024}{Barcelona, Spain}
+\acmBooktitle{Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM '24), October 24--25, 2024, Barcelona, Spain}
+\acmDOI{10.1145/3674805.3686669}
+\acmISBN{979-8-4007-1047-6/24/10}
+
 %SPACE \setlength{\parskip}{0cm}
 %SPACE \setlength{\parindent}{1em}
 \usepackage{balance}
 %\usepackage{paralist}
 % paralist.sty tcolorbox.sty adjustbox.sty ulem.sty biblatex.sty):
 %XXXXXXXXXXXXXX
-\newcommand{\mytitle}{An Empirical Evaluation of Frequency-Based Statistical Models for Estimating Killable Mutants}
+\newcommand{\mytitle}{Empirical Evaluation of Frequency Based Statistical Models for Estimating Killable Mutants}
+
 
 % ALESSIO: A Large Empirical Evaluation of Frequency-Based Statistical Models for Estimating Killable Mutants
 % ALESSIO: Empirically Evaluating Frequency-Based Statistical Models for Estimating Killable Mutants
@@ -78,6 +39,10 @@
 %\newcommand{\mytitle}{Estimating Equivalent Mutants: Are we there yet?}
 %\usepackage{hyperref}
 %\usepackage{xcolor}
+
+\definecolor{coriginal}{RGB}{0,150,47}
+\definecolor{cdynamosa}{RGB}{0,108,168}
+\definecolor{crandom}{RGB}{219,36,42}
 \definecolor{rltred}{rgb}{0.5,0,0}
 \definecolor{rltgreen}{rgb}{0,0.5,0}
 \definecolor{rltblue}{rgb}{0,0,0.5}
@@ -92,6 +57,9 @@ pdftitle={\mytitle}
 \newif\ifdraft\drafttrue
 \newif\iflong\longfalse
 \usepackage{calc}
+
+
+\definecolor{shadecolor}{rgb}{0.9,0.9,0.9}
 
 %\newenvironment{custombox}
 %{\noindent\begin{minipage}{\linewidth-2\fboxsep-2\fboxrule}\small\itshape}
@@ -253,20 +221,20 @@ pdftitle={\mytitle}
 % \newcommand{\RQB}{RQ2\xspace} %\circled{B}\xspace}
 % \newcommand{\RQC}{RQ3\xspace} %\circled{C}\xspace}
 % \newcommand{\RQD}{RQ4\xspace} %\circled{D}\xspace}
-\newcommand{\RQA}{\circled{1}\xspace}
-\newcommand{\RQB}{\circled{2}\xspace}
-\newcommand{\RQC}{\circled{3}\xspace}
-\newcommand{\RQD}{\circled{4}\xspace}
+\newcommand{\RQA}{\textcircled{1}\xspace}
+\newcommand{\RQB}{\textcircled{2}\xspace}
+\newcommand{\RQC}{\textcircled{3}\xspace}
+\newcommand{\RQD}{\textcircled{4}\xspace}
 
 
 \newcommand{\RQAx}{%
 \begin{description}\item[\RQA]\textbf{What is the accuracy of frequency-based estimators in predicting killable mutants?}\end{description}}
 
 \newcommand{\RQBx}{%
-\begin{description}\item[\RQB]\textbf{Are frequency-based estimators affected by sampling strategies?}\end{description}}
+\begin{description}\item[] \textcircled{2} \textbf{Are frequency-based estimators affected by sampling strategies?}\end{description}}
 
 \newcommand{\RQCx}{%
-\begin{description}\item[\RQC] \textbf{Are frequency-based estimators affected by sampling units?}\end{description}}
+\begin{description}\item[] \textcircled{3} \textbf{Are frequency-based estimators affected by sampling units?}\end{description}}
 
 
 
@@ -543,12 +511,7 @@ pdftitle={\mytitle}
 %\copyrightyear{2018}
 %\acmYear{2018}
 %\acmDOI{XXXXXXX.XXXXXXX}
-\copyrightyear{2024}
-\acmYear{2024}
-\setcopyright{acmlicensed}\acmConference[ESEM '24]{Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement}{October 24--25, 2024}{Barcelona, Spain}
-\acmBooktitle{Proceedings of the 18th ACM / IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM '24), October 24--25, 2024, Barcelona, Spain}
-\acmDOI{10.1145/3674805.3686669}
-\acmISBN{979-8-4007-1047-6/24/10}
+
 %% These commands are for a PROCEEDINGS abstract or paper.
 %\acmConference[Conference acronym 'XX]{Make sure to enter the correct
 %  conference title from your rights confirmation emai}{June 03--05,
@@ -597,23 +560,7 @@ pdftitle={\mytitle}
 %% Uncommenting
 %% the next command will enable that style.
 %%\citestyle{acmauthoryear}
-\author{Konstantin Kuznetsov}
-% \authornote{Both authors contributed equally to the paper}
-\affiliation{\institution{Saarland University}\country{Germany}}
-\email{konstantin.kuznetsov@cispa.de}
-\author{Alessio Gambi}
-% \authornotemark[1]
-\affiliation{\institution{Austrian Institute of Technology}\country{Austria}}
-\email{alessio.gambi@ait.ac.at}
-\author{Saikrishna Dhiddi}
-\affiliation{\institution{University of Passau}\country{Germany}}
-\email{dhiddi@ads.uni-passau.de}
-\author{Julia Hess}
-\affiliation{\institution{Saarland University}\country{Germany}}
-\email{s9jahess@stud.uni-saarland.de}
-\author{Rahul Gopinath}
-\affiliation{\institution{University of Sydney}\country{Australia}}
-\email{rahul.gopinath@sydney.edu.au}
+
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -623,6 +570,45 @@ pdftitle={\mytitle}
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
 \title{\mytitle}
+
+
+
+\author{Konstantin Kuznetsov}
+% \authornote{Both authors contributed equally to the paper}
+\affiliation{
+\institution{Saarland University}
+\country{Germany}
+}
+\email{konstantin.kuznetsov@cispa.de}
+
+\author{Alessio Gambi}
+% \authornotemark[1]
+\affiliation{
+\institution{Austrian Institute of Technology}
+\country{Austria}
+}
+\email{alessio.gambi@ait.ac.at}
+
+\author{Saikrishna Dhiddi}
+\affiliation{
+\institution{University of Passau}
+\country{Germany}
+}
+\email{dhiddi@ads.uni-passau.de}
+
+\author{Julia Hess}
+\affiliation{
+\institution{Saarland University}
+\country{Germany}
+}
+\email{s9jahess@stud.uni-saarland.de}
+
+\author{Rahul Gopinath}
+\affiliation{
+\institution{University of Sydney}
+\country{Australia}
+}
+\email{rahul.gopinath@sydney.edu.au}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -715,8 +701,7 @@ pdftitle={\mytitle}
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  % Background, Aims, Method, Results, and Conclusions
-\noindent\textbf{Background.}
+\textbf{Background.}
 Mutation analysis is the premier technique for evaluating test suite
 quality estimating residual software defects. However, the reliability of 
 mutation analysis is hampered by \emph{equivalent mutants} which
@@ -724,7 +709,7 @@ are undetectable by test cases.
 Reliably detecting and eliminating killable mutants is difficult
 as it is highly program and location dependent. Statistical estimation of
 killable mutants seems to be a promising approach to tackle this problem.\\
-\noindent\textbf{Aims.}
+\textbf{Aims.}
 Frequency-based species estimation methods
 have been proposed as a solution for several related problems in software
 testing.
@@ -733,25 +718,19 @@ testing.
 %deliver an accurate estimate for killable mutants.
 This paper investigates whether such frequency-based estimation methods
 can accurately estimate the number of killable mutants.\\
-\noindent\textbf{Method.}
+\textbf{Method.}
 We conducted a large-scale empirical study
 on the ability of \estimatorCount widely known frequency-based
 estimators to predict the number of killable mutants in
 \projectCount mature software projects.\\
-\noindent\textbf{Result.}
+\textbf{Result.}
 Our investigation finds limited or no evidence that any of the statistical
 estimators are able to consistently predict the number of killable mutants in
 projects evaluated.\\
-\noindent\textbf{Conclusion.}
+\textbf{Conclusion.}
 We found that the investigated estimators lack sufficient
 predictive power and cannot produce reliable and useful estimates of killable
 mutants. 
-
-\ifdefined\BOOTSTRAP
-However, we found that the \emph{bootstrap} was the
-best performing%, and most promising 
-method out of all methods considered.
-\fi
 \end{abstract}
 
 %%
@@ -946,11 +925,24 @@ We count the number of mutants killed
 by a single test case, those killed by two test cases, and so on, and use this data
 to predict the remaining mutants that can be killed.
 
+
+\aptLtoX[graphic=no,type=html]{
+\begin{shaded}
+\noindent The idea in frequency-based mutant count estimation is that the ratio
+of number of mutants that are killed by a single test case vs those killed by
+two test cases, etc., contains the information for predicting those that are
+not yet killed.
+\end{shaded}
+}{
 \boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The idea in frequency-based mutant count estimation is that the ratio
 of number of mutants that are killed by a single test case vs those killed by
 two test cases, etc., contains the information for predicting those that are
-not yet killed.}
+not yet killed.}}
+
+
+
+
 
 %XXXXXXXXXXX
 %
@@ -959,8 +951,13 @@ not yet killed.}
 %XXXXXXXXXXX
 This leads to the first research question: % investigates the effectiveness of frequency-based estimators.
 
+%\begin{description}
+%  \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
+%    killable mutants?}
+%\end{description}
+
 \begin{description}
-  \item[\RQA]\textbf{How accurate are frequency-based estimators in predicting
+  \item[] \textcircled{1} \textbf{How accurate are frequency-based estimators in predicting
     killable mutants?}
 \end{description}
 %\RQAx
@@ -1000,10 +997,18 @@ We hypothesized that the estimates should overlap, with the difference in
 accuracy (i.e., variance of the estimation) being the only major
 difference. We compare the results of both aggregations with the ground truth.
 
+
+\aptLtoX[graphic=no,type=html]{
+\begin{shaded}
+\noindent Our large study empirically investigates the hypothesis that (at least)
+one of the surveyed frequency-based estimators can be effectively used to
+estimate killable mutants.
+\end{shaded}
+}{
 \boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Our large study empirically investigates the hypothesis that (at least)
 one of the surveyed frequency-based estimators can be effectively used to
-estimate killable mutants.}
+estimate killable mutants.}}
 %That is, it is accurate, reliable, and
 %produces better estimates than the na\"ive upper bound of total
 %number of generated mutants.
@@ -1389,93 +1394,113 @@ criteria given in \Cref{tbl:fullsubjects}, and their test suite spectra are give
 
 \begin{table}[t]
   \caption{List of considered Apache Commons projects}
-  \resizebox{\columnwidth}{!}{%
-    \footnotesize{
-    \rowcolors{1}{white}{yellow}
+% \resizebox{\columnwidth}{!}{%
+    \small
   \begin{tabular}{|l|l|l| }
     \hline
     \textbf{Project} & \textbf{Release} & \textbf{Commit Hash/Note} \\
     \hline
-    commons-beanutils     & 1.9.4-RC2      	& 32ceb2c925\\ %12d44f97638805e2f3fd9d70dfcfc6 \\
-    commons-cli           & 1.4            			& f7153c3c10\\ %cc8060d3858a6a90d7ddccd0b3533e \\
-    commons-codec         & 1.13           		& beafa49f88\\ %be397f89b78d125d2c7c52b0114006 \\
-    \textbf{commons-collections}   & 4.4       	& cab58b3a80\\ %93a2f6b84f12783a3fb358747310f7 \\
-    \textbf{commons-compress}      & 1.18      	& b95d5cde4c\\ %68640f886e3c6802384fae47408a37 \\
-    \textbf{commons-configuration} & 2.5       	& dc00a04783\\ %ea951280ba0cd8318f53e19acb707f \\
-    \textbf{commons-csv}           & 1.7            	& a227a1e2fb\\ %61ff5f192cfd8099e7e6f4848d7d43 \\
-    \textbf{commons-dbcp}          & 2.6.0         	& 3e7fca08d3\\ %585aa7cf70045ee3ed607cbaf04baa \\
-    commons-dbutils       & 1.7            		& 77faa3caef\\ %c24697b00bf370111f7307dae339b0 \\
-    commons-digester      & 3.2            		& ec75748096\\ %c8639be7b4998d99c37bb2e3a9c206 \\
-    commons-email         & 1.5            		& 5516c487a5\\ %d03df520480d47f5c5ae5a3b3341d4 \\
-    commons-exec          & 1.3            		& 0b1c1ff0cb\\ %a7145d396ace37805f0b59b3d52a9c \\
-    commons-fileupload    & 1.4            		& 047f315764\\%11beee69cf75584ae76531cc9ac753 \\
-    commons-functor       & 1.0\_RC1       		& 62cd20998e\\ %706eafb48b35774aca7b6e1c657386 \\
-    \textbf{commons-imaging}       & 1.0-alpha1-RC3 & 6f04ccc2cf\\ %8c867298579c355c6d88fd74da3e7b \\
-    \textbf{commons-io}            & 2.6-RC3        & 2ae025fe5c\\ %4a7d2046c53072b0898e37a079fe62 \\
-    \textbf{commons-lang}          & 3.8\_RC1   	& 9801e2fb9f\\ %cbf7ddd19221e9342608940d778f8c \\
-    \textbf{commons-math}          & 3.6\_RC2   & 95a9d35e77\\ %f70ffc9bd5143880c236a760b42005 \\
-    \textbf{commons-net}           & 3.6            	& 163fe46c01\\ %9f5184016207c247cdff30ee740ecc \\
-    commons-pool          & 2.7.0          		& f4455dcb8a\\ %faf9ae7054589110f1082a7a8a282c \\
-    commons-validator     & 1.6            		& c4b93a7275\\ %b1172f69e53cd8cec7fc27c954a5be \\
+\rowcolor{yellow}
+    commons-beanutils     & 1.9.4-RC2      	& 32ceb2c925\\ 
+    commons-cli           & 1.4            			& f7153c3c10\\ 
+\rowcolor{yellow}
+    commons-codec         & 1.13           		& beafa49f88\\ 
+    \textbf{commons-collections}   & 4.4       	& cab58b3a80\\ 
+\rowcolor{yellow}
+    \textbf{commons-compress}      & 1.18      	& b95d5cde4c\\ 
+    \textbf{commons-configuration} & 2.5       	& dc00a04783\\ 
+\rowcolor{yellow}
+    \textbf{commons-csv}           & 1.7            	& a227a1e2fb\\ 
+    \textbf{commons-dbcp}          & 2.6.0         	& 3e7fca08d3\\ 
+\rowcolor{yellow}
+    commons-dbutils       & 1.7            		& 77faa3caef\\
+    commons-digester      & 3.2            		& ec75748096\\ 
+\rowcolor{yellow}
+    commons-email         & 1.5            		& 5516c487a5\\ 
+    commons-exec          & 1.3            		& 0b1c1ff0cb\\ 
+\rowcolor{yellow}
+    commons-fileupload    & 1.4            		& 047f315764\\
+    commons-functor       & 1.0\_RC1       		& 62cd20998e\\ 
+\rowcolor{yellow}
+    \textbf{commons-imaging}       & 1.0-alpha1-RC3 & 6f04ccc2cf\\ 
+    \textbf{commons-io}            & 2.6-RC3        & 2ae025fe5c\\ 
+\rowcolor{yellow}
+    \textbf{commons-lang}          & 3.8\_RC1   	& 9801e2fb9f\\ 
+    \textbf{commons-math}          & 3.6\_RC2   & 95a9d35e77\\ 
+\rowcolor{yellow}
+    \textbf{commons-net}           & 3.6            	& 163fe46c01\\ 
+    commons-pool          & 2.7.0          		& f4455dcb8a\\ 
+\rowcolor{yellow}
+    commons-validator     & 1.6            		& c4b93a7275\\ 
     \hline
     \hline 
     commons-ognl          & no releases    & immature project \\
+\rowcolor{yellow}
     commons-geometry      & no releases    & immature project \\
     commons-testing       & no releases    & immature project \\
+\rowcolor{yellow}
     commons-bcel          & 6.3.1           & fail build \\
-    commons-vfs           & 2.4             & complex structure \\ %and broken build \\
-    commons-text          & 1.7             & fail build \\ %Error too many unapproved licenses  \\
-    commons-logging       & 1.2             & fail mutation analysis \\ % JVM crash during mutation \\
+    commons-vfs           & 2.4             & complex structure \\ 
+\rowcolor{yellow}
+    commons-text          & 1.7             & fail build \\ 
+    commons-logging       & 1.2             & fail mutation analysis \\ 
+\rowcolor{yellow}
     commons-jexl          & v4.0-snapshot.4 & failing tests \\
     commons-crypto        & 1.0.0           & failing tests \\
+\rowcolor{yellow}
     commons-jcs           & 2.2.1-RC4       & failing tests \\
-    commons-chain         & 1.2             & fail mutation analysis \\ % JVM crash \\
-    commons-jxpath        & 1.3             & fail mutation analysis \\ % JVM crash \\
-    commons-scxml         & 2.0-M1          & fail mutation analysis \\ % JVM crash \\
-    commons-rng           & 1.2             & complex structure \\ % and errors during build \\
-    commons-rdf           & 0.5.0           & complex structure \\ %and errors during build \\
-    commons-proxy         & 2.0 RC1         & fail build \\ % cyclic reference during build \\
-    commons-bsf           & 3.x-with-engines & complex structure \\ %and errors during build \\
-    commons-weaver        & 2.0             & complex structure \\ %and errors during build \\
+    commons-chain         & 1.2             & fail mutation analysis \\ 
+\rowcolor{yellow}
+    commons-jxpath        & 1.3             & fail mutation analysis \\ 
+    commons-scxml         & 2.0-M1          & fail mutation analysis \\ 
+\rowcolor{yellow}
+    commons-rng           & 1.2             & complex structure \\ 
+    commons-rdf           & 0.5.0           & complex structure \\ 
+\rowcolor{yellow}
+    commons-proxy         & 2.0 RC1         & fail build \\ 
+    commons-bsf           & 3.x-with-engines & complex structure \\ 
+\rowcolor{yellow}
+    commons-weaver        & 2.0             & complex structure \\ 
     commons-jelly         & 1.0.1           & fail build \\
-    commons-jci           & 1.1             & complex structure \\ %and errors during build \\
+\rowcolor{yellow}
+    commons-jci           & 1.1             & complex structure \\ 
     \hline
 \end{tabular}
-}}
+%}
 \label{tbl:fullsubjects}
 \end{table}
 
 \begin{table*}
+\small
   \caption{Apache Commons projects --- Projects and test suites measures}
-  \resizebox{\textwidth}{!}{%
-    \rowcolors{3}{yellow}{white}
+ % \resizebox{\textwidth}{!}{%
   \begin{tabular}{|r| l | r | r | r|r|r|r | r|r|r|r | r|r|r|r |}
     \hline
     \multicolumn{3}{|c|}{Project} & 
     \multicolumn{1}{c|}{Total} & 
     \multicolumn{4}{c|}{\original}  & 
-    \multicolumn{4}{c|}{\EvosuiteRandom} &
-    \multicolumn{4}{c|}{\EvosuiteDynamosa}\\
+    \multicolumn{4}{c|}{\textsc{Random}} &
+    \multicolumn{4}{c|}{\textsc{DynaMOSA}}\\
 
-    \multicolumn{1}{|c|}{Id} &     \multicolumn{1}{c|}{Name} &     \multicolumn{1}{c|}{KLOC} &
-    \multicolumn{1}{c|}{Mutants} &
+    Id &     Name &    KLOC &
+    Mutants &
     Size & Stmt & Branch & Kill &
     Size & Stmt & Branch & Kill &
     Size & Stmt & Branch & Kill \\
     \hline
-1 & commons-net             & 20	  & 5764	&	254		& 33\% & 28\% & 28\%  & 1988	& 48\% & 35\% & 32\% & 3499	  & 51\% & 42\% & 35\%\\
+\cellcolor[HTML]{FFFF00}{1} & \cellcolor[HTML]{FFFF00}{commons-net}             & \cellcolor[HTML]{FFFF00}{20}	  & \cellcolor[HTML]{FFFF00}{5764}	&	\cellcolor[HTML]{FFFF00}{254}		& \cellcolor[HTML]{FFFF00}{33\%} & \cellcolor[HTML]{FFFF00}{28\%} & \cellcolor[HTML]{FFFF00}{28\%}  & \cellcolor[HTML]{FFFF00}{1988}	& \cellcolor[HTML]{FFFF00}{48\%} & \cellcolor[HTML]{FFFF00}{35\%} & \cellcolor[HTML]{FFFF00}{32\%} & \cellcolor[HTML]{FFFF00}{3499}	  & \cellcolor[HTML]{FFFF00}{51\%} & \cellcolor[HTML]{FFFF00}{42\%} & \cellcolor[HTML]{FFFF00}{35\%}\\
 2 & commons-math            & 100	  & 47881	& 6377	& 92\% & 84\% & 76\%  & 11956	& 74\% & 61\% & 77\% & 17450	& 79\% & 68\% & 18\% \\
-3 & commons-lang            & 28 		& 13061	& 4114	& 95\% & 91\% & 66\%  & 4500	& 73\% & 60\% & 72\% & 9027	  & 89\% & 86\% & 86\% \\
+\cellcolor[HTML]{FFFF00}{3} & \cellcolor[HTML]{FFFF00}{commons-lang}            & \cellcolor[HTML]{FFFF00}{28} 		& \cellcolor[HTML]{FFFF00}{13061}	& \cellcolor[HTML]{FFFF00}{4114}	& \cellcolor[HTML]{FFFF00}{95\%} & \cellcolor[HTML]{FFFF00}{91\%} & \cellcolor[HTML]{FFFF00}{66\%}  & \cellcolor[HTML]{FFFF00}{4500}	& \cellcolor[HTML]{FFFF00}{73\%} & \cellcolor[HTML]{FFFF00}{60\%} & \cellcolor[HTML]{FFFF00}{72\%} & \cellcolor[HTML]{FFFF00}{9027}	  & \cellcolor[HTML]{FFFF00}{89\%} & \cellcolor[HTML]{FFFF00}{86\%} & \cellcolor[HTML]{FFFF00}{86\%} \\
 4 & commons-io              & 10 	  & 3273	&	1316	& 90\% & 88\% & 94\%  & 1677	& 72\% & 65\% & 58\% & 2822	  & 81\% & 79\% & 87\% \\
-5 & commons-imaging         & 31 	  & 11597	&	563		& 73\% & 59\% & 47\%  & 2974	& 63\% & 45\% & 44\% & 4935	  & 67\% & 53\% & 45\% \\
+\cellcolor[HTML]{FFFF00}{5} & \cellcolor[HTML]{FFFF00}{commons-imaging}         & \cellcolor[HTML]{FFFF00}{31} 	  & \cellcolor[HTML]{FFFF00}{11597}	&	\cellcolor[HTML]{FFFF00}{563}		& \cellcolor[HTML]{FFFF00}{73\%} & \cellcolor[HTML]{FFFF00}{59\%} & \cellcolor[HTML]{FFFF00}{47\%}  & \cellcolor[HTML]{FFFF00}{2974}	& \cellcolor[HTML]{FFFF00}{63\%} & \cellcolor[HTML]{FFFF00}{45\%} & \cellcolor[HTML]{FFFF00}{44\%} & \cellcolor[HTML]{FFFF00}{4935}	  & \cellcolor[HTML]{FFFF00}{67\%} & \cellcolor[HTML]{FFFF00}{53\%} & \cellcolor[HTML]{FFFF00}{45\%} \\
 6 & commons-dbcp            & 14	  & 4230	& 1409	& 66\% & 66\% & 99\%  & 1026	& 39\% & 42\% & 20\% & 2970	  & 47\% & 58\% & 27\% \\
-7 & commons-csv             & 2	    & 635		& 312		& 89\% & 85\% & 81\%  & 365		& 78\% & 63\% & 60\% & 647		& 89\% & 83\% & 76\% \\
+\cellcolor[HTML]{FFFF00}{7} & \cellcolor[HTML]{FFFF00}{commons-csv}             & \cellcolor[HTML]{FFFF00}{2}	    & \cellcolor[HTML]{FFFF00}{635}		& \cellcolor[HTML]{FFFF00}{312}		& \cellcolor[HTML]{FFFF00}{89\%} & \cellcolor[HTML]{FFFF00}{85\%} & \cellcolor[HTML]{FFFF00}{81\%}  & \cellcolor[HTML]{FFFF00}{365}		& \cellcolor[HTML]{FFFF00}{78\%} & \cellcolor[HTML]{FFFF00}{63\%} & \cellcolor[HTML]{FFFF00}{60\%} & \cellcolor[HTML]{FFFF00}{647}		& \cellcolor[HTML]{FFFF00}{89\%} & \cellcolor[HTML]{FFFF00}{83\%} & \cellcolor[HTML]{FFFF00}{76\%} \\
 8 & commons-configuration   & 28		& 6279	& 2803	& 87\% & 83\% & 99\%  & 2991	& 75\% & 62\% & 39\% & 4956	  & 80\% & 72\% & 40\% \\
-9 & commons-compress        & 24  	& 9566	& 1047	& 84\% & 76\% & 65\%  & 2610 	& 63\% & 45\% & 44\% & 4306	  & 70\% & 57\% & 49\% \\
+\cellcolor[HTML]{FFFF00}{9} & \cellcolor[HTML]{FFFF00}{commons-compress}        & \cellcolor[HTML]{FFFF00}{24}  	& \cellcolor[HTML]{FFFF00}{9566}	& \cellcolor[HTML]{FFFF00}{1047}	& \cellcolor[HTML]{FFFF00}{84\%} & \cellcolor[HTML]{FFFF00}{76\%} & \cellcolor[HTML]{FFFF00}{65\%}  & \cellcolor[HTML]{FFFF00}{2610} 	& \cellcolor[HTML]{FFFF00}{63\%} & \cellcolor[HTML]{FFFF00}{45\%} & \cellcolor[HTML]{FFFF00}{44\%} & \cellcolor[HTML]{FFFF00}{4306}	  & \cellcolor[HTML]{FFFF00}{70\%} & \cellcolor[HTML]{FFFF00}{57\%} & \cellcolor[HTML]{FFFF00}{49\%} \\
 10 & commons-collections    & 29  	& 8309 	& 25011 & 86\% & 81\% & 75\%  & 3954 	&	67\% & 59\% & 57\% & 5659	  &	74\% & 69\% & 93\% \\
     \hline
 \end{tabular}
-}
+%}
 \label{tbl:subjectmeasures}
 \end{table*}
 
@@ -1596,21 +1621,20 @@ mutants that survived its \original test suite.
 \begin{table}[h]
   \caption{Manual classification of live mutants.} % for the selected Apache Common projects.
 \resizebox{\columnwidth}{!}{%
-    \rowcolors{3}{yellow}{white}
 \begin{tabular}{|r|l|r|r|r|r|r|}
 \hline
 \multirow{2}{*}{Id} & \multicolumn{1}{c|}{\multirow{2}{*}{Project}} & \multirow{2}{*}{Sampled} & \multicolumn{2}{c|}{Misclass.} & \multirow{2}{*}{Equivalent}\\
     & & & \rB & \rC & \\
 \hline
-  1 & commons-net          &100 & 0  & 4  &  1 \\
+  \cellcolor[HTML]{FFFF00}{1} & \cellcolor[HTML]{FFFF00}{commons-net}          &\cellcolor[HTML]{FFFF00}{100} & \cellcolor[HTML]{FFFF00}{0}  & \cellcolor[HTML]{FFFF00}{4}  &  \cellcolor[HTML]{FFFF00}{1} \\
   2 & commons-math         &100 & 10 & 0  &  8 \\
-  3 & commons-lang         &100 & 7  & 3  & 12 \\
+  \cellcolor[HTML]{FFFF00}{3} & \cellcolor[HTML]{FFFF00}{commons-lang}         &\cellcolor[HTML]{FFFF00}{100} & \cellcolor[HTML]{FFFF00}{7}  & \cellcolor[HTML]{FFFF00}{3}  & \cellcolor[HTML]{FFFF00}{12} \\
   4 & commons-io           &100 & 3  & 2  &  5 \\
-  5 & commons-imaging      &100 & 0  & 2  &  0 \\
+  \cellcolor[HTML]{FFFF00}{5} & \cellcolor[HTML]{FFFF00}{commons-imaging}      &\cellcolor[HTML]{FFFF00}{100} & \cellcolor[HTML]{FFFF00}{0}  & \cellcolor[HTML]{FFFF00}{2}  &  \cellcolor[HTML]{FFFF00}{0} \\
   6 & commons-dbcp         &100 & 0  & 0  &  1 \\
-  7 & commons-csv$^*$      &116 & 3  & 23 &  9 \\
+  \cellcolor[HTML]{FFFF00}{7} & \cellcolor[HTML]{FFFF00}{commons-csv$^*$}      &\cellcolor[HTML]{FFFF00}{116} & \cellcolor[HTML]{FFFF00}{3}  & \cellcolor[HTML]{FFFF00}{23} &  \cellcolor[HTML]{FFFF00}{9} \\
   8 & commons-configuration&100 & 0 & 2  &  4 \\
-  9 & commons-compress     &100 & 2  & 4  &  1 \\
+  \cellcolor[HTML]{FFFF00}{9} & \cellcolor[HTML]{FFFF00}{commons-compress}     &\cellcolor[HTML]{FFFF00}{100} & \cellcolor[HTML]{FFFF00}{2}  & \cellcolor[HTML]{FFFF00}{4}  &  \cellcolor[HTML]{FFFF00}{1} \\
   10 & commons-collections  &100 & 3  & 2  &  1 \\
 \hline
 \end{tabular}
@@ -1701,23 +1725,29 @@ in \Cref{tbl:estoriginal}.
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across test subjects---\original test suites}
 \resizebox{\columnwidth}{!}{%
-    \rowcolors{1}{white}{yellow}
+   % \rowcolors{1}{white}{yellow}
     \begin{tabular}{|r|l|r|r|r|r|r|}
         \hline
         Id & Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
-        1 & \ICEallrare & 4 & 0 & 5.78 & 6.52 \\
-        2 & \Zelterman & 6 & 1 & 13.48 & 14.06 \\
-        3 & \ChaoBunge & 6 & 1 & 9.77 & 11.03 \\
-        4 & \Jackknife & 6 & 0 & 15.03 & 9.21 \\
-        5 & \Chao & 8 & 1 & 18.19 & 16.47 \\
-        6 & \improvedChao & 7 & 1 & 18.59 & 15.05 \\
-        7 & \ICE & 8 & 1 & 19.22 & 16.7 \\
-        8 & \improvedICE & 8 & 2 & 15.16 & 12.67 \\
-        9 & \Unpmle & 6 & 2 & 13.28 & 11.0 \\
-        10 & \Bootstrap & 9 & 0 & 19.76 & 20.51 \\
-        11 & \Pnpmle & 5 & 1 & 17.31 & 11.84 \\
-        12 & \PCG & 6 & 3 & 9.14 & 10.52 \\
+\rowcolor{yellow}
+        1 & ICE-k0 & 4 & 0 & 5.78 & 6.52 \\
+        2 & Zelterman & 6 & 1 & 13.48 & 14.06 \\
+\rowcolor{yellow}
+        3 & Chao-Bunge & 6 & 1 & 9.77 & 11.03 \\
+        4 & Jackknife & 6 & 0 & 15.03 & 9.21 \\
+\rowcolor{yellow}
+        5 & Chao & 8 & 1 & 18.19 & 16.47 \\
+        6 & iChao & 7 & 1 & 18.59 & 15.05 \\
+\rowcolor{yellow}
+        7 & ICE & 8 & 1 & 19.22 & 16.7 \\
+        8 & ICE-1 & 8 & 2 & 15.16 & 12.67 \\
+\rowcolor{yellow}
+        9 & UNPMLE & 6 & 2 & 13.28 & 11.0 \\
+        10 & Bootstrap & 9 & 0 & 19.76 & 20.51 \\
+\rowcolor{yellow}
+        11 & PNPMLE & 5 & 1 & 17.31 & 11.84 \\
+        12 & PCG & 6 & 3 & 9.14 & 10.52 \\
         \hline
     \end{tabular}}
     \label{tbl:estoriginal}
@@ -1739,48 +1769,60 @@ and \EvosuiteDynamosa (\Cref{tbl:estdynamosa}). % using test methods as sampling
 
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteRandom test suites}
-    \rowcolors{1}{white}{yellow}
+  %  \rowcolors{1}{white}{yellow}
 \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|r|l|r|r|r|r|r|}
         \hline
         Id & Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
-        1 & \ICEallrare & 2 & 1 & 19.51 & 21.08 \\
-        2 & \Zelterman & 8 & 1 & 36.33 & 19.32 \\
-        3 & \ChaoBunge & 8 & 1 & 30.95 & 17.16 \\
-        4 & \Jackknife & 8 & 0 & 34.28 & 19.55 \\
-        5 & \Chao & 9 & 1 & 39.42 & 20.82 \\
-        6 & \improvedChao & 9 & 0 & 37.42 & 20.63 \\
-        7 & \ICE & 9 & 1 & 37.79 & 20.41 \\
-        8 & \improvedICE & 8 & 0 & 38.12 & 17.22 \\
-        9 & \Unpmle & 8 & 2 & 39.9 & 17.42 \\
-        10 & \Bootstrap & 10 & 2 & 36.53 & 23.15 \\
-        11 & \Pnpmle & 9 & 1 & 35.45 & 20.76 \\
-        12 & \PCG & 9 & 2 & 35.17 & 22.03 \\
+\rowcolor{yellow}
+        1 & ICE-k0 & 2 & 1 & 19.51 & 21.08 \\
+        2 & Zelterman & 8 & 1 & 36.33 & 19.32 \\
+\rowcolor{yellow}
+        3 & Chao-Bunge & 8 & 1 & 30.95 & 17.16 \\
+        4 & Jackknife & 8 & 0 & 34.28 & 19.55 \\
+\rowcolor{yellow}
+        5 & Chao & 9 & 1 & 39.42 & 20.82 \\
+        6 & iChao & 9 & 0 & 37.42 & 20.63 \\
+\rowcolor{yellow}
+        7 & ICE & 9 & 1 & 37.79 & 20.41 \\
+        8 & ICE-1 & 8 & 0 & 38.12 & 17.22 \\
+\rowcolor{yellow}
+        9 & UNPMLE & 8 & 2 & 39.9 & 17.42 \\
+        10 & Bootstrap & 10 & 2 & 36.53 & 23.15 \\
+\rowcolor{yellow}
+        11 & PNPMLE & 9 & 1 & 35.45 & 20.76 \\
+        12 & PCG & 9 & 2 & 35.17 & 22.03 \\
         \hline
     \end{tabular}}
     \label{tbl:estrandom}
 \end{table}
 \begin{table}[h]
     \caption{Comparison of \emph{mean difference (MD)} between method estimators across subjects---\EvosuiteDynamosa test suites}
-    \rowcolors{1}{white}{yellow}
+ %   \rowcolors{1}{white}{yellow}
 \resizebox{\columnwidth}{!}{%
     \begin{tabular}{|r|l|r|r|r|r|r|}
         \hline
         Id & Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
         \hline
-        1 & \ICEallrare & 1 & 1 & 5.54 & - \\
-        2 & \Zelterman & 6 & 0 & 49.86 & 12.08 \\
-        3 & \ChaoBunge & 8 & 1 & 39.83 & 23.29 \\
-        4 & \Jackknife & 7 & 1 & 36.58 & 22.31 \\
-        5 & \Chao & 8 & 1 & 43.54 & 25.27 \\
-        6 & \improvedChao & 8 & 0 & 42.15 & 24.45 \\
-        7 & \ICE & 8 & 1 & 43.67 & 25.09 \\
-        8 & \improvedICE & 8 & 1 & 41.92 & 24.36 \\
-        9 & \Unpmle & 6 & 2 & 39.16 & 29.03 \\
-        10 & \Bootstrap & 7 & 0 & 49.66 & 20.85 \\
-        11 & \Pnpmle & 7 & 1 & 37.72 & 19.16 \\
-        12 & \PCG & 6 & 0 & 32.21 & 26.21 \\
+\rowcolor{yellow}
+        1 & ICE-k0 & 1 & 1 & 5.54 & - \\
+        2 & Zelterman & 6 & 0 & 49.86 & 12.08 \\
+\rowcolor{yellow}
+        3 & Chao-Bunge & 8 & 1 & 39.83 & 23.29 \\
+        4 & Jackknife & 7 & 1 & 36.58 & 22.31 \\
+\rowcolor{yellow}
+        5 & Chao & 8 & 1 & 43.54 & 25.27 \\
+        6 & iChao & 8 & 0 & 42.15 & 24.45 \\
+\rowcolor{yellow}
+        7 & ICE & 8 & 1 & 43.67 & 25.09 \\
+        8 & ICE-1 & 8 & 1 & 41.92 & 24.36 \\
+\rowcolor{yellow}
+        9 & UNPMLE & 6 & 2 & 39.16 & 29.03 \\
+        10 & Bootstrap & 7 & 0 & 49.66 & 20.85 \\
+\rowcolor{yellow}
+        11 & PNPMLE & 7 & 1 & 37.72 & 19.16 \\
+        12 & PCG & 6 & 0 & 32.21 & 26.21 \\
         \hline
     \end{tabular}}
     \label{tbl:estdynamosa}
@@ -1810,48 +1852,60 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \original test suites}
-    \rowcolors{1}{white}{yellow}
+  %  \rowcolors{1}{white}{yellow}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{|r|l|r|r|r|r|r|}
 \hline
   Id & Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
-  1 & \ICEallrare & 4 & 2 & 2.87 & 3.17 \\
-  2 & \Zelterman & 5 & 4 & 8.4 & 16.32 \\
-  3 & \ChaoBunge & 4 & 2 & 2.15 & 4.19 \\
-  4 & \Jackknife & 3 & 0 & 4.14 & 6.42 \\
-  5 & \Chao & 5 & 2 & 10.66 & 16.86 \\
-  6 & \improvedChao & 4 & 2 & 4.55 & 5.27 \\
-  7 & \ICE & 4 & 1 & 4.56 & 5.63 \\
-  8 & \improvedICE & 4 & 1 & 6.06 & 7.78 \\
-  9 & \Unpmle & 3 & 0 & 4.19 & 5.23 \\
-  10 & \Bootstrap & 5 & 3 & 5.71 & 2.73 \\
-  11 & \Pnpmle & 0 & - & - & - \\
-  12 & \PCG & 1 & 0 & 2.03 & - \\
+\rowcolor{yellow}
+  1 & ICE-k0 & 4 & 2 & 2.87 & 3.17 \\
+  2 & Zelterman & 5 & 4 & 8.4 & 16.32 \\
+\rowcolor{yellow}
+  3 & Chao-Bunge & 4 & 2 & 2.15 & 4.19 \\
+  4 & Jackknife & 3 & 0 & 4.14 & 6.42 \\
+\rowcolor{yellow}
+  5 & Chao & 5 & 2 & 10.66 & 16.86 \\
+  6 & iChao & 4 & 2 & 4.55 & 5.27 \\
+\rowcolor{yellow}
+  7 & ICE & 4 & 1 & 4.56 & 5.63 \\
+  8 & ICE-1 & 4 & 1 & 6.06 & 7.78 \\
+\rowcolor{yellow}
+  9 & UNPMLE & 3 & 0 & 4.19 & 5.23 \\
+  10 & Bootstrap & 5 & 3 & 5.71 & 2.73 \\
+\rowcolor{yellow}
+  11 & PNPMLE & 0 & - & - & - \\
+  12 & PCG & 1 & 0 & 2.03 & - \\
 \hline
 \end{tabular}}
 \label{tbl:estoriginalclassmethod}
 \end{table}
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteRandom test suites}
-    \rowcolors{1}{white}{yellow}
+  %  \rowcolors{1}{white}{yellow}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{|r|l|r|r|r|r|r|}
 \hline
   Id & Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
-  1 & \ICEallrare & 2 & 2 & 3.29 & 2.74 \\
-  2 & \Zelterman & 5 & 1 & 33.82 & 19.44 \\
-  3 & \ChaoBunge & 1 & 0 & 26.3 & - \\
-  4 & \Jackknife & 3 & 0 & 36.82 & 15.25 \\
-  5 & \Chao & 6 & 0 & 28.66 & 15.8 \\
-  6 & \improvedChao & 5 & 0 & 30.06 & 13.52 \\
-  7 & \ICE & 5 & 0 & 23.69 & 10.54 \\
-  8 & \improvedICE & 2 & 0 & 31.15 & 10.81 \\
-  9 & \Unpmle & 2 & 0 & 36.67 & 27.71 \\
-  10 & \Bootstrap & 9 & 5 & 6.79 & 2.71 \\
-  11 & \Pnpmle & 1 & 0 & 56.16 & - \\
-  12 & \PCG & 2 & 1 & 28.42 & 37.91 \\
+\rowcolor{yellow}
+  1 & ICE-k0 & 2 & 2 & 3.29 & 2.74 \\
+  2 & Zelterman & 5 & 1 & 33.82 & 19.44 \\
+\rowcolor{yellow}
+  3 & Chao-Bunge & 1 & 0 & 26.3 & - \\
+  4 & Jackknife & 3 & 0 & 36.82 & 15.25 \\
+\rowcolor{yellow}
+  5 & Chao & 6 & 0 & 28.66 & 15.8 \\
+  6 & iChao & 5 & 0 & 30.06 & 13.52 \\
+\rowcolor{yellow}
+  7 & ICE & 5 & 0 & 23.69 & 10.54 \\
+  8 & ICE-1 & 2 & 0 & 31.15 & 10.81 \\
+\rowcolor{yellow}
+  9 & UNPMLE & 2 & 0 & 36.67 & 27.71 \\
+  10 & Bootstrap & 9 & 5 & 6.79 & 2.71 \\
+\rowcolor{yellow}
+  11 & PNPMLE & 1 & 0 & 56.16 & - \\
+  12 & PCG & 2 & 1 & 28.42 & 37.91 \\
 \hline
 \end{tabular}}
 \label{tbl:estrandomclassmethod}
@@ -1859,24 +1913,30 @@ and for \EvosuiteDynamosa is given in \Cref{tbl:estdynamosaclassmethod}.
 
 \begin{table}[h]
 \caption{Comparison of \emph{mean difference (MD)} between class and method estimators across subjects---between \EvosuiteDynamosa test suites}
-    \rowcolors{1}{white}{yellow}
+  %  \rowcolors{1}{white}{yellow}
 \resizebox{\columnwidth}{!}{%
 \begin{tabular}{|r|l|r|r|r|r|r|}
 \hline
   Id & Estimator & Valid Est. & CI Overlaps & Mean (\%) & Stdev (\%) \\
 \hline
-  1 & \ICEallrare & 0 & - & - & - \\
-  2 & \Zelterman & 2 & 0 & 22.0 & 0.85 \\
-  3 & \ChaoBunge & 2 & 0 & 23.83 & 21.74 \\
-  4 & \Jackknife & 1 & 0 & 32.77 & - \\
-  5 & \Chao & 4 & 0 & 22.16 & 13.47 \\
-  6 & \improvedChao & 4 & 0 & 26.47 & 15.11 \\
-  7 & \ICE & 4 & 1 & 22.19 & 16.63 \\
-  8 & \improvedICE & 3 & 0 & 23.85 & 19.12 \\
-  9 & \Unpmle & 0 & - & - & - \\
-  10 & \Bootstrap & 6 & 1 & 7.11 & 2.76 \\
-  11 & \Pnpmle & 1 & 0 & 58.84 & - \\
-  12 & \PCG & 0 & - & - & - \\
+\rowcolor{yellow}
+  1 & ICE-k0 & 0 & - & - & - \\
+  2 & Zelterman & 2 & 0 & 22.0 & 0.85 \\
+\rowcolor{yellow}
+  3 & Chao-Bunge & 2 & 0 & 23.83 & 21.74 \\
+  4 & Jackknife & 1 & 0 & 32.77 & - \\
+\rowcolor{yellow}
+  5 & Chao & 4 & 0 & 22.16 & 13.47 \\
+  6 & iChao & 4 & 0 & 26.47 & 15.11 \\
+\rowcolor{yellow}
+  7 & ICE & 4 & 1 & 22.19 & 16.63 \\
+  8 & ICE-1 & 3 & 0 & 23.85 & 19.12 \\
+\rowcolor{yellow}
+  9 & UNPMLE & 0 & - & - & - \\
+  10 & Bootstrap & 6 & 1 & 7.11 & 2.76 \\
+\rowcolor{yellow}
+  11 & PNPMLE & 1 & 0 & 58.84 & - \\
+  12 & PCG & 0 & - & - & - \\
 \hline
 \end{tabular}}
 \label{tbl:estdynamosaclassmethod}
@@ -1906,7 +1966,7 @@ Inspecting \Cref{tbl:estoriginal}, we can observe that
 \todo{ALESSIO: I am not sure where the description of the figure fits... Somehow, it seems that tables are more than enough...}
 %
 To better interpret the results in \Cref{tbl:estoriginal}, we plot the results for \Chao estimator (the
-estimator suggested by the STADS framework) in \Cref{fig:groundtruth1}.
+estimator suggested by the STADS framework) in Figure~\ref{fig:groundtruth1}.
 %\footnote{Similar plots for the remaining estimators can be found in the replication package.}
 %
 In the figure, the x-axis represents the ratio of mutants, with 1.0 (bold solid line) indicating the complete set of generated
@@ -1968,15 +2028,20 @@ the studied estimators might be useful to developers in practice.
 % in light of these results, 
 Consequently, we answer \RQA as follows:
 
+\aptLtoX[graphic=no,type=html]{
+\begin{shaded}
+\noindent Despite some positive results, in general the \estimatorCount frequency-based
+estimators we considered were neither accurate nor reliable in predicting killable mutants
+from the \original test suites using test method as sampling unit.
+\end{shaded}
+}{
 \boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 Despite some positive results, in general the \estimatorCount frequency-based
 estimators we considered were neither accurate nor reliable in predicting killable mutants
-from the \original test suites using test method as sampling unit.}
+from the \original test suites using test method as sampling unit.}}
 %  for every estimator examined.
 
-\definecolor{coriginal}{RGB}{0,150,47}
-\definecolor{cdynamosa}{RGB}{0,108,168}
-\definecolor{crandom}{RGB}{219,36,42}
+
 \begin{figure*}
   %\centering
 \begin{subfigure}{.42\textwidth}
@@ -2062,7 +2127,7 @@ Ratio of mutants in x-axis, with 1.0 indicating all generated mutants. The y-axi
   \caption{\textcolor{coriginal}\original vs \textcolor{crandom}\EvosuiteRandom~(classes)}
 \label{fig:cc}
 \end{subfigure}
-  \caption{Comparison of estimates from different test suites with \textbf{methods} (\Cref{fig:am}\ldots\Cref{fig:cm}) and \textbf{classes} (\Cref{fig:ac}\ldots\Cref{fig:cc}) as sampling units for \Chao estimator.
+  \caption{Comparison of estimates from different test suites with \textbf{methods} (Figure~\ref{fig:am}\ldots Figure~\ref{fig:cm}) and \textbf{classes} (Figure~\ref{fig:ac}\ldots Figure~\ref{fig:cc}) as sampling units for \Chao estimator.
   The \original is \textcolor{coriginal}{green}, 
   \EvosuiteDynamosa is \textcolor{cdynamosa}{blue},
   and \EvosuiteRandom is \textcolor{crandom}{red}. The figure shows that the estimate CI from none test suites overlaps each other or ground truth consistently.}
@@ -2124,7 +2189,7 @@ the number of CI overlaps was smaller ($9$ vs. $13$) and the mean difference was
 
 As before, we plot the results for \Chao estimator with each sampling strategy %, the estimator suggested by the STADS framework in - ALESSIO: Repeated
 in \ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
-We also plot the results for \Chao estimator test suite pairs across \Cref{fig:am}\ldots\Cref{fig:cc} along with the manual estimate.
+We also plot the results for \Chao estimator test suite pairs across Figure~\ref{fig:am}\ldots Figure~\ref{fig:cc} along with the manual estimate.
 %~\ref{fig:groundtruth3} and ~\ref{fig:groundtruth2}.
 %\Cref{fig:methodsamplingunit}
 %the comparison of the sampling strategies in pairs.% and \Cref{fig:classsamplingunit}
@@ -2165,24 +2230,25 @@ at the expense of their \emph{precision}, i.e., mean difference.
 %
 But this was not the case; therefore, we answer \RQB as follows:
 
+
+\aptLtoX[graphic=no,type=html]{
+\begin{shaded}
+\noindent The estimation quality is affected by the sampling strategy. For instance,
+unbiased sampling improved the reliability of the estimators but reduced their precision.
+Additionally, no matter the chosen sampling strategy, none of the estimators showed
+satisfactory results.
+\end{shaded}
+}{
 \boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The estimation quality is affected by the sampling strategy. For instance,
 unbiased sampling improved the reliability of the estimators but reduced their precision.
 Additionally, no matter the chosen sampling strategy, none of the estimators showed
-satisfactory results.}
-%   The difference between estimates from \EvosuiteRandom and \EvosuiteDynamosa
-% to the estimates from manual classification is statistically significant for
-% every estimator examined.
+satisfactory results.}}
 
 
-\RQCx
-% As we mentioned in the introduction, there is a possibility, however remote,
-% that the manual estimation result was either in error, or the result was a
-% statistical fluke. To discount this possibility we conducted the third
-% experiment, where we compared estimators based on how they predict the same
-% quantity when sampling units were changed. We expected individual estimators to
-% return the same predictions irrespective of the sampling units used.
-\RQB showed that the estimators are affected by the sampling strategy,
+
+\RQCx~
+\textcircled{2} showed that the estimators are affected by the sampling strategy,
 i.e., the bias in sampling of killable mutants. \RQC, instead, focuses on the
 granularity at which sampling happens, i.e., the sampling unit.
 %
@@ -2218,12 +2284,21 @@ and sampling strategy do not overlap.
 
 In light of these results, we answer \RQC:
 
+\aptLtoX[graphic=no,type=html]{
+\begin{shaded}
+The difference between estimates from test method and test class level
+estimators %to the estimates from manual classification
+is statistically significant for every estimator examined. Consequently,
+none of the \estimatorCount estimators was robust against changes in sampling
+unit.
+\end{shaded}
+}{
 \boxedtext{%[boxrule=0.5pt, arc=4pt, boxsep=0pt, width=\columnwidth]
 The difference between estimates from test method and test class level
 estimators %to the estimates from manual classification
 is statistically significant for every estimator examined. Consequently,
 none of the \estimatorCount estimators was robust against changes in sampling
-unit.}
+unit.}}
 %XXXXXXXXXXXXXXX
 \subsection{Additional Observations}
 % From a detailed analysis of the data (see Appendix~\cite{replication-package} for detailed plots and tables)
