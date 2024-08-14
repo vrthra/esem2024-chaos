@@ -980,18 +980,18 @@ However, we can consider the whole test suite as one single sample and count mut
 
 
 
-With abundance data, we explore \<\ChaoBunge>, \Unpmle, \Pnpmle, and \PCG estimators.
+With abundance data, we explore \<\ChaoBunge>, \PCG, \Unpmle, and \Pnpmle estimators.
 Since they have complex formulation, we suggest the reader to refer to the corresponding papers for details.
 Some abundance estimators assume Poisson rather than Binomial distribution of counts, which can be considered as a limiting case when the number of tests tends to infinity
 (i.e., $T$ is sufficiently large).
 The \ChaoBunge estimator, proposed by Chao and Bunge~\cite{chao2002estimating},
 utilizes the gamma-Poisson model in which species are detected in the sample
 according to a Poisson process and rates of the processes follow a gamma distribution.
+Wang et al.~\cite{wang2010estimating} provided the Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (\PCG).
 The Unconditional nonparametric maximum likelihood estimator (\Unpmle)
 was provided by Norris and Pollock~\cite{norris1998non}.
 The Penalized nonparametric maximum likelihood estimator (\Pnpmle)
 was provided by Wang et al.~\cite{wang2005penalized}.
-Wang et al.~\cite{wang2010estimating} provided the Poisson-compound Gamma model with smooth nonparametric maximum likelihood estimation (\PCG).
 
 \section{Methodology}
 
